@@ -88,7 +88,7 @@ Although fairly complex, this is a simplified approach to aid understanding, dev
 
 The main stack is
 
-- the client: OpenLayers, Parcel
+- the client: OpenLayers, Vue.js (and Vuex), Webpack
 - \<-via REST API-\>
 - the server: Express, Node, MongoDB
 
@@ -96,15 +96,8 @@ The main stack is
 
 Note that the –save option for npm install is now the default, so is not needed. For details of each package search below.
 
-- then for both client and server npm install
-  - [prop-types-exact](https://www.npmjs.com/package/prop-types-exact) - for more exact typing of props (not used yet)
-  - [classnames](https://www.npmjs.com/package/classnames) - for combining class names
-  - [has](https://www.npmjs.com/package/has) - shortcut for hasOwnProperty
-  - [dotenv](https://github.com/motdotla/dotenv#readme) - for providing environment variables
-- then for the client npm install
+- consider
   - [lodash](https://lodash.com/) - every useful function you ever need(!)
-  - [cuid](https://github.com/ericelliott/cuid) - for generating IDs
-  - [redux-orm](https://github.com/tommikaikkonen/redux-orm) - for using relational data in Redux
 
 ## Folder and File set-up
 
