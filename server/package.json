@@ -1,0 +1,22 @@
+{
+  "name": "m4ops_server",
+  "version": "0.0.1",
+  "description": "M4OPS) Mapping for One-Place Studies - server side",
+  "author": "Peter Cooper <peter@pcooper.me.uk> (https://www.hcnhistory.org.uk/)",
+  "license": "MIT",
+  "homepage": "https://github.com/PeterC66/m4ops",
+  "repository": "github:PeterC66/m4ops",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.9"
+  }
+}

@@ -1,0 +1,206 @@
+/* A copy of M4OPS-main.css */
+
+/* CSS full-screen layout - site specific elements */
+/* From VectorOverlayAreas-master/maincss.css with some (???duplicated?) elements from NLSExploreGeoreferencedMapsOL3-master/explorecss.css */
+/* For selectors see http://www.w3schools.com/cssref/css_selectors.asp, eg .=class, #=id, p=all p elements */
+
+html { overflow: hidden; }
+body { overflow: hidden; padding: 0; margin: 0; width: 100%; height: 100%; font-family: Trebuchet MS, Trebuchet, Arial, sans-serif; background: #f1e8f1 url(../../../images/backdropDEV.png) repeat-x;} /* PROD: #EEF2E9 url(../../../images/backdrop.png) repeat-x;*/
+h1 { padding:7px 10px; margin:0; font-size: 1.2em; line-height:0.2em; }
+h2 { padding:7px 10px; margin:0; font-size: 1.0em; }
+h3 {font-size: 0.9em; margin-top: 0.5em; margin-bottom: 0px;}
+.h3 {font-size: 0.9em; margin-top: 0.5em; margin-bottom: 0px;}
+h4 {	font-size: 0.85em;}
+label { font-size: 0.9em;}
+
+#header { position: absolute; border: 1px solid #fff; top: 5px; left: 5px; right: 5px; margin-bottom:5px; height: 70px; overflow: hidden; }
+#header { background: #EEF2E9; border: 1px solid #592F57; box-shadow: 0 0px 0px #CCC; } 
+
+#home { position: absolute; top: 10px; left: 10px; } 
+
+/* From https://stackoverflow.com/questions/9467504/html-make-text-clickable-without-making-it-a-hyperlink */
+/* button.link { background:none;border:none; }*/
+
+/*#main { position: absolute; top: 90px; left: 5px; right: 5px; bottom: 5px; overflow: auto; border: 1px solid #592F57; border-radius: 8px; box-shadow: 0 0px 0px #CCC; 
+padding: 10px 10px 10px 10px; background: #fff; z-index: 10001;}*/
+
+.floatright {float:right;margin-left: 22px;margin-bottom: 20px;background:#ffffff;}
+.highlight {border: 5px solid red;}
+.highlightError {border: 2px solid red;}
+
+#maps { position: absolute; top: 80px; left: 315px; right: 5px; bottom: 5px; overflow: hidden; border: 1px solid #ccc; box-shadow: 0 0px 0px #CCC; background-color: #cedfe4;} 
+
+#righthandmapdiv { position: absolute; right: 0; width: 50%; height: 100%;} 
+
+#sidebar { position: absolute; top: 80px; left: 5px; width: 305px; bottom: 5px; font-size: 14px; overflow: auto; border: 1px solid #592F57; box-shadow: 0 0px 0px #CCC; padding: 2px; overflow-x:hidden; overflow-y:hidden;}
+
+.narrowbuttons {padding-left: 1px; padding-right: 1px; line-height: 0.85; border-left-width: 1px; border-right-width: 1px;}
+.narrowbuttons.active {background-color: #A9A9A9;}
+.category {background-color: #EAEFE7} 
+.categorywords {background-color: #9CB37D; color: greenyellow;} 
+#filename {padding: 1px 3px 1px 3px; height: inherit;} /* top, right, bottom, left */
+.loading {display:none; position: absolute; left: 50%; top: 50%; z-index: 1; width: 32px; height: 32px; background-image: url("../../../images/snake_loader.gif");}
+
+#explanation {width: 100%; border-style: double; border-width: medium; border-color: red; margin: 10px 0px 0px 0px; background:rgba(255,255,255,0.8); z-index: 100; position:relative;}
+#explanationhead {text-decoration: underline; margin: 0; padding: 3px 3px 3px 3px; text-align: center;}
+#explanationtext {margin: 0; padding: 0px 3px 3px 3px; text-align: center;}
+#explanationbuttons {margin: 0; padding: 0px 3px 3px 3px; text-align: center;}
+
+#sidebarfoot { position: absolute; bottom: 5px; font-size:small; width: 100%; z-index: 10;}
+#overview { position: absolute; height: 155px; width: 155px; bottom: -10px; right: 5px;}
+#sidebarfoot1 { position: absolute; bottom: 0px; width: 140px;}
+#sidebarfoot2 { position: absolute; bottom: 150px;}
+
+#scalebar {position: absolute; right: 20px; bottom: 75px; z-index: 10001; font-size: small;}
+
+#resultsSideBar {position: absolute; top: 80px; right: 8px; width: 20%; bottom: 20px; overflow: visible; z-index: 20000; pointer-events: none;}
+#featureinfo {max-height: 100%; width:100%; border-radius: 5px; overflow: auto; margin: 2px; padding: 0px; background:rgba(255,255,255,0.8); pointer-events: auto; position: absolute; z-index: 20020;} 
+#colourkey {max-height: 100%; border-radius: 5px; overflow: auto; margin: 2px; padding: 0px; background:rgba(255,255,255,0.8); position: absolute; z-index: 20000; right: 0;}
+ 
+.keyHead {text-decoration: underline; margin: 0; float: right;}
+.keyBody {display: inline-block; float: right;}
+.smallsquare { display: inline-block; width: 1em; height: 1em; margin: 0 0 0 5px; border: 1px solid rgba(0, 0, 0, .2); float: right;}
+
+.resultsHead {text-decoration: underline; color: magenta; margin: 0;}
+.resultsBody {color: blue;}
+.resultsProperty {color: DarkCyan; margin-bottom: 1px;}
+.resultsPropertyValue {color: black;}
+.resultsevHead {text-decoration: underline; margin: 0;}
+.resultsevBody {}
+#resultsOpenButtonDiv {position: absolute; top: 0px; right: 0px;}
+#resultsOpenButton {font-size: 0.9em;}
+
+#CreateNewFeatureButtons {margin-bottom: 0;}
+
+/* Not sure what this is for */
+.mslider { width: 100%; background: #FFFFFF; position:absolute; bottom: 20px; opacity: 0.8; z-index: 10000000;}
+
+#mapsslider .slider-selection { background: white;}
+#spysslider .slider-selection { background: white;}
+#spysslider .slider-handle { background: #B5D0D0; border: 2px solid black;}
+#fmapsslider .slider-selection { background: white;}
+#fmapsslider:not(.slider-disabled) .slider-handle { background: green;}
+#seriessslider .slider-handle { background: #9932CC; border: 2px solid black;}
+
+#timeslider .slider-selection { background: white;}
+/* NB The ::before selector inserts something before the content of each selected element(s), so re-position it slightly 
+This custom applies to both time sliders*/
+.slider-handle.custom::before { line-height: 20px; font-size: 20px; content: '\007C'; /*unicode vertical line*/ color: DarkMagenta; position: relative; left: 4px; }
+#timesliderBounds .slider-selection { background: DarkMagenta;}
+
+#timesliderMain .slider-track-high { background: DarkMagenta;}
+#timesliderMain .slider-track-low { background: DarkMagenta;}
+#timesliderMain .slider-selection { background: #ffb2ff;} /* a tint of DarkMagenta per colorhexa.com */
+
+.ol-mouse-position{position: absolute; right:8px;height:80px; font-size: 9pt;text-align: right;background: rgba(255, 255, 255, 0.5);line-height: 13pt; border-radius: 2px; top: auto; bottom: 50px;}
+.ol-mouse-position:hover{background: rgba(255, 255, 255, 0.8);} /* just making the background more intense */
+
+.ol-attribution ul {font-size: 1rem;}
+/*  remove ol3 background except on hover, and allow two lines */
+.ol-attribution.ol-uncollapsible { background: none; height:2.2em;}
+.ol-attribution.ol-uncollapsible:hover { background: rgba(255,255,255,0.8);} /* just making the background more intense */
+.ol-scale-line:hover { background: rgba(0,60,136,.9);} /* just making it more intense */
+
+#featurelist { position: absolute; top: 80px; left: 5px; width: 295px; bottom: 5px; font-size: 14px; overflow: auto; border: 1px solid #592F57; box-shadow: 0 0px 0px #CCC; padding: 5px; overflow-x:hidden; overflow-y:hidden;}
+
+#featurelistbody {max-height: 100%; border-radius: 5px; overflow: auto; margin: 2px; padding: 0px; background:rgba(255,255,255,0.8);}
+
+#featurelisttable {width: 100%; table-layout: fixed;}
+
+td.flbody {padding-left: 1em; text-indent:-1em;} /* so all text after first line is indented */
+
+#BaseOverlayText {}
+#BOTextBase {}
+#BOTextLine {}
+#BOTextOverlay {}
+
+/* Based on http://www.bootply.com/s6x5oKLiDG */
+/* CSS used here will be applied after bootstrap.css */
+.modal-header-M4OPS {
+	color:#fff;
+	padding:9px 15px;
+	border-bottom:1px solid #eee;
+	background-color: #729246;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	 border-top-left-radius: 5px;
+	 border-top-right-radius: 5px;
+}
+.modal-body-M4OPS {background-color: #F8F8F8;}
+.modal-footer-M4OPS {background-color: #EEF2E9;}
+
+.btn-left {float: left;}
+
+#DNModalTitle {text-align: center;}
+#ChooseOPSModalTitle {text-align: center;}
+#ChooseOPSformgroup {margin-top: 15px;}
+
+#AllFeaturesActions {margin-left: 100px;}
+
+#tail {position: absolute; background:rgba(255,255,255,0.5);} /* for text following mouse */
+#CSVToGeorefUnderMFL {width:100%; overflow:auto; }
+#ModifyFeaturesButtonsOther {margin-bottom: 2px;}
+#geotype {display: inline-block; width: 100px;}
+
+/* From https://stackoverflow.com/questions/12066528/change-width-of-select-tag-in-twitter-bootstrap
+to make Bootstrap selects not 100% */
+.selectwidthauto
+{
+	width:auto !important;
+}
+
+/* for Bootstrap Tabs to make them smaller */
+.nav>li>a {
+	padding: 3px 7px 1px 7px;  /* top, right, bottom, left */
+}	
+/* based on https://codepen.io/olam/pen/zcqea */
+.pulse {
+	animation: pulse 2s infinite;
+}
+/*.pulse:hover {
+	animation: none;
+}*/
+
+/*
+	box-shadow: h-shadow v-shadow blur spread color
+	(ie the right/down offset of the shadow, how much is blurred rather than solid, how much it is bigger than the original shape) 
+	for this we need only the spread!
+	@keyframes defines the CSS to use at key points of the animation
+*/
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-box-shadow: 0 0 0 0 rgba(255,0,0, 0.6);
+	}
+	70% {
+		-webkit-box-shadow: 0 0 0 10px rgba(255,0,0, 0);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 0 rgba(255,0,0, 0);
+	}
+}
+@keyframes pulse {
+	0% {
+		-moz-box-shadow: 0 0 0 0 rgba(255,0,0, 0.4);
+		box-shadow: 0 0 0 0 rgba(255,0,0, 0.4);
+	}
+	70% {
+		-moz-box-shadow: 0 0 0 10px rgba(255,0,0, 0);
+		box-shadow: 0 0 0 10px rgba(255,0,0, 0);
+	}
+	100% {
+		-moz-box-shadow: 0 0 0 0 rgba(255,0,0, 0);
+		box-shadow: 0 0 0 0 rgba(255,0,0, 0);
+	}
+}
+/* from https://jsfiddle.net/VRyS2/1/ */
+ .color-box {
+	width: 15px;
+	height: 10px;
+	display: inline-block;
+	background-color: #ccc;
+	position: relative;
+	left: 5px;
+	top: 1px;
+}
