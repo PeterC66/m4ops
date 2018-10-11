@@ -3,7 +3,7 @@
 - [M4OPS2 Notes Standards and Practices](#m4ops2-notes-standards-and-practices)
   - [Overview](#overview)
     - [Notes on this document](#notes-on-this-document)
-  - [Some useful Terminology (of various sorts)](#some-useful-terminology--of-various-sorts-)
+  - [Some useful Terminology](#some-useful-terminology)
   - [The stack](#the-stack)
   - [Folder and File set-up](#folder-and-file-set-up)
   - [Naming conventions](#naming-conventions)
@@ -25,7 +25,7 @@
   - [Debugging](#debugging)
   - [Testing](#testing)
   - [OpenLayers](#openlayers)
-    - [OL & Vue](#ol---vue)
+    - [OL and Vue](#ol-and-vue)
   - [Server Overview](#server-overview)
     - [Connecting to MongoDB](#connecting-to-mongodb)
     - [Notes](#notes)
@@ -36,7 +36,7 @@
 
 ## Overview
 
-This is an eclectic, pragmatic working document to help me remember how to do things, and evolving as I get more experience. It has lots of links for useful reference. Be aware that although the intention is there, it is likely that at any time the code will not meet the standards by a long way. There is also lots of stuff here that I do not understand yet!
+This is an eclectic, pragmatic working document to help me remember how to do things, and evolving as I get more experience (or change technologies!). It has lots of links for useful reference. Be aware that although the intention is there, it is likely that at any time the code will not meet the standards by a long way. There is also lots of stuff here that I do not understand yet!
 
 Although fairly complex, this is a simplified approach to aid understanding, development and maintenance, and has been adapted in the light of experience. See other possibilities in [M4OPS2 Other Technical Possibilities](M4OPS2OtherTechnicalPossibilities.md), although as we go on any that are actually used will be moved from there into this document.
 
@@ -45,7 +45,7 @@ Although fairly complex, this is a simplified approach to aid understanding, dev
 - To see diagrams you need [mermaid](https://mermaidjs.github.io/) installed
 - Do not use , ( ) / in headings else links from TOC will not function without manual change
 
-## Some useful Terminology (of various sorts)
+## Some useful Terminology
 
 - Semantic versioning (**semver**) - Change major number when it may break existing usages
 
@@ -113,9 +113,13 @@ The main stack is
 ├── components - All the components that are not routed (ie not layouts)
 │   └── ...
 ├── global
-│   ├──utils - functions used in various places
+│   ├── components - a few that are generic, and potentially used anywhere
 │   │   └── ...
-│   └── ... styles, constants etc that can be used anywhere
+│   ├── constants ... system-wide
+│   ├── utils ... functions used in various places
+│   ├── styles - any not included in SFCs
+│   │   └── ...
+│   └── ...
 ├── layouts -  the components that are routed eg  xxx/dashboard
 │   └── ...
 ├── main.js - the Vue root
@@ -441,7 +445,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 - [ol on npm](https://www.npmjs.com/package/ol)
 - [Releases on GitHub](https://github.com/openlayers/openlayers/releases/)
 
-### OL & Vue
+### OL and Vue
 
 - Use [vuelayers](https://github.com/ghettovoice/vuelayers): Vue components with the power of OpenLayers
 - [vue-components-to-work-with-openlayers](https://vuejsexamples.com/vue-components-to-work-with-openlayers/)
