@@ -112,7 +112,7 @@ The main stack is
 ├── App.vue
 ├── assets - Where you put any assets that are imported into your components
 │   └── ...
-├── components - All the components that are not routed (ie not layouts)
+├── components - All the components that are not routed (ie not views)
 │   └── ...
 ├── global
 │   ├── components - a few that are generic, and potentially used anywhere
@@ -121,8 +121,6 @@ The main stack is
 │   ├── utils ... functions used in various places
 │   ├── styles - any not included in SFCs
 │   │   └── ...
-│   └── ...
-├── layouts -  the components that are routed eg  xxx/dashboard
 │   └── ...
 ├── main.js - the Vue root
 ├── mixins ( reused in different components)
@@ -143,6 +141,8 @@ The main stack is
 │   └── params - parameters to the URL
 ├── translations - Locales files (for eg using Vue-i18n)
 │   └── index.js
+├── views - the components that are routed eg  xxx/dashboard
+│   └── ...
 └── other folders ... such as filters,or constants, API.
 
 **server** Folder Structure
@@ -268,7 +268,7 @@ Notes: Each folder
 
   - [Vetur Vue tooling for VS Code](https://vuejs.github.io/vetur/)
   - [Eslint plugin for Vue](https://github.com/vuejs/eslint-plugin-vue)
-  - See also [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
+  - See especially [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
 
 ## Documenting
 
@@ -395,7 +395,7 @@ graph LR;
 - **Prop definitions** should be as detailed as possible, including where possble a validator function
 - Always **use key** with v-for
 - Never use v-if on the same element as v-for
-- Styles in components should be **scoped** (except in the top-level App component and in layout components styles may be global)
+- Styles in components should be **scoped** (except in the top-level App component and in view components styles may be global)
   - and use class selectors (eg .btn-close) rather than element selectors (eg button)
 - Always use the $_ prefix for custom private properties in a plugin, mixin, etc
 - Base components (pure components) that apply app-specific styling and conventions should begin with the prefix Base
