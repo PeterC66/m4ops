@@ -89,6 +89,8 @@ Although fairly complex, this is a simplified approach to aid understanding, dev
 
 - In a **mixin** you can put any component’s methods and they will be merged with the ones of the component that uses it.
 
+- **BEM** - "Block, Element, Modifier” naming convention - see [Introducing BEM: The popular CSS naming convention](https://assortment.io/posts/introducing-bem-css-naming-convention)
+
 ## The stack
 
 The main stack is
@@ -266,6 +268,7 @@ Notes: Each folder
 
   - [Vetur Vue tooling for VS Code](https://vuejs.github.io/vetur/)
   - [Eslint plugin for Vue](https://github.com/vuejs/eslint-plugin-vue)
+  - See also [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
 
 ## Documenting
 
@@ -357,23 +360,66 @@ graph LR;
 - [Vue.js API](https://vuejs.org/v2/api/)
 - [Vue.js cookbook](https://vuejs.org/v2/cookbook/index.html)
 - to open the visual interface for managing project > vue ui
-- [Standards and styles](https://vuejs.org/v2/style-guide/)
 
 - [Vue.js User Forum](https://forum.vuejs.org/)
 - [GitHub for Vue.js](https://github.com/vuejs)
 - [Awesome Vue.js](https://github.com/vuejs/awesome-vue) is a HUGE curated list of things related to Vue.js, including components
 - [eg styles](https://github.com/vuejs/awesome-vue#code-style)
-- Where possible we use [Single File Components (.vue)](https://vuejs.org/v2/guide/single-file-components.html) - needs Webpack, and has all in the one file:
-  - JavaScript logic
-  - HTML code template
-  - CSS styling
 - [Projects etc Made with Vue.js](https://madewithvuejs.com/)
+- [vuejs examples](https://vuejsexamples.com/)
 
 - [Vue Router](https://router.vuejs.org/)
 
 - [Vuex -sState management](https://vuex.vuejs.org/)
 
 - SSR [Server-Side Rendering](https://ssr.vuejs.org/) & [Nuxt](https://nuxtjs.org/) are not for us)
+- See [boilerplate-template-scaffold](https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/) for useful scaffolds
+  - consider later [this template which includes user sign-in](https://github.com/icebob/vue-express-mongo-boilerplate)
+
+### Standards and styles
+
+- See [the official style guide](https://vuejs.org/v2/style-guide/)
+
+- Naming conventions
+  - Component names are always **multi-word**, except for the root “App” component.
+  - Each component is in its own file.
+  - Filenames of single-file components (.vue) are in PascalCase.
+  - Components that are only used once per page begin with the prefix “The”, to denote that there can be only one (eg TheNavbar.vue)
+  - Child components include their parent name as a prefix (eg a “Photo” component used in “UserCard” is named UserCardPhoto).
+  - Always use full name instead of abbreviations in the name of components, eg UserDashboardSettings.
+  - Folder names are in lower case.
+  - Non component filenames are in camelCase according to the job that they perform, eg userDropdown.js.
+  - For components it's generally best to use PascalCase in the JavaScript, and kebab-case in the template - but Vue sees them as the same.
+
+- Component **data must be a function**, as in export default {data () {return {foo: 'bar'}}}
+- **Prop definitions** should be as detailed as possible, including where possble a validator function
+- Always **use key** with v-for
+- Never use v-if on the same element as v-for
+- Styles in components should be **scoped** (except in the top-level App component and in layout components styles may be global)
+  - and use class selectors (eg .btn-close) rather than element selectors (eg button)
+- Always use the $_ prefix for custom private properties in a plugin, mixin, etc
+- Base components (pure components) that apply app-specific styling and conventions should begin with the prefix Base
+- Components with no content should be self-closing in single-file components, string templates, and JSX - but canot be in DOM templates
+- Where possible we use [Single File Components (.vue)](https://vuejs.org/v2/guide/single-file-components.html) - needs Webpack, and has all in the one file:
+  - \<template\> - HTML code template
+  - \<script\> - JavaScript logic
+  - \<style\> - CSS styling
+- Elements with multiple attributes should span multiple lines, with one attribute per line (similar to JS object properties)
+- Don’t use arrow functions on an options property or callback, since arrow functions are bound to the parent context, 'this' will not be the Vue instance as you’d expect
+- Don’t use arrow functions in methods and computed properties as they almost always reference this to access the component data
+- Do use arrow functions for filters (sse also the [vue2-filters package](https://www.npmjs.com/package/vue2-filters))
+
+- “Mustache” syntax (double curly braces): {{}} for interpolation (of component data into a component template)
+- Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.
+- Complex computed properties should be split into as many simpler properties as possible.
+- Non-empty HTML attribute values should always be inside quotes (even though without spaces they don't need to be)
+- Directive shorthands (: for v-bind: and @ for v-on:) should be used always or never (we choose never)
+- Component/instance options should be ordered consistently - see [this list](https://vuejs.org/v2/style-guide/#Component-instance-options-order-recommended)
+- Attributes of elements (including components) should be ordered consistently - see [this list](https://vuejs.org/v2/style-guide/#Element-attribute-order-recommended)
+
+- For a comparison of Methods vs Watchers vs Computed Properties see page 90 of Vue Handbook.pdf
+
+- Can do [dependency injection](https://vuejs.org/v2/guide/components-edge-cases.html#Dependency-Injection) (provide and inject), [see also](https://codeburst.io/dependency-injection-with-vue-js-f6b44a0dae6d), and [vue-inject](https://www.npmjs.com/package/vue-inject) - but beware
 
 ### Vue CLI 3
 
@@ -384,14 +430,6 @@ graph LR;
 - (Remember that npm install -E (or --save-exact) ensures that the current version is not updated)
 
 - [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
-
-### Hints
-
-- Don’t use arrow functions on an options property or callback,since arrow functions are bound to the parent context, 'this' will not be the Vue instance as you’d expect.
-
-- “Mustache” syntax (double curly braces): {{}}
-
-- Can do [dependency injection](https://vuejs.org/v2/guide/components-edge-cases.html#Dependency-Injection) (provide and inject), [see also](https://codeburst.io/dependency-injection-with-vue-js-f6b44a0dae6d), and [vue-inject](https://www.npmjs.com/package/vue-inject) - but beware
 
 ### Element components
 
@@ -448,13 +486,10 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 ### OL and Vue
 
 - Use [vuelayers](https://github.com/ghettovoice/vuelayers): Vue components with the power of OpenLayers
-- [vue-components-to-work-with-openlayers](https://vuejsexamples.com/vue-components-to-work-with-openlayers/)
-- [GitHub](https://vuelayers.github.io/#/) - includes [demo](https://vuelayers.github.io/#/demo)
+- [GitHub](https://vuelayers.github.io/#/) - scroll down for demo, quick start etc
 - [My fork](https://github.com/PeterC66/vuelayers/)
-- Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)
+  - Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)
   - but these are not need now because Vue CLI 3 does it all
-- See [boilerplate-template-scaffold](https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/) for useful scaffolds
-  - consider later [this template which includes user sign-in](https://github.com/icebob/vue-express-mongo-boilerplate)
 
 - Other Vue OL implementations - fairly simple, could copy
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper
@@ -559,3 +594,6 @@ graph LR;
 - [Using Typescript with vue](https://vuejs.org/v2/guide/typescript.html) - we don't
 - [Popular Systems in 2017](https://risingstars.js.org/2017/en/)
 - We have a [codeSandox](https://codesandbox.io/u/PeterC66) for trying things out
+- [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
+- Could use [fontawesome 5](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs) for icons
+- and [Bulma](https://bulma.io/) for a CSS framework (like Bootstrap)
