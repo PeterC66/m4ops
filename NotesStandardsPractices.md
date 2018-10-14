@@ -134,7 +134,7 @@ The main stack is
 │   ├── modules
 │   │   └── ...
 │   └── mutation-types.js  Vuex constants
-├── subsystems - for routines by application area (will change) - each has index.js  ??? duck, components, supporting utilities
+├── modules - for routines by application area (will change) - each has index.js  ??? duck, components, supporting utilities
 │   ├── demo - to do
 │   ├── geography - continents, places (OPS)
 │   ├── mapping
@@ -392,7 +392,7 @@ graph LR;
 
 - We use plain CSS with variables - see [Everything you need to know about CSS Variables](https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855)
   - a CSS variable is any “property” whose name begins with two dashes (case-sensitive)
-  - Use :root {} for 'global' variables eg :root { --font-size: 20px } 
+  - Use :root {} for 'global' variables eg :root { --font-size: 20px }
   - reference a variable by using the var() function eg .test { font-size: var(--font-size) };
     - second parameter of var is the default
   - can do maths using the calc() function eg --space: calc(20px * 2);
