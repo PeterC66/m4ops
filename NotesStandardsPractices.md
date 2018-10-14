@@ -248,13 +248,13 @@ Notes: Each folder
 - Note that we don't use [setting up global eslint in VSCode](https://medium.com/@davidchristophersally/how-to-set-up-eslint-in-vscode-globally-253f25fbaff9) (because create-react requires it local)
 
 - Note that any plugins or shareable configs that you use must also be installed locally to work with a locally-installed ESLint
-
+- See [eslint-prettier-vue-workflow](https://medium.com/@doppelmutzi/eslint-prettier-vue-workflow-46a3cf54332f)
 - [List of rules](https://eslint.org/docs/rules/) and [Configuring in detail](https://eslint.org/docs/user-guide/configuring) (including [via in-file comments](https://eslint.org/docs/user-guide/configuring.html#disabling-rules-with-inline-comments))
   - We Use [Prettier](https://prettier.io/docs/en/install.html) so some rules are not relevant, as the code is prettified on save
 
 - particular uses
   - // eslint-disable-line no-console after any wanted console statement
-  - // eslint-disable-line react/forbid-prop-types after any line where you need to use PropTYpes array or object
+  - // eslint-disable-line max-len where max line length is exceeded
   - in js containers where we need to render a (single?) line of jsx
     - /* eslint-disable react/jsx-filename-extension */ just before it
     - /* eslint-enable react/jsx-filename-extension */ just after it
@@ -269,6 +269,7 @@ Notes: Each folder
   - [Vetur Vue tooling for VS Code](https://vuejs.github.io/vetur/)
   - [Eslint plugin for Vue](https://github.com/vuejs/eslint-plugin-vue)
   - See especially [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
+  - Also installed Vue 2 Snippets, Vue Peek
 
 ## Documenting
 
@@ -376,6 +377,41 @@ graph LR;
 - See [boilerplate-template-scaffold](https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/) for useful scaffolds
   - consider later [this template which includes user sign-in](https://github.com/icebob/vue-express-mongo-boilerplate)
 
+### Icons
+
+- Use [Element Icons](http://element.eleme.io/#/en-US/component/icon)
+- Or, if none suitable, use [fontawesome 5](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs)
+  - [Free icons](https://fontawesome.com/icons?d=gallery&m=free)
+  - [More details](https://github.com/FortAwesome/vue-fontawesome)
+  and [a full-guide-to-using-font-awesome-icons-in-vue-js-apps](https://blog.logrocket.com/full-guide-to-using-font-awesome-icons-in-vue-js-apps-5574c74d9b2d)
+  - Make sure you register the component and have added icons to your library before you bootstrap your Vue application (see main.js)
+  - then use eg \<font-awesome-icon icon="arrow-up" /\>
+    - but be aware that in some cases self-closing tags are not allowed
+
+### CSS
+
+- We use plain CSS with variables - see [Everything you need to know about CSS Variables](https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855)
+  - a CSS variable is any “property” whose name begins with two dashes (case-sensitive)
+  - Use :root {} for 'global' variables eg :root { --font-size: 20px } 
+  - reference a variable by using the var() function eg .test { font-size: var(--font-size) };
+    - second parameter of var is the default
+  - can do maths using the calc() function eg --space: calc(20px * 2);
+  - can change with js (root.style.setProperty)
+- [Learn CSS Layout](http://learnlayout.com) - a short course
+- [Styling Vue.Js Components Using CSS](https://flaviocopes.com/vue-css/) - lots of places to put css and classes
+- [Integrating and Using CSS Frameworks (eg Bulma) with Vue.js](https://alligator.io/vuejs/css-frameworks-vuejs/)
+- ? [Bulma](https://bulma.io/) for a CSS framework (like Bootstrap)
+- [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+
+### Element components
+
+- [Guide](http://element.eleme.io/#/en-US/guide/design), [Quick Start](http://element.eleme.io/#/en-US/component/quickstart)
+- [Components](http://element.eleme.io/#/en-US/component/quickstart) - with project template
+- [Awesome Element - A curated list of Element projects etc](https://github.com/ElementUI/awesome-element)
+- [Element uses BEM-styled CSS so that you can override styles easily](http://element.eleme.io/#/en-US/component/custom-theme) but also create a new theme
+- [VSCode-Element-Helper](https://github.com/ElemeFE/vscode-element-helper)
+- [Language handling needed](http://element.eleme.io/#/en-US/component/i18n) as Element standard is Chinese
+
 ### Standards and styles
 
 - See [the official style guide](https://vuejs.org/v2/style-guide/)
@@ -413,9 +449,10 @@ graph LR;
 - Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.
 - Complex computed properties should be split into as many simpler properties as possible.
 - Non-empty HTML attribute values should always be inside quotes (even though without spaces they don't need to be)
-- Directive shorthands (: for v-bind: and @ for v-on:) should be used always or never (we choose never)
+- Directive shorthands (: for v-bind: and @ for v-on:) should be used always or never (we choose always)
 - Component/instance options should be ordered consistently - see [this list](https://vuejs.org/v2/style-guide/#Component-instance-options-order-recommended)
 - Attributes of elements (including components) should be ordered consistently - see [this list](https://vuejs.org/v2/style-guide/#Element-attribute-order-recommended)
+- In .vue files we do not indent what is in the \<script\> or \<style\> blocks (even though Vetur could do it)
 
 - For a comparison of Methods vs Watchers vs Computed Properties see page 90 of Vue Handbook.pdf
 
@@ -430,11 +467,6 @@ graph LR;
 - (Remember that npm install -E (or --save-exact) ensures that the current version is not updated)
 
 - [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
-
-### Element components
-
-[Guide](http://element.eleme.io/#/en-US/guide/design)
-[Components](http://element.eleme.io/#/en-US/component/quickstart) - with project template
 
 ## Babel
 
@@ -468,7 +500,9 @@ See also
 
 ## Testing
 
-Test runner [Karma](https://karma-runner.github.io/2.0/index.html)
+- Test runner [Karma](https://karma-runner.github.io/2.0/index.html)
+- [Vue Test Utils](https://vue-test-utils.vuejs.org/) is the official unit testing utility library for Vue.js.
+  - Can use [vue-jest preprocessor](https://vue-test-utils.vuejs.org/guides/testing-single-file-components-with-jest.html)
 
 ## OpenLayers
 
@@ -581,7 +615,6 @@ graph LR;
 - [anatomy-of-a-url](https://doepud.co.uk/blog/anatomy-of-a-url)
 - [Learn to Code HTML & CSS](https://learn.shayhowe.com/html-css/) - the fundamentals
 - [Learn to Code Advanced HTML & CSS](https://learn.shayhowe.com/advanced-html-css/performance-organization/)
-- [Learn CSS Layout](http://learnlayout.com)
 - [Useful conversions](https://transform.now.sh/) (and prettifier) - eg
   - JSON to React PropTypes
   - CSS to JS Objects
@@ -593,7 +626,5 @@ graph LR;
   - node_modules/.bin directory will be added to system $PATH when your're running npm scripts, so you can directly use the local xx command there
 - [Using Typescript with vue](https://vuejs.org/v2/guide/typescript.html) - we don't
 - [Popular Systems in 2017](https://risingstars.js.org/2017/en/)
-- We have a [codeSandox](https://codesandbox.io/u/PeterC66) for trying things out
+- We have a [codeSandbox](https://codesandbox.io/u/PeterC66) for trying things out
 - [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
-- Could use [fontawesome 5](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs) for icons
-- and [Bulma](https://bulma.io/) for a CSS framework (like Bootstrap)

@@ -1,14 +1,22 @@
 <template>
   <div>
-    <h3> {{msg}}</h3>
+    <h1> {{ msg }}
+      <font-awesome-icon icon="arrow-up" />
+      <font-awesome-icon icon="arrow-down" />
+      <!-- In full <font-awesome-icon icon="[ 'fab', 'vuejs' ]" />
+       (fas = solid - is the default) -->
+    </h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "M4OPSHeader",
+  name: 'M4OPSHeader',
   props: {
-    msg: String
-  }
+    msg: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>

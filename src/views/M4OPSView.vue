@@ -1,19 +1,16 @@
 <template>
   <div>
-    <M4OPSHeader msg="Testing"></M4OPSHeader>
+    <M4OPSHeader msg="Testing"/>
   </div>
 </template>
 
 <script>
-import M4OPSHeader from "../components/M4OPSHeader.vue";
+import M4OPSHeader from '../components/M4OPSHeader.vue';
 
 export default {
-  name: "M4OPSView",
+  name: 'M4OPSView',
   components: {
-    M4OPSHeader
+    M4OPSHeader,
   },
-  props: {
-    msg: String
-  }
 };
 </script>
