@@ -16,7 +16,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
-import './plugins/element.js'
+import './plugins/element.js';
 
 // See imports above
 library.add(
