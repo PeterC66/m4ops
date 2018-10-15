@@ -530,6 +530,11 @@ Use version number eg v4.6.5 (which is the one we use) or latest
   - [vuejs-openlayers](https://github.com/rukandax/vuejs-openlayers)
   - see also [integrating OL was quite easy - but some gotchas](https://stackoverflow.com/questions/47479583/integrate-openlayers-in-vuejs-application)
 
+## HTTP Requests
+
+- Use [Axios](https://www.npmjs.com/package/axios) rather than plain fetch
+- See [fetch-vs-axios](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
+
 ## Server Overview
 
 When the client needs to communicate with the server it sends an asynchronous GET or POST request via eg fetch(`/continents`). The corresponding route is defined in the server's routes folder (and referenced in its app.js). When the server is done it notifies the client, which can then do any more processing dependent on the promise being completed.

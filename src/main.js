@@ -12,13 +12,30 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 // Note that there are problems using icons from free-regular-svg-icons and free-brands-svg-icons
 
+// Ensure Element components are all imported here, and 'used' below
+import {
+  Aside,
+  Button,
+  Container,
+  Header,
+  Main,
+  Select,
+} from 'element-ui';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
-import './plugins/element.js';
 
-// See imports above
+// See import above
+Vue.use(Aside);
+Vue.use(Button);
+Vue.use(Container);
+Vue.use(Header);
+Vue.use(Main);
+Vue.use(Select);
+
+// See import above
 library.add(
   faArrowDown,
   faArrowUp,
@@ -27,7 +44,7 @@ library.add(
   faAngleDoubleUp,
 );
 
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.use(FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 
