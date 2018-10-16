@@ -1,7 +1,7 @@
 #OPSSelect {position: absolute; top: 5px; left: 8px;}
-#buttonsL {position: absolute; top: 35px; left: 8px;}
+#buttonsL {position: absolute; top: 34px; left: 8px;}
 #buttonsR1 {position: absolute; top: 5px;	right: 8px;}
-#buttonsR2 {position: absolute; top: 35px;	right: 6px;}
+#buttonsR2 {position: absolute; top: 34px;	right: 6px;}
 /* #buttonsR2 {position: absolute; top: 35px;	right: 8px;} */
 
 .el-button+.el-button {

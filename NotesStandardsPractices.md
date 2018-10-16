@@ -369,9 +369,9 @@ graph LR;
 - [Projects etc Made with Vue.js](https://madewithvuejs.com/)
 - [vuejs examples](https://vuejsexamples.com/)
 
-- [Vue Router](https://router.vuejs.org/)
+- [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
 
-- [Vuex -sState management](https://vuex.vuejs.org/)
+- [Vuex - State management](https://vuex.vuejs.org/)
 
 - SSR [Server-Side Rendering](https://ssr.vuejs.org/) & [Nuxt](https://nuxtjs.org/) are not for us)
 - See [boilerplate-template-scaffold](https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/) for useful scaffolds
