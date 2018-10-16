@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import M4OPSView from './views/M4OPSView.vue';
+import NotFound from './global/components/NotFound.vue';
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ './views/About.vue'),
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound,
     },
   ],
 });

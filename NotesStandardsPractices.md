@@ -468,6 +468,11 @@ graph LR;
 
 - [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
 
+### Vue Forms
+
+- Use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
+- Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
+
 ## Babel
 
 [Basics of Babel](https://babeljs.io/docs/en/learn)
