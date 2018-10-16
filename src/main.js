@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import VueLayers from 'vuelayers';
+import 'vuelayers/lib/style.css'; // needs css-loader
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -26,6 +28,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
+
+Vue.use(VueLayers);
 
 // See import above
 Vue.use(Aside);

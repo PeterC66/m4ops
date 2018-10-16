@@ -3,22 +3,24 @@
     <el-header height ="60px">Header</el-header>
     <el-container>
       <el-aside width="300px">Aside</el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+        <MainMap
+          :zoom="15"
+          :center="[-0.0325, 52.329444]"
+        />
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-// import M4OPSHeader from '../components/M4OPSHeader.vue';
-// <div>
-//   <M4OPSHeader msg="Testing"/>
-// </div>
+import MainMap from '../modules/mapping/components/MainMap.vue';
 
 export default {
   name: 'M4OPSView',
-  // components: {
-  //   M4OPSHeader,
-  // },
+  components: {
+    MainMap,
+  },
 };
 </script>
 
@@ -41,7 +43,6 @@ export default {
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
   }
 
   body > .el-container {
