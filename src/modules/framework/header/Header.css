@@ -24,3 +24,6 @@
 .el-input__inner {
   height: 25px;
 }
+.el-form-item__content {
+  line-height: 20px;
+}
