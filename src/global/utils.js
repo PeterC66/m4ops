@@ -1,6 +1,5 @@
 import _ from 'lodash';
-import cuid from 'cuid';
-import { createSelector } from 'reselect';
+import uuid from 'uuid';
 
 /**
 |--------------------------------------------------
@@ -59,7 +58,8 @@ export const isBoolean = obj => (typeof (obj) === 'boolean');
 
 // From https://stackoverflow.com/questions/4059147/check-if-a-variable-is-a-string
 // Note must be called with raw data not after eg Decode, else argument will be a string "Undefined"
-export const isString = obj => (Object.prototype.toString.call(obj) === '[object String]');
+export const isString =
+  obj => (Object.prototype.toString.call(obj) === '[object String]');
 
 export const toUCifString = (val) => {
   if (isString(val)) {
@@ -78,12 +78,15 @@ export const string2bool = (strV0, defaultifnull = false) => {
   if (strV === 'TRUE') return true;
   if (strV === 'FALSE') return false;
   // If the value is anything else we come through here
-  return (typeof defaultifnull === 'boolean') ? defaultifnull : string2bool(defaultifnull, false);
+  return (typeof defaultifnull === 'boolean')
+    ? defaultifnull
+    : string2bool(defaultifnull, false);
 };
 
 // From https://www.codementor.io/michelre/use-function-composition-in-javascript-gkmxos5mj
 // Use eg pipe(mapWords, reduceWords)(['foo', 'bar', 'baz']); - left to right
-export const pipe = (...functions) => args => functions.reduce((arg, fn) => fn(arg), args);
+export const pipe =
+  (...functions) => args => functions.reduce((arg, fn) => fn(arg), args);
 
 export const beginsWith = (string = '', target) => _.startsWith(string, target);
 
@@ -138,10 +141,10 @@ export const replaceOnce = (string, omit, place) => {
   return string.replace(omit, place);
 };
 
-export function addCuidKeyToArray(arr) {
+export function addUuidKeyToArray(arr) {
   if (!arr) return arr;
   const keyedArray = arr.map((element, index) => (
-    { ...element, cuidKey: cuid(), originalIndex: index }
+    { ...element, uuidKey: uuid(), originalIndex: index }
   ));
   return keyedArray;
 }
@@ -182,11 +185,5 @@ export function isNotExcluded(ld, exclusionsArray) {
     _.filter(exclusionsArray, { category: ld.category, title: ld.title })
       .length === 0
   );
-  return result;
-}
-
-export function createNamedSelector(name, ...funcs) {
-  const result = createSelector(...funcs);
-  result.reportingName = name;
   return result;
 }
