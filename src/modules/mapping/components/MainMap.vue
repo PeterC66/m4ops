@@ -32,7 +32,7 @@ export default {
       default: 2,
     },
     center: {
-      type: Number,
+      type: Array,
       required: false,
       default: () => [0, 0],
     },

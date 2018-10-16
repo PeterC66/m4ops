@@ -48,7 +48,7 @@ library.add(
   faAngleDoubleUp,
 );
 
-Vue.use(FontAwesomeIcon);
+Vue.component('font-awesome-icon', FontAwesomeIcon); // Not Vue.use
 
 Vue.config.productionTip = false;
 
