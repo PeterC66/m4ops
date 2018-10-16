@@ -31,6 +31,7 @@ export default {
     background-color: #B3C0D1;
     color: #333;
     text-align: center;
+    padding: 0;
   }
 
   .el-aside {
@@ -43,6 +44,7 @@ export default {
   .el-main {
     background-color: #E9EEF3;
     color: #333;
+    padding: 0;
   }
 
   body > .el-container {

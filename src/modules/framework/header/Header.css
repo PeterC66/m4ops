@@ -1,7 +1,8 @@
-#OPSSelect {position: absolute;top: 5px; left: 8px;}
-#buttonsL {position: absolute;top: 35px; left: 8px;}
-#buttonsR1 {position: absolute;top: 5px;	right: 8px;}
-#buttonsR2 {position: absolute;top: 35px;	right: 8px;}
+#OPSSelect {position: absolute; top: 5px; left: 8px;}
+#buttonsL {position: absolute; top: 35px; left: 8px;}
+#buttonsR1 {position: absolute; top: 5px;	right: 8px;}
+#buttonsR2 {position: absolute; top: 35px;	right: 6px;}
+/* #buttonsR2 {position: absolute; top: 35px;	right: 8px;} */
 
 .el-button+.el-button {
   margin-left: 2px;
@@ -13,4 +14,13 @@
   color: #fff;
   background-color: #409EFF;
   border-color: #409EFF;
+}
+.el-form--inline .el-form-item {
+  margin-right: 2px;
+}
+.el-form-item {
+  margin-bottom: 0;
+}
+.el-input__inner {
+  height: 25px;
 }

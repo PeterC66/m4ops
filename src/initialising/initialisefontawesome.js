@@ -12,7 +12,10 @@ import {
   faHome,
   faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope as faEnvelopeRegular }
+import {
+  faEnvelope as faEnvelopeRegular,
+  faClone,
+}
   from '@fortawesome/free-regular-svg-icons';
 // See also free-brands-svg-icons
 
@@ -28,7 +31,10 @@ export default function initialiseFontAwesome(Vue) {
     faHome,
     faQuestionCircle,
   );
-  library.add(faEnvelopeRegular);
+  library.add(
+    faEnvelopeRegular,
+    faClone,
+  );
 
   Vue.component('font-awesome-icon', FontAwesomeIcon); // Not Vue.use(plugin)
 }
