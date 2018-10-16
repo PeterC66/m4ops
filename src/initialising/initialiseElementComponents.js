@@ -9,7 +9,6 @@ import {
   Select,
 } from 'element-ui';
 
-
 export default function initialiseElementComponents(Vue) {
 // See import above
   Vue.use(Aside);
@@ -19,4 +18,3 @@ export default function initialiseElementComponents(Vue) {
   Vue.use(Main);
   Vue.use(Select);
 }
-
