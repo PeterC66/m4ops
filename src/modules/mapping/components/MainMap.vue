@@ -9,28 +9,11 @@
         :zoom.sync="zoom"
         :center.sync="center"
         :rotation.sync="rotation"/>
-
-      <vl-geoloc @update:position="geolocPosition = $event">
-        <template slot-scope="geoloc">
-          <vl-feature
-            v-if="geoloc.position"
-            id="position-feature">
-            <vl-geom-point :coordinates="geoloc.position"/>
-            <vl-style-box>
-              <vl-style-icon
-                :scale="0.4"
-                :anchor="[0.5, 1]"
-                src="_media/marker.png"/>
-            </vl-style-box>
-          </vl-feature>
-        </template>
-      </vl-geoloc>
-
       <vl-layer-tile id="osm">
         <vl-source-osm/>
       </vl-layer-tile>
     </vl-map>
-    <div style="padding: 20px">
+    <div style="padding: 20px; text-align: left;">
       Zoom: {{ zoom }}<br>
       Center: {{ center }}<br>
       Rotation: {{ rotation }}<br>
@@ -51,7 +34,7 @@ export default {
     center: {
       type: Number,
       required: false,
-      default: 2,
+      default: () => [0, 0],
     },
   },
   data() {
