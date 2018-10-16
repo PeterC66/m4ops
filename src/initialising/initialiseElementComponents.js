@@ -7,6 +7,7 @@ import {
   Header,
   Main,
   Select,
+  Tooltip,
 } from 'element-ui';
 
 export default function initialiseElementComponents(Vue) {
@@ -17,4 +18,5 @@ export default function initialiseElementComponents(Vue) {
   Vue.use(Header);
   Vue.use(Main);
   Vue.use(Select);
+  Vue.use(Tooltip);
 }

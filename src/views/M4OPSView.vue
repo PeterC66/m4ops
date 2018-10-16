@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header height ="60px">Header</el-header>
+    <el-header height ="60px"><Header/></el-header>
     <el-container>
       <el-aside width="300px">Aside</el-aside>
       <el-main>
@@ -15,11 +15,13 @@
 
 <script>
 import MainMap from '../modules/mapping/components/MainMap.vue';
+import Header from '../modules/framework/header/Header.vue';
 
 export default {
   name: 'M4OPSView',
   components: {
     MainMap,
+    Header,
   },
 };
 </script>
