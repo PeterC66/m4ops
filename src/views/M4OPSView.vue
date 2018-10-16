@@ -5,8 +5,8 @@
       <el-aside width="300px">Aside</el-aside>
       <el-main>
         <MainMap
-          :zoom="15"
-          :center="[-0.0325, 52.329444]"
+          :zoom-initial="15"
+          :center-initial="[-0.0325, 52.329444]"
         />
       </el-main>
     </el-container>

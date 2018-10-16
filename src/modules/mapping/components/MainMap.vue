@@ -26,12 +26,12 @@
 export default {
   name: 'MainMap',
   props: {
-    zoom: {
+    zoomInitial: {
       type: Number,
       required: false,
       default: 2,
     },
-    center: {
+    centerInitial: {
       type: Array,
       required: false,
       default: () => [0, 0],
@@ -39,6 +39,8 @@ export default {
   },
   data() {
     return {
+      zoom: this.zoomInitial,
+      center: this.centerInitial,
       rotation: 0,
       geolocPosition: undefined,
     };
