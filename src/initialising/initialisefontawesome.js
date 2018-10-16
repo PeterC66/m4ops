@@ -21,5 +21,5 @@ export default function initialiseFontAwesome(Vue) {
     faAngleDoubleUp,
   );
 
-  Vue.component('font-awesome-icon', FontAwesomeIcon); // Not Vue.use
+  Vue.component('font-awesome-icon', FontAwesomeIcon); // Not Vue.use(plugin)
 }
