@@ -11,7 +11,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 // Note that there are problems using icons from free-regular-svg-icons and free-brands-svg-icons
 
-
 export default function initialiseFontAwesome(Vue) {
 // See import above
   library.add(
