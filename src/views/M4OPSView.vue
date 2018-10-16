@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header height ="60px"><Header/></el-header>
+    <el-header><Header/></el-header>
     <el-container>
       <el-aside width="300px">Aside</el-aside>
       <el-main>
@@ -31,7 +31,6 @@ export default {
     background-color: #B3C0D1;
     color: #333;
     text-align: center;
-    line-height: 60px;
   }
 
   .el-aside {

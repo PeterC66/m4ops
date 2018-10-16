@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <section style="position: relative">
     <!-- <HeaderTitles ops-details="OPSDetails" />
     <HeaderL1 ops-details="OPSDetails" />
     <HeaderL2 />
     <HeaderR2 /> -->
     <HeaderR1 />
-  </div>
+  </section>
 </template>
 
 <script>
 // import HeaderTitles from './HeaderTitles';
-import HeaderR1 from './HeaderR1';
+import HeaderR1 from './HeaderR1.vue';
 // import HeaderR2 from './HeaderR2';
 // import HeaderL1 from './HeaderL1';
 // import HeaderL2 from './HeaderL2';

@@ -2,3 +2,15 @@
 #buttonsL {position: absolute;top: 35px; left: 8px;}
 #buttonsR1 {position: absolute;top: 5px;	right: 8px;}
 #buttonsR2 {position: absolute;top: 35px;	right: 8px;}
+
+.el-button+.el-button {
+  margin-left: 2px;
+}
+.el-button--medium {
+  padding: 5px 10px;
+}
+.el-button--primary {
+  color: #fff;
+  background-color: #409EFF;
+  border-color: #409EFF;
+}

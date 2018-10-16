@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="buttonsR1">
     <!-- opsdetails is an alias for place, used in the original M4OPS -->
     <el-tooltip
       class="item"
@@ -8,7 +8,7 @@
       placement="left">
       <el-button
         type="primary"
-        size="small"
+        size="medium"
         @click="tellMe()"
       >
         <font-awesome-icon icon="home"/>
@@ -21,35 +21,40 @@
       placement="left">
       <el-button
         type="primary"
-        size="small"
+        size="medium"
         @click="tellMe()"
       >
         <font-awesome-icon :icon="['far','envelope']"/>
       </el-button>
     </el-tooltip>
-
-    <!--
-      onClick={tellMe}
-    />
-    <SimpleButton
-      tooltip="Provide feedback to the person responsible for M4OPS within the Society for One-Place Studies"
-      tooltipPlacement="leftBottom"
-      icon="comment"
-      size="small"
-      href="mailto:peter.cooper@one-place-studies.org?subject=M4OPS"
-    />
-    <SimpleButton
-      tooltip="See the Help documentation"
-      tooltipPlacement="leftBottom"
-      icon="question-circle"
-      size="small"
-      onClick={tellMe}
-    />
-  </div>
-);
-
-export default HeaderR1;
--->
+    <el-tooltip
+      class="item"
+      effect="light"
+      content="Provide feedback to the person responsible for M4OPS
+        within the Society for One-Place Studies"
+      placement="left">
+      <el-button
+        type="primary"
+        size="medium"
+      >
+        <a href="mailto:peter.cooper@one-place-studies.org?subject=M4OPS">
+          <font-awesome-icon :icon="['far','envelope']"/>
+        </a>
+      </el-button>
+    </el-tooltip>
+    <el-tooltip
+      class="item"
+      effect="light"
+      content="See the Help documentation"
+      placement="left">
+      <el-button
+        type="primary"
+        size="medium"
+        @click="tellMe()"
+      >
+        <font-awesome-icon icon="question-circle"/>
+      </el-button>
+    </el-tooltip>
   </div>
 </template>
 
