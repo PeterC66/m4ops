@@ -22,7 +22,7 @@
           class="item"
           effect="light"
           content="GoTo as specified"
-          placement="left">
+          placement="left-end">
           <el-button
             type="primary"
             size="medium"
@@ -36,7 +36,7 @@
           class="item"
           effect="light"
           content="Make the current view of M4OPS available as a URL to copy"
-          placement="left">
+          placement="bottom-start">
           <el-button
             type="primary"
             size="medium"

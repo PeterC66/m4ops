@@ -3,26 +3,35 @@
 import {
   Aside,
   Button,
+  Cascader,
   Container,
   Form,
   FormItem,
   Header,
   Input,
   Main,
+  Popover,
   Select,
   Tooltip,
 } from 'element-ui';
 
+import lang from 'element-ui/lib/locale/lang/en';
+import locale from 'element-ui/lib/locale';
+
 export default function initialiseElementComponents(Vue) {
-// See import above
-  Vue.use(Aside);
-  Vue.use(Button);
-  Vue.use(Container);
-  Vue.use(Form);
-  Vue.use(FormItem);
-  Vue.use(Header);
-  Vue.use(Input);
-  Vue.use(Main);
-  Vue.use(Select);
-  Vue.use(Tooltip);
+  locale.use(lang);
+
+  // See import above
+  Vue.component(Aside.name, Aside);
+  Vue.component(Button.name, Button);
+  Vue.component(Cascader.name, Cascader);
+  Vue.component(Container.name, Container);
+  Vue.component(Form.name, Form);
+  Vue.component(FormItem.name, FormItem);
+  Vue.component(Header.name, Header);
+  Vue.component(Input.name, Input);
+  Vue.component(Main.name, Main);
+  Vue.component(Popover.name, Popover);
+  Vue.component(Select.name, Select);
+  Vue.component(Tooltip.name, Tooltip);
 }

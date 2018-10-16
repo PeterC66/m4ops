@@ -18,7 +18,7 @@
       class="item"
       effect="light"
       content="Contact the person responsible for this study"
-      placement="left">
+      placement="left-start">
       <el-button
         type="primary"
         size="medium"
@@ -32,7 +32,7 @@
       effect="light"
       content="Provide feedback to the person responsible for M4OPS
         within the Society for One-Place Studies"
-      placement="left">
+      placement="top-start">
       <el-button
         type="primary"
         size="medium"
@@ -46,7 +46,7 @@
       class="item"
       effect="light"
       content="See the Help documentation"
-      placement="left">
+      placement="top">
       <el-button
         type="primary"
         size="medium"
