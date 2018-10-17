@@ -579,6 +579,14 @@ Each route (including with parameters eg :id) is
 - referred to in app.js
 - can be called from the client by eg fetch(`/continents`)
 
+### Routes
+
+- All on localhost:5000 (and formatted by JSONView)
+  - /places - list of studies in M4OPS
+    - /places/xxx - OPSDetails for XXX studye, with all its bits and arrays
+  - /continents - continent/country/location/study (each has M4OPS:true where it is/contains an included study)
+  - /m4opsdata - the M4OPS.json file, with all its bits and arrays
+
 ### Connecting to MongoDB
 
 The MongoDB URL (including database) is set in .env.
@@ -603,6 +611,7 @@ graph LR;
 - the file .env is for environment variables handled by dotenv
 - middleware
 - client/src/registerServiceWorker.js is used just in production
+- server [needed this](https://stackoverflow.com/questions/21658832/npm-install-error-msb3428-could-not-load-the-visual-c-component-vcbuild-ex) then npm i  before running with nodemon
 
 ## MongoDB
 
