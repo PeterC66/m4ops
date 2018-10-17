@@ -10,6 +10,7 @@ import {
   Header,
   Input,
   Main,
+  Option,
   Popover,
   Select,
   Tooltip,
@@ -31,6 +32,7 @@ export default function initialiseElementComponents(Vue) {
   Vue.component(Header.name, Header);
   Vue.component(Input.name, Input);
   Vue.component(Main.name, Main);
+  Vue.component(Option.name, Option);
   Vue.component(Popover.name, Popover);
   Vue.component(Select.name, Select);
   Vue.component(Tooltip.name, Tooltip);

@@ -367,17 +367,19 @@ graph LR;
 - [Awesome Vue.js](https://github.com/vuejs/awesome-vue) is a HUGE curated list of things related to Vue.js, including components
 - [eg styles](https://github.com/vuejs/awesome-vue#code-style)
 - [Projects etc Made with Vue.js](https://madewithvuejs.com/)
-- [vuejs examples](https://vuejsexamples.com/)
-
-- [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
-
-- [Vuex - State management](https://vuex.vuejs.org/)
-
 - SSR [Server-Side Rendering](https://ssr.vuejs.org/) & [Nuxt](https://nuxtjs.org/) are not for us)
 - See [boilerplate-template-scaffold](https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/) for useful scaffolds
   - consider later [this template which includes user sign-in](https://github.com/icebob/vue-express-mongo-boilerplate)
 - [useful examples and libraries for Vue.js](https://vuejsexamples.com/)
 - [Master Vue.js by mastering common problems](https://medium.com/@Roli_Dori/master-vue-js-by-mastering-common-problems-e2f1c2acd1e7)
+
+### Vue Router
+
+- [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
+
+## Vuex
+
+- [Vuex - State management](https://vuex.vuejs.org/)
 
 ### Icons
 
@@ -473,8 +475,6 @@ graph LR;
 
 - (Remember that npm install -E (or --save-exact) ensures that the current version is not updated)
 
-- [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
-
 ## Babel
 
 [Basics of Babel](https://babeljs.io/docs/en/learn)
@@ -483,6 +483,7 @@ graph LR;
 
 - [configuration](https://webpack.js.org/configuration/)
 - [the-core-concepts](https://webpack.academy/p/the-core-concepts)
+- [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
 
   - Was using [Parcel](https://parceljs.org/) as 'no configuration'.
   - (nice but Vue CLI uses Webpack) - see [Parcel and Vue](https://parceljs.org/recipes.html)
