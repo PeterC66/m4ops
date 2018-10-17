@@ -377,9 +377,27 @@ graph LR;
 
 - [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
 
-## Vuex
+### Vuex
 
 - [Vuex - State management](https://vuex.vuejs.org/)
+- the store is injected into all child components of the root and will be available on them as this.$store
+  - "getters" in the store are computed properties that can be referenced in components via this.$store.getters.xxx (can be functions)
+  - a mutation is a function eg increment-mutation (state) { state.count++ } - always synchronous
+    - mutation types are UPPERCASE and in mutation-types.js
+  - an action is eg increment-action ({ commit }) { commit('increment-mutation') }
+    - can be asynchronous, usually has a payload object, can [handle Promises](https://vuex.vuejs.org/guide/actions.html#composing-actions)
+  - dispatch actions in components with this.$store.dispatch('xxx')
+  - in components use the helper functions
+    - mapState to generate computed getter functions
+    - mapGetters to map store getters to local computed properties
+    - mapActions maps component methods to store.dispatch
+  - inside module actions and getters, the root state will be exposed as as well as the module's state
+  - We do not Namespace Modules
+- Various [Vuex Utilities](https://github.com/vuejs/awesome-vue#vuex-utilities)
+- Use [vuex-rest-api](https://christianmalek.github.io/vuex-rest-api) to make part of the store for (axios) API calls
+- Might use [Vue Auth](https://github.com/websanova/vue-auth) - a simple light-weight authentication library for Vue.js
+- May want the [Logger Plugin](https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin) - createLogger
+  - or use vue-devtools time-travel (p143 of the Fullstack Vue book)
 
 ### Icons
 
@@ -484,8 +502,8 @@ graph LR;
 - [configuration](https://webpack.js.org/configuration/)
 - [the-core-concepts](https://webpack.academy/p/the-core-concepts)
 - [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
-
-  - Was using [Parcel](https://parceljs.org/) as 'no configuration'.
+- need [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) in webpack for environment variables eg process.env.NODE_ENV
+- Was using [Parcel](https://parceljs.org/) as 'no configuration'.
   - (nice but Vue CLI uses Webpack) - see [Parcel and Vue](https://parceljs.org/recipes.html)
   - See also [A quick look at Parcel](https://glebbahmutov.com/blog/parcel/), and [Getting Started With Parcel](https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c)
   - OL has [this example](https://github.com/openlayers/ol-parcel), and their [Building an OpenLayers Application tutorial](http://openlayers.org/en/latest/doc/tutorials/bundle.html)
