@@ -407,8 +407,7 @@ graph LR;
 
 ### Element components
 
-- [Guide](http://element.eleme.io/#/en-US/guide/design), [Quick Start](http://element.eleme.io/#/en-US/component/quickstart)
-- [Components](http://element.eleme.io/#/en-US/component/quickstart) - with project template
+- [Guide](http://element.eleme.io/#/en-US/guide/design), [Quick Start and Components](http://element.eleme.io/#/en-US/component/quickstart)
 - [Awesome Element - A curated list of Element projects etc](https://github.com/ElementUI/awesome-element)
 - [Element uses BEM-styled CSS so that you can override styles easily](http://element.eleme.io/#/en-US/component/custom-theme) but also create a new theme
 - [VSCode-Element-Helper](https://github.com/ElemeFE/vscode-element-helper)
