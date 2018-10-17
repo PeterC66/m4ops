@@ -376,6 +376,8 @@ graph LR;
 - SSR [Server-Side Rendering](https://ssr.vuejs.org/) & [Nuxt](https://nuxtjs.org/) are not for us)
 - See [boilerplate-template-scaffold](https://vuejsdevelopers.com/2018/04/23/vue-boilerplate-template-scaffold/) for useful scaffolds
   - consider later [this template which includes user sign-in](https://github.com/icebob/vue-express-mongo-boilerplate)
+- [useful examples and libraries for Vue.js](https://vuejsexamples.com/)
+- [Master Vue.js by mastering common problems](https://medium.com/@Roli_Dori/master-vue-js-by-mastering-common-problems-e2f1c2acd1e7)
 
 ### Icons
 
@@ -411,6 +413,12 @@ graph LR;
 - [Element uses BEM-styled CSS so that you can override styles easily](http://element.eleme.io/#/en-US/component/custom-theme) but also create a new theme
 - [VSCode-Element-Helper](https://github.com/ElemeFE/vscode-element-helper)
 - [Language handling needed](http://element.eleme.io/#/en-US/component/i18n) as Element standard is Chinese
+- [Vee Element](https://github.com/davestewart/vee-element) enables the Vee Validate validation library to be used in Element UI
+
+### Vue Forms
+
+- Use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
+- Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 
 ### Standards and styles
 
@@ -467,11 +475,6 @@ graph LR;
 - (Remember that npm install -E (or --save-exact) ensures that the current version is not updated)
 
 - [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
-
-### Vue Forms
-
-- Use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
-- Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 
 ## Babel
 
