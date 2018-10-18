@@ -10,6 +10,7 @@ module.exports = {
     "linebreak-style": 0,
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "max-len": ["error", { "ignoreComments": true }],
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["moduleState"] }],
   },
   parserOptions: {
     parser: "babel-eslint"

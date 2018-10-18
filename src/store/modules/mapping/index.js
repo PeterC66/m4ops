@@ -1,25 +1,34 @@
-// import axios from 'axios';
+import {
+  UPDATE_MAP_DISPLAY,
+  UPDATE_ACTION_ON_CLICK,
+} from '../../mutation-types';
 
 const state = {
-  // productItems: [],
+  mapDisplay: 'overlay',
+  actionOnClick: 'no',
 };
 
 const mutations = {
-  // UPDATE_PRODUCT_ITEMS(state, payload) {
-  //   state.productItems = payload;
-  // },
+  [UPDATE_MAP_DISPLAY](moduleState, payload) {
+    moduleState.mapDisplay = payload.mapDisplay;
+  },
+  [UPDATE_ACTION_ON_CLICK](moduleState, payload) {
+    moduleState.actionOnClick = payload.actionOnClick;
+  },
 };
 
 const actions = {
-  // getProductItems({ commit }) {
-  //   axios.get('/api/products').then((response) => {
-  //     commit('UPDATE_PRODUCT_ITEMS', response.data);
-  //   });
-  // },
+  updateMapDisplay({ commit }, mapDisplay) {
+    commit(UPDATE_MAP_DISPLAY, { mapDisplay });
+  },
+  updateActionOnClick({ commit }, actionOnClick) {
+    commit(UPDATE_ACTION_ON_CLICK, { actionOnClick });
+  },
 };
 
 const getters = {
-  // productItems: state => state.productItems,
+  mapDisplay: moduleState => moduleState.mapDisplay,
+  actionOnClick: moduleState => moduleState.actionOnClick,
 };
 
 const mappingModule = {

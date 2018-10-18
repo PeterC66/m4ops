@@ -372,6 +372,7 @@ graph LR;
   - consider later [this template which includes user sign-in](https://github.com/icebob/vue-express-mongo-boilerplate)
 - [useful examples and libraries for Vue.js](https://vuejsexamples.com/)
 - [Master Vue.js by mastering common problems](https://medium.com/@Roli_Dori/master-vue-js-by-mastering-common-problems-e2f1c2acd1e7)
+- Consider [Local Storage](https://vuejs.org/v2/cookbook/client-side-storage.html) for persistence and speed (better use plugin?)
 
 ### Vue Router
 
@@ -385,9 +386,9 @@ graph LR;
   - "getters" in the store are computed properties that can be referenced in components via this.$store.getters.xxx (can be functions)
   - a mutation is a function eg increment-mutation (state) { state.count++ } - always synchronous
     - mutation types are UPPERCASE and in mutation-types.js
-  - an action is eg increment-action ({ commit }) { commit('increment-mutation') }
+  - an action **commits** a mutation eg increment-action ({ commit }) { commit('increment-mutation') }
     - can be asynchronous, usually has a payload object, can [handle Promises](https://vuex.vuejs.org/guide/actions.html#composing-actions)
-  - dispatch actions in components with this.$store.dispatch('xxx')
+  - we **dispatch** actions in components with this.$store.dispatch('xxx')
   - in components use the helper functions
     - mapState to generate computed getter functions
     - mapGetters to map store getters to local computed properties
@@ -420,10 +421,11 @@ graph LR;
   - Make sure you register the component and have added icons to your library before you bootstrap your Vue application (see main.js)
   - then use eg \<font-awesome-icon icon="arrow-up" /\>
     - but be aware that in some cases self-closing tags are not allowed
+  - [advanced svg icons](https://vuejs.org/v2/cookbook/editable-svg-icons.html)
 
 ### CSS
 
-- We use plain CSS with variables - see [Everything you need to know about CSS Variables](https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855)
+- We use plain CSS ??with variables - see [Everything you need to know about CSS Variables](https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855)
   - a CSS variable is any “property” whose name begins with two dashes (case-sensitive)
   - Use :root {} for 'global' variables eg :root { --font-size: 20px }
   - reference a variable by using the var() function eg .test { font-size: var(--font-size) };
@@ -445,6 +447,7 @@ graph LR;
 - [VSCode-Element-Helper](https://github.com/ElemeFE/vscode-element-helper)
 - [Language handling needed](http://element.eleme.io/#/en-US/component/i18n) as Element standard is Chinese
 - [Vee Element](https://github.com/davestewart/vee-element) enables the [Vee Validate](https://baianat.github.io/vee-validate/) validation library to be used in Element UI
+- [Gitter conversations](https://gitter.im/element-en/Lobby)
 
 ### Vue Forms
 
@@ -521,9 +524,14 @@ graph LR;
   - See also [A quick look at Parcel](https://glebbahmutov.com/blog/parcel/), and [Getting Started With Parcel](https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c)
   - OL has [this example](https://github.com/openlayers/ol-parcel), and their [Building an OpenLayers Application tutorial](http://openlayers.org/en/latest/doc/tutorials/bundle.html)
 
+### Production
+
+See [Dockerize Vue.js App](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
+
 ## Debugging
 
 Use [VS Code debugging](https://code.visualstudio.com/docs/editor/debugging)
+[Debugging Vue.js in VS Code](https://vuejs.org/v2/cookbook/debugging-in-vscode.html)
 [make-console-log-output-colorful](http://voidcanvas.com/make-console-log-output-colorful-and-stylish-in-browser-node/)
 See also
 
@@ -539,6 +547,7 @@ See also
 
 ## Testing
 
+- [Unit Testing Vue Components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html)
 - Test runner [Karma](https://karma-runner.github.io/2.0/index.html)
 - [Vue Test Utils](https://vue-test-utils.vuejs.org/) is the official unit testing utility library for Vue.js.
   - Can use [vue-jest preprocessor](https://vue-test-utils.vuejs.org/guides/testing-single-file-components-with-jest.html)
@@ -676,3 +685,4 @@ graph LR;
 - [Popular Systems in 2017](https://risingstars.js.org/2017/en/)
 - We have a [codeSandbox](https://codesandbox.io/u/PeterC66) for trying things out
 - [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
+- Beware [Memory Leaks](https://vuejs.org/v2/cookbook/avoiding-memory-leaks.html)

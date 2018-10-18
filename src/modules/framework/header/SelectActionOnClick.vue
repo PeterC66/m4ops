@@ -2,9 +2,8 @@
   <el-select
     v-model="value"
     size="small"
-    placeholder="Select Action on Click"
     automatic-dropdown
-    @change="handleChange">
+    @change="updateActionOnClick(value)">
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -14,6 +13,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'SelectActionOnClick',
   data() {
@@ -47,9 +48,9 @@ export default {
     };
   },
   methods: {
-    handleChange() {
-      console.log('handleChange');
-    },
+    ...mapActions([
+      'updateActionOnClick',
+    ]),
   },
 };
 </script>

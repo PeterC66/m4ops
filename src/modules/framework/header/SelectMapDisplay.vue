@@ -4,7 +4,7 @@
     size="small"
     placeholder="Select Map Display"
     automatic-dropdown
-    @change="handleChange">
+    @change="updateMapDisplay(value)">
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'SelectMapDisplay',
   data() {
@@ -32,9 +34,13 @@ export default {
     };
   },
   methods: {
-    handleChange() {
-      console.log('handleChange');
-    },
+    ...mapActions([
+      'updateMapDisplay',
+    ]),
   },
 };
 </script>
+
+<style>
+  /* min-width: 203px;?? */
+</style>
