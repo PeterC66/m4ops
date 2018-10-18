@@ -364,7 +364,7 @@ graph LR;
 
 - [Vue.js User Forum](https://forum.vuejs.org/)
 - [GitHub for Vue.js](https://github.com/vuejs)
-- [Awesome Vue.js](https://github.com/vuejs/awesome-vue) is a HUGE curated list of things related to Vue.js, including components
+- [**Awesome Vue.js**](https://github.com/vuejs/awesome-vue) is a HUGE curated list of things related to Vue.js, including components
 - [eg styles](https://github.com/vuejs/awesome-vue#code-style)
 - [Projects etc Made with Vue.js](https://madewithvuejs.com/)
 - SSR [Server-Side Rendering](https://ssr.vuejs.org/) & [Nuxt](https://nuxtjs.org/) are not for us)
@@ -376,6 +376,7 @@ graph LR;
 ### Vue Router
 
 - [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
+- maybe use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
 
 ### Vuex
 
@@ -394,10 +395,20 @@ graph LR;
   - inside module actions and getters, the root state will be exposed as as well as the module's state
   - We do not Namespace Modules
 - Various [Vuex Utilities](https://github.com/vuejs/awesome-vue#vuex-utilities)
-- Use [vuex-rest-api](https://christianmalek.github.io/vuex-rest-api) to make part of the store for (axios) API calls
 - Might use [Vue Auth](https://github.com/websanova/vue-auth) - a simple light-weight authentication library for Vue.js
 - May want the [Logger Plugin](https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin) - createLogger
   - or use vue-devtools time-travel (p143 of the Fullstack Vue book)
+
+## HTTP Requests
+
+- Use [Axios](https://www.npmjs.com/package/axios) rather than plain fetch
+- See [fetch-vs-axios](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
+- see [Using Axios to Consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html) for a simple approach
+- See [vue.config.js](https://cli.vuejs.org/config/) is an optional config file, and needed for eg devserver-proxy
+- Use [**vuex-api**](https://github.com/vouill/vuex-api), rather than [vuex-rest-api](https://christianmalek.github.io/vuex-rest-api) (makes part of the store), or [vue-api-request](https://ftgibran.github.io/#/vue-api-request) (which has lots of options)
+  - from [section on Utilities for HTTP requests](https://github.com/vuejs/awesome-vue#http-requests)
+- or p 178ff in Fullstack Vue book (action = axios call *then* commit mutation)
+  - (need to commit a different mutation when axios call fails)
 
 ### Icons
 
@@ -424,6 +435,7 @@ graph LR;
 - [Integrating and Using CSS Frameworks (eg Bulma) with Vue.js](https://alligator.io/vuejs/css-frameworks-vuejs/)
 - ? [Bulma](https://bulma.io/) for a CSS framework (like Bootstrap)
 - [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+- See also vue.config.js [css-modules](https://cli.vuejs.org/config/#css-modules)
 
 ### Element components
 
@@ -432,11 +444,11 @@ graph LR;
 - [Element uses BEM-styled CSS so that you can override styles easily](http://element.eleme.io/#/en-US/component/custom-theme) but also create a new theme
 - [VSCode-Element-Helper](https://github.com/ElemeFE/vscode-element-helper)
 - [Language handling needed](http://element.eleme.io/#/en-US/component/i18n) as Element standard is Chinese
-- [Vee Element](https://github.com/davestewart/vee-element) enables the Vee Validate validation library to be used in Element UI
+- [Vee Element](https://github.com/davestewart/vee-element) enables the [Vee Validate](https://baianat.github.io/vee-validate/) validation library to be used in Element UI
 
 ### Vue Forms
 
-- Use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
+- Can use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
 - Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 
 ### Standards and styles
@@ -502,8 +514,9 @@ graph LR;
 - [configuration](https://webpack.js.org/configuration/)
 - [the-core-concepts](https://webpack.academy/p/the-core-concepts)
 - [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
+- See vue.config.js [configurewebpack](https://cli.vuejs.org/config/#configurewebpack)
 - need [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) in webpack for environment variables eg process.env.NODE_ENV
-- Was using [Parcel](https://parceljs.org/) as 'no configuration'.
+- We were thinking of using [**Parcel**](https://parceljs.org/) as 'no configuration'.
   - (nice but Vue CLI uses Webpack) - see [Parcel and Vue](https://parceljs.org/recipes.html)
   - See also [A quick look at Parcel](https://glebbahmutov.com/blog/parcel/), and [Getting Started With Parcel](https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c)
   - OL has [this example](https://github.com/openlayers/ol-parcel), and their [Building an OpenLayers Application tutorial](http://openlayers.org/en/latest/doc/tutorials/bundle.html)
@@ -555,11 +568,6 @@ Use version number eg v4.6.5 (which is the one we use) or latest
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper
   - [vuejs-openlayers](https://github.com/rukandax/vuejs-openlayers)
   - see also [integrating OL was quite easy - but some gotchas](https://stackoverflow.com/questions/47479583/integrate-openlayers-in-vuejs-application)
-
-## HTTP Requests
-
-- Use [Axios](https://www.npmjs.com/package/axios) rather than plain fetch
-- See [fetch-vs-axios](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
 
 ## Server Overview
 
