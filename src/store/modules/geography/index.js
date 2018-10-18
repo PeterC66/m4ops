@@ -1,5 +1,3 @@
-// import axios from 'axios';
-
 const state = {
   // cartItems: [],
 };
@@ -19,7 +17,6 @@ const actions = {
 };
 
 const getters = {
-  // cartItems: state => state.cartItems,
 };
 
 const geographyModule = {

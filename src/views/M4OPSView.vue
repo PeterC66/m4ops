@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { actions } from 'vuex-api';
+
 import MainMap from '../modules/mapping/components/MainMap.vue';
 import Header from '../modules/framework/header/Header.vue';
 
@@ -24,6 +26,13 @@ export default {
   components: {
     MainMap,
     Header,
+  },
+  created() {
+    this.$store.dispatch(actions.request, {
+      baseURL: 'http://localhost:5000/',
+      url: 'continents',
+      keyPath: ['continents'],
+    });
   },
 };
 </script>

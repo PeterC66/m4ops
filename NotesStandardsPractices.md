@@ -373,6 +373,8 @@ graph LR;
 - [useful examples and libraries for Vue.js](https://vuejsexamples.com/)
 - [Master Vue.js by mastering common problems](https://medium.com/@Roli_Dori/master-vue-js-by-mastering-common-problems-e2f1c2acd1e7)
 - Consider [Local Storage](https://vuejs.org/v2/cookbook/client-side-storage.html) for persistence and speed (better use plugin?)
+- [Six random issues and their solutions in VueJS](https://medium.com/@stijlbreuk/six-random-issues-and-their-solutions-in-vuejs-b16d470a6462)
+- [Understanding Vue.js Lifecycle Hooks](https://alligator.io/vuejs/component-lifecycle/)
 
 ### Vue Router
 
