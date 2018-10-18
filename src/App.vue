@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,6 +18,8 @@
   color: #2c3e50;
 }
 #nav {
+  background-color: #B3C0D1;
+  color: #333;
   padding: 2px;
   text-align: left;
 }

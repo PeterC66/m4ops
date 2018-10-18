@@ -41,6 +41,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   /* min-width: 203px;?? */
 </style>

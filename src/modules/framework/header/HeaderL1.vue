@@ -1,22 +1,4 @@
 <template>
-  <!--
-  export default function HeaderL1() {
-  return (
-    <div id="OPSSelect">
-      <Popover content={<ChooseOPSContainer />}
-          title="Choose OPS" trigger="click" placement="bottomRight">
-        <SimpleButton
-          tooltip="Open the cascaded dropdown to choose a One-Place Study"
-          tooltipPlacement="right"
-          icon="chevron-circle-down"
-          size="small"
-        />
-      </Popover>
-    </div>
-  );
-}
--->
-
   <div id="buttonsL1">
     <!-- opsdetails is an alias for place, used in the original M4OPS -->
     <el-popover
@@ -59,6 +41,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>

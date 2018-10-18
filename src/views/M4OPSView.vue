@@ -17,6 +17,8 @@
 import MainMap from '../modules/mapping/components/MainMap.vue';
 import Header from '../modules/framework/header/Header.vue';
 
+import '../global/styles/M4OPSLayout.css';
+
 export default {
   name: 'M4OPSView',
   components: {
@@ -26,7 +28,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #333;
@@ -34,12 +36,12 @@ export default {
     padding: 0;
   }
 
-  .el-aside {
+  /* .el-aside {
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
     line-height: 200px;
-  }
+  } */
 
   .el-main {
     background-color: #E9EEF3;

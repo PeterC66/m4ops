@@ -5,7 +5,7 @@
 /* For selectors see http://www.w3schools.com/cssref/css_selectors.asp, eg .=class, #=id, p=all p elements */
 
 html { overflow: hidden; }
-body { overflow: hidden; padding: 0; margin: 0; width: 100%; height: 100%; font-family: Trebuchet MS, Trebuchet, Arial, sans-serif; background: #f1e8f1 url(../../../images/backdropDEV.png) repeat-x;} /* PROD: #EEF2E9 url(../../../images/backdrop.png) repeat-x;*/
+body { overflow: hidden; padding: 0; margin: 0; width: 100%; height: 100%; font-family: Trebuchet MS, Trebuchet, Arial, sans-serif; background: #f1e8f1 url(../../assets/images/backdropDEV.png) repeat-x;} /* PROD: #EEF2E9 url(../../assets/images/backdrop.png) repeat-x;*/
 h1 { padding:7px 10px; margin:0; font-size: 1.2em; line-height:0.2em; }
 h2 { padding:7px 10px; margin:0; font-size: 1.0em; }
 h3 {font-size: 0.9em; margin-top: 0.5em; margin-bottom: 0px;}
@@ -39,7 +39,7 @@ padding: 10px 10px 10px 10px; background: #fff; z-index: 10001;}*/
 .category {background-color: #EAEFE7} 
 .categorywords {background-color: #9CB37D; color: greenyellow;} 
 #filename {padding: 1px 3px 1px 3px; height: inherit;} /* top, right, bottom, left */
-.loading {display:none; position: absolute; left: 50%; top: 50%; z-index: 1; width: 32px; height: 32px; background-image: url("../../../images/snake_loader.gif");}
+.loading {display:none; position: absolute; left: 50%; top: 50%; z-index: 1; width: 32px; height: 32px; background-image: url("../../assets/images/snake_loader.gif");}
 
 #explanation {width: 100%; border-style: double; border-width: medium; border-color: red; margin: 10px 0px 0px 0px; background:rgba(255,255,255,0.8); z-index: 100; position:relative;}
 #explanationhead {text-decoration: underline; margin: 0; padding: 3px 3px 3px 3px; text-align: center;}
