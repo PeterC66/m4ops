@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { ApiHandlerComponent } from 'vuex-api';
 
 import initialiseFontAwesome from './initialising/initialiseFontAwesome';
 import initialiseElementComponents from './initialising/initialiseElementComponents'; // eslint-disable-line max-len
@@ -12,6 +13,13 @@ import './registerServiceWorker';
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);
 initialiseVueLayers(Vue);
+
+Vue.component(
+  'json-api',
+  ApiHandlerComponent({
+    requestConfig: { baseURL: 'http://localhost:5000' },
+  }),
+);
 
 Vue.config.productionTip = false;
 

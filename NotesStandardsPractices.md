@@ -402,11 +402,13 @@ graph LR;
 
 ## HTTP Requests
 
+- Use [**vuex-api**](https://github.com/vouill/vuex-api)
+  - for GETS use [json-api](https://github.com/vouill/vuex-api#using-a-component)
 - Use [Axios](https://www.npmjs.com/package/axios) rather than plain fetch
 - See [fetch-vs-axios](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
 - see [Using Axios to Consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html) for a simple approach
 - See [vue.config.js](https://cli.vuejs.org/config/) is an optional config file, and needed for eg devserver-proxy
-- Use [**vuex-api**](https://github.com/vouill/vuex-api), rather than [vuex-rest-api](https://christianmalek.github.io/vuex-rest-api) (makes part of the store), or [vue-api-request](https://ftgibran.github.io/#/vue-api-request) (which has lots of options)
+- Not using [vuex-rest-api](https://christianmalek.github.io/vuex-rest-api) (makes part of the store), nor [vue-api-request](https://ftgibran.github.io/#/vue-api-request) (which has lots of options)
   - from [section on Utilities for HTTP requests](https://github.com/vuejs/awesome-vue#http-requests)
 - or p 178ff in Fullstack Vue book (action = axios call *then* commit mutation)
   - (need to commit a different mutation when axios call fails)
