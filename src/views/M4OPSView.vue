@@ -38,6 +38,11 @@ export default {
       url: 'places/HcN',
       keyPath: ['place'],
     });
+    this.$store.dispatch(actions.request, {
+      baseURL: 'http://localhost:5000/',
+      url: 'm4opsdata',
+      keyPath: ['m4opsdata'],
+    });
   },
 };
 </script>
