@@ -562,6 +562,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 - [My fork](https://github.com/PeterC66/vuelayers/)
   - Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)
   - but these are not need now because Vue CLI 3 does it all
+- see [how to track what vuelayers/OLmap is doing](https://github.com/ghettovoice/vuelayers/issues/73)
 
 - Other Vue OL implementations - fairly simple, could copy
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper
