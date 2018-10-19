@@ -11,7 +11,7 @@ import optionsFromContinents from './optionsFromContinents';
 const vuexApiGetters = {};
 
 // m4opsdata ========================================================
-
+// Note the double .data in all top levels (one from vuex-api and the other from the server)
 vuexApiGetters.m4opsdata = moduleState =>
   (moduleState.m4opsdata &&
   moduleState.m4opsdata.resp &&
@@ -57,6 +57,10 @@ vuexApiGetters.place = moduleState =>
   moduleState.place.resp.data &&
   moduleState.place.resp.data.data) ||
   {};
+
+// OPSDetails is a synonym of place
+vuexApiGetters.OPSDetails = (moduleState, getters) =>
+  getters.place || {};
 
 vuexApiGetters.OPSLayerDefsArray = (moduleState, getters) =>
   getters.place.LayerDefsArray || [];

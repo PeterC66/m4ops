@@ -29,7 +29,7 @@
           size="medium"
           @click="tellMe()"
         >
-          Maps for {{ placeName }}
+          Maps for {{ placename }}
         </el-button>
       </el-tooltip>
     </div>
@@ -42,9 +42,16 @@ import './HeaderTitles.css';
 export default {
   name: 'HeaderTitles',
   props: {
-    OPSDetails: {
+    opsdetails: {
       type: Object,
-      required: true,
+      default: () => ({ OPSCode: 'HcN', OPSName: 'Needingworth2' }),
+    },
+  },
+  computed: {
+    placename() {
+      return this.opsdetails ?
+        `${this.opsdetails.OPSCode}) ${this.opsdetails.OPSName}` :
+        '';
     },
   },
   methods: {
@@ -58,17 +65,3 @@ export default {
 <style scoped>
 
 </style>
-
-<!--
-
-export default function HeaderTitles(props) {
-  const { OPSDetails } = props ||
-  { OPSDetails: { OPSCode: 'Unk', OPSName: 'Unknown' } };
-  const placeName = `${OPSDetails.OPSCode} ${OPSDetails.OPSName}`;
-  return (
-    <Fragment>
-
-    </Fragment>
-  );
-}
--->

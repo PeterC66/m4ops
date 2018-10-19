@@ -28,9 +28,9 @@ export default {
     ChooseOPS,
   },
   props: {
-    OPSDetails: {
+    opsdetails: {
       type: Object,
-      required: true,
+      default: () => {},
     },
   },
   methods: {

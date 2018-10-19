@@ -1,8 +1,8 @@
 <template>
   <el-container>
-    <el-header><Header/></el-header>
+    <el-header><Header :opsdetails="OPSDetails" /></el-header>
     <el-container>
-      <el-aside width="300px">Aside</el-aside>
+      <el-aside width="300px">Aside {{ OPSDetails.OPSCode }}</el-aside>
       <el-main>
         <MainMap
           :zoom-initial="15"
@@ -15,6 +15,7 @@
 
 <script>
 import { actions } from 'vuex-api';
+import { mapGetters } from 'vuex';
 
 import MainMap from '../modules/mapping/components/MainMap.vue';
 import Header from '../modules/framework/header/Header.vue';
@@ -26,6 +27,11 @@ export default {
   components: {
     MainMap,
     Header,
+  },
+  computed: {
+    ...mapGetters([
+      'OPSDetails',
+    ]),
   },
   created() {
     this.$store.dispatch(actions.request, {

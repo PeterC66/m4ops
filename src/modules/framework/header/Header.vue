@@ -1,7 +1,7 @@
 <template>
   <section style="position: relative">
-    <HeaderTitles ops-details="OPSDetails" />
-    <HeaderL1 ops-details="OPSDetails" />
+    <HeaderTitles :opsdetails="opsdetails" />
+    <HeaderL1 :opsdetails="opsdetails" />
     <HeaderL2 />
     <HeaderR1 />
     <HeaderR2 />
@@ -25,9 +25,9 @@ export default {
     HeaderL2,
   },
   props: {
-    OPSDetails: {
+    opsdetails: {
       type: Object,
-      required: true,
+      default: () => ({ OPSCode: 'HcN', OPSName: 'Needingworth1' }),
     },
   },
 };

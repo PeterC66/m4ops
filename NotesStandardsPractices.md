@@ -64,7 +64,8 @@ Although fairly complex, this is a simplified approach to aid understanding, dev
 
 - **REST** stands for Representational State Transfer -The fundamental concept within REST is that of a resource - the object we are operating on. For each resource we define what methods can operate on that resource. Methods such as GET, POST, UPDATE, DELETE.
 
-- **HOC** - [higher-order component](https://reactjs.org/docs/higher-order-components.html) in React - a function that takes a component and returns a new component.
+- **HOC** - [higher-order component](https://reactjs.org/docs/higher-order-components.html) - a function that takes a component and returns a new component (used in React), compare in Vue.js ..
+- In a **mixin** you can put any component’s methods and they will be merged with the ones of the component that uses it.
 
 - a **variadic function** is one of indefinite arity, i.e., one which accepts a variable number of arguments
 
@@ -86,8 +87,6 @@ Although fairly complex, this is a simplified approach to aid understanding, dev
   - see [4 important points to know about Progressive Web Apps (PWA)](https://medium.com/@deepusnath/4-points-to-keep-in-mind-before-introducing-progressive-web-apps-pwa-to-your-team-8dc66bcf6011)
   - the Service Worker is a script that the browser runs in the background separate from web page is the backbone of every PWA
   - also Accelerated Mobile Pages (AMP) provides reliably fast web components for first load
-
-- In a **mixin** you can put any component’s methods and they will be merged with the ones of the component that uses it.
 
 - **BEM** - "Block, Element, Modifier” naming convention - see [Introducing BEM: The popular CSS naming convention](https://assortment.io/posts/introducing-bem-css-naming-convention)
 
@@ -160,17 +159,7 @@ Notes: Each folder
 
 ## Naming conventions
 
-(from the Vue.js official styleguide)
-
-- Component names are always **multi-word**, except for the root “App” component.
-- Each component is in its own file.
-- Filenames of single-file components (.vue) are in PascalCase.
-- Components that are only used once per page begin with the prefix “The”, to denote that there can be only one (eg TheNavbar.vue)
-- Child components include their parent name as a prefix (eg a “Photo” component used in “UserCard” is named UserCardPhoto).
-- Always use full name instead of abbreviations in the name of components, eg UserDashboardSettings.
-- Folder names are in lower case.
-- Non component filenames are in camelCase according to the job that they perform, eg userDropdown.js.
-- For components it's generally best to use PascalCase in the JavaScript, and kebab-case in the template - but Vue sees them as the same.
+See XXX
 
 ## Visual Studio Code
 
@@ -255,10 +244,6 @@ Notes: Each folder
 - particular uses
   - // eslint-disable-line no-console after any wanted console statement
   - // eslint-disable-line max-len where max line length is exceeded
-  - in js containers where we need to render a (single?) line of jsx
-    - /* eslint-disable react/jsx-filename-extension */ just before it
-    - /* eslint-enable react/jsx-filename-extension */ just after it
-  - /* eslint-disable react/prefer-stateless-function */ where we know component should not be written as a pure function
   - /* eslint-disable import/prefer-default-export */ where we know more exports are coming
   - // eslint-disable-line object-shorthand after where we cannot use shorthand
   - // eslint-disable-line no-alert after where we want an alert
@@ -472,7 +457,7 @@ graph LR;
   - Folder names are in lower case.
   - Non component filenames are in camelCase according to the job that they perform, eg userDropdown.js.
   - For components it's generally best to use PascalCase in the JavaScript, and kebab-case in the template - but Vue sees them as the same.
-
+  - **Beware** the kebab/Pascal issue (OPSDetails would have become o-p-s-details, so we use opsdetails)
 - Component **data must be a function**, as in export default {data () {return {foo: 'bar'}}}
 - **Prop definitions** should be as detailed as possible, including where possble a validator function
 - Always **use key** with v-for
@@ -677,9 +662,7 @@ graph LR;
 - [Learn to Code HTML & CSS](https://learn.shayhowe.com/html-css/) - the fundamentals
 - [Learn to Code Advanced HTML & CSS](https://learn.shayhowe.com/advanced-html-css/performance-organization/)
 - [Useful conversions](https://transform.now.sh/) (and prettifier) - eg
-  - JSON to React PropTypes
-  - CSS to JS Objects
-  - JSON to Flow Types
+  - JS Object to JSON
   - JSON to Mongoose Schema
   - Markdown to HTML
 - [regexr](https://regexr.com/) is an online tool to learn, build, & test Regular Expressions

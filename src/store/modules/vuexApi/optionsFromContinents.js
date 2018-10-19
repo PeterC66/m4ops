@@ -1,5 +1,6 @@
+/* eslint-disable arrow-body-style */
+
 const optionsFromContinents = (continents) => {
-  console.log('OFC', continents);
   return !continents ? [] : continents
     .filter(continent => (continent.M4OPS))
     .map(continent => (
