@@ -1,11 +1,22 @@
-import React, { Fragment } from 'react';
-import { Cascader } from 'antd';
-import PropTypes from 'prop-types';
+<template>
+  
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
+
+<!--
 
 function displayRender(label) {
   return (label.join(' / '));
 }
-
 function calcDefaultOption(ldId) {
   if (!ldId) return [];
   const idArray = ldId.split('>');
@@ -43,3 +54,4 @@ ChooseLayer.propTypes = {
   onSelectLayer: func.isRequired,
   ldId: string.isRequired,
 };
+-->

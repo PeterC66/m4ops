@@ -6,6 +6,7 @@ import {
 const state = {
   mapDisplay: 'overlay',
   actionOnClick: 'no',
+  chosenLayers: [],
 };
 
 const mutations = {

@@ -1,6 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import cuid from 'cuid';
+<template>
+  <div>
+    {layersList}
+    {blankOnEnd}
+  </div>
+</template>
+
+<script>
+export default {
+
+};
+</script>
+
+<style>
+
+</style>
+
+<!--
 
 import { getChosenLayersFromMap } from '../../mapping';
 import ChooseLayerContainer from './ChooseLayerContainer';
@@ -68,3 +83,4 @@ LayersContainer.propTypes = {
 };
 
 export default LayersContainer;
+-->
