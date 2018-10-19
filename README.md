@@ -1,37 +1,10 @@
 # m4ops
 
-## Project setup
+Mapping for One-Place Studies
 
-```
-npm install
-```
+A refactoring of the prototype [M4OPS](http://mapping4ops.org/M4OPS?Splash=Default), in light of experience.
 
-### Compiles and hot-reloads for development
+*Under development.*
 
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Run your tests
-
-```
-npm run test
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Run your unit tests
-
-```
-npm run test:unit
-```
+Note that I start trying to do this in React and Redux, but switched in early October 2018 to Vue.js and Vuex.
+There are still lots of React remnants that need to be Vue-ified.
