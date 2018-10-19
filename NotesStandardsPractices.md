@@ -424,7 +424,7 @@ graph LR;
 - [Learn CSS Layout](http://learnlayout.com) - a short course
 - [Styling Vue.Js Components Using CSS](https://flaviocopes.com/vue-css/) - lots of places to put css and classes
 - [Integrating and Using CSS Frameworks (eg Bulma) with Vue.js](https://alligator.io/vuejs/css-frameworks-vuejs/)
-- ? [Bulma](https://bulma.io/) for a CSS framework (like Bootstrap)
+- Use [Bulma](https://bulma.io/) for a CSS framework? (like Bootstrap) - as used by vuelayers
 - [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
 - See also vue.config.js [css-modules](https://cli.vuejs.org/config/#css-modules)
 
@@ -558,6 +558,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 
 - Use [vuelayers](https://github.com/ghettovoice/vuelayers): Vue components with the power of OpenLayers
 - [GitHub](https://vuelayers.github.io/#/) - scroll down for demo, quick start etc
+- [Demo](https://vuelayers.github.io/demo/) and [demo code](https://github.com/ghettovoice/vuelayers-demo)
 - [My fork](https://github.com/PeterC66/vuelayers/)
   - Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)
   - but these are not need now because Vue CLI 3 does it all

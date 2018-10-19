@@ -2,6 +2,7 @@
 node_modules
 /dist
 OldReact
+vuelayers-demo
 
 # local env files
 .env.local
