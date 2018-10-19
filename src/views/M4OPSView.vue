@@ -33,6 +33,11 @@ export default {
       url: 'continents',
       keyPath: ['continents'],
     });
+    this.$store.dispatch(actions.request, {
+      baseURL: 'http://localhost:5000/',
+      url: 'places/HcN',
+      keyPath: ['place'],
+    });
   },
 };
 </script>
