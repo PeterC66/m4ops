@@ -12,23 +12,27 @@
 
 <script>
 import { actions } from 'vuex-api';
-
-import optionsFromContinents from './optionsFromContinents';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ChooseOPS',
   data() {
-    const { continents } = this.$store.state.vuexApi;
-    const continentsData = continents &&
-      continents.resp &&
-      continents.resp.data &&
-      continents.resp.data.data;
+    // const { continents } = this.$store.state.vuexApi;
+    // const continentsData = continents &&
+    //   continents.resp &&
+    //   continents.resp.data &&
+    //   continents.resp.data.data;
     return {
-      options: optionsFromContinents(continentsData),
+      // options: optionsFromContinents(continentsData),
       selectedOptions: ['Europe', 'England', 'Cambridgeshire', 'HcN'],
     };
   },
-
+  computed: {
+    ...mapGetters([
+      'continents',
+      'options',
+    ]),
+  },
   methods: {
     handleChange(value) {
       console.log(value);
