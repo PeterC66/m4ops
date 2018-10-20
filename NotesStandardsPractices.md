@@ -392,7 +392,7 @@ graph LR;
 - Various [Vuex Utilities](https://github.com/vuejs/awesome-vue#vuex-utilities)
 - Might use [Vue Auth](https://github.com/websanova/vue-auth) - a simple light-weight authentication library for Vue.js
 - May want the [Logger Plugin](https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin) - createLogger
-  - or use vue-devtools time-travel (p143 of the Fullstack Vue book)
+  - or use vue-devtools time-travel (p143 of the Fullstack Vue book) - but see [this issue](https://github.com/vuejs/vue-devtools/issues/649) with crashing
 
 ## HTTP Requests
 
@@ -566,6 +566,8 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 - Use [vuelayers](https://github.com/ghettovoice/vuelayers): Vue components with the power of OpenLayers
 - [GitHub](https://vuelayers.github.io/#/) - scroll down for demo, quick start etc
 - [Demo](https://vuelayers.github.io/demo/) and [demo code](https://github.com/ghettovoice/vuelayers-demo)
+  - code copied into vuelayers-demo/
+  - also includes [AlexRiceGist/](https://gist.github.com/guidorice/c39db591323d78e5cb659b6bbc5cb0b5) re storing map data in Vuex
 - [My fork](https://github.com/PeterC66/vuelayers/)
   - Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)
   - but these are not need now because Vue CLI 3 does it all

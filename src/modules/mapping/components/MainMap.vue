@@ -4,8 +4,9 @@
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
       data-projection="EPSG:4326"
-      style="height: 400px">
+      style="height: 100%">
       <vl-view
+        :ident="viewIdent"
         :zoom.sync="zoom"
         :center.sync="center"
         :rotation.sync="rotation"/>
@@ -17,7 +18,6 @@
       Zoom: {{ zoom }}<br>
       Center: {{ center }}<br>
       Rotation: {{ rotation }}<br>
-      My geolocation: {{ geolocPosition }}
     </div>
   </div>
 </template>
@@ -25,25 +25,34 @@
 <script>
 export default {
   name: 'MainMap',
-  props: {
-    zoomInitial: {
-      type: Number,
-      required: false,
-      default: 2,
+  computed: {
+    viewIdent() {
+      return this.$store.state.mapping.view.ident;
     },
-    centerInitial: {
-      type: Array,
-      required: false,
-      default: () => [0, 0],
+    zoom: {
+      get() {
+        return this.$store.state.mapping.view.zoom;
+      },
+      set(value) {
+        this.$store.dispatch('updateViewZoom', value);
+      },
     },
-  },
-  data() {
-    return {
-      zoom: this.zoomInitial,
-      center: this.centerInitial,
-      rotation: 0,
-      geolocPosition: undefined,
-    };
+    center: {
+      get() {
+        return this.$store.state.mapping.view.center;
+      },
+      set(value) {
+        this.$store.dispatch('updateViewCenter', value);
+      },
+    },
+    rotation: {
+      get() {
+        return this.$store.state.mapping.view.rotation;
+      },
+      set(value) {
+        this.$store.dispatch('updateViewRotation', value);
+      },
+    },
   },
 };
 </script>
