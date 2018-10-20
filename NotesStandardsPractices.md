@@ -1,36 +1,43 @@
 # M4OPS2 Notes Standards and Practices
 
-- [M4OPS2 Notes Standards and Practices](#m4ops2-notes-standards-and-practices)
-  - [Overview](#overview)
-    - [Notes on this document](#notes-on-this-document)
-  - [Some useful Terminology](#some-useful-terminology)
-  - [The stack](#the-stack)
-  - [Folder and File set-up](#folder-and-file-set-up)
-  - [Naming conventions](#naming-conventions)
-  - [Visual Studio Code](#visual-studio-code)
-    - [GIT for source code version control](#git-for-source-code-version-control)
-    - [Eslint for proofing code](#eslint-for-proofing-code)
-  - [Documenting](#documenting)
-  - [HTML5 standards](#html5-standards)
-  - [JS and ES6 standards](#js-and-es6-standards)
-    - [Special functions & routines](#special-functions---routines)
-  - [Client Overview](#client-overview)
-    - [The Starting point](#the-starting-point)
-  - [Vue.js](#vuejs)
-    - [Vue CLI 3](#vue-cli-3)
-    - [Hints](#hints)
-    - [Element components](#element-components)
-  - [Babel](#babel)
-  - [Bundler - Webpack](#bundler---webpack)
-  - [Debugging](#debugging)
-  - [Testing](#testing)
-  - [OpenLayers](#openlayers)
-    - [OL and Vue](#ol-and-vue)
-  - [Server Overview](#server-overview)
-    - [Connecting to MongoDB](#connecting-to-mongodb)
-    - [Notes](#notes)
-  - [MongoDB](#mongodb)
-  - [Other Notes](#other-notes)
+- [Overview](#overview)
+  - [Notes on this document](#notes-on-this-document)
+- [Some useful Terminology](#some-useful-terminology)
+- [The stack](#the-stack)
+- [Folder and File set-up](#folder-and-file-set-up)
+- [Naming conventions](#naming-conventions)
+- [Visual Studio Code](#visual-studio-code)
+  - [GIT for source code version control](#git-for-source-code-version-control)
+  - [Eslint for proofing code](#eslint-for-proofing-code)
+- [Documenting](#documenting)
+- [HTML5 standards](#html5-standards)
+- [JS and ES6 standards](#js-and-es6-standards)
+  - [Special functions & routines](#special-functions---routines)
+- [Client Overview](#client-overview)
+  - [The Starting point](#the-starting-point)
+- [Vue.js](#vuejs)
+  - [Vue Router](#vue-router)
+  - [Vuex](#vuex)
+- [HTTP Requests](#http-requests)
+  - [Icons](#icons)
+  - [CSS](#css)
+  - [Element components](#element-components)
+  - [Vue Forms](#vue-forms)
+  - [Standards and styles](#standards-and-styles)
+  - [Vue CLI 3](#vue-cli-3)
+- [Babel](#babel)
+- [Bundler - Webpack](#bundler---webpack)
+  - [Production](#production)
+- [Debugging](#debugging)
+- [Testing](#testing)
+- [OpenLayers](#openlayers)
+  - [OL and Vue](#ol-and-vue)
+- [Server Overview](#server-overview)
+  - [Routes](#routes)
+  - [Connecting to MongoDB](#connecting-to-mongodb)
+  - [Notes](#notes)
+- [MongoDB](#mongodb)
+- [Other Notes](#other-notes)
 
 [Table of contents generated with markdown-toc](http://ecotrust-canada.github.io/markdown-toc/)
 
@@ -159,7 +166,7 @@ Notes: Each folder
 
 ## Naming conventions
 
-See XXX
+See under [Standards and styles](#standards-and-styles)
 
 ## Visual Studio Code
 
@@ -447,7 +454,7 @@ graph LR;
 
 - See [the official style guide](https://vuejs.org/v2/style-guide/)
 
-- Naming conventions
+- **Naming conventions**
   - Component names are always **multi-word**, except for the root “App” component.
   - Each component is in its own file.
   - Filenames of single-file components (.vue) are in PascalCase.
@@ -563,6 +570,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
   - Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)
   - but these are not need now because Vue CLI 3 does it all
 - see [how to track what vuelayers/OLmap is doing](https://github.com/ghettovoice/vuelayers/issues/73)
+- and [use of $](https://github.com/ghettovoice/vuelayers/issues/59)
 
 - Other Vue OL implementations - fairly simple, could copy
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper
