@@ -31,6 +31,7 @@ export default {
   computed: {
     ...mapGetters([
       'OPSDetails',
+      'homeView',
     ]),
   },
   created() {
@@ -43,6 +44,11 @@ export default {
       baseURL: 'http://localhost:5000/',
       url: 'places/HcN',
       keyPath: ['place'],
+    }).then(() => {
+    // The state has been updated and you can do whatever you want with the resp
+      this.$store.dispatch('updateViewZoom', this.homeView.zoom);
+      this.$store.dispatch('updateViewCenter', this.homeView.center);
+      this.$store.dispatch('updateViewRotation', this.homeView.rotation);
     });
     this.$store.dispatch(actions.request, {
       baseURL: 'http://localhost:5000/',

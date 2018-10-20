@@ -368,6 +368,11 @@ graph LR;
 - [Six random issues and their solutions in VueJS](https://medium.com/@stijlbreuk/six-random-issues-and-their-solutions-in-vuejs-b16d470a6462)
 - [Understanding Vue.js Lifecycle Hooks](https://alligator.io/vuejs/component-lifecycle/)
 - Useful on [Vue's communication channels](https://stackoverflow.com/questions/38616167/communication-between-sibling-components-in-vuejs-2-0/49702934#49702934)
+- [vue component to use common functions](https://stackoverflow.com/questions/51952654/vue-component-to-use-common-functions)
+- [Global plugins](https://vuejs.org/v2/guide/plugins.html)
+  - [clear description](https://alligator.io/vuejs/creating-custom-plugins/)
+  - [Writing a very simple plugin in Vue.js](https://dev.to/nkoik/writing-a-very-simple-plugin-in-vuejs---example-8g8)
+  - Excellent [Production-Ready Example from SnipCart](https://snipcart.com/blog/vue-js-plugin)
 
 ### Vue Router
 
@@ -686,3 +691,4 @@ graph LR;
 - We have a [codeSandbox](https://codesandbox.io/u/PeterC66) for trying things out
 - [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
 - Beware [Memory Leaks](https://vuejs.org/v2/cookbook/avoiding-memory-leaks.html)
+- [Should You Learn TypeScript? (Benefits & Resources)](https://snipcart.com/blog/learn-typescript-why-use-ts) (answer - not yet!)
