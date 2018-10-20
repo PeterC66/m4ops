@@ -372,7 +372,7 @@ graph LR;
 - [Global plugins](https://vuejs.org/v2/guide/plugins.html)
   - [clear description](https://alligator.io/vuejs/creating-custom-plugins/)
   - [Writing a very simple plugin in Vue.js](https://dev.to/nkoik/writing-a-very-simple-plugin-in-vuejs---example-8g8)
-  - Excellent [Production-Ready Example from SnipCart](https://snipcart.com/blog/vue-js-plugin)
+  - (Good but too complex) [Production-Ready Example from SnipCart](https://snipcart.com/blog/vue-js-plugin)
 
 ### Vue Router
 
