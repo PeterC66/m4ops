@@ -62,6 +62,22 @@ vuexApiGetters.place = moduleState =>
 vuexApiGetters.OPSDetails = (moduleState, getters) =>
   getters.place || {};
 
+// Note that homeView is not an olView
+vuexApiGetters.homeView = (moduleState, getters) => {
+  const ops = getters.place;
+  if (_.isEmpty(ops)) return {};
+  return {
+    center: [ops.Lon, ops.Lat],
+    // center: OLProj.transform(
+    //   [parseFloat(ops.Lon), parseFloat(ops.Lat)],
+    //   'EPSG:4326',
+    //   'EPSG:3857',
+    // ),
+    zoom: ops.Zoom,
+    rotation: ops.Rotation,
+  };
+};
+
 vuexApiGetters.OPSLayerDefsArray = (moduleState, getters) =>
   getters.place.LayerDefsArray || [];
 

@@ -367,6 +367,7 @@ graph LR;
 - Consider [Local Storage](https://vuejs.org/v2/cookbook/client-side-storage.html) for persistence and speed (better use plugin?)
 - [Six random issues and their solutions in VueJS](https://medium.com/@stijlbreuk/six-random-issues-and-their-solutions-in-vuejs-b16d470a6462)
 - [Understanding Vue.js Lifecycle Hooks](https://alligator.io/vuejs/component-lifecycle/)
+- Useful on [Vue's communication channels](https://stackoverflow.com/questions/38616167/communication-between-sibling-components-in-vuejs-2-0/49702934#49702934)
 
 ### Vue Router
 
