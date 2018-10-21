@@ -400,7 +400,12 @@ graph LR;
 - May want the [Logger Plugin](https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin) - createLogger
   - or use vue-devtools time-travel (p143 of the Fullstack Vue book) - but see [this issue](https://github.com/vuejs/vue-devtools/issues/649) with crashing
 
-## HTTP Requests
+### vuex-pathify
+
+- [vuex-pathify](https://davestewart.github.io/vuex-pathify/) simplifies the Vuex wiring
+- [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
+
+### HTTP Requests
 
 - Use [**vuex-api**](https://github.com/vouill/vuex-api)
   - for GETS use [json-api](https://github.com/vouill/vuex-api#using-a-component)
