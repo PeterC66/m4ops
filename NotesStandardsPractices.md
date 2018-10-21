@@ -320,8 +320,6 @@ See under [Standards and styles](#standards-and-styles)
 
 - use [cuid](https://github.com/ericelliott/cuid) for IDs (or uuid?)
 
-- WAS use [redux-orm](https://github.com/tommikaikkonen/redux-orm) - for using relational data in Redux
-
 - lodash has many useful functions
   - just import _ from 'lodash' (see [benchmark](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark))- eventually use [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)
   - for iteratees see [lodash documentation](https://lodash.com/docs/4.17.10#iteratee), and [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
@@ -373,6 +371,8 @@ graph LR;
   - [clear description](https://alligator.io/vuejs/creating-custom-plugins/)
   - [Writing a very simple plugin in Vue.js](https://dev.to/nkoik/writing-a-very-simple-plugin-in-vuejs---example-8g8)
   - (Good but too complex) [Production-Ready Example from SnipCart](https://snipcart.com/blog/vue-js-plugin)
+- [Working with Environment Variables in Vue.js](https://alligator.io/vuejs/working-with-environment-variables/)
+- [Vue.js Instance Properties etc](https://vuejs.org/v2/api/#Instance-Properties) - available to all components as this.$...
 
 ### Vue Router
 
@@ -401,6 +401,21 @@ graph LR;
   - or use vue-devtools time-travel (p143 of the Fullstack Vue book) - but see [this issue](https://github.com/vuejs/vue-devtools/issues/649) with crashing
 - Not using [vuex-pathify](https://davestewart.github.io/vuex-pathify/) although it simplifies the Vuex wiring
   - see also [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
+- [Vuex getters are great](https://codeburst.io/vuex-getters-are-great-but-dont-overuse-them-9c946689b414)
+- For demo?? [Vue Tour](https://madewithvuejs.com/vue-tour) - a quick and easy way to guide your users through your application.
+- [Vuex Instance Properties etc](https://vuex.vuejs.org/api/#vuex-store-instance-properties) - available to all components as this.$store.xxx
+
+#### Vuex plugins
+
+- [Documentation](https://vuex.vuejs.org/guide/plugins.html)
+- For ORM [Vuex ORM](https://vuex-orm.github.io/vuex-orm/) - a plugin for Vuex to enable Object-Relational Mapping access
+- [5 Vuex Plugins For Your Next VueJS Project](https://vuejsdevelopers.com/2017/09/11/vue-js-vuex-plugins/)
+  - Persisting state
+  - Syncing tabs/windows
+  - Language localization
+  - Managing multiple loading states
+  - Caching actions
+- [A Vuex Undo/Redo Plugin](https://www.codementor.io/vuejsdevelopers/create-a-vuex-undo-redo-plugin-for-vuejs-dt36c6w3z)
 
 ### HTTP Requests
 
