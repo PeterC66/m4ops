@@ -9,7 +9,7 @@
       <el-button
         type="primary"
         size="medium"
-        @click="tellMe()"
+        @click="goHome()"
       >
         <font-awesome-icon icon="home"/>
       </el-button>
@@ -59,13 +59,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import './Header.css';
 
 export default {
   name: 'HeaderR1',
+  computed: {
+    ...mapGetters([
+      'homeView',
+    ]),
+  },
   methods: {
     tellMe() {
       console.log('tellMe');
+    },
+    goHome() {
+      this.$store.dispatch('updateView', this.homeView);
     },
   },
 };
