@@ -11,4 +11,5 @@ export const BingApiKey = 'MHa7q07ui9757RJld6va~1IPp2elvmkSrGFA7QPrs6A~Aj0hERxm4
 export const ldIdOSM = 'World>Basic>OpenStreetMap';
 
 // Used to mitigate Vuex issue in devtools
-export const useVuexForView = true;
+// Needs to be true in production and for map redisplay after goHome
+export const useVuexForView = false;

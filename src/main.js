@@ -6,6 +6,7 @@ import globalPlugin1 from './global/plugins/globalPlugin1';
 import initialiseFontAwesome from './initialising/initialiseFontAwesome';
 import initialiseElementComponents from './initialising/initialiseElementComponents'; // eslint-disable-line max-len
 import initialiseVueLayers from './initialising/initialiseVueLayers';
+import initialiseWarnings from './initialising/initialiseWarnings';
 
 import App from './App.vue';
 import router from './router';
@@ -15,6 +16,7 @@ import './registerServiceWorker';
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);
 initialiseVueLayers(Vue);
+initialiseWarnings();
 
 Vue.component(
   'json-api',

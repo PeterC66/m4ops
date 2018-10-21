@@ -8,7 +8,6 @@ import {
 const state = {
   mapDisplay: 'overlay',
   actionOnClick: 'no',
-  chosenLayers: [],
   // current map viewport (shared among all vuelayers instances)
   view: {
     ident: 'shared-view', // https://vuelayers.github.io/#/component/view?id=ident
