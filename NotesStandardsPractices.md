@@ -399,11 +399,8 @@ graph LR;
 - Might use [Vue Auth](https://github.com/websanova/vue-auth) - a simple light-weight authentication library for Vue.js
 - May want the [Logger Plugin](https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin) - createLogger
   - or use vue-devtools time-travel (p143 of the Fullstack Vue book) - but see [this issue](https://github.com/vuejs/vue-devtools/issues/649) with crashing
-
-### vuex-pathify
-
-- [vuex-pathify](https://davestewart.github.io/vuex-pathify/) simplifies the Vuex wiring
-- [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
+- Not using [vuex-pathify](https://davestewart.github.io/vuex-pathify/) although it simplifies the Vuex wiring
+  - see also [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
 
 ### HTTP Requests
 
