@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import { actions } from 'vuex-api';
 import { mapGetters } from 'vuex';
 
@@ -30,29 +31,37 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'm4opsdata',
       'OPSDetails',
+      'continents',
       'homeView',
     ]),
   },
   created() {
-    this.$store.dispatch(actions.request, {
-      baseURL: 'http://localhost:5000/',
-      url: 'continents',
-      keyPath: ['continents'],
-    });
-    this.$store.dispatch(actions.request, {
-      baseURL: 'http://localhost:5000/',
-      url: 'places/HcN',
-      keyPath: ['place'],
-    }).then(() => {
-    // The state has been updated and you can do whatever you want with the resp
-      this.$store.dispatch('updateView', this.homeView);
-    });
-    this.$store.dispatch(actions.request, {
-      baseURL: 'http://localhost:5000/',
-      url: 'm4opsdata',
-      keyPath: ['m4opsdata'],
-    });
+    if (_.isEmpty(this.continents)) {
+      this.$store.dispatch(actions.request, {
+        baseURL: 'http://localhost:5000/',
+        url: 'continents',
+        keyPath: ['continents'],
+      });
+    }
+    if (_.isEmpty(this.OPSDetails)) {
+      this.$store.dispatch(actions.request, {
+        baseURL: 'http://localhost:5000/',
+        url: 'places/HcN',
+        keyPath: ['place'],
+      }).then(() => {
+      // The state has been updated and you can do whatever you want with the resp
+        this.$store.dispatch('updateView', this.homeView);
+      });
+    }
+    if (_.isEmpty(this.m4opsdata)) {
+      this.$store.dispatch(actions.request, {
+        baseURL: 'http://localhost:5000/',
+        url: 'm4opsdata',
+        keyPath: ['m4opsdata'],
+      });
+    }
   },
 };
 </script>
