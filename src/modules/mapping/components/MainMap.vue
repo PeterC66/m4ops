@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { useVuexForView } from '../../../global/constants';
+
 export default {
   name: 'MainMap',
   computed: {
@@ -34,7 +36,9 @@ export default {
         return this.$store.state.mapping.view.zoom;
       },
       set(value) {
-        this.$store.dispatch('updateViewZoom', value);
+        if (useVuexForView) {
+          this.$store.dispatch('updateViewZoom', value);
+        }
       },
     },
     center: {
@@ -42,7 +46,9 @@ export default {
         return this.$store.state.mapping.view.center;
       },
       set(value) {
-        this.$store.dispatch('updateViewCenter', value);
+        if (useVuexForView) {
+          this.$store.dispatch('updateViewCenter', value);
+        }
       },
     },
     rotation: {
@@ -50,7 +56,9 @@ export default {
         return this.$store.state.mapping.view.rotation;
       },
       set(value) {
-        this.$store.dispatch('updateViewRotation', value);
+        if (useVuexForView) {
+          this.$store.dispatch('updateViewRotation', value);
+        }
       },
     },
   },

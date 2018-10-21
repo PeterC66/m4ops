@@ -1,3 +1,5 @@
+import { isDefined } from '../../../global/utils';
+
 import {
   UPDATE_MAP_DISPLAY,
   UPDATE_ACTION_ON_CLICK,
@@ -24,14 +26,19 @@ const mutations = {
   [UPDATE_ACTION_ON_CLICK](moduleState, payload) {
     moduleState.actionOnClick = payload.actionOnClick;
   },
-  updateViewZoom(moduleState, payload) {
-    moduleState.view.zoom = payload.n;
-  },
-  updateViewCenter(moduleState, payload) {
-    moduleState.view.center = payload.lnglat;
-  },
-  updateViewRotation(moduleState, payload) {
-    moduleState.view.rotation = payload.rotation;
+  updateView(moduleState, payload) {
+    const { zoom } = payload;
+    if (isDefined(zoom)) { moduleState.view.zoom = zoom; }
+    const { center } = payload;
+    if (isDefined(center)) {
+      if (center.length === 2) {
+        moduleState.view.center = center;
+      } else {
+        console.log('center is ', center);
+      }
+    }
+    const { rotation } = payload;
+    if (isDefined(rotation)) { moduleState.view.rotation = rotation; }
   },
 };
 
@@ -42,14 +49,17 @@ const actions = {
   updateActionOnClick({ commit }, actionOnClick) {
     commit(UPDATE_ACTION_ON_CLICK, { actionOnClick });
   },
-  updateViewZoom({ commit }, n) {
-    commit('updateViewZoom', { n });
+  updateViewZoom({ commit }, zoom) {
+    commit('updateView', { zoom: zoom || 15 });
   },
-  updateViewCenter({ commit }, lnglat) {
-    commit('updateViewCenter', { lnglat });
+  updateViewCenter({ commit }, center) {
+    commit('updateView', { center });
   },
   updateViewRotation({ commit }, rotation) {
-    commit('updateViewRotation', { rotation });
+    commit('updateView', { rotation: rotation || 0 });
+  },
+  updateView({ commit }, view) {
+    commit('updateView', { ...view });
   },
 };
 

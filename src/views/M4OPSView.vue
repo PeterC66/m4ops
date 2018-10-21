@@ -46,9 +46,7 @@ export default {
       keyPath: ['place'],
     }).then(() => {
     // The state has been updated and you can do whatever you want with the resp
-      this.$store.dispatch('updateViewZoom', this.homeView.zoom);
-      this.$store.dispatch('updateViewCenter', this.homeView.center);
-      this.$store.dispatch('updateViewRotation', this.homeView.rotation);
+      this.$store.dispatch('updateView', this.homeView);
     });
     this.$store.dispatch(actions.request, {
       baseURL: 'http://localhost:5000/',

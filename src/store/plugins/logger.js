@@ -2,9 +2,7 @@ import _ from 'lodash';
 import createLogger from 'vuex/dist/logger';
 
 const ignoreMutations = [
-  'updateViewZoom',
-  'updateViewCenter',
-  'updateViewRotation',
+  'updateView',
 ];
 
 // For options see https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin

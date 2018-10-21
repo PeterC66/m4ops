@@ -538,6 +538,7 @@ graph LR;
 - [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
 - See vue.config.js [configurewebpack](https://cli.vuejs.org/config/#configurewebpack)
 - need [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) in webpack for environment variables eg process.env.NODE_ENV
+  - see [Node environment variables](https://medium.freecodecamp.org/heres-how-you-can-actually-use-node-environment-variables-8fdf98f53a0a)
 - We were thinking of using [**Parcel**](https://parceljs.org/) as 'no configuration'.
   - (nice but Vue CLI uses Webpack) - see [Parcel and Vue](https://parceljs.org/recipes.html)
   - See also [A quick look at Parcel](https://glebbahmutov.com/blog/parcel/), and [Getting Started With Parcel](https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c)
@@ -596,6 +597,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
   - but these are not need now because Vue CLI 3 does it all
 - see [how to track what vuelayers/OLmap is doing](https://github.com/ghettovoice/vuelayers/issues/73)
 - and [use of $](https://github.com/ghettovoice/vuelayers/issues/59)
+  - [explanation of $map etc](https://github.com/ghettovoice/vuelayers/issues/89#issuecomment-431653970)
 
 - Other Vue OL implementations - fairly simple, could copy
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper
