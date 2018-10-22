@@ -6,8 +6,15 @@
 </template>
 
 <script>
-export default {
+// import LayersContainer from './LayersContainer.vue';
 
+export default {
+  name: 'LayersContainer',
+  components: {
+    // LayersContainer,
+  },
+  props: {
+  },
 };
 </script>
 

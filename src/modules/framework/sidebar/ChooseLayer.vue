@@ -1,11 +1,46 @@
 <template>
-  
+  <div class="block">
+    <el-cascader
+      :options="options"
+      :show-all-levels="false"
+      v-model="selectedOption"
+      expand-trigger="hover"
+      @change="handleChange(selectedOption)"/>
+  </div>
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex';
+// import LayersContainer from './LayersContainer.vue';
 
-}
+export default {
+  name: 'ChooseLayer',
+  components: {
+    // LayersContainer,
+  },
+  props: {
+  },
+  computed: {
+    ...mapGetters([
+      'continents',
+      'options',
+      'homeView',
+    ]),
+  },
+  methods: {
+    handleChange(value) {
+      console.log(value);
+      this.$store.dispatch(actions.request, {
+        baseURL: 'http://localhost:5000/',
+        url: `places/${value[3]}`,
+        keyPath: ['place'],
+      }).then(() => {
+        // The state has been updated and you can do whatever you want with the resp
+        this.$store.dispatch('updateView', this.homeView);
+      });
+    },
+  },
+};
 </script>
 
 <style>

@@ -3,11 +3,10 @@
     <el-cascader
       :options="options"
       :show-all-levels="false"
-      v-model="selectedOptions"
+      v-model="selectedOption"
       expand-trigger="hover"
-      @change="handleChange(selectedOptions)"/>
+      @change="handleChange(selectedOption)"/>
   </div>
-
 </template>
 
 <script>
@@ -24,7 +23,7 @@ export default {
     //   continents.resp.data.data;
     return {
       // options: optionsFromContinents(continentsData),
-      selectedOptions: ['Europe', 'England', 'Cambridgeshire', 'HcN'],
+      selectedOption: ['Europe', 'England', 'Cambridgeshire', 'HcN'],
     };
   },
   computed: {
