@@ -11,7 +11,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { ldIdBingAerial } from '../../../global/constants';
+import { ldidBingAerial } from '../../../global/constants';
 
 export default {
   name: 'ChooseLayer',
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      selectedOption: ['Basic', ldIdBingAerial],
+      selectedOption: ['Basic', ldidBingAerial],
     };
   },
   computed: {
@@ -44,19 +44,19 @@ export default {
 function displayRender(label) {
   return (label.join(' / '));
 }
-function calcDefaultOption(ldId) {
-  if (!ldId) return [];
-  const idArray = ldId.split('>');
-  return [idArray[1].replace('_', ' '), ldId];
+function calcDefaultOption(ldid) {
+  if (!ldid) return [];
+  const idArray = ldid.split('>');
+  return [idArray[1].replace('_', ' '), ldid];
 }
 
 export default function ChooseLayer(props) {
-  const { options, onSelectLayer, ldId } = props;
+  const { options, onSelectLayer, ldid } = props;
   const onChange = (value) => {
     onSelectLayer(value[value.length - 1]);
   };
 
-  const defaultOption = calcDefaultOption(ldId);
+  const defaultOption = calcDefaultOption(ldid);
 
   return (
     <Fragment>
@@ -79,6 +79,6 @@ const { array, func, string } = PropTypes;
 ChooseLayer.propTypes = {
   options: array.isRequired, // eslint-disable-line react/forbid-prop-types
   onSelectLayer: func.isRequired,
-  ldId: string.isRequired,
+  ldid: string.isRequired,
 };
 -->

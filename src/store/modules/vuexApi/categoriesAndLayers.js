@@ -38,7 +38,7 @@ const categoriesAndLayers = (lds) => {
     children: _.filter(lds, { category: cat.category })
       .filter(ld => !string2bool(ld.donotshow, false))
       .map(ld => ({
-        value: ld.ldId,
+        value: ld.ldid,
         label: ld.title,
       })),
   }));

@@ -11,13 +11,13 @@ class ChooseLayerContainer extends Component {
   }
 
   render() {
-    const { options, onSelectLayer, ldId } = this.props;
+    const { options, onSelectLayer, ldid } = this.props;
     return (
     /* eslint-disable react/jsx-filename-extension */
       <ChooseLayer
         options={options}
         onSelectLayer={onSelectLayer}
-        ldId={ldId}
+        ldid={ldid}
       />
     /* eslint-enable react/jsx-filename-extension */
     );
@@ -25,7 +25,7 @@ class ChooseLayerContainer extends Component {
 }
 
 ChooseLayerContainer.defaultProps = {
-  ldId: '',
+  ldid: '',
 };
 
 const { array, func, string } = PropTypes;
@@ -33,7 +33,7 @@ const { array, func, string } = PropTypes;
 ChooseLayerContainer.propTypes = {
   options: array.isRequired, // eslint-disable-line react/forbid-prop-types
   onSelectLayer: func.isRequired,
-  ldId: string,
+  ldid: string,
 };
 
 // format is state.reducerName.collectionName
@@ -43,9 +43,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => (
   {
-    onSelectLayer: (ldId) => {
+    onSelectLayer: (ldid) => {
       dispatch(setLayerRequest({
-        ldId,
+        ldid,
         layerNumber: ownProps.layerNumber,
       }));
     },

@@ -3,13 +3,13 @@ import OlView from 'ol/view';
 import OlLayerTile from 'ol/layer/tile';
 import OlSourceOsm from 'ol/source/osm';
 
-import { ldIdOSM } from '../../../global/constants';
+import { ldidOSM } from '../../../global/constants';
 // TODO generalise
-const chosenLayers = [{ ldId: ldIdOSM }];
+const chosenLayers = [{ ldid: ldidOSM }];
 const layer = new OlLayerTile({
   source: new OlSourceOsm(),
 });
-layer.ldId = chosenLayers[0].ldId; // used to get back from Layer to LayerDef
+layer.ldid = chosenLayers[0].ldid; // used to get back from Layer to LayerDef
 
 const center = [788453.4890155146, 6573085.729161344];
 
@@ -24,4 +24,4 @@ const map = new OlMap({
 
 export const initialStateMainMap = map;
 
-export const initialStateChosenLayers = [{ layerNumber: 0, ldId: ldIdOSM }];
+export const initialStateChosenLayers = [{ layerNumber: 0, ldid: ldidOSM }];

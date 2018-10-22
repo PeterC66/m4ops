@@ -10,7 +10,7 @@ import { layerFromDef } from './layerFromDef';
 export const xx = true;
 
 export function olLayersFromChosenLayers(LayerDefs = [], chosenLayers = []) {
-  const result = chosenLayers.map(chosenLayer => layerFromDef(LayerDefs, chosenLayer.ldId));
+  const result = chosenLayers.map(chosenLayer => layerFromDef(LayerDefs, chosenLayer.ldid));
   return result;
 }
 
@@ -25,7 +25,7 @@ export function loadLayers(map, nextLayers, LayerDefs) {
     console.log('popped', _.cloneDeep(l), 'now', _.cloneDeep(map), _.cloneDeep(map.getLayers()));
     // }
     nextLayers.forEach((layer, nextIndex) => {
-      const layerToInsert = layerFromDef(LayerDefs, layer.ldId);
+      const layerToInsert = layerFromDef(LayerDefs, layer.ldid);
       console.log(_.cloneDeep(layer), nextIndex, 'layerToInsert', _.cloneDeep(layerToInsert));
       if (layerToInsert) {
         map.getLayers().insertAt(nextIndex, layerToInsert);
@@ -43,7 +43,7 @@ export function loadLayersIncremental(map, prevLayers, nextLayers, LayerDefs) {
     nextLayers.forEach((layer, nextIndex) => {
       if (
         (prevIndex < prevLayers.length)
-        && (layer.ldId === prevLayers[prevIndex].ldId)
+        && (layer.ldid === prevLayers[prevIndex].ldid)
       ) {
         prevIndex += 1;
       } else {
@@ -52,10 +52,10 @@ export function loadLayersIncremental(map, prevLayers, nextLayers, LayerDefs) {
         if (
           !(
             (prevIndex < prevLayers.length)
-            && (layer.ldId === prevLayers[prevIndex].ldId)
+            && (layer.ldid === prevLayers[prevIndex].ldid)
           )
         ) {
-          const layerToInsert = layerFromDef(LayerDefs, layer.ldId);
+          const layerToInsert = layerFromDef(LayerDefs, layer.ldid);
           console.log('layerToInsert', layerToInsert);
           if (layerToInsert) {
             map.getLayers().insertAt(nextIndex, layerToInsert);

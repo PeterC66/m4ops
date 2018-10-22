@@ -67,9 +67,9 @@ export function layerCollectionFromDef(LayerDefs, sdef) {
   return null;
 }
 
-function ldindexFromLdId(LayerDefs = [], ldId) {
-  const result = LayerDefs.findIndex(ld => ld.ldId === ldId);
-  if (result === -1) console.log(`No ${ldId} found in LayerDefs`); // eslint-disable-line no-console
+function ldindexFromLdId(LayerDefs = [], ldid) {
+  const result = LayerDefs.findIndex(ld => ld.ldid === ldid);
+  if (result === -1) console.log(`No ${ldid} found in LayerDefs`); // eslint-disable-line no-console
   return result;
 }
 
@@ -82,8 +82,8 @@ also??"projection", "mapkey", "minx", "miny", "maxx", "maxy"
 
 layerFromDef transforms one element and returns an ol.layer object
  */
-export function layerFromDef(LayerDefs, ldId) {
-  const ldindex = ldindexFromLdId(LayerDefs, ldId);
+export function layerFromDef(LayerDefs, ldid) {
+  const ldindex = ldindexFromLdId(LayerDefs, ldid);
   if (ldindex <= 0) return {};
   const ld = LayerDefs[ldindex];
   const titleToUse = (ld.title) ? ld.title : 'unknown';
@@ -117,7 +117,7 @@ export function layerFromDef(LayerDefs, ldId) {
     }
     layerToReturn.candownload = string2bool(ld.candownload, false);
     layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef (old way)
-    layerToReturn.ldId = ldId; // used to get back from Layer to LayerDef
+    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
 
     /* need resolutions rather than zooms??? Have moved these to sourcedef
     if (ld.minZoom) layerToReturn.minZoom = ld.minZoom;
@@ -135,7 +135,7 @@ export function layerFromDef(LayerDefs, ldId) {
 
       layerToReturn.candownload = string2bool(ld.candownload, false);
       layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-      layerToReturn.ldId = ldId; // used to get back from Layer to LayerDef
+      layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
       return layerToReturn;
     }
     alert('No source for WMTS layer'); // eslint-disable-line no-alert
@@ -165,7 +165,7 @@ export function layerFromDef(LayerDefs, ldId) {
     }
     layerToReturn.candownload = string2bool(ld.candownload, false);
     layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-    layerToReturn.ldId = ldId; // used to get back from Layer to LayerDef
+    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
 
     // Do the Equivalencies, HideUnhideForTime, preload Images and HTMLs, set featureid
     processFeatures(layerToReturn, {
@@ -189,7 +189,7 @@ export function layerFromDef(LayerDefs, ldId) {
     }
     layerToReturn.candownload = string2bool(ld.candownload, false);
     layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-    layerToReturn.ldId = ldId; // used to get back from Layer to LayerDef
+    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
 
     return layerToReturn;
   } else if (ld.layertype === 'Group') { // the layerDef is for a group of layers
@@ -215,7 +215,7 @@ export function layerFromDef(LayerDefs, ldId) {
     }
     layerToReturn.candownload = string2bool(ld.candownload, false);
     layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-    layerToReturn.ldId = ldId; // used to get back from Layer to LayerDef
+    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
 
     return layerToReturn;
   } else if (ld.layertype === 'Series') { // the layerDef is for a series of layers (possibly groups)
@@ -226,7 +226,7 @@ export function layerFromDef(LayerDefs, ldId) {
       layerSeries = layerCollectionFromDef(ld.sourcedef);
       ({ layerToReturn } = layerSeries.getArray()); // We return here just the first in the series
     }
-    layerToReturn.ldId = ldId; // used to get back from Layer to LayerDef
+    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
     return layerToReturn;
   } else if (ld.layertype === 'WMS') { // See https://geospatialwandering.wordpress.com/category/wms/
     layerToReturn = new OlLayerTile({
@@ -248,7 +248,7 @@ export function layerFromDef(LayerDefs, ldId) {
     } */
     layerToReturn.candownload = string2bool(ld.candownload, false);
     layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-    layerToReturn.ldId = ldId; // used to get back from Layer to LayerDef
+    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
     // console.log(layerToReturn);
     return layerToReturn;
   }

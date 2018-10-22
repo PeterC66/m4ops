@@ -52,8 +52,8 @@ class LayersContainer extends Component {
         (layer, index) => (
           <ChooseLayerContainer
             layerNumber={index}
-            key={layer.ldId}
-            ldId={layer.ldId}
+            key={layer.ldid}
+            ldid={layer.ldid}
           />
         ),
       );

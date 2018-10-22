@@ -1,4 +1,5 @@
 import { isDefined } from '../../../global/utils';
+import mainmap from './mainmap';
 
 import {
   UPDATE_MAP_DISPLAY,
@@ -66,6 +67,9 @@ const getters = {
 };
 
 const mappingModule = {
+  modules: {
+    mainmap,
+  },
   state,
   mutations,
   actions,
