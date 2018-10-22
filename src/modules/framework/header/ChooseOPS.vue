@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <el-cascader
-      :options="options"
+      :options="placeOptions"
       :show-all-levels="false"
       v-model="selectedOption"
       expand-trigger="hover"
@@ -16,32 +16,24 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'ChooseOPS',
   data() {
-    // const { continents } = this.$store.state.vuexApi;
-    // const continentsData = continents &&
-    //   continents.resp &&
-    //   continents.resp.data &&
-    //   continents.resp.data.data;
     return {
-      // options: optionsFromContinents(continentsData),
       selectedOption: ['Europe', 'England', 'Cambridgeshire', 'HcN'],
     };
   },
   computed: {
     ...mapGetters([
       'continents',
-      'options',
+      'placeOptions',
       'homeView',
     ]),
   },
   methods: {
     handleChange(value) {
-      console.log(value);
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: `places/${value[3]}`,
         keyPath: ['place'],
       }).then(() => {
-        // The state has been updated and you can do whatever you want with the resp
         this.$store.dispatch('updateView', this.homeView);
       });
     },

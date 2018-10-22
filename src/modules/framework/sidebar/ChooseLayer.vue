@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <el-cascader
-      :options="options"
+      :options="layerOptions"
       :show-all-levels="false"
       v-model="selectedOption"
       expand-trigger="hover"
@@ -11,33 +11,25 @@
 
 <script>
 import { mapGetters } from 'vuex';
-// import LayersContainer from './LayersContainer.vue';
+import { ldIdBingAerial } from '../../../global/constants';
 
 export default {
   name: 'ChooseLayer',
-  components: {
-    // LayersContainer,
-  },
   props: {
+  },
+  data() {
+    return {
+      selectedOption: ['Basic', ldIdBingAerial],
+    };
   },
   computed: {
     ...mapGetters([
-      'continents',
-      'options',
-      'homeView',
+      'layerOptions',
     ]),
   },
   methods: {
     handleChange(value) {
       console.log(value);
-      this.$store.dispatch(actions.request, {
-        baseURL: 'http://localhost:5000/',
-        url: `places/${value[3]}`,
-        keyPath: ['place'],
-      }).then(() => {
-        // The state has been updated and you can do whatever you want with the resp
-        this.$store.dispatch('updateView', this.homeView);
-      });
     },
   },
 };

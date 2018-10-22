@@ -26,7 +26,7 @@
 import { useVuexForView } from '../../../global/constants';
 
 export default {
-  name: 'MainMap',
+  name: 'MapContainer',
   computed: {
     viewIdent() {
       return this.$store.state.mapping.view.ident;

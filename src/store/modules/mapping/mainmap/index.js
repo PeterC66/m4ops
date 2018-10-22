@@ -1,9 +1,9 @@
-import { isDefined } from '../../../global/utils';
+import { isDefined } from '../../../../global/utils';
 
 import {
   UPDATE_MAP_DISPLAY,
   UPDATE_ACTION_ON_CLICK,
-} from '../../mutation-types';
+} from '../../../mutation-types';
 
 const state = {
   mapDisplay: 'overlay',

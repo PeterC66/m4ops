@@ -2,9 +2,9 @@
   <el-container>
     <el-header><Header :opsdetails="OPSDetails" /></el-header>
     <el-container>
-      <el-aside width="300px">Aside {{ OPSDetails.OPSCode }}</el-aside>
+      <el-aside width="300px"><Sidebar/></el-aside>
       <el-main>
-        <MainMap
+        <MapContainer
           :zoom-initial="15"
           :center-initial="[-0.0325, 52.329444]"
         />
@@ -18,16 +18,18 @@ import _ from 'lodash';
 import { actions } from 'vuex-api';
 import { mapGetters } from 'vuex';
 
-import MainMap from '../modules/mapping/components/MainMap.vue';
+import MapContainer from '../modules/mapping/components/MapContainer.vue';
 import Header from '../modules/framework/header/Header.vue';
+import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 
 import '../global/styles/M4OPSLayout.css';
 
 export default {
   name: 'M4OPSView',
   components: {
-    MainMap,
+    MapContainer,
     Header,
+    Sidebar,
   },
   computed: {
     ...mapGetters([

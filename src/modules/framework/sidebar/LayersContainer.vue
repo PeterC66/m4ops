@@ -1,17 +1,16 @@
 <template>
   <div>
-    {layersList}
-    {blankOnEnd}
+    <ChooseLayer/>
   </div>
 </template>
 
 <script>
-// import LayersContainer from './LayersContainer.vue';
+import ChooseLayer from './ChooseLayer.vue';
 
 export default {
   name: 'LayersContainer',
   components: {
-    // LayersContainer,
+    ChooseLayer,
   },
   props: {
   },

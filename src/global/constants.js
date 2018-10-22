@@ -9,6 +9,7 @@ export const BingApiKey = 'MHa7q07ui9757RJld6va~1IPp2elvmkSrGFA7QPrs6A~Aj0hERxm4
 // cSpell:enable
 
 export const ldIdOSM = 'World>Basic>OpenStreetMap';
+export const ldIdBingAerial = 'World>Basic>Bing_Aerial';
 
 // Used to mitigate Vuex issue in devtools
 // Needs to be true in production and for map redisplay after goHome

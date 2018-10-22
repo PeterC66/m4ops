@@ -1,10 +1,11 @@
 <template>
   <section style="position: relative">
-    <LayersContainer :opsdetails="opsdetails" />
+    <LayersContainer />
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import LayersContainer from './LayersContainer.vue';
 
 export default {
@@ -13,6 +14,11 @@ export default {
     LayersContainer,
   },
   props: {
+  },
+  computed: {
+    ...mapGetters([
+      'layerOptions',
+    ]),
   },
 };
 </script>

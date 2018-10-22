@@ -401,7 +401,7 @@ graph LR;
   - or use vue-devtools time-travel (p143 of the Fullstack Vue book) - but see [this issue](https://github.com/vuejs/vue-devtools/issues/649) with crashing
 - Not using [vuex-pathify](https://davestewart.github.io/vuex-pathify/) although it simplifies the Vuex wiring
   - see also [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
-- [Vuex getters are great](https://codeburst.io/vuex-getters-are-great-but-dont-overuse-them-9c946689b414)
+- [Vuex getters are great](https://codeburst.io/vuex-getters-are-great-but-dont-overuse-them-9c946689b414) but use mapState for simple ones
 - For demo?? [Vue Tour](https://madewithvuejs.com/vue-tour) - a quick and easy way to guide your users through your application.
 - [Vuex Instance Properties etc](https://vuex.vuejs.org/api/#vuex-store-instance-properties) - available to all components as this.$store.xxx
 
