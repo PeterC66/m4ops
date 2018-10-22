@@ -1,6 +1,11 @@
 <template>
   <div>
-    <ChooseLayer/>
+    <ChooseLayer
+      v-for="(ldId, index) in chosenLdidsMainmap"
+      :ldId="ldId"
+      :key="index"
+      :layer-number="index"
+    />
   </div>
 </template>
 
@@ -13,6 +18,15 @@ export default {
     ChooseLayer,
   },
   props: {
+    chosenLdidsMainmap: {
+      type: Array,
+      required: true,
+    },
+  },
+  computed: {
+    nchosenLdid() {
+      return this.chosenLdids.length;
+    },
   },
 };
 </script>
@@ -52,8 +66,8 @@ class LayersContainer extends Component {
         (layer, index) => (
           <ChooseLayerContainer
             layerNumber={index}
-            key={layer.ldid}
-            ldid={layer.ldid}
+            key={layer.ldId}
+            ldId={layer.ldId}
           />
         ),
       );

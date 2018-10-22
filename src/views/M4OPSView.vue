@@ -18,9 +18,9 @@ import _ from 'lodash';
 import { actions } from 'vuex-api';
 import { mapGetters } from 'vuex';
 
-import MapContainer from '../modules/mapping/components/MapContainer.vue';
 import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
+import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
 import '../global/styles/M4OPSLayout.css';
 

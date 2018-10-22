@@ -18,7 +18,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 // ACTION CREATORS
 
 // export const setupMap = createAction(createActionName('MAP_SETUP'));
-// payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
+// payload is {ldId:string_index_into_LayerDefsArray, layerNumber: eg 0}
 export const setLayerRequest = createAction(createActionName('LAYER_SET_REQUEST'));
 
 // Initial State
@@ -36,15 +36,15 @@ const value = handleActions({
     next: (state, action) => {
       const { LayerDefs } = action;
       const nextMainMap = _.cloneDeep(state.mainmap);
-      // for payload see above {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
+      // for payload see above {ldId:string_index_into_LayerDefsArray, layerNumber: eg 0}
       const layerindex = action.payload.layerNumber;
-      if (!isDefined(action.payload.ldid)) { // indicating to delete the layer
+      if (!isDefined(action.payload.ldId)) { // indicating to delete the layer
         nextMainMap.getLayers().removeAt(layerindex);
       } else {
         if (isLayerDefined(nextMainMap, layerindex)) {
           nextMainMap.getLayers().removeAt(layerindex);
         }
-        const layerToInsert = layerFromDef(LayerDefs, action.payload.ldid);
+        const layerToInsert = layerFromDef(LayerDefs, action.payload.ldId);
         nextMainMap.getLayers().insertAt(layerindex, layerToInsert);
       }
       return {
@@ -99,7 +99,7 @@ export const getChosenLayersFromMap = createNamedSelector(
       const layersArray = map.getLayers().getArray();
       return layersArray.map((item, index) => ({
         layerNumber: index,
-        ldid: item.get('ldid'),
+        ldId: item.get('ldId'),
       }));
     }
     console.log('getChosenLayersFromMap called with invalid map:', map); // eslint-disable-line no-console

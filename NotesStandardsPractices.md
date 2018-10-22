@@ -248,13 +248,17 @@ See under [Standards and styles](#standards-and-styles)
 - [List of rules](https://eslint.org/docs/rules/) and [Configuring in detail](https://eslint.org/docs/user-guide/configuring) (including [via in-file comments](https://eslint.org/docs/user-guide/configuring.html#disabling-rules-with-inline-comments))
   - We Use [Prettier](https://prettier.io/docs/en/install.html) so some rules are not relevant, as the code is prettified on save
 
-- particular uses
-  - // eslint-disable-line no-console after any wanted console statement
-  - // eslint-disable-line max-len where max line length is exceeded
-  - /* eslint-disable import/prefer-default-export */ where we know more exports are coming
-  - // eslint-disable-line object-shorthand after where we cannot use shorthand
-  - // eslint-disable-line no-alert after where we want an alert
-  - // eslint-disable-line no-use-before-define after any function we know this aplies to (it is OK)
+- can
+  - /* eslint-disable */
+  - // eslint-disable-next-line
+  - // eslint-disable-line
+- for rules
+  - no-console (if wanted)
+  - max-len (where max line length is exceeded)
+  - import/prefer-default-export (where we know more exports are coming)
+  - object-shorthand (where we cannot use shorthand method)
+  - no-alert (if want an alert)
+  - no-use-before-define (for any function we know this applies to)
 
 - Vue and EsLint
 
@@ -598,6 +602,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 - see [how to track what vuelayers/OLmap is doing](https://github.com/ghettovoice/vuelayers/issues/73)
 - and [use of $](https://github.com/ghettovoice/vuelayers/issues/59)
   - [explanation of $map etc](https://github.com/ghettovoice/vuelayers/issues/89#issuecomment-431653970)
+- [olExt issue](https://github.com/ghettovoice/vuelayers/issues/90#issuecomment-431748771)
 
 - Other Vue OL implementations - fairly simple, could copy
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper

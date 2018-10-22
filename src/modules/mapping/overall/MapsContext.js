@@ -11,7 +11,7 @@ import {
 } from '@terrestris/react-geo';
 
 import M4OPSContainer from '../../framework/overall/M4OPSContainer';
-import { ldidOSM } from '../../../global/constants';
+import { ldIdOSM } from '../../../global/constants';
 
 class MapsContext extends Component {
   constructor(props) {
@@ -21,8 +21,8 @@ class MapsContext extends Component {
       const layer = new OlLayerTile({
         source: new OlSourceOsm(),
       });
-      layer.set('ldid', ldidOSM);
-      layer.set('key', ldidOSM);
+      layer.set('ldId', ldIdOSM);
+      layer.set('key', ldIdOSM);
 
       const map = new OlMap({
         target: null,

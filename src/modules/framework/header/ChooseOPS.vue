@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     handleChange(value) {
+      console.log(value);
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: `places/${value[3]}`,

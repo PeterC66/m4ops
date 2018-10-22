@@ -17,14 +17,14 @@
 // // ACTION CREATORS
 
 // // export const setupMap = createAction(createActionName('MAP_SETUP'));
-// // payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
+// // payload is {ldId:string_index_into_LayerDefsArray, layerNumber: eg 0}
 // export const setLayerRequest = createAction(createActionName('LAYER_SET_REQUEST'));
 
 // // Initial State
 // const initialState = {
 //   mainmap: initialStateMainMap,
 //   // See Map.jsx to tie in
-//   // chosenLayers: [{ cuidKey: 'xxx', ldid: 'World>Basic>OpenStreetMap', originalIndex: null }],
+//   // chosenLayers: [{ cuidKey: 'xxx', ldId: 'World>Basic>OpenStreetMap', originalIndex: null }],
 // };
 
 // // REDUCERS
@@ -44,10 +44,10 @@
 //         updateItemInArray(
 //           state.chosenLayers,
 //           action.payload.layerNumber,
-//           () => ({ ldid: action.payload.ldid, cuidKey: cuid(), originalIndex: null }),
+//           () => ({ ldId: action.payload.ldId, cuidKey: cuid(), originalIndex: null }),
 //           true,
 //         ),
-//         v => isDefined(v.ldid),
+//         v => isDefined(v.ldId),
 //       );
 //       return {
 //         ...state,
@@ -79,9 +79,9 @@
 // chosenLayers: _.remove(updateItemInArray(
 //   state.chosenLayers,
 //   action.payload.layerNumber,
-//   () => ({ ldid: action.payload.ldid, cuidKey: cuid(), originalIndex: null }),
+//   () => ({ ldId: action.payload.ldId, cuidKey: cuid(), originalIndex: null }),
 //   true,
-// ), (v) => { console.log('RED', v, !isDefined(v.ldid)); return false; }),
+// ), (v) => { console.log('RED', v, !isDefined(v.ldId)); return false; }),
 // }),
 // },
 // }, initialState); */

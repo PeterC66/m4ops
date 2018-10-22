@@ -11,15 +11,25 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { ldidBingAerial } from '../../../global/constants';
+
+import { ldIdToCategoryAndLayer } from '../../../store/modules/vuexApi/categoriesAndLayers'; // eslint-disable-line max-len
 
 export default {
   name: 'ChooseLayer',
   props: {
+    ldId: {
+      type: String,
+      default: 'void',
+    },
+    layerNumber: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
-      selectedOption: ['Basic', ldidBingAerial],
+      selectedOption: ['Basic', 'World>Basic>OpenStreetMap'],
+      // selectedOption: ldIdToCategoryAndLayer(this.ldId),
     };
   },
   computed: {
@@ -44,19 +54,19 @@ export default {
 function displayRender(label) {
   return (label.join(' / '));
 }
-function calcDefaultOption(ldid) {
-  if (!ldid) return [];
-  const idArray = ldid.split('>');
-  return [idArray[1].replace('_', ' '), ldid];
+function ldIdToCategoryAndLayer(ldId) {
+  if (!ldId) return [];
+  const idArray = ldId.split('>');
+  return [idArray[1].replace('_', ' '), ldId];
 }
 
 export default function ChooseLayer(props) {
-  const { options, onSelectLayer, ldid } = props;
+  const { options, onSelectLayer, ldId } = props;
   const onChange = (value) => {
     onSelectLayer(value[value.length - 1]);
   };
 
-  const defaultOption = calcDefaultOption(ldid);
+  const defaultOption = calcDefaultOption(ldId);
 
   return (
     <Fragment>
@@ -79,6 +89,6 @@ const { array, func, string } = PropTypes;
 ChooseLayer.propTypes = {
   options: array.isRequired, // eslint-disable-line react/forbid-prop-types
   onSelectLayer: func.isRequired,
-  ldid: string.isRequired,
+  ldId: string.isRequired,
 };
 -->

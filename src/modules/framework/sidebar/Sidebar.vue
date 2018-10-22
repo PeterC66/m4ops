@@ -1,6 +1,6 @@
 <template>
   <section style="position: relative">
-    <LayersContainer />
+    <LayersContainer :chosen-ldIds-mainmap="chosenLdidsMainmap"/>
   </section>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'layerOptions',
+      'chosenLdidsMainmap',
     ]),
   },
 };

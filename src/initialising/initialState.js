@@ -1,6 +1,8 @@
-import { ldidOSM, ldidBingAerial } from '../global/constants';
+import { ldIdOSM, ldIdBingAerial } from '../global/constants';
 
 export const initialStateChosenLayers = [
-  { ldid: ldidOSM },
-  { ldid: ldidBingAerial },
+  ldIdOSM,
+  ldIdBingAerial,
 ];
+
+export const dummy = 0;

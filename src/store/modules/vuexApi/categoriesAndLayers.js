@@ -38,10 +38,18 @@ const categoriesAndLayers = (lds) => {
     children: _.filter(lds, { category: cat.category })
       .filter(ld => !string2bool(ld.donotshow, false))
       .map(ld => ({
-        value: ld.ldid,
+        value: ld.ldId,
         label: ld.title,
       })),
   }));
 };
 
 export default categoriesAndLayers;
+
+// Given eg "World>Basic>Bing_Aerial" return ["Basic", "World>Basic>Bing_Aerial"]
+//  which corresponds to the options values in the ChooseLayer cascader, from categoriesAndLayers
+export function ldIdToCategoryAndLayer(ldId) {
+  if (!ldId) return [];
+  const idArray = ldId.split('>');
+  return [idArray[1], ldId];
+}
