@@ -4,6 +4,7 @@ import mainmap from './mainmap';
 import {
   UPDATE_MAP_DISPLAY,
   UPDATE_ACTION_ON_CLICK,
+  UPDATE_VIEW,
 } from '../../mutation-types';
 
 const state = {
@@ -26,7 +27,7 @@ const mutations = {
   [UPDATE_ACTION_ON_CLICK](moduleState, payload) {
     moduleState.actionOnClick = payload.actionOnClick;
   },
-  updateView(moduleState, payload) {
+  [UPDATE_VIEW](moduleState, payload) {
     const { zoom } = payload;
     if (isDefined(zoom)) { moduleState.view.zoom = zoom; }
     const { center } = payload;
@@ -50,16 +51,16 @@ const actions = {
     commit(UPDATE_ACTION_ON_CLICK, { actionOnClick });
   },
   updateViewZoom({ commit }, zoom) {
-    commit('updateView', { zoom: zoom || 15 });
+    commit(UPDATE_VIEW, { zoom: zoom || 15 });
   },
   updateViewCenter({ commit }, center) {
-    commit('updateView', { center });
+    commit(UPDATE_VIEW, { center });
   },
   updateViewRotation({ commit }, rotation) {
-    commit('updateView', { rotation: rotation || 0 });
+    commit(UPDATE_VIEW, { rotation: rotation || 0 });
   },
   updateView({ commit }, view) {
-    commit('updateView', { ...view });
+    commit(UPDATE_VIEW, { ...view });
   },
 };
 

@@ -14,13 +14,15 @@ const mutations = {
     const { ldid, layerNumber } = payload;
     if (isDefined(layerNumber)) {
       moduleState.chosenLdids[layerNumber] = ldid || voidLdid;
+      // moduleState.chosenLdids[layerNumber] = ldid || voidLdid;
     }
   },
 };
 
 const actions = {
 // payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
-  setLayer({ commit }, ldid, layerNumber) {
+  setLayer({ commit }, { ldid, layerNumber }) {
+    console.log('setLayer', ldid, layerNumber);
     commit(LAYER_SET_REQUEST, { ldid, layerNumber });
   },
 };

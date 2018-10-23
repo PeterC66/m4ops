@@ -27,7 +27,7 @@ export default {
     },
     layerNumber: {
       type: Number,
-      default: 0,
+      required: true,
     },
   },
   data() {
@@ -45,6 +45,10 @@ export default {
     handleChange(value) {
       // value is array of length 2, or or length 0 if chosen layer is deleted
       console.log('hCh', this.layerNumber, value);
+      this.$store.dispatch('setLayer', {
+        ldid: value[1],
+        layerNumber: this.layerNumber,
+      });
     },
     handleBlur(event) { // eslint-disable-line no-unused-vars
       // Just testing
