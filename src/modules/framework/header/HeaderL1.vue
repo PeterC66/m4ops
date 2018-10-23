@@ -1,5 +1,8 @@
 <template>
-  <div id="buttonsL1">
+  <div
+    id="buttonsL1"
+    @headerl1-close-popover="closePopover"
+  >
     <!-- opsdetails is an alias for place, used in the original M4OPS -->
     <el-popover
       placement="right"
@@ -36,6 +39,9 @@ export default {
   methods: {
     tellMe() {
       console.log('tellMe');
+    },
+    closePopover() { // TODO ??
+      this.visible = false;
     },
   },
 };

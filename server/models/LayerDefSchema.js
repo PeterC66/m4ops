@@ -9,6 +9,7 @@ const LayerDefSchema = new mongoose.Schema({
   donotshow: String,
   csvname: String,
   candownload: String,
+  ldid: String,
   folder: String,
   storageName: String,
   mapkey: String,

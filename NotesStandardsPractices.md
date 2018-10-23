@@ -684,8 +684,15 @@ graph LR;
   - [MongoDB Compass](https://docs.mongodb.com/compass/current/import-export/) (did not work)
   - from terminal, for a whole collection or a single document, use
     - mongoimport --db m4opsdb --collection M4OPSData --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
-    - mongoimport --db m4opsdb --collection studies --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Studies.json
-    - mongoimport --db m4opsdb --collection Places --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\OPS.json"
+    - mongoimport --db m4opsdb --collection Places --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
+  - (Studies collection is not used now)
+
+To *create Places.json*
+
+- using [M4OPS-manage](https://www.mapping4ops.org/ShowMapsDev/M4OPS-manage.html) and with OPS.csv as chosen file compile all the studies
+- for each study upload the OPS.json file into the study's local folder
+- use concatOPS.bat to create output.txt from all of the individual OPS.json files
+- rename output.txt as Places.json
 
 - [Mongoose](https://www.npmjs.com/package/mongoose) is a MongoDB object modeling tool designed to work in an asynchronous environment - see [documentation](https://mongoosejs.com/docs/guide.html)
   - see also [gotchas](https://www.jaygould.co.uk/dev/2018/03/28/concice-collection-mongodb-mongoose-database.html)

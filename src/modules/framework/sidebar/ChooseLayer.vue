@@ -4,8 +4,11 @@
       :options="layerOptions"
       :show-all-levels="false"
       v-model="selectedOption"
+      :clearable="true"
       expand-trigger="hover"
-      @change="handleChange(selectedOption)"/>
+      @change="handleChange"
+      @blur="handleBlur"
+    />
   </div>
 </template>
 
@@ -28,7 +31,7 @@ export default {
   },
   data() {
     return {
-      // selectedOption: ['Basic', 'World>Basic>OpenStreetMap'],
+      // default value
       selectedOption: ldidToCategoryAndLayer(this.ldid),
     };
   },
@@ -39,7 +42,11 @@ export default {
   },
   methods: {
     handleChange(value) {
-      console.log(value);
+      console.log('hCh', this.layerNumber, value);
+    },
+    handleBlur(event) { // eslint-disable-line no-unused-vars
+      // Just testing
+      // console.log('hB', this.layerNumber, event);
     },
   },
 };
@@ -48,47 +55,3 @@ export default {
 <style>
 
 </style>
-
-<!--
-
-function displayRender(label) {
-  return (label.join(' / '));
-}
-function ldidToCategoryAndLayer(ldid) {
-  if (!ldid) return [];
-  const idArray = ldid.split('>');
-  return [idArray[1].replace('_', ' '), ldid];
-}
-
-export default function ChooseLayer(props) {
-  const { options, onSelectLayer, ldid } = props;
-  const onChange = (value) => {
-    onSelectLayer(value[value.length - 1]);
-  };
-
-  const defaultOption = calcDefaultOption(ldid);
-
-  return (
-    <Fragment>
-      <Cascader
-        options={options}
-        defaultValue={defaultOption}
-        expandTrigger="hover"
-        displayRender={displayRender}
-        onChange={onChange}
-        size="small"
-        style={{ width: 300 }}
-      />
-    </Fragment>
-  );
-}
-
-
-const { array, func, string } = PropTypes;
-
-ChooseLayer.propTypes = {
-  options: array.isRequired, // eslint-disable-line react/forbid-prop-types
-  onSelectLayer: func.isRequired,
-  ldid: string.isRequired,
-};
--->

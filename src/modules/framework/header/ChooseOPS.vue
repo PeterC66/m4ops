@@ -5,7 +5,7 @@
       :show-all-levels="false"
       v-model="selectedOption"
       expand-trigger="hover"
-      @change="handleChange(selectedOption)"/>
+      @change="handleChange"/>
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
   methods: {
     handleChange(value) {
       console.log(value);
+      this.$emit('headerl1-close-popover');
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: `places/${value[3]}`,

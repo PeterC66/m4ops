@@ -49,7 +49,7 @@ export default categoriesAndLayers;
 // Given eg "World>Basic>Bing_Aerial" return ["Basic", "World>Basic>Bing_Aerial"]
 //  which corresponds to the options values in the ChooseLayer cascader, from categoriesAndLayers
 export function ldidToCategoryAndLayer(ldid) {
-  if (!ldid) return [];
+  if (!ldid || ldid === 'void') return [];
   const idArray = ldid.split('>');
   return [idArray[1], ldid];
 }
