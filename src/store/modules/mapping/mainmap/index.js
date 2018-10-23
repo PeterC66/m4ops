@@ -1,4 +1,5 @@
 import { isDefined } from '../../../../global/utils';
+import { voidLdid } from '../../../../global/constants';
 
 import { LAYER_SET_REQUEST } from '../../../mutation-types';
 import { initialStateChosenLayers }
@@ -12,7 +13,7 @@ const mutations = {
   [LAYER_SET_REQUEST](moduleState, payload) {
     const { ldid, layerNumber } = payload;
     if (isDefined(layerNumber)) {
-      moduleState.chosenLdids[layerNumber] = ldid || 'void';
+      moduleState.chosenLdids[layerNumber] = ldid || voidLdid;
     }
   },
 };

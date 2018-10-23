@@ -16,13 +16,14 @@
 import { mapGetters } from 'vuex';
 
 import { ldidToCategoryAndLayer } from '../../../store/modules/vuexApi/categoriesAndLayers'; // eslint-disable-line max-len
+import { voidLdid } from '../../../global/constants';
 
 export default {
   name: 'ChooseLayer',
   props: {
     ldid: {
       type: String,
-      default: 'void',
+      default: voidLdid,
     },
     layerNumber: {
       type: Number,
@@ -42,6 +43,7 @@ export default {
   },
   methods: {
     handleChange(value) {
+      // value is array of length 2, or or length 0 if chosen layer is deleted
       console.log('hCh', this.layerNumber, value);
     },
     handleBlur(event) { // eslint-disable-line no-unused-vars

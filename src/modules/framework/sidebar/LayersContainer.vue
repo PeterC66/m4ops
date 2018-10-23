@@ -6,11 +6,18 @@
       :key="index"
       :layer-number="index"
     />
+    <ChooseLayer
+      v-if="nChosenLdids < maxChooseLayers"
+      :key="nChosenLdids"
+      :layer-number="nChosenLdids"
+      :ldid="voidLdid"
+    />
   </div>
 </template>
 
 <script>
 import ChooseLayer from './ChooseLayer.vue';
+import { maxChooseLayers, voidLdid } from '../../../global/constants';
 
 export default {
   name: 'LayersContainer',
@@ -23,10 +30,24 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      maxChooseLayers,
+      voidLdid,
+    };
+  },
   computed: {
-    nchosenLdid() {
-      return this.chosenLdids.length;
+    nChosenLdids() {
+      return this.chosenLdidsMainmap.length;
     },
+  //   wantBlankLayerChoice() {
+  //     const n = this.nChosenLdids;
+  //     const lastChosenLdid = this.chosenLdidsMainmap[n - 1];
+  //     return (
+  //       n < maxChooseLayers &&
+  //       lastChosenLdid &&
+  //       lastChosenLdid !== voidLdid);
+  //   },
   },
 };
 </script>
@@ -34,73 +55,3 @@ export default {
 <style>
 
 </style>
-
-<!--
-
-import { getChosenLayersFromMap } from '../../mapping';
-import ChooseLayerContainer from './ChooseLayerContainer';
-import { maxChooseLayers } from '../../../global/constants';
-
-/* eslint-disable react/jsx-filename-extension */
-function ItemList(props) {
-  const { numbers } = props;
-  const listItems = numbers.map(
-    number => <ChooseLayerContainer layerNumber={number} key={cuid()} />,
-  );
-  return (
-    <div>{listItems}</div>
-  );
-}
-/* eslint-enable react/jsx-filename-extension */
-
-// Cannot be a Pure component to be Mappified!
-/* eslint-disable react/prefer-stateless-function */
-class LayersContainer extends Component {
-  render() {
-    const { map } = this.props;
-    const chosenLayers = getChosenLayersFromMap(map);
-    let layersList = '';
-    let blankToShow = 0;
-    if (chosenLayers) {
-      layersList = chosenLayers.map(
-        (layer, index) => (
-          <ChooseLayerContainer
-            layerNumber={index}
-            key={layer.ldid}
-            ldid={layer.ldid}
-          />
-        ),
-      );
-      blankToShow = chosenLayers.length;
-    }
-    let blankOnEnd = <ChooseLayerContainer layerNumber={blankToShow} key={cuid()} />;
-    if (blankToShow >= maxChooseLayers) blankOnEnd = '';
-    console.log('LayersContainer', chosenLayers, this.props, 'layersList', layersList, blankToShow, 'blankOnEnd', blankOnEnd);
-
-    return (
-      /* eslint-disable react/jsx-filename-extension */
-      <div>
-        {layersList}
-        {blankOnEnd}
-      </div>
-      /* eslint-enable react/jsx-filename-extension */
-    );
-  }
-}
-/* eslint-enable react/prefer-stateless-function */
-
-const {
-  array,
-  object,
-} = PropTypes;
-
-ItemList.propTypes = {
-  numbers: array.isRequired, // eslint-disable-line react/forbid-prop-types
-};
-
-LayersContainer.propTypes = {
-  map: object.isRequired, // eslint-disable-line react/forbid-prop-types
-};
-
-export default LayersContainer;
--->

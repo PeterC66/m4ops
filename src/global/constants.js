@@ -15,3 +15,5 @@ export const ldidBingAerial = 'World>Basic>Bing_Aerial';
 // Used to mitigate Vuex issue in devtools
 // Needs to be true in production and for map redisplay after goHome
 export const useVuexForView = false;
+
+export const voidLdid = 'void';
