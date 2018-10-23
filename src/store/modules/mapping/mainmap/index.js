@@ -10,17 +10,17 @@ const state = {
 
 const mutations = {
   [LAYER_SET_REQUEST](moduleState, payload) {
-    const { ldId, layerNumber } = payload;
+    const { ldid, layerNumber } = payload;
     if (isDefined(layerNumber)) {
-      moduleState.chosenLdids[layerNumber] = ldId || 'void';
+      moduleState.chosenLdids[layerNumber] = ldid || 'void';
     }
   },
 };
 
 const actions = {
-// payload is {ldId:string_index_into_LayerDefsArray, layerNumber: eg 0}
-  setLayer({ commit }, ldId, layerNumber) {
-    commit(LAYER_SET_REQUEST, { ldId, layerNumber });
+// payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
+  setLayer({ commit }, ldid, layerNumber) {
+    commit(LAYER_SET_REQUEST, { ldid, layerNumber });
   },
 };
 

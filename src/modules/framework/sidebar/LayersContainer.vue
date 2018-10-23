@@ -1,8 +1,8 @@
 <template>
   <div>
     <ChooseLayer
-      v-for="(ldId, index) in chosenLdidsMainmap"
-      :ldId="ldId"
+      v-for="(ldid, index) in chosenLdidsMainmap"
+      :ldid="ldid"
       :key="index"
       :layer-number="index"
     />
@@ -66,8 +66,8 @@ class LayersContainer extends Component {
         (layer, index) => (
           <ChooseLayerContainer
             layerNumber={index}
-            key={layer.ldId}
-            ldId={layer.ldId}
+            key={layer.ldid}
+            ldid={layer.ldid}
           />
         ),
       );

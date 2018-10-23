@@ -1,6 +1,6 @@
 <template>
   <section style="position: relative">
-    <LayersContainer :chosen-ldIds-mainmap="chosenLdidsMainmap"/>
+    <LayersContainer :chosen-ldids-mainmap="chosenLdidsMainmap"/>
   </section>
 </template>
 
