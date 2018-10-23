@@ -40,14 +40,6 @@ export default {
     nChosenLdids() {
       return this.chosenLdidsMainmap.length;
     },
-  //   wantBlankLayerChoice() {
-  //     const n = this.nChosenLdids;
-  //     const lastChosenLdid = this.chosenLdidsMainmap[n - 1];
-  //     return (
-  //       n < maxChooseLayers &&
-  //       lastChosenLdid &&
-  //       lastChosenLdid !== voidLdid);
-  //   },
   },
 };
 </script>
