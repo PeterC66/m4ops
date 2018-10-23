@@ -9,6 +9,18 @@
       @change="handleChange"
       @blur="handleBlur"
     />
+    <el-tooltip
+      class="item"
+      effect="light"
+      content="Opacity"
+      placement="top">
+      <div style="position:relative; width: 80%; left:10%">
+        <el-slider
+          v-if="showSlider"
+          v-model="sliderValue"
+          :show-tooltip="false"/>
+      </div>
+    </el-tooltip>
   </div>
 </template>
 
@@ -29,11 +41,20 @@ export default {
       type: Number,
       required: true,
     },
+    startingOpacity: { // out of 100 - divide by 100 to use
+      type: Number,
+      default: 50,
+    },
+    showSlider: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
       // default value
       selectedOption: ldidToCategoryAndLayer(this.ldid),
+      sliderValue: this.startingOpacity,
     };
   },
   computed: {
@@ -58,6 +79,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+  .el-slider__runway {
+    width: 200px;
+    margin: 0;
+  }
 </style>

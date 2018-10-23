@@ -97,6 +97,8 @@ Although fairly complex, this is a simplified approach to aid understanding, dev
 
 - **BEM** - "Block, Element, Modifier” naming convention - see [Introducing BEM: The popular CSS naming convention](https://assortment.io/posts/introducing-bem-css-naming-convention)
 
+- **VNode** - a “virtual node” containing information (returned by createElement) describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. The entire tree of VNodes is called the “Virtual DOM”.
+
 ## The stack
 
 The main stack is
@@ -377,6 +379,14 @@ graph LR;
   - (Good but too complex) [Production-Ready Example from SnipCart](https://snipcart.com/blog/vue-js-plugin)
 - [Working with Environment Variables in Vue.js](https://alligator.io/vuejs/working-with-environment-variables/)
 - [Vue.js Instance Properties etc](https://vuejs.org/v2/api/#Instance-Properties) - available to all components as this.$...
+- [Managing cookies](https://codeburst.io/how-to-manage-cookies-in-vuejs-51be86e8fc1b)
+- [Authentication-system-with-node-js-backend](https://blog.jscrambler.com/vue-js-authentication-system-with-node-js-backend/)
+
+### Complex components
+
+- [Render Functions & JSX](https://vuejs.org/v2/guide/render-function.html) - use instead of templates to generate components
+- Refers a lot to [Vue Instance Properties API](https://vuejs.org/v2/api/#Instance-Properties)
+- Can even use [JSX](https://github.com/vuejs/babel-plugin-transform-vue-jsx)
 
 ### Vue Router
 

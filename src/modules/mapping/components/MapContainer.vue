@@ -10,8 +10,18 @@
         :zoom.sync="zoom"
         :center.sync="center"
         :rotation.sync="rotation"/>
-      <vl-layer-tile id="osm">
+      <vl-layer-tile
+        id="osm"
+        :opacity="1">
         <vl-source-osm/>
+      </vl-layer-tile>
+      <vl-layer-tile
+        id="bing"
+        :opacity="0.1">
+        <vl-source-bing-maps
+          :api-key="apiKey"
+          :imagery-set="imagerySet"
+        />
       </vl-layer-tile>
     </vl-map>
     <div style="padding: 20px; text-align: left;">
@@ -23,10 +33,17 @@
 </template>
 
 <script>
-import { useVuexForView } from '../../../global/constants';
+import { useVuexForView, BingApiKey } from '../../../global/constants';
 
 export default {
   name: 'MapContainer',
+  data() {
+    return {
+      // eslint-disable-next-line max-len
+      apiKey: BingApiKey,
+      imagerySet: 'AerialWithLabels',
+    };
+  },
   computed: {
     viewIdent() {
       return this.$store.state.mapping.view.ident;

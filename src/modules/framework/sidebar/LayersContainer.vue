@@ -5,12 +5,14 @@
       :ldid="ldid"
       :key="index"
       :layer-number="index"
+      :starting-opacity="50"
     />
     <ChooseLayer
       v-if="nChosenLdids < maxChooseLayers"
       :key="nChosenLdids"
       :layer-number="nChosenLdids"
       :ldid="voidLdid"
+      :show-slider="false"
     />
   </div>
 </template>
