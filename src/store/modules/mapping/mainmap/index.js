@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import { isDefined } from '../../../../global/utils';
 import { voidLdid } from '../../../../global/constants';
 
@@ -14,7 +16,9 @@ const mutations = {
     const { ldid, layerNumber } = payload;
     if (isDefined(layerNumber)) {
       moduleState.chosenLdids[layerNumber] = ldid || voidLdid;
-      // moduleState.chosenLdids[layerNumber] = ldid || voidLdid;
+      // Next line has by-product of making it reactive
+      moduleState.chosenLdids =
+        _.dropRightWhile(moduleState.chosenLdids, value => value === voidLdid);
     }
   },
 };

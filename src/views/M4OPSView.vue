@@ -2,7 +2,24 @@
   <el-container>
     <el-header><Header :opsdetails="OPSDetails" /></el-header>
     <el-container>
-      <el-aside width="300px"><Sidebar/></el-aside>
+      <el-aside
+        width="300px"
+        style="position: relative">
+        <Sidebar/>
+        <el-tooltip
+          style="position: absolute; bottom: 1px; right: 0px; "
+          class="item"
+          effect="light"
+          content="Open or close the sidebar"
+          placement="top">
+          <el-switch
+            v-model="value"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            @change="toggleSidebar"/>
+        </el-tooltip>
+
+      </el-aside>
       <el-main>
         <MapContainer
           :zoom-initial="15"
@@ -30,6 +47,11 @@ export default {
     MapContainer,
     Header,
     Sidebar,
+  },
+  data() {
+    return {
+      value: true,
+    };
   },
   computed: {
     ...mapGetters([
@@ -64,6 +86,11 @@ export default {
         keyPath: ['m4opsdata'],
       });
     }
+  },
+  methods: {
+    toggleSidebar() {
+      console.log('tellMe');
+    },
   },
 };
 </script>

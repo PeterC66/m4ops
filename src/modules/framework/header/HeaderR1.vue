@@ -60,6 +60,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { useVuexForView } from '../../../global/constants';
 
 import './Header.css';
 
@@ -75,6 +76,8 @@ export default {
       console.log('tellMe');
     },
     goHome() {
+      // eslint-disable-next-line max-len
+      if (!useVuexForView) console.log('Remember that useVuexForView is false so GoHome button will not work');
       this.$store.dispatch('updateView', this.homeView);
     },
   },

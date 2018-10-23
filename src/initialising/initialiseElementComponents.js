@@ -13,6 +13,7 @@ import {
   Option,
   Popover,
   Select,
+  Switch,
   Tooltip,
 } from 'element-ui';
 
@@ -35,5 +36,6 @@ export default function initialiseElementComponents(Vue) {
   Vue.component(Option.name, Option);
   Vue.component(Popover.name, Popover);
   Vue.component(Select.name, Select);
+  Vue.component(Switch.name, Switch);
   Vue.component(Tooltip.name, Tooltip);
 }
