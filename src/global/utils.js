@@ -149,8 +149,15 @@ export function addUuidKeyToArray(arr) {
   return keyedArray;
 }
 
-// From http://learnjsdata.com/combine_data.html
-export function join(lookupTable, mainTable, lookupKey, mainKey, select) {
+// Adapted from http://learnjsdata.com/combine_data.html
+export function join(
+  lookupTable,
+  mainTable,
+  lookupKey,
+  mainKey,
+  isInner,
+  select,
+) {
   const l = lookupTable.length;
   const m = mainTable.length;
   const lookupIndex = [];
@@ -162,12 +169,13 @@ export function join(lookupTable, mainTable, lookupKey, mainKey, select) {
   for (let j = 0; j < m; j += 1) { // loop through m items
     const y = mainTable[j];
     const x = lookupIndex[y[mainKey]]; // get corresponding row from lookupTable
-    output.push(select(y, x)); // select only the columns you need
+    if (!isInner || isDefined(x))output.push(select(y, x)); // select only the columns you need
   }
+
   return output;
 }
 /* Use thus
-var result = join(lookupTable, mainTable, "id", "brand_id", function(lookupTableRow, mainTableRow) {
+var result = join(lookupTable, mainTable, "id", "brand_id", function(mainTableRow, lookupTableRow) {
     return {
         id: mainTableRow.id,
         name: mainTableRow.name,

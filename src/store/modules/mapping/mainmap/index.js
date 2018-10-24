@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { isDefined } from '../../../../global/utils';
+import { isDefined, join } from '../../../../global/utils';
 import { voidLdid } from '../../../../global/constants';
 
 import {
@@ -62,7 +62,24 @@ const actions = {
 
 const getters = {
   chosenLayersMainmap: moduleState => moduleState.chosenLayers || [],
-  // chosenLdidsMainmap: moduleState => moduleState.chosenLdids || [],
+  chosenLayerDefsMainmap(
+    moduleState,
+    moduleGetters,
+    rootState,
+    rootGetters,
+  ) {
+    return join(
+      rootGetters.OPSAllLayerDefsArray,
+      moduleGetters.chosenLayersMainmap,
+      'ldid',
+      'ldid',
+      true,
+      (mainTableRow, lookupTableRow) => ({
+        ...lookupTableRow,
+        opacity: mainTableRow.opacity,
+      }),
+    );
+  },
 };
 
 const mainmapModule = {
