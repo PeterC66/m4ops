@@ -4,12 +4,14 @@
     size="small"
     placeholder="Select Map Display"
     automatic-dropdown
-    @change="updateMapDisplay(value)">
+    @change="updateMapDisplay"
+  >
     <el-option
       v-for="item in options"
       :key="item.value"
       :label="item.label"
-      :value="item.value"/>
+      :value="item.value"
+    />
   </el-select>
 </template>
 

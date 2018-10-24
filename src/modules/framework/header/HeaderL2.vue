@@ -8,7 +8,8 @@
         the current display is one map
         with an overlay and opacity slider,
         side by side maps, or one map with a spyglass"
-      placement="bottom">
+      placement="bottom"
+    >
       <SelectMapDisplay/>
     </el-tooltip>
     <el-tooltip
@@ -17,7 +18,8 @@
       content="Select from the dropdown to change between
         Normal clicking (No lat/lon click),
         and getting lat/lon (in various formats)"
-      placement="right-end">
+      placement="right-end"
+    >
       <SelectActionOnClick/>
     </el-tooltip>
   </div>

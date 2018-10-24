@@ -8,7 +8,8 @@
       placement="right"
       width="400"
       trigger="click"
-      title="Choose OPS">
+      title="Choose OPS"
+    >
       <ChooseOPS/>
       <el-button
         slot="reference"

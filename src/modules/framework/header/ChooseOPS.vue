@@ -5,7 +5,8 @@
       :show-all-levels="false"
       v-model="selectedOption"
       expand-trigger="hover"
-      @change="handleChange"/>
+      @change="handleChange"
+    />
   </div>
 </template>
 

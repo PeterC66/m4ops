@@ -4,20 +4,24 @@
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
       data-projection="EPSG:4326"
-      style="height: 100%">
+      style="height: 100%"
+    >
       <vl-view
         :ident="viewIdent"
         :zoom.sync="zoom"
         :center.sync="center"
-        :rotation.sync="rotation"/>
+        :rotation.sync="rotation"
+      />
       <vl-layer-tile
         id="osm"
-        :opacity="1">
+        :opacity="1"
+      >
         <vl-source-osm/>
       </vl-layer-tile>
       <vl-layer-tile
         id="bing"
-        :opacity="0.1">
+        :opacity="0.1"
+      >
         <vl-source-bing-maps
           :api-key="apiKey"
           :imagery-set="imagerySet"

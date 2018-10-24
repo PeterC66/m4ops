@@ -9,7 +9,8 @@
         effect="light"
         content="Text to be searched for within open features,
         or coordinates to go to (any format).  If blank will ask."
-        placement="left">
+        placement="left"
+      >
         <el-form-item>
           <el-input
             v-model="formInline.textForSearchOrCoords"
@@ -22,7 +23,8 @@
           class="item"
           effect="light"
           content="GoTo as specified"
-          placement="left-end">
+          placement="left-end"
+        >
           <el-button
             type="primary"
             size="medium"
@@ -36,7 +38,8 @@
           class="item"
           effect="light"
           content="Make the current view of M4OPS available as a URL to copy"
-          placement="bottom-start">
+          placement="bottom-start"
+        >
           <el-button
             type="primary"
             size="medium"

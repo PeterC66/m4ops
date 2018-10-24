@@ -7,7 +7,8 @@
           class="item"
           effect="light"
           content="Open the forum for Mapping for One-Place Studies"
-          placement="right">
+          placement="right"
+        >
           <a
             href="http://mapping4ops.org/"
             target="_blank"
@@ -23,7 +24,8 @@
         class="item"
         effect="light"
         content="Click for details of this OPS"
-        placement="right-end">
+        placement="right-end"
+      >
         <el-button
           type="text"
           size="medium"

@@ -13,7 +13,8 @@
       class="item"
       effect="light"
       content="Opacity"
-      placement="top">
+      placement="top"
+    >
       <div style="position:relative; width: 80%; left:10%">
         <el-slider
           v-if="showSlider"
