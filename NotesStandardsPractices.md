@@ -564,12 +564,12 @@ See [Dockerize Vue.js App](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.htm
 
 ## Debugging
 
-Use [VS Code debugging](https://code.visualstudio.com/docs/editor/debugging)
-[Debugging Vue.js in VS Code](https://vuejs.org/v2/cookbook/debugging-in-vscode.html)
-[make-console-log-output-colorful](http://voidcanvas.com/make-console-log-output-colorful-and-stylish-in-browser-node/)
-See also
+- Use [VS Code debugging](https://code.visualstudio.com/docs/editor/debugging)
+- [Debugging Vue.js in VS Code](https://vuejs.org/v2/cookbook/debugging-in-vscode.html)
+- [make-console-log-output-colorful](http://voidcanvas.com/make-console-log-output-colorful-and-stylish-in-browser-node/)
+- [breakpointing](https://vuejsdevelopers.com/2018/10/16/vue-js-advanced-debugging)
 
-- [Lighting Up Your JavaScript With the Debugger](https://peterlyons.com/js-debug) - links to
+- See also [Lighting Up Your JavaScript With the Debugger](https://peterlyons.com/js-debug) - links to
   - [Node Inspector Docs](https://nodejs.org/en/docs/inspector/)
   - [Chrome Developer Tools Docs](https://developers.google.com/web/tools/chrome-devtools/)
   - [Lesser-Known JavaScript Debugging Techniques](http://amasad.me/2014/03/09/lesser-known-javascript-debugging-techniques/)

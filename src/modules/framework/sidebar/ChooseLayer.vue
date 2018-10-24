@@ -33,15 +33,15 @@ import { voidLdid } from '../../../global/constants';
 export default {
   name: 'ChooseLayer',
   props: {
-    ldid: {
-      type: String,
-      default: voidLdid,
+    layer: {
+      type: Object,
+      default: () => ({ ldid: voidLdid, opacity: 0.5 }),
     },
     layerNumber: {
       type: Number,
       required: true,
     },
-    startingOpacity: { // out of 100 - divide by 100 to use
+    startingOpacityPc: { // out of 100 - divide by 100 to use, as intgers only
       type: Number,
       default: 50,
     },
@@ -53,8 +53,8 @@ export default {
   data() {
     return {
       // default value
-      selectedOption: ldidToCategoryAndLayer(this.ldid),
-      sliderValue: this.startingOpacity,
+      selectedOption: ldidToCategoryAndLayer(this.layer.ldid),
+      sliderValue: this.layer.opacity * 100,
     };
   },
   computed: {

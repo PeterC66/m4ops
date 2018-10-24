@@ -1,8 +1,8 @@
 import { ldidOSM, ldidBingAerial } from '../global/constants';
 
 export const initialStateChosenLayers = [
-  ldidOSM,
-  ldidBingAerial,
+  { ldid: ldidOSM, opacity: 1 },
+  { ldid: ldidBingAerial, opacity: 0.5 },
 ];
 
 export const dummy = 0;

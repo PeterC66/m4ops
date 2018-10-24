@@ -1,17 +1,16 @@
 <template>
   <div>
     <ChooseLayer
-      v-for="(ldid, index) in chosenLdidsMainmap"
-      :ldid="ldid"
+      v-for="(layer, index) in chosenLayersMainmap"
+      :layer="layer"
       :key="index"
       :layer-number="index"
-      :starting-opacity="50"
     />
     <ChooseLayer
-      v-if="nChosenLdids < maxChooseLayers"
-      :key="nChosenLdids"
-      :layer-number="nChosenLdids"
-      :ldid="voidLdid"
+      v-if="nChosenLayers < maxChooseLayers"
+      :layer="{ldid:voidLdid, opacity: 0.5}"
+      :key="nChosenLayers"
+      :layer-number="nChosenLayers"
       :show-slider="false"
     />
   </div>
@@ -27,7 +26,7 @@ export default {
     ChooseLayer,
   },
   props: {
-    chosenLdidsMainmap: {
+    chosenLayersMainmap: {
       type: Array,
       required: true,
     },
@@ -39,8 +38,8 @@ export default {
     };
   },
   computed: {
-    nChosenLdids() {
-      return this.chosenLdidsMainmap.length;
+    nChosenLayers() {
+      return this.chosenLayersMainmap.length;
     },
   },
 };

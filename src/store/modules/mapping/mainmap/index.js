@@ -8,17 +8,28 @@ import { initialStateChosenLayers }
   from '../../../../initialising/initialState';
 
 const state = {
-  chosenLdids: initialStateChosenLayers,
+  // chosenLdids: initialStateChosenLayers,
+  chosenLayers: initialStateChosenLayers,
 };
 
 const mutations = {
   [LAYER_SET_REQUEST](moduleState, payload) {
     const { ldid, layerNumber } = payload;
     if (isDefined(layerNumber)) {
-      moduleState.chosenLdids[layerNumber] = ldid || voidLdid;
+      if (moduleState.chosenLayers[layerNumber]) {
+        moduleState.chosenLayers[layerNumber].ldid = ldid || voidLdid;
+      } else {
+        moduleState.chosenLayers[layerNumber] = {
+          ldid: ldid || voidLdid,
+          opacity: 0.5,
+        };
+      }
       // Next line has by-product of making it reactive
-      moduleState.chosenLdids =
-        _.dropRightWhile(moduleState.chosenLdids, value => value === voidLdid);
+      moduleState.chosenLayers =
+        _.dropRightWhile(
+          moduleState.chosenLayers,
+          value => value.ldid === voidLdid,
+        );
     }
   },
 };
@@ -32,7 +43,8 @@ const actions = {
 };
 
 const getters = {
-  chosenLdidsMainmap: moduleState => moduleState.chosenLdids || [],
+  chosenLayersMainmap: moduleState => moduleState.chosenLayers || [],
+  // chosenLdidsMainmap: moduleState => moduleState.chosenLdids || [],
 };
 
 const mainmapModule = {
