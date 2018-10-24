@@ -3,12 +3,21 @@
     <el-header><Header :opsdetails="OPSDetails" /></el-header>
     <el-container>
       <el-aside
+        v-if="sidebarOpen"
         width="300px"
         style="position: relative"
       >
         <Sidebar/>
+      </el-aside>
+      <el-main
+        style="position: relative"
+      >
+        <MapContainer
+          :zoom-initial="15"
+          :center-initial="[-0.0325, 52.329444]"
+        />
         <el-tooltip
-          style="position: absolute; bottom: 1px; right: 0px; "
+          style="position: absolute; bottom: 1px; left: 0px; "
           class="item"
           effect="light"
           content="Open or close the sidebar"
@@ -18,16 +27,9 @@
             v-model="value"
             active-color="#13ce66"
             inactive-color="#ff4949"
-            @change="toggleSidebar"
+            @change="switchSidebar"
           />
         </el-tooltip>
-
-      </el-aside>
-      <el-main>
-        <MapContainer
-          :zoom-initial="15"
-          :center-initial="[-0.0325, 52.329444]"
-        />
       </el-main>
     </el-container>
   </el-container>
@@ -36,7 +38,7 @@
 <script>
 import _ from 'lodash';
 import { actions } from 'vuex-api';
-import { mapGetters } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
@@ -57,6 +59,9 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      sidebarOpen: state => state.framework.sidebarOpen,
+    }),
     ...mapGetters([
       'm4opsdata',
       'OPSDetails',
@@ -91,9 +96,9 @@ export default {
     }
   },
   methods: {
-    toggleSidebar() {
-      console.log('tellMe');
-    },
+    ...mapActions([
+      'switchSidebar',
+    ]),
   },
 };
 </script>

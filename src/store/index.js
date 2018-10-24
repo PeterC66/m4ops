@@ -6,6 +6,7 @@ import plugins from './plugins';
 import geography from './modules/geography';
 import mapping from './modules/mapping';
 import vuexApiGetters from './modules/vuexApi/vuexApiGetters';
+import framework from './modules/framework';
 
 Vue.use(Vuex);
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
     vuexApi,
     geography,
     mapping,
+    framework,
   },
 });
