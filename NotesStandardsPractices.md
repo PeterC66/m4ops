@@ -481,6 +481,7 @@ graph LR;
 - [Language handling needed](http://element.eleme.io/#/en-US/component/i18n) as Element standard is Chinese
 - [Vee Element](https://github.com/davestewart/vee-element) enables the [Vee Validate](https://baianat.github.io/vee-validate/) validation library to be used in Element UI
 - [Gitter conversations](https://gitter.im/element-en/Lobby)
+- [Element for VueJS: 5 things to love and 5 things to hate](https://medium.com/@denny.headrick/element-for-vuejs-5-things-to-love-and-5-things-to-hate-d6ca336223b4)
 
 ### Vue Forms
 

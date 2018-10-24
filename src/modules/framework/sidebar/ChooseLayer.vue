@@ -6,7 +6,7 @@
       v-model="selectedOption"
       :clearable="true"
       expand-trigger="hover"
-      @change="handleChange"
+      @change="handleLdidChange"
       @blur="handleBlur"
     />
     <el-tooltip
@@ -18,7 +18,9 @@
         <el-slider
           v-if="showSlider"
           v-model="sliderValue"
-          :show-tooltip="false"/>
+          :show-tooltip="false"
+          @change="handleOpacityChange"
+        />
       </div>
     </el-tooltip>
   </div>
@@ -54,7 +56,7 @@ export default {
     return {
       // default value
       selectedOption: ldidToCategoryAndLayer(this.layer.ldid),
-      sliderValue: this.layer.opacity * 100,
+      sliderValue: this.layer.opacity * 100, // value is opacity per cent
     };
   },
   computed: {
@@ -63,11 +65,19 @@ export default {
     ]),
   },
   methods: {
-    handleChange(value) {
+    handleLdidChange(value) {
       // value is array of length 2, or or length 0 if chosen layer is deleted
-      console.log('hCh', this.layerNumber, value);
+      console.log('hLCh', this.layerNumber, value);
       this.$store.dispatch('setLayer', {
         ldid: value[1],
+        layerNumber: this.layerNumber,
+      });
+    },
+    handleOpacityChange(value) {
+      // value is opacity per cent
+      console.log('hOCh', this.layerNumber, value);
+      this.$store.dispatch('setOpacity', {
+        opacity: value / 100,
         layerNumber: this.layerNumber,
       });
     },

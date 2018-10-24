@@ -3,7 +3,10 @@ import _ from 'lodash';
 import { isDefined } from '../../../../global/utils';
 import { voidLdid } from '../../../../global/constants';
 
-import { LAYER_SET_REQUEST } from '../../../mutation-types';
+import {
+  LAYER_SET_REQUEST,
+  OPACITY_SET_REQUEST,
+} from '../../../mutation-types';
 import { initialStateChosenLayers }
   from '../../../../initialising/initialState';
 
@@ -32,13 +35,28 @@ const mutations = {
         );
     }
   },
+  [OPACITY_SET_REQUEST](moduleState, payload) {
+    const { opacity, layerNumber } = payload;
+    if (isDefined(layerNumber)) {
+      if (moduleState.chosenLayers[layerNumber]) {
+        moduleState.chosenLayers[layerNumber].opacity = opacity || voidLdid;
+      } else {
+        console.log(`Warning:
+          defining opacity before ldid for layerNumber: ${layerNumber}`);
+      }
+    }
+  },
 };
 
 const actions = {
-// payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
+  // payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
   setLayer({ commit }, { ldid, layerNumber }) {
     console.log('setLayer', ldid, layerNumber);
     commit(LAYER_SET_REQUEST, { ldid, layerNumber });
+  },
+  // payload is {opacity: eg 0.5, layerNumber: eg 0}
+  setOpacity({ commit }, { opacity, layerNumber }) {
+    commit(OPACITY_SET_REQUEST, { opacity, layerNumber });
   },
 };
 
