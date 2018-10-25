@@ -21,8 +21,8 @@ const actions = {
   switchSidebar({ commit }, sidebarOpen) {
     commit(SIDEBAR_SWITCH_REQUEST, { sidebarOpen });
   },
-  selectTab({ commit }, activeTabName) {
-    commit(TAB_SELECT_REQUEST, { activeTabName });
+  selectActiveTab({ commit }, activeTab) {
+    commit(TAB_SELECT_REQUEST, { activeTabName: activeTab.name });
   },
 };
 

@@ -11,6 +11,7 @@ const state = {
   mapDisplay: 'overlay',
   actionOnClick: 'no',
   // current map viewport (shared among all vuelayers instances)
+  // Note this does not persist if useVuexForView is false
   view: {
     ident: 'shared-view', // https://vuelayers.github.io/#/component/view?id=ident
     zoom: 7,
