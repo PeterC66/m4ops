@@ -381,6 +381,7 @@ graph LR;
 - [Vue.js Instance Properties etc](https://vuejs.org/v2/api/#Instance-Properties) - available to all components as this.$...
 - [Managing cookies](https://codeburst.io/how-to-manage-cookies-in-vuejs-51be86e8fc1b)
 - [Authentication-system-with-node-js-backend](https://blog.jscrambler.com/vue-js-authentication-system-with-node-js-backend/)
+- any components starting with _base in /global/components/ are globally registered
 
 ### Complex components
 
@@ -614,6 +615,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 - and [use of $](https://github.com/ghettovoice/vuelayers/issues/59)
   - [explanation of $map etc](https://github.com/ghettovoice/vuelayers/issues/89#issuecomment-431653970)
 - [olExt issue](https://github.com/ghettovoice/vuelayers/issues/90#issuecomment-431748771)
+- see [Complex components](#complex-components) for generating layers
 
 - Other Vue OL implementations - fairly simple, could copy
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper

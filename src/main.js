@@ -12,6 +12,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
+import './global/components/_global'; // globally registers any _base components
 
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);
