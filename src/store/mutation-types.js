@@ -12,3 +12,4 @@ export const OPACITY_SET_REQUEST = 'OPACITY_SET_REQUEST';
 
 // framework mutation types
 export const SIDEBAR_SWITCH_REQUEST = 'SIDEBAR_SWITCH_REQUEST';
+export const TAB_SELECT_REQUEST = 'TAB_SELECT_REQUEST';

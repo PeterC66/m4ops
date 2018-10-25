@@ -68,7 +68,6 @@ export default {
   methods: {
     handleLdidChange(value) {
       // value is array of length 2, or or length 0 if chosen layer is deleted
-      console.log('hLCh', this.layerNumber, value);
       this.$store.dispatch('setLayer', {
         ldid: value[1],
         layerNumber: this.layerNumber,
@@ -76,7 +75,6 @@ export default {
     },
     handleOpacityChange(value) {
       // value is opacity per cent
-      console.log('hOCh', this.layerNumber, value);
       this.$store.dispatch('setOpacity', {
         opacity: value / 100,
         layerNumber: this.layerNumber,

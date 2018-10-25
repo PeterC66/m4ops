@@ -1,7 +1,7 @@
 <template>
   <el-tabs
     v-model="activeName"
-    @tab-click="handleClick"
+    @tab-click="selectTab"
   >
     <el-tab-pane
       label="Actions"
@@ -30,6 +30,8 @@
   </el-tabs>
 </template>
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'TabsContainer',
   data() {
@@ -37,10 +39,15 @@ export default {
       activeName: 'actions',
     };
   },
+  computed: {
+    ...mapState({
+      activeTabName: state => state.framework.activeTabName,
+    }),
+  },
   methods: {
-    handleClick(tab) {
-      console.log(tab);
-    },
+    ...mapActions([
+      'selectTab',
+    ]),
   },
 };
 </script>

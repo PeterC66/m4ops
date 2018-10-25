@@ -16,4 +16,7 @@ export const ldidBingAerial = 'World>Basic>Bing_Aerial';
 // Needs to be true in production and for map redisplay after goHome
 export const useVuexForView = false;
 
+// Also needs to be true in production
+export const dontUseLogger = false;
+
 export const voidLdid = 'void';
