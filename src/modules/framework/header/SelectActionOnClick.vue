@@ -19,6 +19,12 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'SelectActionOnClick',
+  props: {
+    actionOnClick: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       options: [{
@@ -46,7 +52,7 @@ export default {
         value: 'geohack',
         label: 'GeoHack links',
       }],
-      value: 'no',
+      value: this.actionOnClick,
     };
   },
   methods: {

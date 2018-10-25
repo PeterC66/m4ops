@@ -10,7 +10,7 @@
         side by side maps, or one map with a spyglass"
       placement="bottom"
     >
-      <SelectMapDisplay/>
+      <SelectMapDisplay :map-display="mapDisplay"/>
     </el-tooltip>
     <el-tooltip
       class="item"
@@ -20,12 +20,14 @@
         and getting lat/lon (in various formats)"
       placement="right-end"
     >
-      <SelectActionOnClick/>
+      <SelectActionOnClick :action-on-click="actionOnClick"/>
     </el-tooltip>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import './Header.css';
 import SelectMapDisplay from './SelectMapDisplay.vue';
 import SelectActionOnClick from './SelectActionOnClick.vue';
@@ -36,6 +38,10 @@ export default {
     SelectMapDisplay,
     SelectActionOnClick,
   },
+  computed: mapState({
+    actionOnClick: state => state.mapping.actionOnClick,
+    mapDisplay: state => state.mapping.mapDisplay,
+  }),
   methods: {
     tellMe() {
       console.log('tellMe');

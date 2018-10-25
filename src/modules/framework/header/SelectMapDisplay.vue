@@ -20,6 +20,12 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'SelectMapDisplay',
+  props: {
+    mapDisplay: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       options: [{
@@ -32,7 +38,7 @@ export default {
         value: 'spyglass',
         label: 'Spyglass',
       }],
-      value: 'overlay',
+      value: this.mapDisplay,
     };
   },
   methods: {
