@@ -689,6 +689,11 @@ graph LR;
 
 - [MongoDB Compass](https://www.mongodb.com/products/compass) - GUI, queries, CRUD – use localhost:27017 [documentation](https://docs.mongodb.com/compass/master/), [Getting started](https://www.mongodb.com/blog/post/getting-started-with-mongodb-compass)
   - If problem, use Resource Monitor: cmd as Admin, resmon.exe -\> CPU tab -\> in handles type Compass, and Kill one (will kill all) associated processes - and wait for it to happen.
+- for interactive shell see [this tutorial](https://www.tutorialkart.com/mongodb/mongo-shell/)
+  - mongo
+  - use m4opsdb
+  - show collections
+  - db.M4OPSData.drop()
 
 - For imports can use
   - [mongoimport](https://docs.mongodb.com/manual/reference/program/mongoimport/) can import JSON and csv into MongoDB

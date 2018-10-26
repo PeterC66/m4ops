@@ -9,7 +9,7 @@ import OlSourceBingMaps from 'ol/source/bingmaps';
 import { attributionFromCode } from '../utils/mapUtils';
 import { beginsWith, befaft } from '../../../global/utils';
 import { fullOpsURL } from '../../geography/geogUtils';
-import { BingApiKey } from '../../../global/constants';
+import { bingApiKey } from '../../../global/constants';
 
 export const sourceVectorFromDef = (sdef) => {
   let sourceToReturn;
@@ -154,7 +154,7 @@ export const sourceBingMapsFromDef = (sdef) => {
 
   // BingMaps has its own attributions
   const sourceToReturn = new OlSourceBingMaps({
-    key: BingApiKey,
+    key: bingApiKey,
     imagerySet,
     minZoom: 0,
     maxZoom: 19,

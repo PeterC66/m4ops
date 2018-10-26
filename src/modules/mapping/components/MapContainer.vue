@@ -12,7 +12,8 @@
         :center.sync="center"
         :rotation.sync="rotation"
       />
-      <vl-layer-tile
+      <LayersContainer :chosen-layer-defs-mainmap="chosenLayerDefsMainmap"/>
+      <!-- <vl-layer-tile
         id="osm"
         :opacity="1"
       >
@@ -26,7 +27,7 @@
           :api-key="apiKey"
           :imagery-set="imagerySet"
         />
-      </vl-layer-tile>
+      </vl-layer-tile> -->
     </vl-map>
     <div style="padding: 20px; text-align: left;">
       Zoom: {{ zoom }}<br>
@@ -37,16 +38,15 @@
 </template>
 
 <script>
-import { useVuexForView, BingApiKey } from '../../../global/constants';
+import { mapGetters } from 'vuex';
+
+import { useVuexForView } from '../../../global/constants';
+import LayersContainer from './LayersContainer.vue';
 
 export default {
   name: 'MapContainer',
-  data() {
-    return {
-      // eslint-disable-next-line max-len
-      apiKey: BingApiKey,
-      imagerySet: 'AerialWithLabels',
-    };
+  components: {
+    LayersContainer,
   },
   computed: {
     viewIdent() {
@@ -82,6 +82,9 @@ export default {
         }
       },
     },
+    ...mapGetters([
+      'chosenLayerDefsMainmap',
+    ]),
   },
 };
 </script>

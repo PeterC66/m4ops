@@ -1,4 +1,4 @@
-import { ldidOSM, ldidBingAerial } from '../global/constants';
+import { ldidOSM, ldidBingAerial } from '../modules/mapping/constants';
 
 export const initialStateChosenLayers = [
   { ldid: ldidOSM, opacity: 1 },
