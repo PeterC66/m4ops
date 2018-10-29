@@ -24,7 +24,7 @@ const mutations = {
       } else {
         moduleState.chosenLayers[layerNumber] = {
           ldid: ldid || voidLdid,
-          opacity: 0.5,
+          opacity: layerNumber === 0 ? 1 : 0.5,
         };
       }
       // Next line has by-product of making it reactive

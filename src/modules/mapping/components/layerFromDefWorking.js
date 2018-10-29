@@ -45,17 +45,16 @@ export function layerFromDef(LayerDefs, ldid) {
   if (isDefined(ld.layerscript)) { // the layerdef is a simple layerscript
     // was eval(`return ( new ol.layer.${ld.layerscript})`); // was jQuery.globalEval
     console.log('layerscript not processed', ld.layerscript); // eslint-disable-line no-console
+
+********************************************************************************************************************
+
   } else if (ld.layertype === 'Tile') { // the layerDef is in its elements
-    layerToReturn = new OlLayerTile({
-      title: titleToUse, // Custom property - can be referred to as layer.values.title
-    });
+
 
     if (ld.source) { // this is a proper Open Layers source already (eg the Universal Layers)
       layerToReturn.setSource(ld.source);
     } else if (ld.sourcedef) {
       // this source definition needs transforming into a proper Open Layers source
-      if (ld.sourcedef.url === 'BingMaps') {
-        layerToReturn.setSource(sourceBingMapsFromDef(ld.sourcedef));
       } else {
         layerToReturn.setSource(sourceXYZFromDef(ld.sourcedef, folderToUse, ld.storageName));
         // assuming all tiles are served by XYZ
@@ -77,6 +76,8 @@ export function layerFromDef(LayerDefs, ldid) {
     if (ld.tilePixelRatio) layerToReturn.tilePixelRatio = ld.tilePixelRatio;
     * /
     return layerToReturn;
+
+********************************************************************************************************************
   } else if (ld.layertype === 'WMTS') { // the layerDef is defined by its catalogue entry
     // See https://mapping4ops.org/background/useful-background-on-web-mapping/ re WMTS/WMS
     if (ld.sourcedef) { // this source definition had the WMTS options looked up on loading

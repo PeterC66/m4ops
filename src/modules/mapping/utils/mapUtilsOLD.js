@@ -1,13 +1,3 @@
-import { disabbreviate } from './abbreviation';
-
-export const attributionFromCode = (att) => {
-  const attModified = disabbreviate(att);
-  // WAS before v4.6.5 return new ol.Attribution({ html: attModified });
-  return attModified;
-};
-
-export const dummy = 0;
-
 /*
 import OlFeature from 'ol/feature';
 
@@ -17,6 +7,7 @@ import {
   isString,
   toUCifString,
 } from '../../../global/utils';
+import { disabbreviate } from './abbreviation';
 
 // TODO
 const layerDefs = [];
@@ -44,6 +35,12 @@ export const getDirectValueOf = (propertyname, obj) => {
 
   // If through here then return blank
   return '';
+};
+
+export const attributionFromCode = (att) => {
+  const attModified = disabbreviate(att);
+  // WAS before v4.6.5 return new ol.Attribution({ html: attModified });
+  return attModified;
 };
 
 // Find the index of the first location of a value (needle) in the "propertyname" element

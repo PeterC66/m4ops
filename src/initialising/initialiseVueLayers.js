@@ -6,6 +6,7 @@ import {
   TileLayer,
   OsmSource,
   BingMapsSource,
+  XyzSource,
 } from 'vuelayers';
 import 'vuelayers/lib/style.css'; // needs css-loader
 
@@ -15,4 +16,5 @@ export default function initialiseVueLayers(Vue) {
   Vue.use(TileLayer);
   Vue.use(OsmSource);
   Vue.use(BingMapsSource);
+  Vue.use(XyzSource);
 }

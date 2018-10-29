@@ -5,6 +5,7 @@ import { attributionFromCode } from '../utils/mapUtils';
 import { beginsWith, befaft } from '../../../global/utils';
 import { fullOpsURL } from '../../geography/geogUtils';
 
+*****************************************************************************************
 
 export const sourceXYZFromDef = (sdef, folder, givenstorageName, OPSCode) => {
   // the string storageName is either AWSS3 (use m4opsprod bucket on AWS S3),
@@ -86,6 +87,7 @@ export const sourceXYZFromDef = (sdef, folder, givenstorageName, OPSCode) => {
   return null;
 };
 
+*****************************************************************************************
 
 export const sourceVectorFromDef = (sdef) => {
   let sourceToReturn;
