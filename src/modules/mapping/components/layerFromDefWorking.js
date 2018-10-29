@@ -51,15 +51,12 @@ export function layerFromDef(LayerDefs, ldid) {
   } else if (ld.layertype === 'Tile') { // the layerDef is in its elements
 
 
+    TODO
     if (ld.source) { // this is a proper Open Layers source already (eg the Universal Layers)
       layerToReturn.setSource(ld.source);
-    } else if (ld.sourcedef) {
-      // this source definition needs transforming into a proper Open Layers source
-      } else {
-        layerToReturn.setSource(sourceXYZFromDef(ld.sourcedef, folderToUse, ld.storageName));
-        // assuming all tiles are served by XYZ
-      }
     }
+
+    TODO
     if (ld.extent) {
       layerToReturn.setExtent(OlProj.transformExtent(ld.extent, 'EPSG:4326', 'EPSG:3857'));
     } else if (ld.minx) { // minx, miny, maxx, maxy must all be there or all absent
@@ -78,20 +75,6 @@ export function layerFromDef(LayerDefs, ldid) {
     return layerToReturn;
 
 ********************************************************************************************************************
-  } else if (ld.layertype === 'WMTS') { // the layerDef is defined by its catalogue entry
-    // See https://mapping4ops.org/background/useful-background-on-web-mapping/ re WMTS/WMS
-    if (ld.sourcedef) { // this source definition had the WMTS options looked up on loading
-      layerToReturn = new OlLayerTile({
-        source: new OlSourceWMTS(ld.sourcedef.WMTSoptions),
-        title: titleToUse, // Custom property - can be referred to as layer.values.title
-      });
-
-      layerToReturn.candownload = string2bool(ld.candownload, false);
-      layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-      layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
-      return layerToReturn;
-    }
-    alert('No source for WMTS layer'); // eslint-disable-line no-alert
   } else if (ld.layertype === 'Vector') { // the layerDef is for features
     layerToReturn = new OlLayerVector({
       title: titleToUse,
