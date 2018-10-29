@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import _ from 'lodash';
 
-import { bingApiKey } from '../constants';
+import layerAndSourceTile from './layerAndSourceParts/layerAndSourceTile';
 
 export default Vue.component('layer-and-source', {
   props: {
@@ -15,47 +15,21 @@ export default Vue.component('layer-and-source', {
     },
   },
   render(createElement) {
-    let vlSourceElement = {};
     let vlLayerElement = {};
-    const {
-      layertype,
-      ldid,
-      sourcedef,
-      title,
-    } = this.layer;
-    if (sourcedef) {
-      const { url, vlsource, imagerySet } = sourcedef;
-      if (layertype === 'Tile') {
-        if (vlsource === 'osm') {
-          vlSourceElement = createElement('vl-source-osm');
-        } else if (url === 'BingMaps') {
-          vlSourceElement = createElement(
-            'vl-source-bing-maps',
-            {
-              attrs: {
-                'api-key': bingApiKey,
-                'imagery-set': imagerySet || 'Aerial',
-              },
-            },
-          );
-        }
-        if (!_.isEmpty(vlSourceElement)) {
-          vlLayerElement = createElement(
-            'vl-layer-tile',
-            {
-              attrs: {
-                id: `${title}-${this.layerNumber}`,
-                opacity: this.layer.opacity,
-              },
-            },
-            [
-              vlSourceElement,
-            ],
-          );
-        }
-      }
-    } else {
-      console.log(`${ldid} has undefined sourcedef`);
+    const { layertype, ldid, title } = this.layer;
+    if (layertype === 'Tile') {
+      const layerDataObject = {
+        attrs: {
+          id: `${title}-${this.layerNumber}`,
+          opacity: this.layer.opacity,
+        },
+      };
+
+      vlLayerElement = layerAndSourceTile(
+        createElement,
+        this.layer,
+        layerDataObject,
+      );
     }
 
     if (_.isEmpty(vlLayerElement)) {
@@ -64,3 +38,4 @@ export default Vue.component('layer-and-source', {
     return vlLayerElement;
   },
 });
+
