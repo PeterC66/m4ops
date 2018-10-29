@@ -1,52 +1,4 @@
-import OlLayerTile from 'ol/layer/tile';
-import OlLayerVector from 'ol/layer/vector';
-import OlLayerVectorTile from 'ol/layer/vectortile';
-import OlLayerGroup from 'ol/layer/group';
-import OlProj from 'ol/proj';
-import OlSourceWMTS from 'ol/source/wmts';
-import OlStyleStyle from 'ol/style/style';
-import OlCollection from 'ol/collection';
-import OlExtent from 'ol/extent';
-
-import {
-  isDefined,
-  replaceAll,
-  string2bool,
-} from '../../../global/utils';
-import {
-  sourceBingMapsFromDef,
-  sourceVectorFromDef,
-  sourceWMSFromDef,
-  sourceXYZFromDef,
-} from './sourceFromDefs';
-import { defaultGeometryStyleFunction } from '../styling/defaultStyles';
-import processFeatures from '../utils/processFeatures';
-import { indexOfArrayM4 } from '../utils/mapUtils';
-
-// TODO
-let layerSeries = [];
-
-export function getLayerTitles(inString) {
-  // console.log("inString",inString);
-  let layerString = inString;
-  // Cope with no quotes and/or no brackets
-  // First remove any brackets
-  if (layerString.substr(0, 1) === '[') layerString = layerString.substr(1);
-  if (layerString.substr(-1) === ']') layerString = layerString.slice(0, -1);
-  if (layerString.substr(0, 1) !== '"') { // Assume there are no quotes at all so we need to add them before and after everywhere
-    // We have to do it this way in two bits because of the danger of endless recursion
-    // First escape any double quotes
-    layerString = replaceAll(layerString, '"', 'ZXZX');
-    layerString = replaceAll(layerString, 'ZXZX', '\\"'); // the backslash itself is here escaped
-    // Now put in the double quotes
-    layerString = replaceAll(layerString, ',', 'ZXZX');
-    layerString = `"${replaceAll(layerString, 'ZXZX', '","')}"`;
-  }
-  // Add back the brackets
-  layerString = `[${layerString}]`;
-  // console.log("layerString",layerString);
-  return JSON.parse(layerString);
-}
+/*
 
 export function layerCollectionFromDef(LayerDefs, sdef) {
   const layerCollection = new OlCollection();
@@ -81,7 +33,7 @@ either one object "layerdef" that has the text of js code for loading, or ...
 also??"projection", "mapkey", "minx", "miny", "maxx", "maxy"
 
 layerFromDef transforms one element and returns an ol.layer object
- */
+ * /
 export function layerFromDef(LayerDefs, ldid) {
   const ldindex = ldindexFromLdId(LayerDefs, ldid);
   if (ldindex <= 0) return {};
@@ -123,7 +75,7 @@ export function layerFromDef(LayerDefs, ldid) {
     if (ld.minZoom) layerToReturn.minZoom = ld.minZoom;
     if (ld.maxZoom) layerToReturn.maxZoom = ld.maxZoom;
     if (ld.tilePixelRatio) layerToReturn.tilePixelRatio = ld.tilePixelRatio;
-    */
+    * /
     return layerToReturn;
   } else if (ld.layertype === 'WMTS') { // the layerDef is defined by its catalogue entry
     // See https://mapping4ops.org/background/useful-background-on-web-mapping/ re WMTS/WMS
@@ -245,7 +197,7 @@ export function layerFromDef(LayerDefs, ldid) {
     } else if (ld.minx) { //minx, miny, maxx, maxy must all be there or all absent
       const extent = [ld.minx, ld.miny, ld.maxx, ld.maxy];
       layerToReturn.setExtent(OlProj.transformExtent(extent,'EPSG:4326', 'EPSG:3857'));
-    } */
+    } * /
     layerToReturn.candownload = string2bool(ld.candownload, false);
     layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
     layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
@@ -283,3 +235,4 @@ function groupExtentFromDef(LayerDefs, sdef) {
   console.log(sdef, ' has no string array of layers'); // eslint-disable-line no-console
   return null;
 }
+*/

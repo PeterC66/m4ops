@@ -39,7 +39,11 @@ const mutations = {
     const { opacity, layerNumber } = payload;
     if (isDefined(layerNumber)) {
       if (moduleState.chosenLayers[layerNumber]) {
-        moduleState.chosenLayers[layerNumber].opacity = opacity || voidLdid;
+        if (isDefined(opacity)) {
+          moduleState.chosenLayers[layerNumber].opacity = opacity;
+        } else {
+          moduleState.chosenLayers[layerNumber].opacity = voidLdid;
+        }
       } else {
         console.log(`Warning:
           defining opacity before ldid for layerNumber: ${layerNumber}`);

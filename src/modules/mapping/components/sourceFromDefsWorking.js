@@ -1,10 +1,5 @@
-import OlProj from 'ol/proj';
-import OlSourceXYZ from 'ol/source/xyz';
-import OlSourceTileWMS from 'ol/source/tilewms';
-import OlFormatGeoJSON from 'ol/format/geojson';
-import OlFormatGML2 from 'ol/format/gml2';
-import OlSourceVector from 'ol/source/vector';
-import OlSourceBingMaps from 'ol/source/bingmaps';
+/*
+
 
 import { attributionFromCode } from '../utils/mapUtils';
 import { beginsWith, befaft } from '../../../global/utils';
@@ -88,7 +83,7 @@ export const sourceXYZFromDef = (sdef, folder, givenstorageName, OPSCode) => {
       } else if (sdef.origin?sdef.origin:'topleft' === 'bottomleft') {
         // The tiling is OSGEO (bottom left origin) = gdal2tiles default
         url = "tileserver-php-master/" + OPSDetails.OPSCode + "/" + url + "/{z}/{x}/{-y}.png";
-        */
+        * /
         urlsToUse = [url];
       } else {
         console.log('Error in sourceXYZFromDef for origin=', sdef.origin); // eslint-disable-line no-console
@@ -119,7 +114,7 @@ export const sourceXYZFromDef = (sdef, folder, givenstorageName, OPSCode) => {
     /* need resolutions rather than zooms??? Was
     if (sdef.minZoom) sourceToReturn.set("minZoom", sdef.minZoom, true);
     // 3rd param: silent = Update without triggering an event.
-    if (sdef.maxZoom) sourceToReturn.set("maxZoom", sdef.maxZoom, true); */
+    if (sdef.maxZoom) sourceToReturn.set("maxZoom", sdef.maxZoom, true); * /
 
     return sourceToReturn;
   }
@@ -162,3 +157,4 @@ export const sourceBingMapsFromDef = (sdef) => {
 
   return sourceToReturn;
 };
+*/

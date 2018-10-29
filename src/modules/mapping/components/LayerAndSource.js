@@ -34,7 +34,7 @@ export default Vue.component('layer-and-source', {
             {
               attrs: {
                 'api-key': bingApiKey,
-                'imagery-set': imagerySet,
+                'imagery-set': imagerySet || 'Aerial',
               },
             },
           );
@@ -64,62 +64,3 @@ export default Vue.component('layer-and-source', {
     return vlLayerElement;
   },
 });
-
-// switch (this.layer.ldid) {
-//   case ldidOSM:
-//     vlLayerAndSource = createElement(
-//       'vl-layer-tile',
-//       {
-//         attrs: {
-//           id: 'osm',
-//           opacity: this.layer.opacity,
-//         },
-//       },
-//       [
-//         createElement('vl-source-osm'),
-//       ],
-//     );
-//     break;
-
-//   case ldidBingAerial:
-//     vlLayerAndSource = createElement(
-//       'vl-layer-tile',
-//       {
-//         attrs: {
-//           id: 'bing',
-//           opacity: this.layer.opacity,
-//         },
-//       },
-//       [
-//         createElement(
-//           'vl-source-bing-maps',
-//           {
-//             attrs: {
-//               'api-key': bingApiKey,
-//               'imagery-set': 'AerialWithLabelsOnDemand',
-//             },
-
-//           },
-//         ),
-//       ],
-//     );
-//     break;
-
-//   default:
-// }
-
-//   <vl-layer-tile
-//   id="osm"
-//   :opacity="1"
-// >
-//   <vl-source-osm/>
-// </vl-layer-tile>
-// <vl-layer-tile
-//   id="bing"
-//   :opacity="0.1"
-// >
-//   <vl-source-bing-maps
-//     :api-key="apiKey"
-//     :imagery-set="imagerySet"
-//   />
-// </vl-layer-tile>
