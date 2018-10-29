@@ -4,42 +4,7 @@
 import { attributionFromCode } from '../utils/mapUtils';
 import { beginsWith, befaft } from '../../../global/utils';
 import { fullOpsURL } from '../../geography/geogUtils';
-import { bingApiKey } from '../../../global/constants';
 
-export const sourceVectorFromDef = (sdef) => {
-  let sourceToReturn;
-  const atts = [];
-  if (sdef.attribution) {
-    atts[0] = attributionFromCode(sdef.attribution);
-  } // we do not cope with there being multiple attributions in the LayerDef yet
-  if (sdef.url) { // we standardise on there being only one url
-    const ext = befaft(sdef.url, '.')[1].toLowerCase(); // assumes only one period
-    const url = fullOpsURL(sdef.url);
-    let srcFormat;
-    switch (ext) {
-      case 'geojson':
-        srcFormat = new OlFormatGeoJSON({ defaultDataProjection: 'EPSG:4326' }); // assumed always 'EPSG:4326'
-        break;
-      case 'gml-NOT YET':
-        srcFormat = new OlFormatGML2({
-          defaultDataProjection: 'EPSG:27700',
-          srsName: 'EPSG:27700',
-        }); // assumed UK OS and GML2 for now
-        break;
-      default:
-        alert(`Vector source extension ${ext} unknown. URL = ${sdef.url}`); // eslint-disable-line no-alert
-        break;
-    }
-
-    sourceToReturn = new OlSourceVector({
-      url,
-      format: srcFormat,
-      attributions: atts,
-    });
-    return sourceToReturn;
-  }
-  return null;
-};
 
 export const sourceXYZFromDef = (sdef, folder, givenstorageName, OPSCode) => {
   // the string storageName is either AWSS3 (use m4opsprod bucket on AWS S3),
@@ -121,6 +86,42 @@ export const sourceXYZFromDef = (sdef, folder, givenstorageName, OPSCode) => {
   return null;
 };
 
+
+export const sourceVectorFromDef = (sdef) => {
+  let sourceToReturn;
+  const atts = [];
+  if (sdef.attribution) {
+    atts[0] = attributionFromCode(sdef.attribution);
+  } // we do not cope with there being multiple attributions in the LayerDef yet
+  if (sdef.url) { // we standardise on there being only one url
+    const ext = befaft(sdef.url, '.')[1].toLowerCase(); // assumes only one period
+    const url = fullOpsURL(sdef.url);
+    let srcFormat;
+    switch (ext) {
+      case 'geojson':
+        srcFormat = new OlFormatGeoJSON({ defaultDataProjection: 'EPSG:4326' }); // assumed always 'EPSG:4326'
+        break;
+      case 'gml-NOT YET':
+        srcFormat = new OlFormatGML2({
+          defaultDataProjection: 'EPSG:27700',
+          srsName: 'EPSG:27700',
+        }); // assumed UK OS and GML2 for now
+        break;
+      default:
+        alert(`Vector source extension ${ext} unknown. URL = ${sdef.url}`); // eslint-disable-line no-alert
+        break;
+    }
+
+    sourceToReturn = new OlSourceVector({
+      url,
+      format: srcFormat,
+      attributions: atts,
+    });
+    return sourceToReturn;
+  }
+  return null;
+};
+
 export const sourceWMSFromDef = (sdef) => {
   let sourceToReturn;
   const atts = [];
@@ -144,17 +145,4 @@ export const sourceWMSFromDef = (sdef) => {
   return null;
 };
 
-export const sourceBingMapsFromDef = (sdef) => {
-  const imagerySet = sdef.imagerySet || 'Aerial';
-
-  // BingMaps has its own attributions
-  const sourceToReturn = new OlSourceBingMaps({
-    key: bingApiKey,
-    imagerySet,
-    minZoom: 0,
-    maxZoom: 19,
-  });
-
-  return sourceToReturn;
-};
 */
