@@ -70,6 +70,13 @@ export default {
     ]),
   },
   created() {
+    if (_.isEmpty(this.OPSDetails)) {
+      this.$store.dispatch(actions.request, {
+        baseURL: 'http://localhost:5000/',
+        url: 'places',
+        keyPath: ['places'],
+      });
+    }
     if (_.isEmpty(this.continents)) {
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',

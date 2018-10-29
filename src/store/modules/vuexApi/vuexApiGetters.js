@@ -48,6 +48,15 @@ vuexApiGetters.demoSections = (moduleState, getters) =>
 vuexApiGetters.HelpHTML = (moduleState, getters) =>
   getters.m4opsdata.HelpHTML || '';
 
+// Places ========================================================
+
+vuexApiGetters.places = moduleState =>
+  (moduleState.places &&
+  moduleState.places.resp &&
+  moduleState.places.resp.data &&
+  moduleState.places.resp.data.data) ||
+  [];
+
 // Place ========================================================
 
 vuexApiGetters.place = moduleState =>
@@ -145,6 +154,6 @@ vuexApiGetters.continents = moduleState =>
   [];
 
 vuexApiGetters.placeOptions = (moduleState, getters) =>
-  optionsFromContinents(getters.continents);
+  optionsFromContinents(getters.continents, getters.places);
 
 export default vuexApiGetters;
