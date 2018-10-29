@@ -19,7 +19,7 @@ export default Vue.component('layer-and-source', {
     const { layertype, ldid, title } = this.layer;
     if (layertype === 'Tile') {
       const layerDataObject = {
-        attrs: {
+        props: {
           title,
           id: `${title}-${this.layerNumber}`,
           opacity: this.layer.opacity,

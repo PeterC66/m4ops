@@ -20,7 +20,7 @@ function sourceTile(
     maxZoom,
   } = sourcedef;
 
-  if (urls) console.log('Warning urls has value', urls);
+  if (urls) console.log('Warning urls has value not handled yet', urls);
 
   let vlSourceElementTile = {};
 
@@ -30,7 +30,7 @@ function sourceTile(
     vlSourceElementTile = createElement(
       'vl-source-bing-maps',
       {
-        attrs: {
+        props: {
           'api-key': bingApiKey,
           'imagery-set': imagerySet || 'Aerial',
         },
@@ -88,7 +88,7 @@ function sourceTile(
     vlSourceElementTile = createElement(
       'vl-source-xyz',
       {
-        attrs: {
+        props: {
           url: urlToUse,
           attributions: atts,
           'min-zoom': minZoom || 0,
