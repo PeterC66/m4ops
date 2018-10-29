@@ -5,6 +5,7 @@
       :layer="layer"
       :key="index"
       :layer-number="index"
+      :show-slider="index>0"
     />
     <ChooseLayer
       v-if="nChosenLayers < maxChooseLayers"
