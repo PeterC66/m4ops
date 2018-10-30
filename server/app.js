@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const placeRoute = require('./routes/place');
 const continentRoute = require('./routes/continent');
 const m4opsDataRoute = require('./routes/m4opsdata');
+const featureLayerRoute = require('./routes/featurelayer');
 const routes = require('./routes/index');
 
 require('dotenv').config();
@@ -32,6 +33,7 @@ app.use('/', routes);
 app.use('/places', placeRoute);
 app.use('/continents', continentRoute);
 app.use('/m4opsdata', m4opsDataRoute);
+app.use('/featurelayers', featureLayerRoute);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

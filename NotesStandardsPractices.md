@@ -489,6 +489,7 @@ graph LR;
 
 - Can use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
 - Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
+- or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO - using Element UI
 
 ### Standards and styles
 
@@ -647,6 +648,7 @@ Each route (including with parameters eg :id) is
     - /places/xxx - OPSDetails for XXX studye, with all its bits and arrays
   - /continents - continent/country/location/study (each has M4OPS:true where it is/contains an included study)
   - /m4opsdata - the M4OPS.json file, with all its bits and arrays
+  - /featurelayers/OPS_Xxxx - the given feature layer from the given OPS in FeatureLayers
 
 ### Connecting to MongoDB
 
