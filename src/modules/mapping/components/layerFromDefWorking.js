@@ -109,7 +109,10 @@ export function layerFromDef(LayerDefs, ldid) {
     });
 
     return layerToReturn;
-  } else if (ld.layertype === 'VectorTile') { // the layerDef is for vector tiles (eg MapZen OSM)
+
+    ********************************************************************************************************************
+
+} else if (ld.layertype === 'VectorTile') { // the layerDef is for vector tiles (eg MapZen OSM)
     layerToReturn = new OlLayerVectorTile({
       title: titleToUse,
     });
@@ -128,7 +131,9 @@ export function layerFromDef(LayerDefs, ldid) {
     layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
 
     return layerToReturn;
+********************************************************************************************************************
   } else if (ld.layertype === 'Group') { // the layerDef is for a group of layers
+    RAISED ISSUE from vuelayers
     // ignore attribution (NA), min/maxZoom (?)
     layerToReturn = new OlLayerGroup({
       title: titleToUse,
@@ -154,6 +159,7 @@ export function layerFromDef(LayerDefs, ldid) {
     layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
 
     return layerToReturn;
+********************************************************************************************************************
   } else if (ld.layertype === 'Series') { // the layerDef is for a series of layers (possibly groups)
     // Note that Series can only be at Base, and we handle much of it elsewhere
     // ignore attribution (NA), min/maxZoom (?)
@@ -164,6 +170,7 @@ export function layerFromDef(LayerDefs, ldid) {
     }
     layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
     return layerToReturn;
+********************************************************************************************************************
   } else if (ld.layertype === 'WMS') { // See https://geospatialwandering.wordpress.com/category/wms/
     layerToReturn = new OlLayerTile({
       title: titleToUse, // Custom property - can be referred to as layer.values.title
@@ -191,6 +198,7 @@ export function layerFromDef(LayerDefs, ldid) {
   return null;
 }
 
+********************************************************************************************************************
 function groupExtentFromDef(LayerDefs, sdef) {
   // return an extent that includes all the extents of the layers specified
   if (sdef.url) { // should be a string array of layers

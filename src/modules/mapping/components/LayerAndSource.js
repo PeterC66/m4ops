@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import layerAndSourceTile from './layerAndSourceParts/layerAndSourceTile';
 import layerAndSourceWmts from './layerAndSourceParts/layerAndSourceWmts';
+import layerAndSourceVector from './layerAndSourceParts/layerAndSourceVector';
 
 export default Vue.component('layer-and-source', {
   props: {
@@ -40,6 +41,12 @@ export default Vue.component('layer-and-source', {
     } else if (layertype === 'WMTS') { // the layerDef is defined by its catalogue entry
       // See https://mapping4ops.org/background/useful-background-on-web-mapping/ re WMTS/WMS
       vlLayerElement = layerAndSourceWmts(
+        createElement,
+        this.layer,
+        layerDataObject,
+      );
+    } else if (layertype === 'Vector') {
+      vlLayerElement = layerAndSourceVector(
         createElement,
         this.layer,
         layerDataObject,

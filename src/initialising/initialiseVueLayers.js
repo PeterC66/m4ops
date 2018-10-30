@@ -8,6 +8,8 @@ import {
   BingMapsSource,
   XyzSource,
   WmtsSource,
+  VectorLayer,
+  VectorSource,
 } from 'vuelayers';
 import 'vuelayers/lib/style.css'; // needs css-loader
 
@@ -19,4 +21,6 @@ export default function initialiseVueLayers(Vue) {
   Vue.use(BingMapsSource);
   Vue.use(XyzSource);
   Vue.use(WmtsSource);
+  Vue.use(VectorLayer);
+  Vue.use(VectorSource);
 }

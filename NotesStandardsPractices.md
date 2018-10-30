@@ -286,6 +286,7 @@ See under [Standards and styles](#standards-and-styles)
   - cd C:\\Users\\Peter Admin\\AppData\\Roaming\\pandoc, and do everything there
   - pandoc -f docx -t gfm “C:\\Users\\Peter\_2\\Documents\\Mapping\\Software\\M4OPS2\\Documentation\\filename.docx” -o filename.md
 - for relative links use \[a relative link\](other\_file.md)
+- ??Use [VuePress](https://medium.com/@charlesouellet/deep-dive-into-vuepress-craft-a-clean-documentation-blog-de6ac8e0c917)
 
 ## HTML5 standards
 
@@ -688,7 +689,7 @@ graph LR;
 
 - [MongoDB Compass](https://www.mongodb.com/products/compass) - GUI, queries, CRUD – use localhost:27017 [documentation](https://docs.mongodb.com/compass/master/), [Getting started](https://www.mongodb.com/blog/post/getting-started-with-mongodb-compass)
   - If problem, use Resource Monitor: cmd as Admin, resmon.exe -\> CPU tab -\> in handles type Compass, and Kill one (will kill all) associated processes - and wait for it to happen.
-- for interactive shell see [this tutorial](https://www.tutorialkart.com/mongodb/mongo-shell/)
+- for interactive shell see [the manual](https://docs.mongodb.com/manual/mongo/), or [this tutorial](https://www.tutorialkart.com/mongodb/mongo-shell/)
   - mongo
   - use m4opsdb
   - show collections
@@ -700,8 +701,11 @@ graph LR;
   - can use [jsonformatter](https://jsonformatter.curiousconcept.com/) for checking one of the json, not using –jsonArray option
   - [MongoDB Compass](https://docs.mongodb.com/compass/current/import-export/) (did not work)
   - from terminal, for a whole collection or a single document, use
-    - mongoimport --db m4opsdb --collection M4OPSData --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
-    - mongoimport --db m4opsdb --collection Places --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
+    - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
+    - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
+    - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
+    - add --drop so that the target instance drops the collection before importing the data from the input.
+    - add --mode upsert to replace documents whose _id matches the document(s) in the import file
   - (Studies collection is not used now)
 
 To *create Places.json*
