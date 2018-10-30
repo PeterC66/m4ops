@@ -605,8 +605,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 
 - Use [vuelayers](https://github.com/ghettovoice/vuelayers): Vue components with the power of OpenLayers
 - [GitHub](https://vuelayers.github.io/#/) - scroll down for demo, quick start etc
-- [Demo](https://vuelayers.github.io/demo/) and [demo code](https://github.com/ghettovoice/vuelayers-demo)
-  - code copied into vuelayers-demo/
+- [Demo](https://vuelayers.github.io/demo/) and [demo code](https://github.com/ghettovoice/vuelayers-demo/blob/master/src/App.vue), App.vue code copied into [vuelayers-demo](vuelayers-demo\App.vue)
   - also includes [AlexRiceGist/](https://gist.github.com/guidorice/c39db591323d78e5cb659b6bbc5cb0b5) re storing map data in Vuex
 - [My fork](https://github.com/PeterC66/vuelayers/)
   - Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)

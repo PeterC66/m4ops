@@ -17,10 +17,16 @@ export default Vue.component('layer-and-source', {
   },
   render(createElement) {
     let vlLayerElement = {};
-    const { layertype, ldid, title } = this.layer;
+    const {
+      layertype,
+      ldid,
+      title,
+      layerdescription,
+    } = this.layer;
     const layerDataObject = {
       props: {
         title,
+        layerdescription,
         id: `${title}-${this.layerNumber}`,
         opacity: this.layer.opacity,
       },

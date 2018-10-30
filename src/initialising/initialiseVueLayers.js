@@ -7,6 +7,7 @@ import {
   OsmSource,
   BingMapsSource,
   XyzSource,
+  WmtsSource,
 } from 'vuelayers';
 import 'vuelayers/lib/style.css'; // needs css-loader
 
@@ -17,4 +18,5 @@ export default function initialiseVueLayers(Vue) {
   Vue.use(OsmSource);
   Vue.use(BingMapsSource);
   Vue.use(XyzSource);
+  Vue.use(WmtsSource);
 }
