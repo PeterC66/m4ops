@@ -699,7 +699,7 @@ graph LR;
 
 - For imports can use
   - [mongoimport](https://docs.mongodb.com/manual/reference/program/mongoimport/) can import JSON and csv into MongoDB
-  - Remember that it is **one (JSON) document per line**
+  - Remember that it is **one (JSON) document per line**, although a single JSON document can span more than one line
   - can use [jsonformatter](https://jsonformatter.curiousconcept.com/) for checking one of the json, not using –jsonArray option
   - [MongoDB Compass](https://docs.mongodb.com/compass/current/import-export/) (did not work)
   - from terminal, for a whole collection or a single document, use
@@ -709,6 +709,7 @@ graph LR;
     - add --drop so that the target instance drops the collection before importing the data from the input.
     - add --mode upsert to replace documents whose _id matches the document(s) in the import file
   - (Studies collection is not used now)
+  - maximum BSON (Mongodb) document size is 16 megabytes, or use GridFS API.
 
 To *create Places.json*
 

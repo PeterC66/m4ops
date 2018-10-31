@@ -5,11 +5,14 @@
       :layer="layer"
       :key="index"
       :layer-number="index"
+      :ops-code="OPSDetails.OPSCode"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import LayerAndSource from './LayerAndSource';
 
 export default {
@@ -22,6 +25,11 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters([
+      'OPSDetails',
+    ]),
   },
 };
 </script>

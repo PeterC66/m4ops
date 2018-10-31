@@ -15,6 +15,10 @@ export default Vue.component('layer-and-source', {
       type: Number,
       required: true,
     },
+    opsCode: {
+      type: String,
+      required: true,
+    },
   },
   render(createElement) {
     let vlLayerElement = {};
@@ -50,6 +54,7 @@ export default Vue.component('layer-and-source', {
         createElement,
         this.layer,
         layerDataObject,
+        this.opsCode,
       );
     }
 

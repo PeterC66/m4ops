@@ -22,8 +22,8 @@ router.get('/:ops_layer', (req, res, next) => {
     }
 
     res.status(200).json({
-      success: 1,
-      data: result,
+      type: result.type,
+      features: result.features,
     });
   });
 });

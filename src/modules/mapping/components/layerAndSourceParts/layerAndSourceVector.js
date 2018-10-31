@@ -1,11 +1,12 @@
 import _ from 'lodash';
 
 import { attributionFromCode } from '../../utils/mapUtils';
-import { befaft } from '../../../../global/utils';
+import { befaft, replaceAll } from '../../../../global/utils';
 
 function sourceVector(
   createElement,
   sourcedef,
+  opsCode,
 ) {
   const {
     url,
@@ -16,6 +17,10 @@ function sourceVector(
 
   if (url) {
     const ext = befaft(url, '.')[1].toLowerCase(); // assumes only one period
+    const layerId = replaceAll(befaft(url, '.')[0], ' ', '_'); // assumes only one period
+    const urlToUse = `http://localhost:5000/featurelayers/${opsCode}_${layerId}`; // eslint-disable-line max-len
+    console.log(urlToUse);
+    // const urlToUse = 'https://openlayers.org/en/latest/examples/data/geojson/countries.geojson'; // eslint-disable-line max-len
     const atts = attribution ? [attributionFromCode(attribution)] : [];
     switch (ext) {
       case 'geojson':
@@ -23,7 +28,7 @@ function sourceVector(
           'vl-source-vector',
           {
             props: {
-              url: 'https://openlayers.org/en/latest/examples/data/geojson/countries.geojson', // eslint-disable-line max-len
+              url: urlToUse,
               attributions: atts,
             },
           },
@@ -40,6 +45,7 @@ export default function layerAndSourceVector(
   createElement,
   layer,
   layerDataObject,
+  opsCode,
 ) {
   let vlSourceElementVector = {};
   let vlLayerElementVector = {};
@@ -51,6 +57,7 @@ export default function layerAndSourceVector(
     vlSourceElementVector = sourceVector(
       createElement,
       sourcedef,
+      opsCode,
     );
     if (!_.isEmpty(vlSourceElementVector)) {
       vlLayerElementVector = createElement(
