@@ -82,7 +82,15 @@ const getters = {
         ...mainTableRow,
         ...lookupTableRow,
       }),
-    );
+    ).sort((a, b) => {
+      const x = a.layerNumber;
+      const y = b.layerNumber;
+      if (!x) { return -1; }
+      if (!y) { return 1; }
+      if (x < y) { return -1; }
+      if (x > y) { return 1; }
+      return 0;
+    });
   },
 };
 

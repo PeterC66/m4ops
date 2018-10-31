@@ -65,15 +65,37 @@ function layerStyle(
           color: 'red',
         },
       }),
-      createElement('vl-style-circle', {
-        props: {
-          radius: 10,
+      createElement(
+        'vl-style-circle',
+        {
+          props: {
+            radius: 10,
+          },
         },
-      }),
+        [
+          createElement('vl-style-stroke', {
+            props: {
+              color: 'red',
+            },
+          }),
+          createElement('vl-style-fill', {
+            props: {
+              color: 'red',
+            },
+          }),
+        ],
+      ),
     ],
   );
   return vlLayerStyle;
 }
+
+/*
+            <vl-style-circle :radius="5">
+              <vl-style-stroke color="#423e9e" :width="7"></vl-style-stroke>
+              <vl-style-fill :color="[254, 178, 76, 0.7]"></vl-style-fill>
+            </vl-style-circle>
+*/
 
 export default function layerAndSourceVector(
   createElement,
