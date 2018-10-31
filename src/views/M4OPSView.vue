@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header><Header :opsdetails="OPSDetails" /></el-header>
+    <el-header><Header :opsdetails="place" /></el-header>
     <el-container>
       <el-aside
         v-if="sidebarOpen"
@@ -13,8 +13,14 @@
         style="position: relative"
       >
         <MapContainer
+          v-if="!loading"
           :zoom-initial="15"
           :center-initial="[-0.0325, 52.329444]"
+        />
+
+        <div
+          v-loading="loading"
+          v-else
         />
         <el-tooltip
           style="position: absolute; bottom: 1px; left: 0px; "
@@ -24,7 +30,7 @@
           placement="top"
         >
           <el-switch
-            v-model="value"
+            v-model="switchValue"
             active-color="#13ce66"
             inactive-color="#ff4949"
             @change="switchSidebar"
@@ -55,7 +61,7 @@ export default {
   },
   data() {
     return {
-      value: true,
+      switchValue: true,
     };
   },
   computed: {
@@ -64,13 +70,20 @@ export default {
     }),
     ...mapGetters([
       'm4opsdata',
-      'OPSDetails',
+      'places',
+      'place',
       'continents',
       'homeView',
     ]),
+    loading() {
+      return (_.isEmpty(this.places)) ||
+        (_.isEmpty(this.continents)) ||
+        (_.isEmpty(this.place)) ||
+        (_.isEmpty(this.m4opsdata));
+    },
   },
   created() {
-    if (_.isEmpty(this.OPSDetails)) {
+    if (_.isEmpty(this.places)) {
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: 'places',
@@ -84,7 +97,7 @@ export default {
         keyPath: ['continents'],
       });
     }
-    if (_.isEmpty(this.OPSDetails)) {
+    if (_.isEmpty(this.place)) {
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: 'places/HcN',

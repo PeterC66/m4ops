@@ -9,6 +9,7 @@ import {
   FormItem,
   Header,
   Input,
+  Loading,
   Main,
   Option,
   Popover,
@@ -35,6 +36,7 @@ export default function initialiseElementComponents(Vue) {
   Vue.component(FormItem.name, FormItem);
   Vue.component(Header.name, Header);
   Vue.component(Input.name, Input);
+  Vue.use(Loading.directive);
   Vue.component(Main.name, Main);
   Vue.component(Option.name, Option);
   Vue.component(Popover.name, Popover);

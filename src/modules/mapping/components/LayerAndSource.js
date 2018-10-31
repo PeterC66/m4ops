@@ -20,6 +20,9 @@ export default Vue.component('layer-and-source', {
       required: true,
     },
   },
+  // computed: {
+  //   ldid: this ? this.layer.ldid : 'none',
+  // },
   render(createElement) {
     let vlLayerElement = {};
     const {
