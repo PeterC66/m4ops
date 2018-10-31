@@ -77,10 +77,10 @@ const getters = {
       moduleGetters.chosenLayersMainmap,
       'ldid',
       'ldid',
-      true,
+      false, // so includes unmatched rows
       (mainTableRow, lookupTableRow) => ({
+        ...mainTableRow,
         ...lookupTableRow,
-        opacity: mainTableRow.opacity,
       }),
     );
   },

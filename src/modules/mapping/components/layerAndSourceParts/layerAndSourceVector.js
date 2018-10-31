@@ -41,6 +41,40 @@ function sourceVector(
   return vlSourceElementVector;
 }
 
+function layerStyle(
+  createElement,
+  sourcedef,
+  opsCode,
+) {
+  // const {
+  //   styledef,
+  // } = sourcedef;
+
+  let vlLayerStyle = {};
+
+  vlLayerStyle = createElement(
+    'vl-style-box',
+    [
+      createElement('vl-style-stroke', {
+        props: {
+          color: 'red',
+        },
+      }),
+      createElement('vl-style-fill', {
+        props: {
+          color: 'red',
+        },
+      }),
+      createElement('vl-style-circle', {
+        props: {
+          radius: 10,
+        },
+      }),
+    ],
+  );
+  return vlLayerStyle;
+}
+
 export default function layerAndSourceVector(
   createElement,
   layer,
@@ -48,6 +82,7 @@ export default function layerAndSourceVector(
   opsCode,
 ) {
   let vlSourceElementVector = {};
+  let vlLayerStyle = {};
   let vlLayerElementVector = {};
   const {
     ldid,
@@ -59,12 +94,18 @@ export default function layerAndSourceVector(
       sourcedef,
       opsCode,
     );
+    vlLayerStyle = layerStyle(
+      createElement,
+      sourcedef,
+      opsCode,
+    );
     if (!_.isEmpty(vlSourceElementVector)) {
       vlLayerElementVector = createElement(
         'vl-layer-vector',
         { ...layerDataObject },
         [
           vlSourceElementVector,
+          vlLayerStyle,
         ],
       );
     } else {
@@ -75,62 +116,3 @@ export default function layerAndSourceVector(
   }
   return vlLayerElementVector;
 }
-
-/*
-  if (sdef.url) { // we standardise on there being only one url
-    const url = fullOpsURL(sdef.url);
-    let srcFormat;
-    switch (ext) {
-      case 'geojson':
-        srcFormat = new OlFormatGeoJSON({ defaultDataProjection: 'EPSG:4326' }); // assumed always 'EPSG:4326'
-        break;
-      case 'gml-NOT YET':
-        srcFormat = new OlFormatGML2({
-          defaultDataProjection: 'EPSG:27700',
-          srsName: 'EPSG:27700',
-        }); // assumed UK OS and GML2 for now
-        break;
-      default:
-        alert(`Vector source extension ${ext} unknown. URL = ${sdef.url}`); // eslint-disable-line no-alert
-        break;
-    }
-
-    sourceToReturn = new OlSourceVector({
-      url,
-      format: srcFormat,
-      attributions: atts,
-    });
-    return sourceToReturn;
-  }
-  return null;
-};
-*/
-
-/*
-          // Countries vector layer
-            style: [
-              {
-                cmp: 'vl-style-box',
-                styles: {
-                  'vl-style-fill': {
-                    color: [255, 255, 255, 0.5],
-                  },
-                  'vl-style-stroke': {
-                    color: '#219e46',
-                    width: 2,
-                  },
-                  'vl-style-text': {
-                    text: '\uf041',
-                    font: '24px FontAwesome',
-                    fill: {
-                      color: '#2355af',
-                    },
-                    stroke: {
-                      color: 'white',
-                    },
-                  },
-                },
-              },
-            ],
-          },
-*/

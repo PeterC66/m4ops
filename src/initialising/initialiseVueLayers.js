@@ -10,6 +10,10 @@ import {
   WmtsSource,
   VectorLayer,
   VectorSource,
+  StyleBox,
+  StrokeStyle,
+  FillStyle,
+  CircleStyle,
 } from 'vuelayers';
 import 'vuelayers/lib/style.css'; // needs css-loader
 
@@ -23,4 +27,8 @@ export default function initialiseVueLayers(Vue) {
   Vue.use(WmtsSource);
   Vue.use(VectorLayer);
   Vue.use(VectorSource);
+  Vue.use(StyleBox);
+  Vue.use(StrokeStyle);
+  Vue.use(FillStyle);
+  Vue.use(CircleStyle);
 }
