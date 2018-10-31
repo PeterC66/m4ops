@@ -389,6 +389,7 @@ graph LR;
 - [Render Functions & JSX](https://vuejs.org/v2/guide/render-function.html) - use instead of templates to generate components
 - Refers a lot to [Vue Instance Properties API](https://vuejs.org/v2/api/#Instance-Properties)
 - Can even use [JSX](https://github.com/vuejs/babel-plugin-transform-vue-jsx)
+- [Another similar explanation of render functions](https://alligator.io/vuejs/introduction-render-functions/)
 
 ### Vue Router
 
