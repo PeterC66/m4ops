@@ -195,3 +195,14 @@ export function isNotExcluded(ld, exclusionsArray) {
   );
   return result;
 }
+
+const strVoid = 'void';
+
+export function newVoid() {
+  return strVoid + uuid();
+}
+
+export function isVoid(ldid) {
+  return ldid.substring(0, 4) === strVoid;
+}
+

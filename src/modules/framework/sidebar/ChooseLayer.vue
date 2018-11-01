@@ -9,6 +9,14 @@
       @change="handleLdidChange"
       @blur="handleBlur"
     />
+    <el-button
+      v-if="showSlider"
+      type="text"
+      size="mini"
+      @click="moveUp()"
+    >
+      <font-awesome-icon icon="chevron-circle-up"/>
+    </el-button>
     <el-tooltip
       class="item"
       effect="light"
@@ -31,14 +39,14 @@
 import { mapGetters } from 'vuex';
 
 import { ldidToCategoryAndLayer } from '../../../store/modules/vuexApi/categoriesAndLayers'; // eslint-disable-line max-len
-import { voidLdid } from '../../../global/constants';
+import { newVoid } from '../../../global/utils';
 
 export default {
   name: 'ChooseLayer',
   props: {
     layer: {
       type: Object,
-      default: () => ({ ldid: voidLdid, opacity: 0.5 }),
+      default: () => ({ ldid: newVoid(), opacity: 0.5 }),
     },
     layerNumber: {
       type: Number,
@@ -83,6 +91,9 @@ export default {
     handleBlur(event) { // eslint-disable-line no-unused-vars
       // Just testing
       // console.log('hB', this.layerNumber, event);
+    },
+    moveUp() {
+      this.$store.dispatch('moveLayerUp', { layerNumber: this.layerNumber });
     },
   },
 };

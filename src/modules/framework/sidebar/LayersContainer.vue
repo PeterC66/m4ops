@@ -3,7 +3,7 @@
     <ChooseLayer
       v-for="(layer, index) in chosenLayersMainmap"
       :layer="layer"
-      :key="index"
+      :key="layer.ldid"
       :layer-number="index"
       :show-slider="index>0"
     />
@@ -19,7 +19,8 @@
 
 <script>
 import ChooseLayer from './ChooseLayer.vue';
-import { maxChooseLayers, voidLdid } from '../../../global/constants';
+import { maxChooseLayers } from '../../../global/constants';
+import { newVoid } from '../../../global/utils';
 
 export default {
   name: 'LayersContainer',
@@ -35,12 +36,14 @@ export default {
   data() {
     return {
       maxChooseLayers,
-      voidLdid,
     };
   },
   computed: {
     nChosenLayers() {
       return this.chosenLayersMainmap.length;
+    },
+    voidLdid() {
+      return newVoid();
     },
   },
 };

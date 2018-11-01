@@ -9,6 +9,7 @@ export const UPDATE_VIEW = 'UPDATE_VIEW';
 // mapping/mainmap mutation types
 export const LAYER_SET_REQUEST = 'LAYER_SET_REQUEST';
 export const OPACITY_SET_REQUEST = 'OPACITY_SET_REQUEST';
+export const MOVE_LAYER_UP = 'MOVE_LAYER_UP';
 
 // framework mutation types
 export const SIDEBAR_SWITCH_REQUEST = 'SIDEBAR_SWITCH_REQUEST';

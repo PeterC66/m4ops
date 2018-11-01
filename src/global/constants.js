@@ -8,5 +8,3 @@ export const useVuexForView = false;
 
 // Also needs to be true in production
 export const dontUseLogger = false;
-
-export const voidLdid = 'void';

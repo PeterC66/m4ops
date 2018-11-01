@@ -3,8 +3,8 @@ import _ from 'lodash';
 import {
   pipe,
   string2bool,
+  isVoid,
 } from '../../../global/utils';
-import { voidLdid } from '../../../global/constants';
 
 /**
  *--------------------------------------------------
@@ -50,7 +50,7 @@ export default categoriesAndLayers;
 // Given eg "World>Basic>Bing_Aerial" return ["Basic", "World>Basic>Bing_Aerial"]
 //  which corresponds to the options values in the ChooseLayer cascader, from categoriesAndLayers
 export function ldidToCategoryAndLayer(ldid) {
-  if (!ldid || ldid === voidLdid) return [];
+  if (!ldid || isVoid(ldid)) return [];
   const idArray = ldid.split('>');
   return [idArray[1], ldid];
 }

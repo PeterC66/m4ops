@@ -383,6 +383,7 @@ graph LR;
 - [Managing cookies](https://codeburst.io/how-to-manage-cookies-in-vuejs-51be86e8fc1b)
 - [Authentication-system-with-node-js-backend](https://blog.jscrambler.com/vue-js-authentication-system-with-node-js-backend/)
 - any components starting with _base in /global/components/ are globally registered
+- [The correct way to force Vue to re-render a component](https://hackernoon.com/the-correct-way-to-force-vue-to-re-render-a-component-bde2caae34ad) - update the key
 
 ### Complex components
 
@@ -491,6 +492,7 @@ graph LR;
 - Can use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
 - Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 - or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO - using Element UI
+- see [VeeValidate 2.1: Validation Providers](https://medium.com/@logaretm/vee-validate-validation-providers-b5b38647c05c)
 
 ### Standards and styles
 
