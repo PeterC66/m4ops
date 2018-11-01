@@ -17,22 +17,15 @@
     >
       <font-awesome-icon icon="arrow-up" />
     </el-button>
-    <el-tooltip
-      class="item"
-      effect="light"
-      content="Opacity"
-      placement="top"
-    >
-      <div style="position:relative; width: 80%; left:10%">
-        <vue-slider
-          v-if="showSlider"
-          ref="slider"
-          v-model="sliderValue"
-          v-bind="sliderOptions"
-          @change="handleOpacityChange"
-        />
-      </div>
-    </el-tooltip>
+    <div style="position:relative; width: 80%; left:10%">
+      <vue-slider
+        v-if="showSlider"
+        ref="slider"
+        v-model="sliderValue"
+        v-bind="sliderOptions"
+        @change="handleOpacityChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -76,13 +69,14 @@ export default {
         eventType: 'auto',
         width: 'auto',
         height: 4,
-        dotSize: 5,
+        dotSize: 6,
         min: 0,
         max: 100,
         interval: 1,
         show: true,
         speed: 1,
-        tooltip: false,
+        tooltip: 'hover',
+        formatter: v => `Opacity ${v}%`,
       },
     };
   },
