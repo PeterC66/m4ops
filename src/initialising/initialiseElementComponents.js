@@ -14,7 +14,6 @@ import {
   Option,
   Popover,
   Select,
-  Slider,
   Switch,
   TabPane,
   Tabs,
@@ -41,7 +40,6 @@ export default function initialiseElementComponents(Vue) {
   Vue.component(Option.name, Option);
   Vue.component(Popover.name, Popover);
   Vue.component(Select.name, Select);
-  Vue.component(Slider.name, Slider);
   Vue.component(Switch.name, Switch);
   Vue.component(TabPane.name, TabPane);
   Vue.component(Tabs.name, Tabs);

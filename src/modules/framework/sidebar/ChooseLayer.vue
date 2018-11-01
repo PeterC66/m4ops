@@ -24,10 +24,11 @@
       placement="top"
     >
       <div style="position:relative; width: 80%; left:10%">
-        <el-slider
+        <vue-slider
           v-if="showSlider"
+          ref="slider"
           v-model="sliderValue"
-          :show-tooltip="false"
+          v-bind="sliderOptions"
           @change="handleOpacityChange"
         />
       </div>
@@ -37,12 +38,16 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import vueSlider from 'vue-slider-component';
 
 import { ldidToCategoryAndLayer } from '../../../store/modules/vuexApi/categoriesAndLayers'; // eslint-disable-line max-len
 import { newVoid } from '../../../global/utils';
 
 export default {
   name: 'ChooseLayer',
+  components: {
+    vueSlider,
+  },
   props: {
     layer: {
       type: Object,
@@ -66,12 +71,32 @@ export default {
       // default value
       selectedOption: ldidToCategoryAndLayer(this.layer.ldid),
       sliderValue: this.layer.opacity * 100, // value is opacity per cent
+
+      sliderOptions: {
+        eventType: 'auto',
+        width: 'auto',
+        height: 4,
+        dotSize: 5,
+        min: 0,
+        max: 100,
+        interval: 1,
+        show: true,
+        speed: 1,
+        tooltip: false,
+      },
     };
   },
   computed: {
     ...mapGetters([
       'layerOptions',
     ]),
+  },
+  watch: {
+    sliderValue(value) {
+      if (value !== this.layer.opacity * 100) {
+        this.handleOpacityChange(value);
+      }
+    },
   },
   methods: {
     handleLdidChange(value) {

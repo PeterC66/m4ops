@@ -1,10 +1,11 @@
 import _ from 'lodash';
 import createLogger from 'vuex/dist/logger';
 
-import { UPDATE_VIEW } from '../mutation-types';
+import { UPDATE_VIEW, OPACITY_SET_REQUEST } from '../mutation-types';
 
 const ignoreMutations = [
   UPDATE_VIEW,
+  OPACITY_SET_REQUEST,
 ];
 
 // For options see https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin

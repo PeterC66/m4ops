@@ -476,7 +476,9 @@ graph LR;
 - [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
 - See also vue.config.js [css-modules](https://cli.vuejs.org/config/#css-modules)
 
-### Element components
+### Useful components
+
+#### Element components
 
 - [Guide](http://element.eleme.io/#/en-US/guide/design), [Quick Start and Components](http://element.eleme.io/#/en-US/component/quickstart)
 - [Awesome Element - A curated list of Element projects etc](https://github.com/ElementUI/awesome-element)
@@ -487,11 +489,16 @@ graph LR;
 - [Gitter conversations](https://gitter.im/element-en/Lobby)
 - [Element for VueJS: 5 things to love and 5 things to hate](https://medium.com/@denny.headrick/element-for-vuejs-5-things-to-love-and-5-things-to-hate-d6ca336223b4)
 
-### Vue Forms
+#### Vue Slider Component
+
+- [vue-slider-component](https://nightcatsama.github.io/vue-slider-component/example/) - [github](https://github.com/NightCatSama/vue-slider-component), [jsfiddle](https://jsfiddle.net/2xy72dod/8746/)
+- [Introduction](https://www.develodesign.co.uk/vue/vue-slider-component-vue-2/) and [part 2](https://www.develodesign.co.uk/news/vue-slider-component-vue-2-part-2/)
+
+#### Vue Forms
 
 - Can use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
 - Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
-- or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO - using Element UI
+- or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO as it is too all-embracing - using Element UI et al
 - see [VeeValidate 2.1: Validation Providers](https://medium.com/@logaretm/vee-validate-validation-providers-b5b38647c05c)
 
 ### Standards and styles
