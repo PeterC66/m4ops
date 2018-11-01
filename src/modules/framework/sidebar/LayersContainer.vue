@@ -3,14 +3,14 @@
     <ChooseLayer
       v-for="(layer, index) in chosenLayersMainmap"
       :layer="layer"
-      :key="layer.ldid"
+      :key="'SCL'+index+layer.ldid"
       :layer-number="index"
       :show-slider="index>0"
     />
     <ChooseLayer
       v-if="nChosenLayers < maxChooseLayers"
       :layer="{ldid:voidLdid, opacity: 0.5}"
-      :key="nChosenLayers"
+      :key="'SCL'+nChosenLayers"
       :layer-number="nChosenLayers"
       :show-slider="false"
     />

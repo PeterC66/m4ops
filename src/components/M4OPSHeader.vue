@@ -3,7 +3,7 @@
     <h1> {{ msg }}
       <font-awesome-icon icon="arrow-up" />
       <font-awesome-icon icon="arrow-down" />
-      <!-- In full <font-awesome-icon icon="[ 'fab', 'vuejs' ]" />
+      <!-- In full <font-awesome-icon icon="[ 'fas', 'arrow-up' ]" />
        (fas = solid - is the default) -->
     </h1>
   </div>

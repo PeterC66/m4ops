@@ -20,11 +20,6 @@ export default Vue.component('layer-and-source', {
       required: true,
     },
   },
-  computed: {
-    ldidN() { // Just to get redisplayed
-      return this.layer.ldid + this.layerNumber;
-    },
-  },
   render(createElement) {
     let vlLayerElement = {};
     const {
@@ -32,15 +27,20 @@ export default Vue.component('layer-and-source', {
       ldid,
       title,
       layerdescription,
+      opacity,
     } = this.layer;
     const layerDataObject = {
-      props: {
+      attrs: {
         title,
         layerdescription,
         id: `${title}-${this.layerNumber}`,
-        opacity: this.layer.opacity,
+        opacity,
+        layer: this.layer,
+        'z-index': this.layerNumber,
       },
+      key: `ML${this.layerNumber}${ldid}`,
     };
+    // console.log(`rendering ML ${this.layerNumber} ${opacity} ${ldid}`);
     if (layertype === 'Tile') {
       vlLayerElement = layerAndSourceTile(
         createElement,

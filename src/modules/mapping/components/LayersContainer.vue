@@ -3,7 +3,7 @@
     <layer-and-source
       v-for="(layer, index) in chosenLayerDefsMainmap"
       :layer="layer"
-      :key="index"
+      :key="'MCL'+index+layer.ldid"
       :layer-number="index"
       :ops-code="OPSDetails.OPSCode"
     />

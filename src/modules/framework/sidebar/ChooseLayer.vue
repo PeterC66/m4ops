@@ -15,7 +15,7 @@
       size="mini"
       @click="moveUp()"
     >
-      <font-awesome-icon icon="chevron-circle-up"/>
+      <font-awesome-icon icon="arrow-up" />
     </el-button>
     <el-tooltip
       class="item"
