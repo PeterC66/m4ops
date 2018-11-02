@@ -20,8 +20,6 @@ function sourceVector(
     const ext = befaft(url, '.')[1].toLowerCase(); // assumes only one period
     const layerId = replaceAll(befaft(url, '.')[0], ' ', '_'); // assumes only one period
     const urlToUse = `http://localhost:5000/featurelayers/${opsCode}_${layerId}`; // eslint-disable-line max-len
-    console.log(urlToUse);
-    // const urlToUse = 'https://openlayers.org/en/latest/examples/data/geojson/countries.geojson'; // eslint-disable-line max-len
     const atts = attribution ? [attributionFromCode(attribution)] : [];
     switch (ext) {
       case 'geojson':

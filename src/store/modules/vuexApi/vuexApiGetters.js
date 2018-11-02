@@ -140,7 +140,12 @@ vuexApiGetters.OPSAllLayerDefsArray = (moduleState, getters) =>
   (getters.LayerDefsArrayBeforeExclusions || [])
     .filter(ld => (isNotExcluded(ld, (getters.place || {}).ExclusionsArray)));
 
+vuexApiGetters.getOPSAllLayerDefsArrayByLdid = (moduleState, getters) =>
+  ldid => _.find(getters.OPSAllLayerDefsArray, { ldid }) || {};
 
+// ----------------------------------------------------------------------
+
+// The 2-level options for the ChooseLayer cascaders
 vuexApiGetters.layerOptions = (moduleState, getters) =>
   categoriesAndLayers(getters.OPSAllLayerDefsArray);
 

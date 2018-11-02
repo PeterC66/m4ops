@@ -63,8 +63,8 @@ export default {
     return {
       // default value
       selectedOption: ldidToCategoryAndLayer(this.layer.ldid),
-      sliderValue: this.layer.opacity * 100, // value is opacity per cent
 
+      sliderValue: this.layer.opacity * 100, // value is opacity per cent
       sliderOptions: {
         eventType: 'auto',
         width: 'auto',
@@ -94,10 +94,21 @@ export default {
   },
   methods: {
     handleLdidChange(value) {
-      // value is array of length 2, or or length 0 if chosen layer is deleted
+      // value is array of length 2 (category, ldid), or of length 0 if chosen layer is deleted
+      const ldid = value[1];
+      console.log('Handling', ldid);
+      let displayType = 'A';
+      if (ldid) {
+        const ld = this.$store.getters.getOPSAllLayerDefsArrayByLdid(ldid);
+        if (ld) {
+          displayType = ld.displaytype || 'A';
+        }
+        console.log(ld, displayType);
+      }
       this.$store.dispatch('setLayer', {
-        ldid: value[1],
+        ldid,
         layerNumber: this.layerNumber,
+        displayType,
       });
     },
     handleOpacityChange(value) {

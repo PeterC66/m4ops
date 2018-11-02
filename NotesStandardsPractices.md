@@ -475,6 +475,8 @@ graph LR;
 - Use [Bulma](https://bulma.io/) for a CSS framework? (like Bootstrap) - as used by vuelayers
 - [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
 - See also vue.config.js [css-modules](https://cli.vuejs.org/config/#css-modules)
+- [CSS Specificity: Things You Should Know](https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/)
+- [How to Organize Your CSS with a Modular Architecture (OOCSS, BEM, SMACSS)](https://snipcart.com/blog/organize-css-modular-architecture?)
 
 ### Useful components
 
