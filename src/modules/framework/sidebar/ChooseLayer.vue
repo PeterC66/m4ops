@@ -10,7 +10,7 @@
       @blur="handleBlur"
     />
     <el-button
-      v-if="showSlider"
+      v-if="showUpButton"
       type="text"
       size="mini"
       @click="moveUp()"
@@ -58,6 +58,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    showUpButton: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -96,14 +100,12 @@ export default {
     handleLdidChange(value) {
       // value is array of length 2 (category, ldid), or of length 0 if chosen layer is deleted
       const ldid = value[1];
-      console.log('Handling', ldid);
       let displayType = 'A';
       if (ldid) {
         const ld = this.$store.getters.getOPSAllLayerDefsArrayByLdid(ldid);
         if (ld) {
           displayType = ld.displaytype || 'A';
         }
-        console.log(ld, displayType);
       }
       this.$store.dispatch('setLayer', {
         ldid,

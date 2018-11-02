@@ -206,3 +206,13 @@ export function isVoid(ldid) {
   return ldid.substring(0, 4) === strVoid;
 }
 
+export function thisAndPrevious(a, prop) {
+  const result = [{ thisValue: a[0][prop], previousValue: undefined }];
+  for (let i = 1; i < a.length; i += 1) {
+    result.push({
+      thisValue: a[i][prop],
+      previousValue: a[i - 1][prop],
+    });
+  }
+  return result;
+}

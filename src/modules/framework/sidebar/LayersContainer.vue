@@ -1,18 +1,22 @@
 <template>
   <div>
+    <!-- eslint-disable max-len -->
     <ChooseLayer
       v-for="(layer, index) in chosenLayersMainmap"
       :layer="layer"
       :key="'SCL'+index+layer.ldid"
       :layer-number="index"
       :show-slider="index>0"
+      :show-up-button="index>0"
     />
+    <!-- eslint-enable max-len -->
     <ChooseLayer
       v-if="nChosenLayers < maxChooseLayers"
       :layer="{ldid:voidLdid, opacity: 0.5}"
       :key="'SCL'+nChosenLayers"
       :layer-number="nChosenLayers"
       :show-slider="false"
+      :show-up-button="false"
     />
   </div>
 </template>

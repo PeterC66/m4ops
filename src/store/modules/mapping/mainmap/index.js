@@ -5,6 +5,7 @@ import {
   join,
   isVoid,
   newVoid,
+  thisAndPrevious,
 } from '../../../../global/utils';
 
 import {
@@ -26,7 +27,8 @@ const mutations = {
     const arrayLength = moduleState.chosenLayers.length;
     if (isDefined(layerNumber)) {
       if (layerNumber < arrayLength) {
-        const { opacity } = moduleState.chosenLayers[layerNumber];
+        let { opacity } = moduleState.chosenLayers[layerNumber];
+        if (layerNumber === 0 || displayType === 'B') opacity = 1;
         // Use splice to ensure reactivity
         moduleState.chosenLayers.splice(
           layerNumber,
@@ -84,14 +86,25 @@ const mutations = {
         moduleState.chosenLayers[layerNumber - 1],
         moduleState.chosenLayers[layerNumber],
       ];
-      moduleState.chosenLayers.splice(
-        layerNumber - 1,
-        2,
-        /* eslint-disable max-len */
-        { ldid: pair[1].ldid, opacity: pair[0].opacity, displayType: pair[1].displayType },
-        { ldid: pair[0].ldid, opacity: pair[1].opacity, displayType: pair[0].displayType },
-        /* eslint-enable max-len */
-      );
+      if (pair[0].displayType === pair[1].displayType) {
+        moduleState.chosenLayers.splice(
+          layerNumber - 1,
+          2,
+          /* eslint-disable max-len */
+          { ldid: pair[1].ldid, opacity: pair[0].opacity, displayType: pair[1].displayType },
+          { ldid: pair[0].ldid, opacity: pair[1].opacity, displayType: pair[0].displayType },
+          /* eslint-enable max-len */
+        );
+      } else {
+        moduleState.chosenLayers.splice(
+          layerNumber - 1,
+          2,
+          /* eslint-disable max-len */
+          { ldid: pair[1].ldid, opacity: pair[1].opacity, displayType: pair[1].displayType },
+          { ldid: pair[0].ldid, opacity: pair[0].opacity, displayType: pair[0].displayType },
+          /* eslint-enable max-len */
+        );
+      }
 
       moduleState.chosenLayers =
         _.sortBy(
@@ -154,6 +167,17 @@ const getters = {
       if (x > y) { return 1; }
       return 0;
     });
+  },
+  displayTypeAsAbove(
+    moduleState,
+    moduleGetters,
+  ) {
+    const tandp = (thisAndPrevious(
+      moduleGetters.chosenLayerDefsMainmap,
+      'displayType',
+    ));
+    console.log(tandp);
+    return tandp.thisValue === tandp.previousValue;
   },
 };
 
