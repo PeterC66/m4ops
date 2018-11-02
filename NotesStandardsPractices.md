@@ -294,6 +294,7 @@ See under [Standards and styles](#standards-and-styles)
 
 ## JS and ES6 standards
 
+- [Roadmap for learning the JavaScript language ES3++](https://bytearcher.com/articles/roadmap-for-learning-javascript-language/) - see MDN links for basic syntax, functions, object literals, arrays, regular expressions, prototypal inheritance
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - useful book - [Exploring ES6](http://exploringjs.com/es6/) covers every level
 - [useful list of es6 features](https://github.com/lukehoban/es6features)
