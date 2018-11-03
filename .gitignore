@@ -1,7 +1,7 @@
 .DS_Store
-node_modules
-/dist
-OldReact
+/**/node_modules
+/**/dist
+client/OldReact
 vuelayers-demo
 
 # local env files

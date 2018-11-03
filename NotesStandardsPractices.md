@@ -107,6 +107,8 @@ The main stack is
 - \<-via REST API-\>
 - the server: Express, Node, MongoDB
 
+- see [Build full stack web apps with MEVN Stack](https://medium.com/@anaida07/mevn-stack-application-part-1-3a27b61dcae0) and [Part 2](https://medium.com/@anaida07/mevn-stack-application-part-2-2-9ebcf8a22753)
+
 ## Folder and File set-up
 
 **public** Folder Structure
@@ -554,6 +556,7 @@ graph LR;
 
 - [Vue CLI](https://cli.vuejs.org/) Provides Standard Tooling for Vue.js Development
 - To run a project > npm run serve
+- See [Deployment](https://cli.vuejs.org/guide/deployment.html#general-guidelines)
 - For [amazon S3](https://github.com/multiplegeorges/vue-cli-plugin-s3-deploy)
 
 - (Remember that npm install -E (or --save-exact) ensures that the current version is not updated)
@@ -566,7 +569,6 @@ graph LR;
 
 - [configuration](https://webpack.js.org/configuration/)
 - [the-core-concepts](https://webpack.academy/p/the-core-concepts)
-- [Vue Loader](https://vue-loader.vuejs.org/) is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs) - .vue
 - See vue.config.js [configurewebpack](https://cli.vuejs.org/config/#configurewebpack)
 - need [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) in webpack for environment variables eg process.env.NODE_ENV
   - see [Node environment variables](https://medium.freecodecamp.org/heres-how-you-can-actually-use-node-environment-variables-8fdf98f53a0a)
@@ -575,9 +577,22 @@ graph LR;
   - See also [A quick look at Parcel](https://glebbahmutov.com/blog/parcel/), and [Getting Started With Parcel](https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c)
   - OL has [this example](https://github.com/openlayers/ol-parcel), and their [Building an OpenLayers Application tutorial](http://openlayers.org/en/latest/doc/tutorials/bundle.html)
 
-### Production
+### Production - Client
 
-See [Dockerize Vue.js App](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
+- Use [GitHub Pages](https://pages.github.com/)?
+- (See also Production - Server)
+- [Vue Production Deployment](https://vuejs.org/v2/guide/deployment.html)
+- [vue-loader](https://vue-loader.vuejs.org/) is a loader for webpack that handles Single-File Components (SFCs):
+- [CSS Extraction](https://vue-loader.vuejs.org/guide/extract-css.html#webpack-4)
+- [Kubernetes vs. Docker: What Does It Really Mean?](https://www.sumologic.com/blog/devops/kubernetes-vs-docker/)
+- See [Dockerize Vue.js App](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
+
+- [Deploying a production Node/Express Mongo App to AWS — soft lessons](https://medium.freecodecamp.org/deploying-a-production-node-express-mongo-app-to-aws-a-reflection-8982894289c6)
+- refers to [How to deploy a Node.js app to the AWS Elastic Beanstalk](https://medium.freecodecamp.org/how-to-deploy-a-node-js-app-to-the-aws-elastic-beanstalk-f150899ed977)
+
+- See [Google](https://www.google.co.uk/search?q=deploy+vue+express+mongodb&ei=marcW9fsOcncgAanirToDw&start=10&sa=N&ved=0ahUKEwiXna7RvbbeAhVJLsAKHScFDf0Q8NMDCMoB&biw=1536&bih=732)
+- [Heroku for Node?](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+- [How To Deploy Nodejs App To Heroku](https://appdividend.com/2018/04/14/how-to-deploy-nodejs-app-to-heroku/)
 
 ## Debugging
 
@@ -741,6 +756,12 @@ To *create Places.json*
 
 - Could use [mlab.com](https://mlab.com/) - the leading Database-as-a-Service for MongoDB, 500MB free
   - see passwords file for command
+
+### MongoDB Atlas implementation
+
+- [Documentation](https://docs.atlas.mongodb.com/)
+- See presents for users etc
+- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-3v0lv.mongodb.net:27017,cluster0-shard-00-01-3v0lv.mongodb.net:27017,cluster0-shard-00-02-3v0lv.mongodb.net:27017 --ssl --username Peter01 --password m8E$9bKp --authenticationDatabase admin --db <DATABASE> --collection <COLLECTION> --type <FILETYPE> --file <FILENAME>
 
 ## Other Notes
 
