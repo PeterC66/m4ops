@@ -3,7 +3,7 @@ import { ApiHandlerComponent } from 'vuex-api';
 
 import globalPlugin1 from './global/plugins/globalPlugin1';
 
-import initialiseFontAwesome from './initialising/initialiseFontAwesome';
+import initialiseFontAwesome from './initialising/initialisefontawesome';
 import initialiseElementComponents from './initialising/initialiseElementComponents'; // eslint-disable-line max-len
 import initialiseVueLayers from './initialising/initialiseVueLayers';
 import initialiseWarnings from './initialising/initialiseWarnings';
