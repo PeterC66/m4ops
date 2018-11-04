@@ -761,7 +761,7 @@ To *create Places.json*
 
 - [Documentation](https://docs.atlas.mongodb.com/)
 - See presents for users etc
-- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-3v0lv.mongodb.net:27017,cluster0-shard-00-01-3v0lv.mongodb.net:27017,cluster0-shard-00-02-3v0lv.mongodb.net:27017 --ssl --username Peter01 --password m8E$9bKp --authenticationDatabase admin --db <DATABASE> --collection <COLLECTION> --type <FILETYPE> --file <FILENAME>
+- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-3v0lv.mongodb.net:27017,cluster0-shard-00-01-3v0lv.mongodb.net:27017,cluster0-shard-00-02-3v0lv.mongodb.net:27017 --ssl --username Peter01 --password m8E$9bKp --authenticationDatabase admin --db [DATABASE] --collection [COLLECTION] --type [FILETYPE] --file [FILENAME]
 
 ## Other Notes
 

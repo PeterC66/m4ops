@@ -24,7 +24,9 @@ Uses Docker to begin with for Mongodb, but later MLab so we ignore Docker.
 [Vue.js and AWS Lambda: Developing Production-Ready Apps (Part 2)](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-2/)
 
 Create accounts with:
-  - AWS
-  - Auth0 (for later)
-  - MongoDB Atlas (mLab is merging with them)
-  
+
+- AWS
+- Auth0 (for later)
+- MongoDB Atlas (mLab is merging with them)
+
+Use nodemon src/appd to start development server (Lambda server is at src/app)

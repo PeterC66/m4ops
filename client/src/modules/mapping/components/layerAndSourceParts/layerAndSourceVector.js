@@ -46,7 +46,10 @@ function layerStyle(
   opsCode,
 ) {
   const vlLayerStyle = createVlStyleBox(createElement, {
-    strokeColor: 'green', fillColor: 'green', radius: 5, circleColor: 'orange',
+    strokeColor: 'DarkGreen',
+    fillColor: 'LightGreen',
+    radius: 5,
+    circleColor: 'orange',
   });
 
   return vlLayerStyle;
