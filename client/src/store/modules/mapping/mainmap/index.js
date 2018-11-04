@@ -23,12 +23,12 @@ const state = {
 
 const mutations = {
   [LAYER_SET_REQUEST](moduleState, payload) {
-    const { ldid, layerNumber, displayType } = payload;
+    const { ldid, layerNumber, displaytype } = payload;
     const arrayLength = moduleState.chosenLayers.length;
     if (isDefined(layerNumber)) {
       if (layerNumber < arrayLength) {
         let { opacity } = moduleState.chosenLayers[layerNumber];
-        if (layerNumber === 0 || displayType === 'B') opacity = 1;
+        if (layerNumber === 0 || displaytype === 'B') opacity = 1;
         // Use splice to ensure reactivity
         moduleState.chosenLayers.splice(
           layerNumber,
@@ -36,7 +36,7 @@ const mutations = {
           {
             ldid: ldid || newVoid(),
             opacity,
-            displayType,
+            displaytype,
           },
         );
       } else {
@@ -45,8 +45,8 @@ const mutations = {
           0,
           {
             ldid: ldid || newVoid(),
-            opacity: (layerNumber === 0 || displayType === 'B') ? 1 : 0.5,
-            displayType,
+            opacity: (layerNumber === 0 || displaytype === 'B') ? 1 : 0.5,
+            displaytype,
           },
         );
       }
@@ -57,8 +57,9 @@ const mutations = {
             moduleState.chosenLayers,
             value => !isVoid(value.ldid),
           ),
-          'displayType',
+          'displaytype',
         );
+      moduleState.chosenLayers[0].opacity = 1; // in case not
     } else {
       console.log('Warning: layerNumber is undefined');
     }
@@ -86,13 +87,13 @@ const mutations = {
         moduleState.chosenLayers[layerNumber - 1],
         moduleState.chosenLayers[layerNumber],
       ];
-      if (pair[0].displayType === pair[1].displayType) {
+      if (pair[0].displaytype === pair[1].displaytype) {
         moduleState.chosenLayers.splice(
           layerNumber - 1,
           2,
           /* eslint-disable max-len */
-          { ldid: pair[1].ldid, opacity: pair[0].opacity, displayType: pair[1].displayType },
-          { ldid: pair[0].ldid, opacity: pair[1].opacity, displayType: pair[0].displayType },
+          { ldid: pair[1].ldid, opacity: pair[0].opacity, displaytype: pair[1].displaytype },
+          { ldid: pair[0].ldid, opacity: pair[1].opacity, displaytype: pair[0].displaytype },
           /* eslint-enable max-len */
         );
       } else {
@@ -100,8 +101,8 @@ const mutations = {
           layerNumber - 1,
           2,
           /* eslint-disable max-len */
-          { ldid: pair[1].ldid, opacity: pair[1].opacity, displayType: pair[1].displayType },
-          { ldid: pair[0].ldid, opacity: pair[0].opacity, displayType: pair[0].displayType },
+          { ldid: pair[1].ldid, opacity: pair[1].opacity, displaytype: pair[1].displaytype },
+          { ldid: pair[0].ldid, opacity: pair[0].opacity, displaytype: pair[0].displaytype },
           /* eslint-enable max-len */
         );
       }
@@ -112,7 +113,7 @@ const mutations = {
             moduleState.chosenLayers,
             value => !isVoid(value.ldid),
           ),
-          'displayType',
+          'displaytype',
         );
       // moduleState.chosenLayers =
       //   _.dropRightWhile(
@@ -124,10 +125,10 @@ const mutations = {
 };
 
 const actions = {
-  // payload is { ldid:string_index_into_LayerDefsArray, layerNumber: eg 0, displayType: eg A }
-  setLayer({ commit }, { ldid, layerNumber, displayType }) {
-    console.log('setLayer', ldid, layerNumber, displayType);
-    commit(LAYER_SET_REQUEST, { ldid, layerNumber, displayType });
+  // payload is { ldid:string_index_into_LayerDefsArray, layerNumber: eg 0, displaytype: eg A }
+  setLayer({ commit }, { ldid, layerNumber, displaytype }) {
+    console.log('setLayer', ldid, layerNumber, displaytype);
+    commit(LAYER_SET_REQUEST, { ldid, layerNumber, displaytype });
   },
   // payload is {opacity: eg 0.5, layerNumber: eg 0}
   setOpacity({ commit }, { opacity, layerNumber }) {
@@ -168,15 +169,14 @@ const getters = {
       return 0;
     });
   },
-  displayTypeAsAbove(
+  displaytypeAsAbove(
     moduleState,
     moduleGetters,
   ) {
     const tandp = (thisAndPrevious(
       moduleGetters.chosenLayerDefsMainmap,
-      'displayType',
+      'displaytype',
     ));
-    console.log(tandp);
     return tandp.thisValue === tandp.previousValue;
   },
 };

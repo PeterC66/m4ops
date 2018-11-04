@@ -169,7 +169,7 @@ export function join(
   for (let j = 0; j < m; j += 1) { // loop through m items
     const y = mainTable[j];
     const x = lookupIndex[y[mainKey]]; // get corresponding row from lookupTable
-    if (!isInner || isDefined(x)) output.push(select(y, x)); // select only the columns you need
+    if (!isInner || isDefined(x)) output.unshift(select(y, x)); // select only the columns you need
   }
 
   return output;

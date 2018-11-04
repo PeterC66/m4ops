@@ -100,17 +100,17 @@ export default {
     handleLdidChange(value) {
       // value is array of length 2 (category, ldid), or of length 0 if chosen layer is deleted
       const ldid = value[1];
-      let displayType = 'A';
+      let displaytype = 'A';
       if (ldid) {
         const ld = this.$store.getters.getOPSAllLayerDefsArrayByLdid(ldid);
         if (ld) {
-          displayType = ld.displaytype || 'A';
+          displaytype = ld.displaytype || 'A';
         }
       }
       this.$store.dispatch('setLayer', {
         ldid,
         layerNumber: this.layerNumber,
-        displayType,
+        displaytype,
       });
     },
     handleOpacityChange(value) {
