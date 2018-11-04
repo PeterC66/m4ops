@@ -2,11 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const placeRoute = require('./routes/place');
-const continentRoute = require('./routes/continent');
-const m4opsDataRoute = require('./routes/m4opsdata');
-const featureLayerRoute = require('./routes/featurelayer');
-const routes = require('./routes/index');
+const placeRoute = require('./src/routes/place');
+const continentRoute = require('./src/routes/continent');
+const m4opsDataRoute = require('./src/routes/m4opsdata');
+const featureLayerRoute = require('./src/routes/featurelayer');
+const routes = require('./src/routes/index');
 
 require('dotenv').config();
 
