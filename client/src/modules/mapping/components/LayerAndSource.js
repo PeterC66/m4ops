@@ -1,9 +1,7 @@
 import Vue from 'vue';
 import _ from 'lodash';
 
-import layerAndSourceTile from './layerAndSourceParts/layerAndSourceTile';
-import layerAndSourceWmts from './layerAndSourceParts/layerAndSourceWmts';
-import layerAndSourceVector from './layerAndSourceParts/layerAndSourceVector';
+import layerAndSourceCreate from './layerAndSourceParts/LayerAndSourceCreate';
 
 export default Vue.component('layer-and-source', {
   props: {
@@ -23,45 +21,31 @@ export default Vue.component('layer-and-source', {
   render(createElement) {
     let vlLayerElement = {};
     const {
-      layertype,
       ldid,
       title,
       layerdescription,
       opacity,
     } = this.layer;
+    const visible = true;
     const layerDataObject = {
       attrs: {
         title,
         layerdescription,
         id: `${title}-${this.layerNumber}`,
         opacity,
+        visible,
         layer: this.layer,
         'z-index': this.layerNumber,
       },
       key: `ML${this.layerNumber}${ldid}`,
     };
     // console.log(`rendering ML ${this.layerNumber} ${opacity} ${ldid}`);
-    if (layertype === 'Tile') {
-      vlLayerElement = layerAndSourceTile(
-        createElement,
-        this.layer,
-        layerDataObject,
-      );
-    } else if (layertype === 'WMTS') { // the layerDef is defined by its catalogue entry
-      // See https://mapping4ops.org/background/useful-background-on-web-mapping/ re WMTS/WMS
-      vlLayerElement = layerAndSourceWmts(
-        createElement,
-        this.layer,
-        layerDataObject,
-      );
-    } else if (layertype === 'Vector') {
-      vlLayerElement = layerAndSourceVector(
-        createElement,
-        this.layer,
-        layerDataObject,
-        this.opsCode,
-      );
-    }
+    vlLayerElement = layerAndSourceCreate(
+      createElement,
+      this.layer,
+      layerDataObject,
+      this.opsCode,
+    );
 
     if (_.isEmpty(vlLayerElement)) {
       console.log(`${ldid} returns no vl elements`);

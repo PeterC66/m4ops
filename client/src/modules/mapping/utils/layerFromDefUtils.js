@@ -1,6 +1,7 @@
 import { replaceAll } from '../../../global/utils';
 
 export function getLayerTitles(inString) {
+  // Takes a comma separated list of titles and returns an array of them
   // console.log("inString",inString);
   let layerString = inString;
   // Cope with no quotes and/or no brackets

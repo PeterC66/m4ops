@@ -4,6 +4,7 @@
 import {
   Map,
   TileLayer,
+  // GroupLayer,
   OsmSource,
   BingMapsSource,
   XyzSource,
@@ -21,6 +22,7 @@ export default function initialiseVueLayers(Vue) {
   // See import above
   Vue.use(Map);
   Vue.use(TileLayer);
+  // Vue.use(GroupLayer);
   Vue.use(OsmSource);
   Vue.use(BingMapsSource);
   Vue.use(XyzSource);

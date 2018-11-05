@@ -1,24 +1,5 @@
 /*
 
-export function layerCollectionFromDef(LayerDefs, sdef) {
-  const layerCollection = new OlCollection();
-  // ignore attribution (NA), min/maxZoom (?)
-  if (sdef.url) { // should be a string array of layers
-    const layerTitles = getLayerTitles(sdef.url);
-    layerTitles.forEach((layerTitle) => {
-      const ldindex = indexOfArrayM4(LayerDefs, layerTitle, 'title');
-      if (ldindex > -1) {
-        layerCollection.push(layerFromDef(ldindex)); // eslint-disable-line no-use-before-define
-      } else {
-        console.log(`Cannot find Layer ${layerTitle}`); // eslint-disable-line no-console
-      }
-    });
-    return layerCollection;
-  }
-  console.log(sdef, ' has no string array of layers'); // eslint-disable-line no-console
-  return null;
-}
-
 function ldindexFromLdId(LayerDefs = [], ldid) {
   const result = LayerDefs.findIndex(ld => ld.ldid === ldid);
   if (result === -1) console.log(`No ${ldid} found in LayerDefs`); // eslint-disable-line no-console
@@ -132,34 +113,7 @@ export function layerFromDef(LayerDefs, ldid) {
 
     return layerToReturn;
 ********************************************************************************************************************
-  } else if (ld.layertype === 'Group') { // the layerDef is for a group of layers
-    RAISED ISSUE from vuelayers
-    // ignore attribution (NA), min/maxZoom (?)
-    layerToReturn = new OlLayerGroup({
-      title: titleToUse,
-    });
-    if (ld.sourcedef) {
-      // this source definition needs transforming into a proper Open Layers source
-      layerToReturn.setLayers(layerCollectionFromDef(ld.sourcedef));
-      // ld.sourcedef is a string array of layers
-    }
-
-    if (ld.extent) {
-      layerToReturn.setExtent(OlProj.transformExtent(ld.extent, 'EPSG:4326', 'EPSG:3857'));
-    } else if (ld.minx) { // minx, miny, maxx, maxy must all be there or all absent
-      const extent = [ld.minx, ld.miny, ld.maxx, ld.maxy];
-      layerToReturn.setExtent(OlProj.transformExtent(extent, 'EPSG:4326', 'EPSG:3857'));
-    } else if (ld.sourcedef) {
-      const extent = groupExtentFromDef(ld.sourcedef); // eslint-disable-line no-use-before-define
-      // assuming ld.sourcedef is a string array of layers
-      if (extent) layerToReturn.setExtent(extent);
-    }
-    layerToReturn.candownload = string2bool(ld.candownload, false);
-    layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
-
-    return layerToReturn;
-********************************************************************************************************************
+ ********************************************************************************************************************
   } else if (ld.layertype === 'Series') { // the layerDef is for a series of layers (possibly groups)
     // Note that Series can only be at Base, and we handle much of it elsewhere
     // ignore attribution (NA), min/maxZoom (?)

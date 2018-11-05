@@ -40,10 +40,12 @@ function sourceVector(
   return vlSourceElementVector;
 }
 
+// eslint-disable-next-line function-paren-newline
 function layerStyle(
   createElement,
-  sourcedef,
-  opsCode,
+  // sourcedef,
+  // opsCode,
+// eslint-disable-next-line function-paren-newline
 ) {
   const vlLayerStyle = createVlStyleBox(createElement, {
     strokeColor: 'DarkGreen',

@@ -143,6 +143,9 @@ vuexApiGetters.OPSAllLayerDefsArray = (moduleState, getters) =>
 vuexApiGetters.getOPSAllLayerDefsArrayByLdid = (moduleState, getters) =>
   ldid => _.find(getters.OPSAllLayerDefsArray, { ldid }) || {};
 
+vuexApiGetters.getOPSAllLayerDefsArrayByTitle = (moduleState, getters) =>
+  title => _.find(getters.OPSAllLayerDefsArray, { title }) || {};
+
 // ----------------------------------------------------------------------
 
 // The 2-level options for the ChooseLayer cascaders
