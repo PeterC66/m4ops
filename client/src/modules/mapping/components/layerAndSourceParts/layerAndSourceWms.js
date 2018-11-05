@@ -16,6 +16,7 @@ function sourceWms(
   let vlSourceElementWms = {};
 
   // const atts = attribution ? [attributionFromCode(attribution)] : [];
+  console.log('S-SD:', sourcedef, 'url:', url);
 
   if (url) {
     vlSourceElementWms = createElement(
@@ -34,7 +35,7 @@ function sourceWms(
       },
     );
   }
-
+  console.log('WMS:', vlSourceElementWms);
   return vlSourceElementWms;
 }
 
@@ -83,6 +84,7 @@ export default function layerAndSourceWms(
     ldid,
     sourcedef,
   } = layer;
+  console.log('layer:', layer, 'SD:', sourcedef, 'LDO:', layerDataObject);
   if (sourcedef) {
     vlSourceElementWms = sourceWms(
       createElement,
