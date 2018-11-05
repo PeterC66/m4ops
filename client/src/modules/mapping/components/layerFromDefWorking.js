@@ -125,32 +125,6 @@ export function layerFromDef(LayerDefs, ldid) {
     layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
     return layerToReturn;
 ********************************************************************************************************************
-  } else if (ld.layertype === 'WMS') { // See https://geospatialwandering.wordpress.com/category/wms/
-    layerToReturn = new OlLayerTile({
-      title: titleToUse, // Custom property - can be referred to as layer.values.title
-    });
-
-    if (ld.source) { // this is a proper Open Layers source already (eg the Universal Layers)
-      layerToReturn.setSource(ld.source);
-    } else if (ld.sourcedef) {
-      // this source definition needs transforming into a proper Open Layers source
-      layerToReturn.setSource(sourceWMSFromDef(ld.sourcedef));
-    }
-    /* Need projection?
-    if (ld.extent) {
-      layerToReturn.setExtent(OlProj.transformExtent(ld.extent,'EPSG:4326', 'EPSG:3857'));
-    } else if (ld.minx) { //minx, miny, maxx, maxy must all be there or all absent
-      const extent = [ld.minx, ld.miny, ld.maxx, ld.maxy];
-      layerToReturn.setExtent(OlProj.transformExtent(extent,'EPSG:4326', 'EPSG:3857'));
-    } * /
-    layerToReturn.candownload = string2bool(ld.candownload, false);
-    layerToReturn.fromLayerDef = ldindex; // used to get back from Layer to LayerDef
-    layerToReturn.ldid = ldid; // used to get back from Layer to LayerDef
-    // console.log(layerToReturn);
-    return layerToReturn;
-  }
-  return null;
-}
 
 ********************************************************************************************************************
 function groupExtentFromDef(LayerDefs, sdef) {

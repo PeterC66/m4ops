@@ -9,6 +9,7 @@ import {
   BingMapsSource,
   XyzSource,
   WmtsSource,
+  WmsSource,
   VectorLayer,
   VectorSource,
   StyleBox,
@@ -27,6 +28,7 @@ export default function initialiseVueLayers(Vue) {
   Vue.use(BingMapsSource);
   Vue.use(XyzSource);
   Vue.use(WmtsSource);
+  Vue.use(WmsSource);
   Vue.use(VectorLayer);
   Vue.use(VectorSource);
   Vue.use(StyleBox);

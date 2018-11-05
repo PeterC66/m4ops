@@ -2,11 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const morgan = require('morgan');
+
+const routes = require('./routes/index');
 const placeRoute = require('./routes/place');
 const continentRoute = require('./routes/continent');
 const m4opsDataRoute = require('./routes/m4opsdata');
 const featureLayerRoute = require('./routes/featurelayer');
-const routes = require('./routes/index');
 
 require('dotenv').config();
 
@@ -27,6 +30,9 @@ app.options('*', cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(helmet());
+app.use(morgan('combined'));
 
 app.use('/', routes);
 app.use('/places', placeRoute);

@@ -38,6 +38,7 @@ function sourceTile(
     );
   } else { // we assume all tiles are served by XYZ
     const OPSCode = 'HcN'; // Kludge TODO
+    console.log('Kludge: OPSCode = HcN');
 
     // the string storageName is either AWSS3 (use m4opsprod bucket on AWS S3),
     //   AWSS3DEV (use m4opsdev bucket on AWS S3)
