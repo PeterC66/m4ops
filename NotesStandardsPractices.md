@@ -781,3 +781,4 @@ To *create Places.json*
 - [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
 - Beware [Memory Leaks](https://vuejs.org/v2/cookbook/avoiding-memory-leaks.html)
 - [Should You Learn TypeScript? (Benefits & Resources)](https://snipcart.com/blog/learn-typescript-why-use-ts) (answer - not yet!)
+- to [install a specific version](https://60devs.com/npm-install-specific-version.html) use eg npm install vuelayers@^0.11.0 --save

@@ -23,9 +23,9 @@ Uses Docker to begin with for Mongodb, but later MLab so we ignore Docker.
 
 [Vue.js and AWS Lambda: Developing Production-Ready Apps (Part 2)](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-2/)
 
-Create accounts with:
+Create (m4ops@one-place-studies.org) accounts with:
 
-- AWS
+- AWS ( see also ...\Guiding documents\AWS S3 for storing maps.doc)
 - Auth0 (for later)
 - MongoDB Atlas (mLab is merging with them)
 
