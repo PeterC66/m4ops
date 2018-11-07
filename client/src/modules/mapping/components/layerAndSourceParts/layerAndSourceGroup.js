@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { getLayerTitles } from '../../utils/layerFromDefUtils';
 import layerAndSourceCreate from './LayerAndSourceCreate';
-import { vuexApi } from '../../../../store';
+import store from '../../../../store';
 
 /* TODO ??
     if (ld.sourcedef) {
@@ -45,7 +45,8 @@ function LayersInGroup(
   if (url) {
     const layerTitles = getLayerTitles(url);
     layerTitles.forEach((layerTitle) => {
-      const layer = vuexApi.getOPSAllLayerDefsArrayByTitle(layerTitle);
+      console.log(store); // eslint-disable-line no-console
+      const layer = store.getters.getOPSAllLayerDefsArrayByTitle(layerTitle);
       let vlLayerElement = {};
       if (layer) {
         vlLayerElement = layerAndSourceCreate(

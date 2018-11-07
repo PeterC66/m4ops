@@ -29,4 +29,7 @@ Create (m4ops@one-place-studies.org) accounts with:
 - Auth0 (for later)
 - MongoDB Atlas (mLab is merging with them)
 
-Use nodemon src/appd to start development server (Lambda server is at src/app)
+Now we use nodemon src/appd to start development server (Lambda server is at src/app)
+
+[The Most Popular Deployment Tools For Serverless](http://blog.epsagon.com/the-most-popular-deployment-tools-for-serverless)
+[Why serverless newbies should use a deployment framework](https://dev.to/paulswail/why-serverless-newbies-should-use-a-deployment-framework-3ea4) recommends [Serverless Framework](https://github.com/serverless/serverless)

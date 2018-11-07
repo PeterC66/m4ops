@@ -333,6 +333,7 @@ See under [Standards and styles](#standards-and-styles)
 - lodash has many useful functions
   - just import _ from 'lodash' (see [benchmark](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark))- eventually use [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)
   - for iteratees see [lodash documentation](https://lodash.com/docs/4.17.10#iteratee), and [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
+- for promises and async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async) - [full document](https://javascript.info/)
 
 ## Client Overview
 
@@ -440,9 +441,10 @@ graph LR;
 
 ### HTTP Requests
 
-- Use [**vuex-api**](https://github.com/vouill/vuex-api)
+- Did use [**vuex-api**](https://github.com/vouill/vuex-api)
   - for GETS use [json-api](https://github.com/vouill/vuex-api#using-a-component)
-- Use [Axios](https://www.npmjs.com/package/axios) rather than plain fetch
+- But now use plain [Axios](https://www.npmjs.com/package/axios) rather than plain fetch
+- [perform HTTP requests using Axios](https://flaviocopes.com/axios/) - simple examples
 - See [fetch-vs-axios](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
 - see [Using Axios to Consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html) for a simple approach
 - See [vue.config.js](https://cli.vuejs.org/config/) is an optional config file, and needed for eg devserver-proxy
@@ -501,6 +503,7 @@ graph LR;
 
 #### Vue Forms
 
+- [Working with Dynamic Components in Vue.js](https://www.raymondcamden.com/2018/10/31/working-with-dynamic-components-in-vuejs)
 - Can use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
 - Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 - or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO as it is too all-embracing - using Element UI et al
