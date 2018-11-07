@@ -9,6 +9,12 @@
   </div>
 </template>
 
+<!--
+<script>
+import './global/styles/App.scss';
+</script>
+-->
+
 <style scoped>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import { ApiHandlerComponent } from 'vuex-api';
+import Buefy from 'buefy';
+// import 'buefy/dist/buefy.css';
 
 import globalPlugin1 from './global/plugins/globalPlugin1';
 
@@ -18,6 +20,8 @@ initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);
 initialiseVueLayers(Vue);
 initialiseWarnings();
+
+Vue.use(Buefy);
 
 Vue.component(
   'json-api',

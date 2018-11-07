@@ -16,6 +16,8 @@ import {
   StrokeStyle,
   FillStyle,
   CircleStyle,
+  SelectInteraction,
+  Overlay,
 } from 'vuelayers';
 import 'vuelayers/lib/style.css'; // needs css-loader
 
@@ -35,4 +37,6 @@ export default function initialiseVueLayers(Vue) {
   Vue.use(StrokeStyle);
   Vue.use(FillStyle);
   Vue.use(CircleStyle);
+  Vue.use(SelectInteraction);
+  Vue.use(Overlay);
 }

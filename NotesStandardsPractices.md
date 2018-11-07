@@ -467,18 +467,13 @@ graph LR;
 
 ### CSS
 
-- We use plain CSS ??with variables - see [Everything you need to know about CSS Variables](https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855)
-  - a CSS variable is any “property” whose name begins with two dashes (case-sensitive)
-  - Use :root {} for 'global' variables eg :root { --font-size: 20px }
-  - reference a variable by using the var() function eg .test { font-size: var(--font-size) };
-    - second parameter of var is the default
-  - can do maths using the calc() function eg --space: calc(20px * 2);
-  - can change with js (root.style.setProperty)
+- Use [Bulma](https://bulma.io/) via [**Buefy**](https://buefy.github.io/) for a CSS framework (like Bootstrap) - as used by vuelayers
+- [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+- [Use scss within a .vue file](https://flaviocopes.com/vue-using-scss/) - installed node-sass & sass-loader
+- [Integrating and Using CSS Frameworks (eg Bulma) with Vue.js](https://alligator.io/vuejs/css-frameworks-vuejs/)
+- We used to use plain CSS ??with variables - see [Everything you need to know about CSS Variables](https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855)
 - [Learn CSS Layout](http://learnlayout.com) - a short course
 - [Styling Vue.Js Components Using CSS](https://flaviocopes.com/vue-css/) - lots of places to put css and classes
-- [Integrating and Using CSS Frameworks (eg Bulma) with Vue.js](https://alligator.io/vuejs/css-frameworks-vuejs/)
-- Use [Bulma](https://bulma.io/) for a CSS framework? (like Bootstrap) - as used by vuelayers
-- [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
 - See also vue.config.js [css-modules](https://cli.vuejs.org/config/#css-modules)
 - [CSS Specificity: Things You Should Know](https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/)
 - [How to Organize Your CSS with a Modular Architecture (OOCSS, BEM, SMACSS)](https://snipcart.com/blog/organize-css-modular-architecture?)
@@ -486,6 +481,8 @@ graph LR;
 ### Useful components
 
 #### Element components
+
+(**Being replaced by Buefy** when possible)
 
 - [Guide](http://element.eleme.io/#/en-US/guide/design), [Quick Start and Components](http://element.eleme.io/#/en-US/component/quickstart)
 - [Awesome Element - A curated list of Element projects etc](https://github.com/ElementUI/awesome-element)

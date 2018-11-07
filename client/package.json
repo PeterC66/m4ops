@@ -15,6 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.4.1",
     "@fortawesome/vue-fontawesome": "^0.1.1",
     "axios": "^0.18.0",
+    "buefy": "^0.7.0",
     "element-ui": "^2.4.8",
     "lodash": "^4.17.11",
     "ol": "^5.2.0",
@@ -39,6 +40,8 @@
     "babel-jest": "^23.0.1",
     "babel-plugin-component": "^1.1.1",
     "eslint-plugin-import": "^2.14.0",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
     "vue-cli-plugin-element": "^1.0.0",
     "vue-template-compiler": "^2.5.17"
   }
