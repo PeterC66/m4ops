@@ -1,36 +1,32 @@
 <template>
   <div
-    id="buttonsL1"
-    @headerl1-close-popover="closePopover"
-  >
-    <!-- opsdetails is an alias for place, used in the original M4OPS -->
-    <el-popover
-      placement="right"
-      width="400"
-      trigger="click"
-      title="Choose OPS"
-    >
-      <ChooseOPS/>
-      <!-- <a class="button">
-   <b-icon
-                icon="home"
-                size="is-small">
-            </b-icon>
-  </a> -->
-
-      <el-button
-        slot="reference"
-        type="primary"
-        size="medium"
-      >
-        <font-awesome-icon icon="chevron-circle-down"/>
-      </el-button>
-    </el-popover>
+    id="buttonsL1">
+    <b-tooltip
+      label="Choose a One-Place Study"
+      position="is-right">
+      <b-collapse
+        v-model="openValue">
+        <button
+          slot="trigger"
+          class="button is-primary">
+          <span class="icon">
+            <font-awesome-icon icon="chevron-circle-down"/>
+          </span>
+        </button>
+        <div class="notification">
+          <div class="content">
+            <ChooseOPS/>
+            <p>
+              Select the Continent, Country, County (eg), Study Area.
+            </p>
+          </div>
+        </div>
+      </b-collapse>
+    </b-tooltip>
   </div>
 </template>
 
 <script>
-import './Header.css';
 import ChooseOPS from './ChooseOPS.vue';
 
 export default {
@@ -44,14 +40,13 @@ export default {
       default: () => {},
     },
   },
-  methods: {
-    closePopover() { // TODO ??
-      this.visible = false;
-    },
+  data() {
+    return {
+      openValue: false,
+    };
   },
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
 </style>

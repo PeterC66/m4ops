@@ -14,3 +14,4 @@ export const MOVE_LAYER_UP = 'MOVE_LAYER_UP';
 // framework mutation types
 export const SIDEBAR_SWITCH_REQUEST = 'SIDEBAR_SWITCH_REQUEST';
 export const TAB_SELECT_REQUEST = 'TAB_SELECT_REQUEST';
+export const CHOOSE_OPS_STATE_REQUEST = 'CHOOSE_OPS_STATE_REQUEST';

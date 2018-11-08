@@ -12,7 +12,7 @@
 
 <script>
 import { actions } from 'vuex-api';
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ChooseOPS',
@@ -29,9 +29,11 @@ export default {
     ]),
   },
   methods: {
+    ...mapActions([
+      'setChooseOPS',
+    ]),
     handleChange(value) {
       console.log(value);
-      this.$emit('headerl1-close-popover');
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: `places/${value[3]}`,
@@ -39,6 +41,7 @@ export default {
       }).then(() => {
         this.$store.dispatch('updateView', this.homeView);
       });
+      this.setChooseOPS(false);
     },
   },
 };
