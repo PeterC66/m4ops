@@ -6,9 +6,29 @@
           <HeaderL1 :opsdetails="opsdetails" />
         </div>
       </div>
-      <p class="level-item has-text-centered">
-        <a class="link is-info">Home</a>
-      </p>
+      <h1
+        id="mainhead"
+        class="level-item has-text-centered">
+        <b-tooltip
+          label="Open the forum for Mapping for One-Place Studies"
+          position="is-right"
+          multilined>
+          <!-- <el-tooltip
+          class="item"
+          effect="light"
+          content="Open the forum for Mapping for One-Place Studies"
+          placement="right"
+        > -->
+          <a
+            href="http://mapping4ops.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            M4OPS: Mapping for One-Place Studies
+          </a>
+        </b-tooltip>
+      </h1>
+
       <div class="level-right">
         <div class="level-item">
           <HeaderR1 />

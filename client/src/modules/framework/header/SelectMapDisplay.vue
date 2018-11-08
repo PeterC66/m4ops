@@ -1,18 +1,21 @@
 <template>
-  <el-select
+  <b-dropdown
     v-model="value"
-    size="small"
-    placeholder="Select Map Display"
-    automatic-dropdown
     @change="updateMapDisplay"
   >
-    <el-option
+    <button
+      slot="trigger"
+      class="button is-primary  is-small">
+      <span>Map display</span>
+      <b-icon icon="menu-down"/>
+    </button>
+
+    <b-dropdown-item
       v-for="item in options"
       :key="item.value"
-      :label="item.label"
       :value="item.value"
-    />
-  </el-select>
+    >{{ item.label }}</b-dropdown-item>
+  </b-dropdown>
 </template>
 
 <script>

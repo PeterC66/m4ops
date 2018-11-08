@@ -1,24 +1,6 @@
 <template>
   <!-- opsdetails is an alias for place, used in the original M4OPS -->
   <div id="headertitles">
-    <div id="headertitle">
-      <h1 id="mainhead">
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Open the forum for Mapping for One-Place Studies"
-          placement="right"
-        >
-          <a
-            href="http://mapping4ops.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            M4OPS: Mapping for One-Place Studies
-          </a>
-        </el-tooltip>
-      </h1>
-    </div>
     <div id="headersubtitleblock">
       <el-tooltip
         class="item"

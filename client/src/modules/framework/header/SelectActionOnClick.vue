@@ -1,17 +1,21 @@
 <template>
-  <el-select
+  <b-dropdown
     v-model="value"
-    size="small"
-    automatic-dropdown
     @change="updateActionOnClick"
   >
-    <el-option
+    <button
+      slot="trigger"
+      class="button is-primary  is-small">
+      <span>Action on click</span>
+      <b-icon icon="menu-down"/>
+    </button>
+
+    <b-dropdown-item
       v-for="item in options"
       :key="item.value"
-      :label="item.label"
       :value="item.value"
-    />
-  </el-select>
+    >{{ item.label }}</b-dropdown-item>
+  </b-dropdown>
 </template>
 
 <script>
