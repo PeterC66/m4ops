@@ -21,7 +21,12 @@ initialiseElementComponents(Vue);
 initialiseVueLayers(Vue);
 initialiseWarnings();
 
-Vue.use(Buefy);
+Vue.use(Buefy, {
+  defaultIconPack: 'fas',
+  defaultTooltipType: 'is-info',
+  // defaultContainerElement: '#content',
+  // ...
+});
 
 Vue.component(
   'json-api',

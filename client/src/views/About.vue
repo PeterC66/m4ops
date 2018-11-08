@@ -20,3 +20,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  @import '../global/styles/App.scss';
+</style>

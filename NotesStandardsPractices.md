@@ -468,8 +468,10 @@ graph LR;
 ### CSS
 
 - Use [Bulma](https://bulma.io/) via [**Buefy**](https://buefy.github.io/) for a CSS framework (like Bootstrap) - as used by vuelayers
+- [Buefy: Bulma Based UI Components for Vue.js](https://dev.to/aligoren/bulma-based-ui-components-for-vuejs-41i4)
 - [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
 - [Use scss within a .vue file](https://flaviocopes.com/vue-using-scss/) - installed node-sass & sass-loader
+- [Globally Load SASS into your Vue.js Applications](https://vueschool.io/articles/vuejs-tutorials/globally-load-sass-into-your-vue-js-applications/) - for when loading
 - [Integrating and Using CSS Frameworks (eg Bulma) with Vue.js](https://alligator.io/vuejs/css-frameworks-vuejs/)
 - We used to use plain CSS ??with variables - see [Everything you need to know about CSS Variables](https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855)
 - [Learn CSS Layout](http://learnlayout.com) - a short course
@@ -569,7 +571,8 @@ graph LR;
 
 - [configuration](https://webpack.js.org/configuration/)
 - [the-core-concepts](https://webpack.academy/p/the-core-concepts)
-- See vue.config.js [configurewebpack](https://cli.vuejs.org/config/#configurewebpack)
+- [Introduction](https://auth0.com/blog/webpack-a-gentle-introduction/)
+- See vue.config.js [configurewebpack](https://cli.vuejs.org/config/#configurewebpack) and [here](https://cli.vuejs.org/guide/webpack.html)
 - need [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) in webpack for environment variables eg process.env.NODE_ENV
   - see [Node environment variables](https://medium.freecodecamp.org/heres-how-you-can-actually-use-node-environment-variables-8fdf98f53a0a)
 - We were thinking of using [**Parcel**](https://parceljs.org/) as 'no configuration'.

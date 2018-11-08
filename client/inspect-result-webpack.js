@@ -1,6 +1,6 @@
 {
   mode: 'development',
-  context: 'c:\\projects\\m4ops',
+  context: 'c:\\projects\\m4ops\\client',
   devtool: 'cheap-module-eval-source-map',
   node: {
     setImmediate: false,
@@ -12,14 +12,14 @@
     child_process: 'empty'
   },
   output: {
-    path: 'c:\\projects\\m4ops\\dist',
+    path: 'c:\\projects\\m4ops\\client\\dist',
     filename: '[name].js',
     publicPath: '/',
     globalObject: 'this'
   },
   resolve: {
     alias: {
-      '@': 'c:\\projects\\m4ops\\src',
+      '@': 'c:\\projects\\m4ops\\client\\src',
       vue$: 'vue/dist/vue.runtime.esm.js'
     },
     extensions: [
@@ -30,15 +30,17 @@
     ],
     modules: [
       'node_modules',
-      'c:\\projects\\m4ops\\node_modules',
-      'c:\\projects\\m4ops\\node_modules\\@vue\\cli-service\\node_modules'
+      'c:\\projects\\m4ops\\client\\node_modules',
+      'c:\\projects\\m4ops\\client\\node_modules\\@vue\\cli-service\\node_modules'
     ]
   },
   resolveLoader: {
     modules: [
+      'c:\\projects\\m4ops\\client\\node_modules\\@vue\\cli-plugin-eslint\\node_modules',
+      'c:\\projects\\m4ops\\client\\node_modules\\@vue\\cli-plugin-babel\\node_modules',
       'node_modules',
-      'c:\\projects\\m4ops\\node_modules',
-      'c:\\projects\\m4ops\\node_modules\\@vue\\cli-service\\node_modules'
+      'c:\\projects\\m4ops\\client\\node_modules',
+      'c:\\projects\\m4ops\\client\\node_modules\\@vue\\cli-service\\node_modules'
     ]
   },
   module: {
@@ -52,8 +54,8 @@
           {
             loader: 'cache-loader',
             options: {
-              cacheDirectory: 'c:\\projects\\m4ops\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: 'e3659754'
+              cacheDirectory: 'c:\\projects\\m4ops\\client\\node_modules\\.cache\\vue-loader',
+              cacheIdentifier: '7ba9066c'
             }
           },
           /* config.module.rule('vue').use('vue-loader') */
@@ -63,8 +65,8 @@
               compilerOptions: {
                 preserveWhitespace: false
               },
-              cacheDirectory: 'c:\\projects\\m4ops\\node_modules\\.cache\\vue-loader',
-              cacheIdentifier: 'e3659754'
+              cacheDirectory: 'c:\\projects\\m4ops\\client\\node_modules\\.cache\\vue-loader',
+              cacheIdentifier: '7ba9066c'
             }
           }
         ]
@@ -1030,8 +1032,8 @@
           {
             loader: 'cache-loader',
             options: {
-              cacheDirectory: 'c:\\projects\\m4ops\\node_modules\\.cache\\babel-loader',
-              cacheIdentifier: 'b78a0676'
+              cacheDirectory: 'c:\\projects\\m4ops\\client\\node_modules\\.cache\\babel-loader',
+              cacheIdentifier: '2cceab19'
             }
           },
           /* config.module.rule('js').use('babel-loader') */
@@ -1046,7 +1048,7 @@
         test: /\.(vue|(j|t)sx?)$/,
         exclude: [
           /node_modules/,
-          'c:\\projects\\m4ops\\node_modules\\@vue\\cli-service\\lib'
+          'c:\\projects\\m4ops\\client\\node_modules\\@vue\\cli-service\\lib'
         ],
         use: [
           /* config.module.rule('eslint').use('eslint-loader') */
@@ -1059,7 +1061,7 @@
                 '.vue'
               ],
               cache: true,
-              cacheIdentifier: '6f51f4ae',
+              cacheIdentifier: '4840b798',
               emitWarning: true,
               emitError: false,
               formatter: function () { /* omitted long function */ }
@@ -1104,7 +1106,7 @@
     new HtmlWebpackPlugin(
       {
         templateParameters: function () { /* omitted long function */ },
-        template: 'c:\\projects\\m4ops\\public\\index.html'
+        template: 'c:\\projects\\m4ops\\client\\public\\index.html'
       }
     ),
     /* config.plugin('pwa') */
@@ -1135,8 +1137,8 @@
     new CopyWebpackPlugin(
       [
         {
-          from: 'c:\\projects\\m4ops\\public',
-          to: 'c:\\projects\\m4ops\\dist',
+          from: 'c:\\projects\\m4ops\\client\\public',
+          to: 'c:\\projects\\m4ops\\client\\dist',
           toType: 'dir',
           ignore: [
             'index.html',
