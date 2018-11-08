@@ -79,5 +79,5 @@ export default {
 </script>
 
 <style scoped>
-
+  .level:not(:last-child) {margin-bottom: 0.2rem;};
 </style>

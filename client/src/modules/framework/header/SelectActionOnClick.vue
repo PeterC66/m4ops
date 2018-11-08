@@ -5,7 +5,7 @@
   >
     <button
       slot="trigger"
-      class="button is-primary  is-small">
+      class="button is-primary is-small">
       <span>Action on click</span>
       <b-icon icon="menu-down"/>
     </button>

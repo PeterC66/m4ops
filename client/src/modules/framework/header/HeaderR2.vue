@@ -1,55 +1,45 @@
 <template>
-  <div id="buttonsR2">
-    <el-form
-      :inline="true"
-      :model="formInline"
-    >
-      <el-tooltip
-        class="item"
-        effect="light"
-        content="Text to be searched for within open features,
+  <div
+    id="buttonsR2"
+    class="level">
+    <div class="level-right">
+      <b-tooltip
+        label="Text to be searched for within open features,
         or coordinates to go to (any format).  If blank will ask."
-        placement="left"
-      >
-        <el-form-item>
-          <el-input
+        position="is-top"
+        multilined>
+        <b-field>
+          <b-input
             v-model="formInline.textForSearchOrCoords"
-            placeholder="Text or Coords to GoTo"
-          />
-        </el-form-item>
-      </el-tooltip>
-      <el-form-item>
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="GoTo as specified"
-          placement="left-end"
-        >
-          <el-button
-            type="primary"
-            size="medium"
-            icon="el-icon-search"
-            @click="tellMe()"
-          />
-        </el-tooltip>
-      </el-form-item>
-      <el-form-item>
-        <el-tooltip
-          class="item"
-          effect="light"
-          content="Make the current view of M4OPS available as a URL to copy"
-          placement="bottom-start"
-        >
-          <el-button
-            type="primary"
-            size="medium"
-            @click="tellMe()"
-          >
+            size="is-small"
+            placeholder="Text or Coords to GoTo"/>
+        </b-field>
+      </b-tooltip>
+      <b-tooltip
+        label="GoTo as specified"
+        position="is-left"
+        multilined>
+        <button
+          class="button is-primary is-small"
+          @click="tellMe()">
+          <span class="icon">
+            <font-awesome-icon :icon="['fas','search']"/>
+          </span>
+        </button>
+      </b-tooltip>
+      <b-tooltip
+        label="Make the current view of M4OPS available as a URL to copy"
+        position="is-left"
+        multilined>
+        <button
+          class="button is-primary is-small"
+          @click="tellMe()">
+          <span class="icon">
             <font-awesome-icon :icon="['far','clone']"/>
-          </el-button>
-        </el-tooltip>
-      </el-form-item>
-    </el-form>
+          </span>
+        </button>
+      </b-tooltip>
+    </div>
   </div>
 </template>
 
@@ -74,5 +64,5 @@ export default {
 </script>
 
 <style scoped>
-
+  .button {margin-left: 2px};
 </style>

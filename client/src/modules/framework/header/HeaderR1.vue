@@ -80,5 +80,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .button {margin: 0, 0.5rem};
+  .button {margin-left: 2px};
 </style>

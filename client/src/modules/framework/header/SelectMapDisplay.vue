@@ -53,5 +53,5 @@ export default {
 </script>
 
 <style scoped>
-  /* min-width: 203px;?? */
+  .button {margin-right: 2px};
 </style>

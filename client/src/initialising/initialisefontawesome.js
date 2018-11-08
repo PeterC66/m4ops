@@ -14,13 +14,14 @@ import {
   faEnvelope,
   faHome,
   faQuestionCircle,
-} from '@fortawesome/free-solid-svg-icons';
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons'; // fas
 import {
   faEnvelope as faEnvelopeRegular,
   faClone,
 }
-  from '@fortawesome/free-regular-svg-icons';
-// See also free-brands-svg-icons
+  from '@fortawesome/free-regular-svg-icons'; // far
+// See also free-brands-svg-icons fab
 
 export default function initialiseFontAwesome(Vue) {
 // See import above
@@ -36,6 +37,7 @@ export default function initialiseFontAwesome(Vue) {
     faEnvelope,
     faHome,
     faQuestionCircle,
+    faSearch,
   );
   library.add(
     faEnvelopeRegular,
