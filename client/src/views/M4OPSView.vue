@@ -1,44 +1,48 @@
 <template>
-  <el-container>
-    <el-header><Header :opsdetails="place" /></el-header>
-    <el-container>
-      <el-aside
-        v-if="sidebarOpen"
-        width="300px"
-        style="position: relative"
-      >
-        <Sidebar/>
-      </el-aside>
-      <el-main
-        style="position: relative"
-      >
-        <MapContainer
-          v-if="!loading"
-          :zoom-initial="15"
-          :center-initial="[-0.0325, 52.329444]"
-        />
-
+  <div>
+    <section class="section">
+      <div class="container">
+        <Header :opsdetails="place" />
+      </div>
+    </section>
+    <section class="section">
+      <div class="columns is-gapless">
         <div
-          v-loading="loading"
-          v-else
-        />
-        <el-tooltip
-          style="position: absolute; bottom: 1px; left: 0px; "
-          class="item"
-          effect="light"
-          content="Open or close the sidebar"
-          placement="top"
-        >
-          <el-switch
-            v-model="switchValue"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            @change="switchSidebar"
+          v-if="sidebarOpen"
+          class="column is-3">
+          <!-- was style="position: relative" -->
+          <Sidebar/>
+        </div>
+        <div class="column">
+          <!-- was style="position: relative" -->
+          <MapContainer
+            v-if="!loading"
+            :zoom-initial="15"
+            :center-initial="[-0.0325, 52.329444]"
           />
-        </el-tooltip>
-      </el-main>
-    </el-container>
-  </el-container>
+
+          <div
+            v-loading="loading"
+            v-else
+          />
+          <el-tooltip
+            style="position: absolute; bottom: 1px; left: 0px; "
+            class="item"
+            effect="light"
+            content="Open or close the sidebar"
+            placement="top"
+          >
+            <el-switch
+              v-model="switchValue"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              @change="switchSidebar"
+            />
+          </el-tooltip>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -49,8 +53,6 @@ import { mapState, mapActions, mapGetters } from 'vuex';
 import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
-
-import '../global/styles/M4OPSLayout.css';
 
 export default {
   name: 'M4OPSView',
@@ -124,19 +126,19 @@ export default {
 </script>
 
 <style scoped>
-  .el-header, .el-footer {
+  /* .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #333;
     text-align: center;
     padding: 0;
   }
 
-  /* .el-aside {
+  .el-aside {
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
     line-height: 200px;
-  } */
+  }
 
   .el-main {
     background-color: #E9EEF3;
@@ -146,5 +148,5 @@ export default {
 
   body > .el-container {
     margin-bottom: 40px;
-  }
+  }*/
 </style>

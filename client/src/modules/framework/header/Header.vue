@@ -1,10 +1,35 @@
 <template>
   <section style="position: relative">
-    <HeaderTitles :opsdetails="opsdetails" />
-    <HeaderL1 :opsdetails="opsdetails" />
-    <HeaderL2 />
-    <HeaderR1 />
-    <HeaderR2 />
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <HeaderL1 :opsdetails="opsdetails" />
+        </div>
+      </div>
+      <p class="level-item has-text-centered">
+        <a class="link is-info">Home</a>
+      </p>
+      <div class="level-right">
+        <div class="level-item">
+          <HeaderR1 />
+        </div>
+      </div>
+    </div>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <HeaderL2 />
+        </div>
+      </div>
+      <p class="level-item has-text-centered">
+        <a class="link is-info">Home</a>
+      </p>
+      <div class="level-right">
+        <div class="level-item">
+          <HeaderR2 />
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 

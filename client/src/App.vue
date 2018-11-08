@@ -32,9 +32,25 @@
 
 <style lang="scss">
   @import './global/styles/App.scss';
+
+  body { background: #f1e8f1 url(./assets/images/backdropDEV.png) repeat-x;}
+  /* PROD: #EEF2E9 url(../../assets/images/backdrop.png) repeat-x;*/
 </style>
 
 <style scoped>
+
+.navbar-item,
+.navbar-link {
+  padding: 0.05rem 0.75rem;
+}
+a {
+  color: white;
+}
+
+a.router-link-exact-active {
+  color: yellow;
+}
+
 /* #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -11,13 +11,6 @@
       title="Choose OPS"
     >
       <ChooseOPS/>
-      <!-- <a class="button">
-   <b-icon
-                icon="home"
-                size="is-small">
-            </b-icon>
-  </a> -->
-
       <el-button
         slot="reference"
         type="primary"
@@ -45,6 +38,9 @@ export default {
     },
   },
   methods: {
+    tellMe() {
+      console.log('tellMe');
+    },
     closePopover() { // TODO ??
       this.visible = false;
     },

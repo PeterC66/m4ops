@@ -1,64 +1,55 @@
 <template>
   <div id="buttonsR1">
-    <!-- opsdetails is an alias for place, used in the original M4OPS -->
-    <el-tooltip
-      class="item"
-      effect="light"
-      content="Return to the original One-Place Study location"
-      placement="left"
-    >
-      <el-button
-        type="primary"
-        size="medium"
-        @click="goHome()"
-      >
-        <font-awesome-icon icon="home"/>
-      </el-button>
-    </el-tooltip>
-    <el-tooltip
-      class="item"
-      effect="light"
-      content="Contact the person responsible for this study"
-      placement="left-start"
-    >
-      <el-button
-        type="primary"
-        size="medium"
-        @click="tellMe()"
-      >
-        <font-awesome-icon :icon="['far','envelope']"/>
-      </el-button>
-    </el-tooltip>
-    <el-tooltip
-      class="item"
-      effect="light"
-      content="Provide feedback to the person responsible for M4OPS
-        within the Society for One-Place Studies"
-      placement="top-start"
-    >
-      <el-button
-        type="primary"
-        size="medium"
-      >
-        <a href="mailto:peter.cooper@one-place-studies.org?subject=M4OPS">
-          <font-awesome-icon :icon="['far','envelope']"/>
+
+    <p class="buttons">
+      <b-tooltip
+        label="Return to the original One-Place Study location"
+        position="is-left"
+        multilined>
+        <button
+          class="button is-primary"
+          @click="goHome()">
+          <span class="icon">
+            <font-awesome-icon icon="home"/>
+          </span>
+        </button>
+      </b-tooltip>
+      <b-tooltip
+        label="Contact the person responsible for this study"
+        position="is-left"
+        multilined>
+        <button
+          class="button is-primary"
+          @click="tellMe()">
+          <span class="icon">
+            <font-awesome-icon :icon="['far','envelope']"/>
+          </span>
+        </button>
+      </b-tooltip>
+      <b-tooltip
+        label="Provide feedback to the person responsible for M4OPS
+          within the Society for One-Place Studies"
+        position="is-left"
+        multilined>
+        <a
+          class="button is-primary"
+          href="mailto:peter.cooper@one-place-studies.org?subject=M4OPS">
+          <font-awesome-icon :icon="['fas','envelope']"/>
         </a>
-      </el-button>
-    </el-tooltip>
-    <el-tooltip
-      class="item"
-      effect="light"
-      content="See the Help documentation"
-      placement="top"
-    >
-      <el-button
-        type="primary"
-        size="medium"
-        @click="tellMe()"
-      >
-        <font-awesome-icon icon="question-circle"/>
-      </el-button>
-    </el-tooltip>
+      </b-tooltip>
+      <b-tooltip
+        label="See the Help documentation"
+        position="is-left"
+        multilined>
+        <button
+          class="button is-primary"
+          @click="tellMe()">
+          <span class="icon">
+            <font-awesome-icon icon="question-circle"/>
+          </span>
+        </button>
+      </b-tooltip>
+    </p>
   </div>
 </template>
 
@@ -66,7 +57,7 @@
 import { mapGetters } from 'vuex';
 import { useVuexForView } from '../../../global/constants';
 
-import './Header.css';
+// import './Header.css';
 
 export default {
   name: 'HeaderR1',
@@ -88,6 +79,6 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .button {margin: 0, 0.5rem};
 </style>

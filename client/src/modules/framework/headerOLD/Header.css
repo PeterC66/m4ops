@@ -1,8 +1,8 @@
-/* #buttonsL1 {position: absolute; top: 5px; left: 8px;}
+#buttonsL1 {position: absolute; top: 5px; left: 8px;}
 #buttonsL2 {position: absolute; top: 34px; left: 8px;}
 #buttonsR1 {position: absolute; top: 5px;	right: 8px;}
 #buttonsR2 {position: absolute; top: 34px;	right: 6px;}
-/* #buttonsR2 {position: absolute; top: 35px;	right: 8px;}
+/* #buttonsR2 {position: absolute; top: 35px;	right: 8px;} */
 
 .el-button+.el-button {
   margin-left: 2px;
@@ -31,4 +31,4 @@
 .el-input--small .el-input__inner {
   height: 25px;
   line-height: 25px;
-} */
+}

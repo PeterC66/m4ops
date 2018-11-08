@@ -468,6 +468,7 @@ graph LR;
 ### CSS
 
 - Use [Bulma](https://bulma.io/) via [**Buefy**](https://buefy.github.io/) for a CSS framework (like Bootstrap) - as used by vuelayers
+- [Buefy examples](http://rafaelescala.com/buefy-example/)
 - [Buefy: Bulma Based UI Components for Vue.js](https://dev.to/aligoren/bulma-based-ui-components-for-vuejs-41i4)
 - [SCSS/SASS Reference](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
 - [Use scss within a .vue file](https://flaviocopes.com/vue-using-scss/) - installed node-sass & sass-loader
