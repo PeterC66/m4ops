@@ -35,11 +35,11 @@ export default {
         value: 'overlay',
         label: 'Overlay',
       }, {
-        value: 'side-by-side',
-        label: 'Side by Side',
-      }, {
         value: 'spyglass',
         label: 'Spyglass',
+      }, {
+        value: 'side-by-side',
+        label: 'Side by Side',
       }],
       value: this.mapDisplay,
     };
