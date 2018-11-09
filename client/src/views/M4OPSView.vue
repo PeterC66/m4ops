@@ -24,16 +24,6 @@
           <div
             v-else
           />
-          <b-tooltip
-            label="Open or close the sidebar"
-            position="is-right"
-            multilined>
-            <div class="field">
-              <b-switch
-                v-model="switchValue"
-                @input="switchSidebar"/>
-            </div>
-          </b-tooltip>
         </div>
       </div>
     </section>
@@ -43,7 +33,7 @@
 <script>
 import _ from 'lodash';
 import { actions } from 'vuex-api';
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
@@ -55,11 +45,6 @@ export default {
     MapContainer,
     Header,
     Sidebar,
-  },
-  data() {
-    return {
-      switchValue: true,
-    };
   },
   computed: {
     ...mapState({
@@ -111,11 +96,6 @@ export default {
         keyPath: ['m4opsdata'],
       });
     }
-  },
-  methods: {
-    ...mapActions([
-      'switchSidebar',
-    ]),
   },
 };
 </script>

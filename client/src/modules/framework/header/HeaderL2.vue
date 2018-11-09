@@ -1,9 +1,8 @@
 <template>
   <div id="buttonsL2">
     <b-tooltip
-      label="Display a map
-        with overlay (slider or spyglass),
-        or side by side maps"
+      label="Map with overlays (slider or spyglass),
+        or side by side maps?"
       position="is-top"
       multilined>
       <SelectMapDisplay :map-display="mapDisplay"/>
@@ -14,11 +13,22 @@
       multilined>
       <SelectActionOnClick :action-on-click="actionOnClick"/>
     </b-tooltip>
+    <b-tooltip
+      label="Open or close the sidebar"
+      position="is-right"
+      multilined>
+      <div class="field">
+        <b-switch
+          v-model="switchValue"
+          size="is-small"
+          @input="switchSidebar"/>
+      </div>
+    </b-tooltip>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 import './Header.css';
 import SelectMapDisplay from './SelectMapDisplay.vue';
@@ -30,6 +40,11 @@ export default {
     SelectMapDisplay,
     SelectActionOnClick,
   },
+  data() {
+    return {
+      switchValue: true,
+    };
+  },
   computed: mapState({
     actionOnClick: state => state.mapping.actionOnClick,
     mapDisplay: state => state.mapping.mapDisplay,
@@ -38,6 +53,9 @@ export default {
     tellMe() {
       console.log('tellMe');
     },
+    ...mapActions([
+      'switchSidebar',
+    ]),
   },
 };
 </script>
