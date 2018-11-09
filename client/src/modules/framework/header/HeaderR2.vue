@@ -4,9 +4,9 @@
     class="level">
     <div class="level-right">
       <b-tooltip
-        label="Text to be searched for within open features,
-        or coordinates to go to (any format).  If blank will ask."
-        position="is-top"
+        label="Feature search text,
+        or coordinates to go to."
+        position="is-bottom"
         multilined>
         <b-field>
           <b-input

@@ -2,7 +2,7 @@
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$primary: #8c67ef;
+$primary: #00e68a;
 $primary-invert: findColorInvert($primary);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
@@ -31,6 +31,10 @@ $navbar-height: "1rem";
 $navbar-background-color: transparent;
 
 $section-padding: 0;
+
+$tabs-link-color: $primary;
+$tabs-link-hover-color: $green;
+$tabs-link-active-color: $yellow;
 
 // Import Bulma and Buefy styles - must be last
 @import "~bulma";

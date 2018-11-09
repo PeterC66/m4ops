@@ -1,48 +1,38 @@
 <template>
-  <el-tabs
-    v-model="activeName"
-    @tab-click="selectActiveTab"
+  <b-tabs
+    v-model="activeTab"
+    size="is-small"
+    @change="selectActiveTab"
   >
-    <el-tab-pane
-      label="Actions"
-      name="actions"
-    >
-      Content of Actions Tab Pane
-    </el-tab-pane>
-    <el-tab-pane
-      label="MFL"
-      name="mfl"
-    >
+    <b-tab-item label="Actions">
+      <p>Content of Actions Tab Pane</p>
+    </b-tab-item>
+    <b-tab-item label="MFL">
       Content of MFL Tab Pane
-    </el-tab-pane>
-    <el-tab-pane
-      label="Upload"
-      name="upload"
-    >
+    </b-tab-item>
+    <b-tab-item label="Upload">
       Content of Upload Tab Pane
-    </el-tab-pane>
-    <el-tab-pane
-      label="Time"
-      name="time"
-    >
+    </b-tab-item>
+    <b-tab-item label="Time">
       Content of Time Tab Pane
-    </el-tab-pane>
-  </el-tabs>
+    </b-tab-item>
+  </b-tabs>
 </template>
+
 <script>
 import { mapActions } from 'vuex';
 
 export default {
   name: 'TabsContainer',
   props: {
-    activeTabName: {
-      type: String,
+    activeTabNumber: {
+      type: Number,
       required: true,
     },
   },
   data() {
     return {
-      activeName: this.activeTabName,
+      activeTab: this.activeTabNumber,
     };
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <section style="position: relative">
     <LayersContainer :chosen-layers-mainmap="chosenLayersMainmap"/>
-    <TabsContainer :active-tab-name="activeTabName"/>
+    <TabsContainer :active-tab-number="activeTabNumber"/>
   </section>
 </template>
 
@@ -23,7 +23,7 @@ export default {
       'chosenLayersMainmap',
     ]),
     ...mapState({
-      activeTabName: state => state.framework.activeTabName,
+      activeTabNumber: state => state.framework.activeTabNumber,
     }),
   },
 };

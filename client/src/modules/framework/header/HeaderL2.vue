@@ -1,18 +1,15 @@
 <template>
   <div id="buttonsL2">
     <b-tooltip
-      label="Select from the dropdown to change whether
-        the current display is one map
-        with an overlay and opacity slider,
-        side by side maps, or one map with a spyglass"
+      label="Display a map
+        with overlay (slider or spyglass),
+        or side by side maps"
       position="is-top"
       multilined>
       <SelectMapDisplay :map-display="mapDisplay"/>
     </b-tooltip>
     <b-tooltip
-      label="Select from the dropdown to change between
-        Normal clicking (No lat/lon click),
-        and getting lat/lon (in various formats)"
+      label="Select what happens when you click"
       position="is-top"
       multilined>
       <SelectActionOnClick :action-on-click="actionOnClick"/>
@@ -28,7 +25,7 @@ import SelectMapDisplay from './SelectMapDisplay.vue';
 import SelectActionOnClick from './SelectActionOnClick.vue';
 
 export default {
-  name: 'HeaderR1',
+  name: 'HeaderL2',
   components: {
     SelectMapDisplay,
     SelectActionOnClick,

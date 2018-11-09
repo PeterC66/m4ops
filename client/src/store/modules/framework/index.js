@@ -6,7 +6,7 @@ import {
 
 const state = {
   sidebarOpen: true,
-  activeTabName: 'actions',
+  activeTabNumber: 0,
   chooseOPSOpen: false,
 };
 
@@ -15,7 +15,7 @@ const mutations = {
     moduleState.sidebarOpen = payload.sidebarOpen;
   },
   [TAB_SELECT_REQUEST](moduleState, payload) {
-    moduleState.activeTabName = payload.activeTabName;
+    moduleState.activeTabNumber = payload.activeTabNumber;
   },
   [CHOOSE_OPS_STATE_REQUEST](moduleState, payload) {
     moduleState.chooseOPSOpen = payload.chooseOPSOpen;
@@ -27,7 +27,7 @@ const actions = {
     commit(SIDEBAR_SWITCH_REQUEST, { sidebarOpen });
   },
   selectActiveTab({ commit }, activeTab) {
-    commit(TAB_SELECT_REQUEST, { activeTabName: activeTab.name });
+    commit(TAB_SELECT_REQUEST, { activeTabNumber: activeTab });
   },
   setChooseOPS({ commit }, chooseOPSOpen) {
     commit(CHOOSE_OPS_STATE_REQUEST, { chooseOPSOpen });

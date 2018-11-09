@@ -3,8 +3,6 @@
 import {
   Button, // Keep el-button for ChooseLayer
   Cascader, // Keep el-cascader for ChooseLayer and ChooseOPS
-  TabPane,
-  Tabs,
 } from 'element-ui';
 
 import lang from 'element-ui/lib/locale/lang/en';
@@ -16,6 +14,4 @@ export default function initialiseElementComponents(Vue) {
   // See import above
   Vue.component(Button.name, Button);
   Vue.component(Cascader.name, Cascader);
-  Vue.component(TabPane.name, TabPane);
-  Vue.component(Tabs.name, Tabs);
 }
