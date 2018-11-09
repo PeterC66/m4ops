@@ -1,20 +1,10 @@
 
 // Ensure Element components are all imported here, and 'used' below
 import {
-  Button,
-  Cascader,
-  Form,
-  FormItem,
-  Input,
-  Loading,
-  Main,
-  Option,
-  Popover,
-  Select,
-  Switch,
+  Button, // Keep el-button for ChooseLayer
+  Cascader, // Keep el-cascader for ChooseLayer and ChooseOPS
   TabPane,
   Tabs,
-  Tooltip,
 } from 'element-ui';
 
 import lang from 'element-ui/lib/locale/lang/en';
@@ -26,16 +16,6 @@ export default function initialiseElementComponents(Vue) {
   // See import above
   Vue.component(Button.name, Button);
   Vue.component(Cascader.name, Cascader);
-  Vue.component(Form.name, Form);
-  Vue.component(FormItem.name, FormItem);
-  Vue.component(Input.name, Input);
-  Vue.use(Loading.directive);
-  Vue.component(Main.name, Main);
-  Vue.component(Option.name, Option);
-  Vue.component(Popover.name, Popover);
-  Vue.component(Select.name, Select);
-  Vue.component(Switch.name, Switch);
   Vue.component(TabPane.name, TabPane);
   Vue.component(Tabs.name, Tabs);
-  Vue.component(Tooltip.name, Tooltip);
 }

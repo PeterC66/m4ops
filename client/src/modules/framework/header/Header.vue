@@ -13,12 +13,6 @@
           label="Open the forum for Mapping for One-Place Studies"
           position="is-right"
           multilined>
-          <!-- <el-tooltip
-          class="item"
-          effect="light"
-          content="Open the forum for Mapping for One-Place Studies"
-          placement="right"
-        > -->
           <a
             href="http://mapping4ops.org/"
             target="_blank"
@@ -54,7 +48,6 @@
 </template>
 
 <script>
-import HeaderTitles from './HeaderTitles.vue';
 import HeaderR1 from './HeaderR1.vue';
 import HeaderR2 from './HeaderR2.vue';
 import HeaderL1 from './HeaderL1.vue';
@@ -63,7 +56,6 @@ import HeaderL2 from './HeaderL2.vue';
 export default {
   name: 'Header',
   components: {
-    HeaderTitles,
     HeaderR1,
     HeaderR2,
     HeaderL1,

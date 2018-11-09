@@ -1,5 +1,6 @@
 <template>
-  <div class="block">
+  <div>
+    <!-- Keep using el-cascader -->
     <el-cascader
       :options="layerOptions"
       :show-all-levels="false"
@@ -9,6 +10,7 @@
       @change="handleLdidChange"
       @blur="handleBlur"
     />
+    <!-- Keep using el-button -->
     <el-button
       v-if="showUpButton"
       type="text"
@@ -131,9 +133,14 @@ export default {
 };
 </script>
 
-<style scoped>
-  .el-slider__runway {
-    width: 200px;
-    margin: 0;
-  }
+<style>
+/* .el-cascader {
+    line-height: 20px;
+    height: 20px;
+} */
+.el-input__inner {
+    height: 30px;
+    line-height: 20px;
+    padding: 0 15px;
+}
 </style>

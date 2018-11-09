@@ -1,5 +1,6 @@
 <template>
   <div class="block">
+    <!-- Keep using el-cascader -->
     <el-cascader
       :options="placeOptions"
       :show-all-levels="false"
@@ -31,7 +32,6 @@ export default {
   methods: {
     handleChange(value) {
       console.log(value);
-      this.$emit('headerl1-close-popover');
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: `places/${value[3]}`,

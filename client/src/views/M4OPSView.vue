@@ -22,23 +22,18 @@
           />
 
           <div
-            v-loading="loading"
             v-else
           />
-          <el-tooltip
-            style="position: absolute; bottom: 1px; left: 0px; "
-            class="item"
-            effect="light"
-            content="Open or close the sidebar"
-            placement="top"
-          >
-            <el-switch
-              v-model="switchValue"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              @change="switchSidebar"
-            />
-          </el-tooltip>
+          <b-tooltip
+            label="Open or close the sidebar"
+            position="is-right"
+            multilined>
+            <div class="field">
+              <b-switch
+                v-model="switchValue"
+                @input="switchSidebar"/>
+            </div>
+          </b-tooltip>
         </div>
       </div>
     </section>
@@ -126,6 +121,8 @@ export default {
 </script>
 
 <style scoped>
+  .b-tooltip {position: absolute; bottom: 1px; left: 0px;}
+
   /* .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #333;

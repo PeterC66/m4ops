@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- eslint-disable max-len -->
     <ChooseLayer
       v-for="(layer, index) in chosenLayersMainmap"
       :layer="layer"
@@ -9,7 +8,6 @@
       :show-slider="index>0"
       :show-up-button="index>0"
     />
-    <!-- eslint-enable max-len -->
     <ChooseLayer
       v-if="nChosenLayers < maxChooseLayers"
       :layer="{ldid:voidLdid, opacity: 0.5}"
