@@ -3,7 +3,7 @@
     <div class="level">
       <div class="level-left">
         <div class="level-item">
-          <HeaderL1 :opsdetails="opsdetails" />
+          <HeaderL1 />
         </div>
       </div>
       <h1
@@ -29,15 +29,27 @@
         </div>
       </div>
     </div>
+
     <div class="level">
       <div class="level-left">
         <div class="level-item">
           <HeaderL2 />
         </div>
       </div>
-      <p class="level-item has-text-centered">
-        <a class="link is-info">Home</a>
-      </p>
+      <div
+        class="level-item">
+        <b-tooltip
+          label="Click for details of this OPS"
+          position="is-left"
+          multilined>
+          <button
+            style="color: lightgreen; text-decoration: none;"
+            class="button is-text has-text-centered"
+            @click="tellMe()">
+              Maps for {{ placename }}
+          </button>
+        </b-tooltip>
+      </div>
       <div class="level-right">
         <div class="level-item">
           <HeaderR2 />
@@ -65,6 +77,18 @@ export default {
     opsdetails: {
       type: Object,
       default: () => ({ OPSCode: 'HcN', OPSName: 'Needingworth1' }),
+    },
+  },
+  computed: {
+    placename() {
+      return this.opsdetails ?
+        `${this.opsdetails.OPSCode}) ${this.opsdetails.OPSName}` :
+        '(Unknown)';
+    },
+  },
+  methods: {
+    tellMe() {
+      console.log('tellMe');
     },
   },
 };

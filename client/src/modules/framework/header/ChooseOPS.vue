@@ -5,7 +5,6 @@
       :options="placeOptions"
       :show-all-levels="false"
       v-model="selectedOption"
-      expand-trigger="hover"
       @change="handleChange"
     />
   </div>

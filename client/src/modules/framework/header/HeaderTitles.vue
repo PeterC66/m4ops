@@ -1,23 +1,6 @@
 <template>
   <!-- opsdetails is an alias for place, used in the original M4OPS -->
-  <div id="headertitles">
-    <div id="headersubtitleblock">
-      <el-tooltip
-        class="item"
-        effect="light"
-        content="Click for details of this OPS"
-        placement="right-end"
-      >
-        <el-button
-          type="text"
-          size="medium"
-          @click="tellMe()"
-        >
-          Maps for {{ placename }}
-        </el-button>
-      </el-tooltip>
-    </div>
-  </div>
+  <div id="headertitles"/>
 </template>
 
 <script>
