@@ -85,7 +85,9 @@ export default {
         url: 'places/HcN',
         keyPath: ['place'],
       }).then(() => {
-      // The state has been updated and you can do whatever you want with the resp
+        // The state has been updated and you can do whatever you want with the resp
+        this.$store.dispatch('initialiseChosenLayers', 'HcN');
+      }).then(() => {
         this.$store.dispatch('updateView', this.homeView);
       });
     }

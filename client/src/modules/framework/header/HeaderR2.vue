@@ -44,8 +44,6 @@
 </template>
 
 <script>
-import './Header.css';
-
 export default {
   name: 'HeaderR2',
   data() {

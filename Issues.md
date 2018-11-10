@@ -4,7 +4,6 @@
 
 - Production version
 
-- on change place then remove all chosenLayers
 - layerAndSourceTile: const OPSCode = 'HcN'; // Kludge TODO
 
 ## Issues to be resolved
@@ -19,6 +18,7 @@
 - Allow Rotation:
 - window size to screen
 - simplify Continents production FLG etc?
+- No layers selected message
 
 ## Consider
 

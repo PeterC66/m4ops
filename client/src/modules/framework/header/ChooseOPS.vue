@@ -51,6 +51,8 @@ export default {
       }).then(() => {
         this.$store.dispatch('updateCurrentOptionArray', value);
       }).then(() => {
+        this.$store.dispatch('initialiseChosenLayers', value[3]);
+      }).then(() => {
         this.$store.dispatch('updateView', this.homeView);
       });
     },

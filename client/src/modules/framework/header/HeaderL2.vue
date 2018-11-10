@@ -30,7 +30,6 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 
-import './Header.css';
 import SelectMapDisplay from './SelectMapDisplay.vue';
 import SelectActionOnClick from './SelectActionOnClick.vue';
 

@@ -38,6 +38,10 @@ export const isEmpty = (val) => {
 export const isEmptyArray = arr => Array.isArray(arr) && _.isEmpty(arr);
 export const isNonemptyArray = arr => Array.isArray(arr) && !_.isEmpty(arr);
 
+// Copy of Array so another can be assigned to it
+export const copyOfArray = arr =>
+  arr.splice(0);
+
 // Is the given value defined and boolean true
 export const isTrue = (val) => {
   // WAS if (!isEmpty(val) && val) return true;

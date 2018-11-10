@@ -57,8 +57,6 @@
 import { mapGetters } from 'vuex';
 import { useVuexForView } from '../../../global/constants';
 
-// import './Header.css';
-
 export default {
   name: 'HeaderR1',
   computed: {

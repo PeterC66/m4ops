@@ -1,27 +1,34 @@
-import _ from 'lodash';
-
 import {
   isDefined,
   join,
-  isVoid,
   newVoid,
   thisAndPrevious,
 } from '../../../../global/utils';
+import { tidyChosenLayers } from '../utils';
 
 import {
+  INITIALISE_CHOSEN_LAYERS,
   LAYER_SET_REQUEST,
   OPACITY_SET_REQUEST,
   MOVE_LAYER_UP,
 } from '../../../mutation-types';
-import { initialStateChosenLayers }
+import { initialStateChosenLayersByOpsCode }
   from '../../../../initialising/initialState';
 
 const state = {
-  // chosenLdids: initialStateChosenLayers,
-  chosenLayers: initialStateChosenLayers,
+  chosenLayers: [],
 };
 
 const mutations = {
+  [INITIALISE_CHOSEN_LAYERS](moduleState, payload) {
+    const { opsCode } = payload;
+    const arr1 = initialStateChosenLayersByOpsCode(opsCode);
+    moduleState.chosenLayers.splice(
+      0,
+      moduleState.chosenLayers.length,
+      ...arr1,
+    );
+  },
   [LAYER_SET_REQUEST](moduleState, payload) {
     const { ldid, layerNumber, displaytype } = payload;
     const arrayLength = moduleState.chosenLayers.length;
@@ -51,15 +58,10 @@ const mutations = {
         );
       }
 
-      moduleState.chosenLayers =
-        _.sortBy(
-          _.filter(
-            moduleState.chosenLayers,
-            value => !isVoid(value.ldid),
-          ),
-          'displaytype',
-        );
-      moduleState.chosenLayers[0].opacity = 1; // in case not
+      moduleState.chosenLayers = tidyChosenLayers(moduleState.chosenLayers);
+      if (moduleState.chosenLayers.length) {
+        moduleState.chosenLayers[0].opacity = 1; // in case not
+      }
     } else {
       console.log('Warning: layerNumber is undefined');
     }
@@ -106,25 +108,17 @@ const mutations = {
           /* eslint-enable max-len */
         );
       }
-
-      moduleState.chosenLayers =
-        _.sortBy(
-          _.filter(
-            moduleState.chosenLayers,
-            value => !isVoid(value.ldid),
-          ),
-          'displaytype',
-        );
-      // moduleState.chosenLayers =
-      //   _.dropRightWhile(
-      //     moduleState.chosenLayers,
-      //     value => isVoid(value.ldid),
-      //   );
+      moduleState.chosenLayers = tidyChosenLayers(moduleState.chosenLayers);
     }
   },
 };
 
 const actions = {
+  // payload is { opsCode: eg HcN }
+  initialiseChosenLayers({ commit }, opsCode) {
+    console.log('ICL', opsCode);
+    commit(INITIALISE_CHOSEN_LAYERS, { opsCode });
+  },
   // payload is { ldid:string_index_into_LayerDefsArray, layerNumber: eg 0, displaytype: eg A }
   setLayer({ commit }, { ldid, layerNumber, displaytype }) {
     console.log('setLayer', ldid, layerNumber, displaytype);
