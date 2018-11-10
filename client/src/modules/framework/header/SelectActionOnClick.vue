@@ -66,3 +66,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .button {margin-right: 2px};
+</style>

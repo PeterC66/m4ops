@@ -14,16 +14,29 @@
 import { actions } from 'vuex-api';
 import { mapGetters } from 'vuex';
 
+// import { initialCurrentOptionArray } from '../../../initialising/initialState';
+
 export default {
   name: 'ChooseOPS',
+  props: {
+    currentOptionArray: {
+      type: Array,
+      // default: () => initialCurrentOptionArray,
+      default: () => [
+        'Europe',
+        'England',
+        'Cambridgeshire',
+        'TRU',
+      ],
+    },
+  },
   data() {
     return {
-      selectedOption: ['Europe', 'England', 'Cambridgeshire', 'HcN'],
+      selectedOption: this.currentOptionArray,
     };
   },
   computed: {
     ...mapGetters([
-      'continents',
       'placeOptions',
       'homeView',
     ]),
@@ -35,6 +48,8 @@ export default {
         baseURL: 'http://localhost:5000/',
         url: `places/${value[3]}`,
         keyPath: ['place'],
+      }).then(() => {
+        this.$store.dispatch('updateCurrentOptionArray', value);
       }).then(() => {
         this.$store.dispatch('updateView', this.homeView);
       });

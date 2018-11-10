@@ -5,4 +5,9 @@ export const initialStateChosenLayers = [
   { ldid: ldidOSM, opacity: 0.5, displaytype: 'A' },
 ];
 
-export const dummy = 0;
+export const initialCurrentOptionArray = [
+  'Europe',
+  'England',
+  'Cambridgeshire',
+  'HcN',
+];

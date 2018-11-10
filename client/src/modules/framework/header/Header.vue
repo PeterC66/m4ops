@@ -46,7 +46,7 @@
             style="color: lightgreen; text-decoration: none;"
             class="button is-text has-text-centered"
             @click="tellMe()">
-              Maps for {{ placename }}
+            Maps for {{ placename }}
           </button>
         </b-tooltip>
       </div>
@@ -76,7 +76,7 @@ export default {
   props: {
     opsdetails: {
       type: Object,
-      default: () => ({ OPSCode: 'HcN', OPSName: 'Needingworth1' }),
+      required: true,
     },
   },
   computed: {
@@ -96,4 +96,5 @@ export default {
 
 <style scoped>
   .level:not(:last-child) {margin-bottom: 0.2rem;};
+  button span {color: red};
 </style>

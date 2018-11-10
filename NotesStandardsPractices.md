@@ -296,6 +296,7 @@ See under [Standards and styles](#standards-and-styles)
 
 ## JS and ES6 standards
 
+- [Excellent documentation/tutorial](https://javascript.info/)
 - [Roadmap for learning the JavaScript language ES3++](https://bytearcher.com/articles/roadmap-for-learning-javascript-language/) - see MDN links for basic syntax, functions, object literals, arrays, regular expressions, prototypal inheritance
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - useful book - [Exploring ES6](http://exploringjs.com/es6/) covers every level
@@ -333,7 +334,7 @@ See under [Standards and styles](#standards-and-styles)
 - lodash has many useful functions
   - just import _ from 'lodash' (see [benchmark](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark))- eventually use [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)
   - for iteratees see [lodash documentation](https://lodash.com/docs/4.17.10#iteratee), and [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
-- for promises and async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async) - [full document](https://javascript.info/)
+- for promises and async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
 
 ## Client Overview
 

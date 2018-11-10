@@ -35,7 +35,8 @@ export const isEmpty = (val) => {
 };
 
 // WAS export const isEmptyArray = arr => !Array.isArray(arr) || !arr.length;
-export const isEmptyArray = arr => _.isEmpty(arr);
+export const isEmptyArray = arr => Array.isArray(arr) && _.isEmpty(arr);
+export const isNonemptyArray = arr => Array.isArray(arr) && !_.isEmpty(arr);
 
 // Is the given value defined and boolean true
 export const isTrue = (val) => {

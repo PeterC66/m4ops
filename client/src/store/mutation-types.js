@@ -5,6 +5,7 @@ export const UPDATE_MAP_DISPLAY = 'UPDATE_MAP_DISPLAY';
 export const UPDATE_ACTION_ON_CLICK = 'UPDATE_ACTION_ON_CLICK';
 
 export const UPDATE_VIEW = 'UPDATE_VIEW';
+export const UPDATE_CURRENT_OPTION_ARRAY = 'UPDATE_CURRENT_OPTION_ARRAY';
 
 // mapping/mainmap mutation types
 export const LAYER_SET_REQUEST = 'LAYER_SET_REQUEST';

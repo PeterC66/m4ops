@@ -12,7 +12,7 @@
       <b-dropdown-item
         custom
         paddingless>
-        <ChooseOPS/>
+        <ChooseOPS :current-option-array="currentOptionArray"/>
         <p>
           Select the Continent, Country, County (eg), Study Area.
         </p>
@@ -22,12 +22,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ChooseOPS from './ChooseOPS.vue';
 
 export default {
   name: 'HeaderL1',
   components: {
     ChooseOPS,
+  },
+  computed: {
+    ...mapState({
+      currentOptionArray: state => state.mapping.currentOptionArray,
+    }),
   },
 };
 </script>

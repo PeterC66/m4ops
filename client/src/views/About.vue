@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <Header :opsdetails="place" />
     <div class="container">
       <h1>
         This is an about page
@@ -24,13 +23,11 @@
 
 <script>
 import anchoredHeading from '../modules/testing/testHeads';
-import Header from '../modules/framework/header/Header.vue';
 
 export default {
   name: 'About',
   components: {
     anchoredHeading,
-    Header,
   },
 };
 </script>

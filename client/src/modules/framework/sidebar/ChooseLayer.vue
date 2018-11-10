@@ -10,15 +10,18 @@
       @change="handleLdidChange"
       @blur="handleBlur"
     />
-    <!-- Keep using el-button -->
-    <el-button
-      v-if="showUpButton"
-      type="text"
-      size="mini"
-      @click="moveUp()"
+    <b-tooltip
+      label="Move up"
+      position="is-right"
     >
-      <font-awesome-icon icon="arrow-up" />
-    </el-button>
+      <button
+        v-if="showUpButton"
+        style="color: lightgreen; text-decoration: none;"
+        class="button is-small is-text has-text-centered"
+        @click="moveUp()">
+        <font-awesome-icon icon="arrow-up" />
+      </button>
+    </b-tooltip>
     <div style="position:relative; width: 80%; left:10%">
       <vue-slider
         v-if="showSlider"

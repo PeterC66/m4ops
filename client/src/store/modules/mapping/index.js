@@ -5,7 +5,9 @@ import {
   UPDATE_MAP_DISPLAY,
   UPDATE_ACTION_ON_CLICK,
   UPDATE_VIEW,
+  UPDATE_CURRENT_OPTION_ARRAY,
 } from '../../mutation-types';
+import { initialCurrentOptionArray } from '../../../initialising/initialState';
 
 const state = {
   mapDisplay: 'overlay',
@@ -18,6 +20,7 @@ const state = {
     center: [-105.8701, 34.5199],
     rotation: 0,
   },
+  currentOptionArray: initialCurrentOptionArray,
 
 };
 
@@ -42,6 +45,9 @@ const mutations = {
     const { rotation } = payload;
     if (isDefined(rotation)) { moduleState.view.rotation = rotation; }
   },
+  [UPDATE_CURRENT_OPTION_ARRAY](moduleState, payload) {
+    moduleState.currentOptionArray = payload.currentOptionArray;
+  },
 };
 
 const actions = {
@@ -62,6 +68,9 @@ const actions = {
   },
   updateView({ commit }, view) {
     commit(UPDATE_VIEW, { ...view });
+  },
+  updateCurrentOptionArray({ commit }, currentOptionArray) {
+    commit(UPDATE_CURRENT_OPTION_ARRAY, { currentOptionArray });
   },
 };
 
