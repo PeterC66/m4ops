@@ -212,12 +212,15 @@ export function isVoid(ldid) {
 }
 
 export function thisAndPrevious(a, prop) {
-  const result = [{ thisValue: a[0][prop], previousValue: undefined }];
-  for (let i = 1; i < a.length; i += 1) {
-    result.push({
-      thisValue: a[i][prop],
-      previousValue: a[i - 1][prop],
-    });
+  if (a[0]) {
+    const result = [{ thisValue: a[0][prop], previousValue: undefined }];
+    for (let i = 1; i < a.length; i += 1) {
+      result.push({
+        thisValue: a[i][prop],
+        previousValue: a[i - 1][prop],
+      });
+    }
+    return result;
   }
-  return result;
+  return [{ thisValue: undefined, previousValue: undefined }];
 }

@@ -28,7 +28,7 @@ function sourceTile(
     vlSourceElementTile = createElement('vl-source-osm');
   } else if (url === 'BingMaps') {
     vlSourceElementTile = createElement(
-      'vl-source-bing-maps',
+      'vl-source-bingmaps',
       {
         props: {
           'api-key': bingApiKey,

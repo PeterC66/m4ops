@@ -45,7 +45,6 @@ function LayersInGroup(
   if (url) {
     const layerTitles = getLayerTitles(url);
     layerTitles.forEach((layerTitle) => {
-      console.log(store); // eslint-disable-line no-console
       const layer = store.getters.getOPSAllLayerDefsArrayByTitle(layerTitle);
       let vlLayerElement = {};
       if (layer) {
@@ -86,7 +85,7 @@ export default function layerAndSourceGroup(
     );
     if (!_.isEmpty(vlLayersInGroup)) {
       vlLayerElementGroup = createElement(
-        'vl-layer-Group',
+        'vl-layer-group',
         { ...layerDataObject },
         vlLayersInGroup,
       );

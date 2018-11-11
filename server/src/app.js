@@ -26,7 +26,7 @@ mongoose.connect(dbURL, (err) => {
 });
 
 app.use(cors());
-app.options('*', cors());
+app.options('*', cors()); // enables pre-flight checks across-the-board
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
