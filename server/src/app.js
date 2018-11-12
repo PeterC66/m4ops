@@ -11,7 +11,7 @@ const continentRoute = require('./routes/continent');
 const m4opsDataRoute = require('./routes/m4opsdata');
 const featureLayerRoute = require('./routes/featurelayer');
 
-require('dotenv').config();
+require('dotenv-safe').config();
 
 const app = express();
 

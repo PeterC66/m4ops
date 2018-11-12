@@ -237,6 +237,7 @@ See under [Standards and styles](#standards-and-styles)
   - Merge branch XXX
   - Delete branch XXX
 - Every now and then publish changes (to origin - which is peterC66/m4ops)
+- to remove them from tracking: put in .gitignore AND git rm filename --cached
 
 ### Eslint for proofing code
 
@@ -743,7 +744,12 @@ graph LR;
   - from terminal, for a whole collection or a single document, use
     - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
     - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
+    - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
     - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
+      - Buildings.geojson"
+      - Censuses.geojson"
+      - HcN land ownership.geojson"
+      - OSM20180209.geojson"
     - add --drop so that the target instance drops the collection before importing the data from the input.
     - add --mode upsert to replace documents whose _id matches the document(s) in the import file
   - (Studies collection is not used now)
@@ -770,8 +776,13 @@ To *create Places.json*
 ### MongoDB Atlas implementation
 
 - [Documentation](https://docs.atlas.mongodb.com/)
-- See presents for users etc
-- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-3v0lv.mongodb.net:27017,cluster0-shard-00-01-3v0lv.mongodb.net:27017,cluster0-shard-00-02-3v0lv.mongodb.net:27017 --ssl --username Peter01 --password m8E$9bKp --authenticationDatabase admin --db [DATABASE] --collection [COLLECTION] --type [FILETYPE] --file [FILENAME]
+- login (manual) via RoboForm
+  - users m4ops_admin, m4ops_r, m4ops_rw - passwords in db
+  - [how to connect (command line)](https://cloud.mongodb.com/v2/5be012b7c56c9822a3b4ca0e#clusters/commandLineTools/Cluster0)
+- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017 --ssl --username m4ops_admin --password opl0oUiDw3w9FAH7 --authenticationDatabase admin --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
+  - also need --type csv if not json
+  - --authenticationDatabase admin just means the user's details are in the admin db
+- Compass URI Connection String: mongodb+srv://m4ops_admin:opl0oUiDw3w9FAH7@cluster0-bfjgs.mongodb.net/admin
 
 ## Other Notes
 

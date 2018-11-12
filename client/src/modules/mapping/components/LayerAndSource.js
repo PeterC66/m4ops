@@ -50,7 +50,8 @@ export default Vue.component('layer-and-source', {
       this.opsCode,
     );
 
-    console.log(vlLayerElement.key, { ...layerDataObject.attrs }, { ...layerDataObject.props }, vlLayerElement);
+    // eslint-disable-next-line max-len
+    // console.log(vlLayerElement.key, { ...layerDataObject.attrs }, { ...layerDataObject.props }, vlLayerElement);
     if (_.isEmpty(vlLayerElement)) {
       console.log(`${ldid} returns no vl elements`);
     }

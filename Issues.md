@@ -8,7 +8,6 @@
 
 - layerAndSourceTile: (tileserver) const OPSCode = 'HcN'; // Kludge TODO
 - after OPS choice close box
-- M4OPSView   url: 'places/HcN'
 - implementing loading aspects
 - maps created asynchronously with promises
 - disallow duplicates in OPS.json titles (FLG.php)
@@ -17,7 +16,9 @@
 - Allow Rotation:
 - window size to screen
 - simplify Continents production FLG etc?
-- No layers selected message
+- "No layers" selected message
+- details on hover not click?
+- details in separate panel?
 
 ## Consider
 

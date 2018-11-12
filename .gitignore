@@ -3,10 +3,11 @@
 /**/dist
 client/OldReact
 vuelayers-demo
+.aws
 
-# local env files
-.env.local
-.env.*.local
+# env files
+/**/.env
+/**/env/
 
 # Log files
 npm-debug.log*

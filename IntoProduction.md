@@ -23,7 +23,7 @@ Uses Docker to begin with for Mongodb, but later MLab so we ignore Docker.
 
 [Vue.js and AWS Lambda: Developing Production-Ready Apps (Part 2)](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-2/)
 
-Create (m4ops@one-place-studies.org) accounts with:
+Created (m4ops@one-place-studies.org) accounts with:
 
 - AWS ( see also ...\Guiding documents\AWS S3 for storing maps.doc)
 - Auth0 (for later)
@@ -33,3 +33,14 @@ Now we use nodemon src/appd to start development server (Lambda server is at src
 
 [The Most Popular Deployment Tools For Serverless](http://blog.epsagon.com/the-most-popular-deployment-tools-for-serverless)
 [Why serverless newbies should use a deployment framework](https://dev.to/paulswail/why-serverless-newbies-should-use-a-deployment-framework-3ea4) recommends [Serverless Framework](https://github.com/serverless/serverless)
+
+See [MongoDB Atlas implementation](NotesStandardsPractices.md#mongodb-atlas-implementation)
+[Best Practices Connecting from AWS Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
+
+- [How to handle environment-specific settings in your JavaScript apps](https://medium.freecodecamp.org/environment-settings-in-javascript-apps-c5f9744282b6)
+- we use Environment config file (.env), [dotenv](https://www.npmjs.com/package/dotenv), and [dotenv-safe](https://github.com/rolodato/dotenv-safe)
+  - in both client and server (separately)
+  - just .env and .env.example are needed - .env is copied from .env.dev or etc in the env folder
+  - neither .env nor the env folder are tracked
+- [Working with Environment Variables in Node.js](https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html)
+- [Implement NodeJS environment variables in a modern Webpack app](https://itnext.io/implement-nodejs-environment-variables-in-a-modern-webpack-app-df20c27fe5f0)
