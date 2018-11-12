@@ -20,7 +20,8 @@ function sourceTile(
     maxZoom,
   } = sourcedef;
 
-  if (urls) console.log('Warning urls has value not handled yet', urls);
+  // eslint-disable-next-line max-len
+  if (urls) console.log('Warning urls has value - urlS is not handled yet', urls);
 
   let vlSourceElementTile = {};
 
@@ -38,7 +39,6 @@ function sourceTile(
     );
   } else { // we assume all tiles are served by XYZ
     const OPSCode = 'HcN'; // Kludge TODO
-    console.log('Kludge: OPSCode = HcN');
 
     // the string storageName is either AWSS3 (use m4opsprod bucket on AWS S3),
     //   AWSS3DEV (use m4opsdev bucket on AWS S3)
@@ -65,6 +65,7 @@ function sourceTile(
           const devOrProd = (storageNameToUse.substr(5, 3) === 'DEV') ? 'dev' : 'prod'; // eslint-disable-line max-len
           baseurl = `https://s3-eu-west-1.amazonaws.com/m4ops${devOrProd}/${url}`; // eslint-disable-line max-len
         } else {
+          console.log('Kludge: OPSCode = HcN');
           baseurl = `tileserver-php-master/${OPSCode}/${folderToUse ? (`${folderToUse}/`) : ''}${url}`; // eslint-disable-line max-len
           if (storageNameToUse === 'ShowMaps') {
             baseurl = `../ShowMaps/${baseurl}`; // this works in both Dev and production

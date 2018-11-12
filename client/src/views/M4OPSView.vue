@@ -39,6 +39,8 @@ import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
+import { initialCurrentOptionArray } from '../initialising/initialState';
+
 export default {
   name: 'M4OPSView',
   components: {
@@ -79,23 +81,24 @@ export default {
         keyPath: ['continents'],
       });
     }
-    if (_.isEmpty(this.place)) {
-      this.$store.dispatch(actions.request, {
-        baseURL: 'http://localhost:5000/',
-        url: 'places/HcN',
-        keyPath: ['place'],
-      }).then(() => {
-        // The state has been updated and you can do whatever you want with the resp
-        this.$store.dispatch('initialiseChosenLayers', 'HcN');
-      }).then(() => {
-        this.$store.dispatch('updateView', this.homeView);
-      });
-    }
     if (_.isEmpty(this.m4opsdata)) {
       this.$store.dispatch(actions.request, {
         baseURL: 'http://localhost:5000/',
         url: 'm4opsdata',
         keyPath: ['m4opsdata'],
+      });
+    }
+    if (_.isEmpty(this.place)) {
+      this.$store.dispatch(actions.request, {
+        baseURL: 'http://localhost:5000/',
+        url: `places/${initialCurrentOptionArray[3]}`,
+        keyPath: ['place'],
+      }).then(() => {
+        // The state has been updated and you can do whatever you want with the resp
+        // eslint-disable-next-line max-len
+        this.$store.dispatch('initialiseChosenLayers', initialCurrentOptionArray[3]);
+      }).then(() => {
+        this.$store.dispatch('updateView', this.homeView);
       });
     }
   },

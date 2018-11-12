@@ -116,12 +116,10 @@ const mutations = {
 const actions = {
   // payload is { opsCode: eg HcN }
   initialiseChosenLayers({ commit }, opsCode) {
-    console.log('ICL', opsCode);
     commit(INITIALISE_CHOSEN_LAYERS, { opsCode });
   },
   // payload is { ldid:string_index_into_LayerDefsArray, layerNumber: eg 0, displaytype: eg A }
   setLayer({ commit }, { ldid, layerNumber, displaytype }) {
-    console.log('setLayer', ldid, layerNumber, displaytype);
     commit(LAYER_SET_REQUEST, { ldid, layerNumber, displaytype });
   },
   // payload is {opacity: eg 0.5, layerNumber: eg 0}

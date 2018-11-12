@@ -11,7 +11,7 @@
 
       <b-dropdown-item
         custom
-        paddingless>
+      >
         <ChooseOPS :current-option-array="currentOptionArray"/>
         <p>
           Select the Continent, Country, County (eg), Study Area.

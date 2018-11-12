@@ -39,20 +39,27 @@ import store from '../../../../store';
 function LayersInGroup(
   createElement,
   sourcedef,
+  layerDataObject,
 ) {
   const vlLayersInGroup = [];
   const { url } = sourcedef;
   if (url) {
     const layerTitles = getLayerTitles(url);
+    let i = 0;
     layerTitles.forEach((layerTitle) => {
       const layer = store.getters.getOPSAllLayerDefsArrayByTitle(layerTitle);
+      const subLayerDataObject = {
+        ...layerDataObject,
+        key: `${layerDataObject.key}_${i}`,
+      };
       let vlLayerElement = {};
       if (layer) {
         vlLayerElement = layerAndSourceCreate(
           createElement,
           layer,
-          {},
+          subLayerDataObject,
         );
+        i += 1;
       } else {
         console.log(`Cannot find Layer ${layerTitle}`); // eslint-disable-line no-console
       }
@@ -78,10 +85,19 @@ export default function layerAndSourceGroup(
     ldid,
     sourcedef,
   } = layer;
+  const { props: { 'z-index': zIndex }, key } = layerDataObject;
+
+  const sublayerDataObject = {
+    props: {
+      'z-index': zIndex,
+    },
+    key,
+  };
   if (sourcedef) {
     vlLayersInGroup = LayersInGroup(
       createElement,
       sourcedef,
+      sublayerDataObject,
     );
     if (!_.isEmpty(vlLayersInGroup)) {
       vlLayerElementGroup = createElement(

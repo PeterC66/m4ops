@@ -29,17 +29,20 @@ export default Vue.component('layer-and-source', {
     const visible = true;
     const layerDataObject = {
       attrs: {
-        title,
-        layerdescription,
-        id: `${title}-${this.layerNumber}`,
-        opacity,
-        visible,
         layer: this.layer,
+        layerdescription,
+        title,
+      },
+      props: {
+        id: `${title}-${this.layerNumber}`,
+        visible,
+        opacity,
         'z-index': this.layerNumber,
       },
       key: `ML${this.layerNumber}${ldid}`,
     };
-    // console.log(`rendering ML ${this.layerNumber} ${opacity} ${ldid}`);
+    // eslint-disable-next-line max-len
+    // console.log(`rendering ML ${this.layerNumber} ${opacity} ${ldid}`, { ...layerDataObject.attrs }, { ...layerDataObject.props });
     vlLayerElement = layerAndSourceCreate(
       createElement,
       this.layer,
@@ -47,6 +50,7 @@ export default Vue.component('layer-and-source', {
       this.opsCode,
     );
 
+    console.log(vlLayerElement.key, { ...layerDataObject.attrs }, { ...layerDataObject.props }, vlLayerElement);
     if (_.isEmpty(vlLayerElement)) {
       console.log(`${ldid} returns no vl elements`);
     }

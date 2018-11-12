@@ -4,10 +4,9 @@
 
 - Production version
 
-- layerAndSourceTile: const OPSCode = 'HcN'; // Kludge TODO
-
 ## Issues to be resolved
 
+- layerAndSourceTile: (tileserver) const OPSCode = 'HcN'; // Kludge TODO
 - after OPS choice close box
 - M4OPSView   url: 'places/HcN'
 - implementing loading aspects

@@ -4,6 +4,7 @@ import {
   pipe,
   string2bool,
   isVoid,
+  replaceAll,
 } from '../../../global/utils';
 
 /**
@@ -49,8 +50,9 @@ export default categoriesAndLayers;
 
 // Given eg "World>Basic>Bing_Aerial" return ["Basic", "World>Basic>Bing_Aerial"]
 //  which corresponds to the options values in the ChooseLayer cascader, from categoriesAndLayers
+// It relies on the category being between the two '>' (and ' ' => '_')
 export function ldidToCategoryAndLayer(ldid) {
   if (!ldid || isVoid(ldid)) return [];
   const idArray = ldid.split('>');
-  return [idArray[1], ldid];
+  return [replaceAll(idArray[1], '_', ' '), ldid];
 }
