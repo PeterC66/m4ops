@@ -20,9 +20,9 @@ const dbURL = process.env.MONGO_DB_URL;
 
 mongoose.connect(dbURL, (err) => {
   if (err) {
-    console.log(`Error connecting to: ${dbURL}`);
+    console.log(`Error connecting to: ${dbURL}`); // eslint-disable-line no-console
   } else {
-    console.log(`Connected to: ${dbURL}`);
+    console.log(`Connected to: ${dbURL}`); // eslint-disable-line no-console
   }
 });
 

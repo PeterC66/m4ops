@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     tellMe() {
-      console.log('tellMe');
+      console.log('tellMe'); // eslint-disable-line no-console
     },
   },
 };

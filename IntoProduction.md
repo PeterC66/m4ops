@@ -7,7 +7,7 @@ TL;DR: In this series, you will use modern technologies like Vue.js, AWS Lambda,
 
 [**AWS Lambda**](https://aws.amazon.com/lambda/) needs [AWS API Gateway](https://aws.amazon.com/api-gateway/) to define how external services (or, in this case, a Vue.js client) can communicate with your serverless backend app - makes AWS Lambda not straightforward. So use an open-source tool called [**Claudia**.js](https://claudiajs.com/). Otherwise [see this](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-lambda-integration.html) and [this](https://ig.nore.me/2016/03/setting-up-lambda-and-a-gateway-through-the-cli/).
 
-To see what is happening in Lambda, and console messages, use AWS CloudWatch in the region we used (us-east-1).
+To see what is happening in Lambda, and console messages, use AWS CloudWatch in the region we used (us-east-1). [prices](https://aws.amazon.com/cloudwatch/pricing)
 
 Popular Express middleware to define your backend endpoints
 
@@ -46,6 +46,8 @@ claudia generate-serverless-express-proxy --express-module src/app
 Then using [claudia create](https://github.com/claudiajs/claudia/blob/master/docs/create.md):
 
 claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1 --set-env-from-json prod.json
+
+us-east-1 is Virginia
 
 To re-create use
 claudia update --set-env-from-json prod.json

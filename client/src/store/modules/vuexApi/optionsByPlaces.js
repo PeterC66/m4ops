@@ -40,20 +40,20 @@ const optionsByPlaces = (continents, places) => {
         }
       });
   }
-  console.log('A', options);
+  console.log('A', options); // eslint-disable-line no-console
 
   const opsCodes =
     options
       .map(option => (option[3]));
-  console.log('C', opsCodes);
-  console.log('D', places);
+  console.log('C', opsCodes); // eslint-disable-line no-console
+  console.log('D', places); // eslint-disable-line no-console
 
   const allOtherOps = [];
   if (isNonemptyArray(places)) {
     places
       .forEach(place => allOtherOps.push(place.OPSCode));
   }
-  console.log('E', allOtherOps);
+  console.log('E', allOtherOps); // eslint-disable-line no-console
 
   allOtherOps
     .filter(opsCode => !(_.includes(opsCodes, opsCode)))
@@ -66,7 +66,7 @@ const optionsByPlaces = (continents, places) => {
       ]);
     });
 
-  console.log('Z', options);
+  console.log('Z', options); // eslint-disable-line no-console
   return options;
 };
 

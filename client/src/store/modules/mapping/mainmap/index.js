@@ -63,7 +63,7 @@ const mutations = {
         moduleState.chosenLayers[0].opacity = 1; // in case not
       }
     } else {
-      console.log('Warning: layerNumber is undefined');
+      console.log('Warning: layerNumber is undefined'); // eslint-disable-line no-console
     }
   },
   [OPACITY_SET_REQUEST](moduleState, payload) {
@@ -74,11 +74,11 @@ const mutations = {
           moduleState.chosenLayers[layerNumber].opacity = opacity;
         } else {
           console.log(`Warning: opacity is undefined
-            for layerNumber: ${layerNumber}`);
+            for layerNumber: ${layerNumber}`); // eslint-disable-line no-console
         }
       } else {
         console.log(`Warning: defining opacity
-          before ldid for layerNumber: ${layerNumber}`);
+          before ldid for layerNumber: ${layerNumber}`); // eslint-disable-line no-console
       }
     }
   },

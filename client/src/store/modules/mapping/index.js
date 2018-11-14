@@ -39,7 +39,7 @@ const mutations = {
       if (center.length === 2) {
         moduleState.view.center = center;
       } else {
-        console.log('Warning: center is ', center);
+        console.log('Warning: center is ', center); // eslint-disable-line no-console
       }
     }
     const { rotation } = payload;

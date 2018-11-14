@@ -53,7 +53,7 @@ export default Vue.component('layer-and-source', {
     // eslint-disable-next-line max-len
     // console.log(vlLayerElement.key, { ...layerDataObject.attrs }, { ...layerDataObject.props }, vlLayerElement);
     if (_.isEmpty(vlLayerElement)) {
-      console.log(`${ldid} returns no vl elements`);
+      console.log(`${ldid} returns no vl elements`); // eslint-disable-line no-console
     }
     return vlLayerElement;
   },

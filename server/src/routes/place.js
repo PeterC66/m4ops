@@ -6,7 +6,7 @@ const PlaceController = require('../controllers/PlaceController');
 router.get('/', (req, res, next) => {
   PlaceController.findPlaces(req.query, (err, results) => {
     if (err) {
-      console.log('Error in PCfP', err);
+      console.log('Error in PCfP', err); // eslint-disable-line no-console
       res.json({
         success: 0,
         error: err,
@@ -25,7 +25,7 @@ router.get('/:opscode', (req, res, next) => {
 
   PlaceController.findByOpscode(opscode, (err, result) => {
     if (err) {
-      console.log('Error in PCfBO', err);
+      console.log('Error in PCfBO', err); // eslint-disable-line no-console
       res.status(500).json({
         success: 0,
         data: result,

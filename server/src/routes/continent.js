@@ -6,7 +6,7 @@ const PlaceController = require('../controllers/PlaceController');
 router.get('/', (req, res, next) => {
   PlaceController.findContinents(req.query, (err, results) => {
     if (err) {
-      console.log('Error in PCfC', err);
+      console.log('Error in PCfC', err); // eslint-disable-line no-console
       res.json({
         success: 0,
         error: err,

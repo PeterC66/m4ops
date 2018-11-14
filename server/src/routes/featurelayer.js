@@ -13,7 +13,7 @@ router.get('/:ops_layer', (req, res, next) => {
 
   FeatureLayerController.findByOps_Layer(ops_layer, (err, result) => {
     if (err) {
-      console.log('Error in FLCfBOL', err);
+      console.log('Error in FLCfBOL', err); // eslint-disable-line no-console
       res.status(500).json({
         success: 0,
         data: result,

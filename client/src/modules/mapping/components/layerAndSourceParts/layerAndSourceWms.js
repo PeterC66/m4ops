@@ -16,7 +16,7 @@ function sourceWms(
   let vlSourceElementWms = {};
 
   // const atts = attribution ? [attributionFromCode(attribution)] : [];
-  console.log('S-SD:', sourcedef, 'url:', url);
+  console.log('S-SD:', sourcedef, 'url:', url); // eslint-disable-line no-console
 
   if (url) {
     vlSourceElementWms = createElement(
@@ -35,7 +35,7 @@ function sourceWms(
       },
     );
   }
-  console.log('WMS:', vlSourceElementWms);
+  console.log('WMS:', vlSourceElementWms); // eslint-disable-line no-console
   return vlSourceElementWms;
 }
 
@@ -84,7 +84,7 @@ export default function layerAndSourceWms(
     ldid,
     sourcedef,
   } = layer;
-  console.log('layer:', layer, 'SD:', sourcedef, 'LDO:', layerDataObject);
+  console.log('layer:', layer, 'SD:', sourcedef, 'LDO:', layerDataObject); // eslint-disable-line no-console
   if (sourcedef) {
     vlSourceElementWms = sourceWms(
       createElement,
@@ -99,10 +99,10 @@ export default function layerAndSourceWms(
         ],
       );
     } else {
-      console.log(`Cannot create vlSourceElementWms for ${ldid}`);
+      console.log(`Cannot create vlSourceElementWms for ${ldid}`); // eslint-disable-line no-console
     }
   } else {
-    console.log(`${ldid} has undefined sourcedef`);
+    console.log(`${ldid} has undefined sourcedef`); // eslint-disable-line no-console
   }
   return vlLayerElementWms;
 }

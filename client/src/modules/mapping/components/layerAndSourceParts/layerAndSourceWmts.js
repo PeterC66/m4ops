@@ -61,10 +61,10 @@ export default function layerAndSourceWmts(
         ],
       );
     } else {
-      console.log(`Cannot create vlSourceElementWmts for ${ldid}`);
+      console.log(`Cannot create vlSourceElementWmts for ${ldid}`); // eslint-disable-line no-console
     }
   } else {
-    console.log(`${ldid} has undefined sourcedef`);
+    console.log(`${ldid} has undefined sourcedef`); // eslint-disable-line no-console
   }
   return vlLayerElementWmts;
 }

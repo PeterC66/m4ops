@@ -66,10 +66,10 @@ export default {
   },
   methods: {
     tellMe() {
-      console.log('tellMe');
+      console.log('tellMe'); // eslint-disable-line no-console
     },
     goHome() {
-      // eslint-disable-next-line max-len
+      // eslint-disable-next-line max-len, no-console
       if (!useVuexForView) console.log('Remember that useVuexForView is false so GoHome button will not work');
       this.$store.dispatch('updateView', this.homeView);
     },

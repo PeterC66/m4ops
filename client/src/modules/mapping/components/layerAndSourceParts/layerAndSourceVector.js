@@ -34,7 +34,7 @@ function sourceVector(
         );
         break;
       default:
-        console.log(`Vector source extension ${ext} unknown. URL = ${url}`);
+        console.log(`Vector source extension ${ext} unknown. URL = ${url}`); // eslint-disable-line no-console
     }
   }
   return vlSourceElementVector;
@@ -91,10 +91,10 @@ export default function layerAndSourceVector(
         ],
       );
     } else {
-      console.log(`Cannot create vlSourceElementVector for ${ldid}`);
+      console.log(`Cannot create vlSourceElementVector for ${ldid}`); // eslint-disable-line no-console
     }
   } else {
-    console.log(`${ldid} has undefined sourcedef`);
+    console.log(`${ldid} has undefined sourcedef`); // eslint-disable-line no-console
   }
   return vlLayerElementVector;
 }

@@ -21,7 +21,7 @@ function sourceTile(
   } = sourcedef;
 
   // eslint-disable-next-line max-len
-  if (urls) console.log('Warning urls has value - urlS is not handled yet', urls);
+  if (urls) console.log('Warning urls has value - urlS is not handled yet', urls); // eslint-disable-line no-console
 
   let vlSourceElementTile = {};
 
@@ -65,7 +65,7 @@ function sourceTile(
           const devOrProd = (storageNameToUse.substr(5, 3) === 'DEV') ? 'dev' : 'prod'; // eslint-disable-line max-len
           baseurl = `https://s3-eu-west-1.amazonaws.com/m4ops${devOrProd}/${url}`; // eslint-disable-line max-len
         } else {
-          console.log('Kludge: OPSCode = HcN');
+          console.log('Kludge: OPSCode = HcN'); // eslint-disable-line no-console
           baseurl = `tileserver-php-master/${OPSCode}/${folderToUse ? (`${folderToUse}/`) : ''}${url}`; // eslint-disable-line max-len
           if (storageNameToUse === 'ShowMaps') {
             baseurl = `../ShowMaps/${baseurl}`; // this works in both Dev and production
@@ -132,10 +132,10 @@ export default function layerAndSourceTile(
         ],
       );
     } else {
-      console.log(`Cannot create vlSourceElementTile for ${ldid}`);
+      console.log(`Cannot create vlSourceElementTile for ${ldid}`); // eslint-disable-line no-console
     }
   } else {
-    console.log(`${ldid} has undefined sourcedef`);
+    console.log(`${ldid} has undefined sourcedef`); // eslint-disable-line no-console
   }
   return vlLayerElementTile;
 }

@@ -65,7 +65,7 @@ function LayersInGroup(
       }
 
       if (_.isEmpty(vlLayerElement)) {
-        console.log(`${layerTitle} returns no vl elements`);
+        console.log(`${layerTitle} returns no vl elements`); // eslint-disable-line no-console
       } else {
         vlLayersInGroup.push(vlLayerElement);
       }
@@ -106,10 +106,10 @@ export default function layerAndSourceGroup(
         vlLayersInGroup,
       );
     } else {
-      console.log(`Cannot create vlLayersInGroup for ${ldid}`);
+      console.log(`Cannot create vlLayersInGroup for ${ldid}`); // eslint-disable-line no-console
     }
   } else {
-    console.log(`${ldid} has undefined sourcedef`);
+    console.log(`${ldid} has undefined sourcedef`); // eslint-disable-line no-console
   }
   return vlLayerElementGroup;
 }

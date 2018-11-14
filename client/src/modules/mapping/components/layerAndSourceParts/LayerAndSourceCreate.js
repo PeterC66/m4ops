@@ -54,7 +54,7 @@ export default function layerAndSourceCreate(
   }
 
   if (_.isEmpty(vlLayerElement)) {
-    console.log(`${ldid} returns no vl elements`);
+    console.log(`${ldid} returns no vl elements`); // eslint-disable-line no-console
   }
   return vlLayerElement;
 }
