@@ -6,7 +6,7 @@ const PlaceController = require('../controllers/PlaceController');
 router.get('/', (req, res, next) => {
   PlaceController.findM4OPSData(req.query, (err, results) => {
     if (err) {
-      console.log(err);
+      console.log('Error in PCfM4D', err);
       res.json({
         success: 0,
         error: err,

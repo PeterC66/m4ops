@@ -16,6 +16,9 @@ import store from './store';
 import './registerServiceWorker';
 import './global/components/_global'; // globally registers any _base components
 
+
+// console.log('env', process.env);
+
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);
 initialiseVueLayers(Vue);

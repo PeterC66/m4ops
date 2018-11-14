@@ -7,6 +7,8 @@ TL;DR: In this series, you will use modern technologies like Vue.js, AWS Lambda,
 
 [**AWS Lambda**](https://aws.amazon.com/lambda/) needs [AWS API Gateway](https://aws.amazon.com/api-gateway/) to define how external services (or, in this case, a Vue.js client) can communicate with your serverless backend app - makes AWS Lambda not straightforward. So use an open-source tool called [**Claudia**.js](https://claudiajs.com/). Otherwise [see this](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-lambda-integration.html) and [this](https://ig.nore.me/2016/03/setting-up-lambda-and-a-gateway-through-the-cli/).
 
+To see what is happening in Lambda, and console messages, use AWS CloudWatch in the region we used (us-east-1).
+
 Popular Express middleware to define your backend endpoints
 
 - [bodyParser](https://github.com/expressjs/body-parser) (have) - Express middleware that parses request bodies so you can access JSON objects sent by clients
@@ -37,10 +39,52 @@ Now we use nodemon src/appd to start development server (Lambda server is at src
 See [MongoDB Atlas implementation](NotesStandardsPractices.md#mongodb-atlas-implementation)
 [Best Practices Connecting from AWS Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
 
+[Claudia and Express](https://claudiajs.com/tutorials/serverless-express.html) (now we use node v8.11.3)
+Use the claudia CLI tool to prepare a serverless proxy around Express API:
+claudia generate-serverless-express-proxy --express-module src/app
+
+Then using [claudia create](https://github.com/claudiajs/claudia/blob/master/docs/create.md):
+
+claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1 --set-env-from-json prod.json
+
+To re-create use
+claudia update --set-env-from-json prod.json
+
+
+## Environment Variables
+
+### General
+
 - [How to handle environment-specific settings in your JavaScript apps](https://medium.freecodecamp.org/environment-settings-in-javascript-apps-c5f9744282b6)
-- we use Environment config file (.env), [dotenv](https://www.npmjs.com/package/dotenv), and [dotenv-safe](https://github.com/rolodato/dotenv-safe)
-  - in both client and server (separately)
-  - just .env and .env.example are needed - .env is copied from .env.dev or etc in the env folder
-  - neither .env nor the env folder are tracked
 - [Working with Environment Variables in Node.js](https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html)
 - [Implement NodeJS environment variables in a modern Webpack app](https://itnext.io/implement-nodejs-environment-variables-in-a-modern-webpack-app-df20c27fe5f0)
+
+### On Server
+
+- the environment variables we need are defined in .env.example ( as used by dotenv-safe)
+  - PORT (only needed in development)
+  - MONGO_DB_URL
+- they are read before, or very early in, app.js starts
+- console.log(process.env) shows them
+
+#### Development (on PC)
+
+- we use [dotenv-safe](https://github.com/rolodato/dotenv-safe) to read from .env (untracked), and this is called if MONGO_DB_URL is not already set
+- they include (but we do not use) all the windows environment variables such as PATH
+
+#### Production
+
+- We use Claudia/AWS Lambda
+- .aws/credentials is stored in %UserProfile% (ie Peter)
+- environment variables are all in prod.json
+- these are read by claudia via --set-env-from-json
+
+### On Client
+
+- In the client we use Vue CLI 3 standards - see [VueCLI 3: Environment Variables and Modes](https://cli.vuejs.org/guide/mode-and-env.html)
+  - .env                # loaded in all cases
+  - .env.local          # loaded in all cases, ignored by git
+  - .env.[mode]         # only loaded in specified mode
+  - .env.[mode].local   # only loaded in specified mode, ignored by git
+  - where [mode] is development, production or test
+  - Only variables that start with VUE_APP_ will be available (via process.env. ), plus BASE_URL & NODE_ENV

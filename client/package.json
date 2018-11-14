@@ -16,6 +16,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.2",
     "axios": "^0.18.0",
     "buefy": "^0.7.0",
+    "dotenv-safe": "^6.1.0",
     "element-ui": "^2.4.8",
     "lodash": "^4.17.11",
     "ol": "^5.2.0",

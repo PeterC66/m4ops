@@ -11,10 +11,11 @@ const continentRoute = require('./routes/continent');
 const m4opsDataRoute = require('./routes/m4opsdata');
 const featureLayerRoute = require('./routes/featurelayer');
 
-require('dotenv-safe').config();
+if (!process.env.MONGO_DB_URL) {
+  require('dotenv-safe').config();
+}
 
 const app = express();
-
 const dbURL = process.env.MONGO_DB_URL;
 
 mongoose.connect(dbURL, (err) => {

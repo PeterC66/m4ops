@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "m4ops_server-executor",
+    "name": "m4ops_server",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "q91jlbi9al"
+  }
+}

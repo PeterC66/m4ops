@@ -4,9 +4,11 @@ const router = express.Router();
 const PlaceController = require('../controllers/PlaceController');
 
 router.get('/', (req, res, next) => {
+  console.log('In AContinent', req, req.query);
   PlaceController.findContinents(req.query, (err, results) => {
+    console.log('In BContinent', results);
     if (err) {
-      console.log(err);
+      console.log('Error in PCfC', err);
       res.json({
         success: 0,
         error: err,

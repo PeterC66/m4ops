@@ -778,11 +778,18 @@ To *create Places.json*
 - [Documentation](https://docs.atlas.mongodb.com/)
 - login (manual) via RoboForm
   - users m4ops_admin, m4ops_r, m4ops_rw - passwords in db
+  - AWS REGION N. Virginia (us-east-1)
   - [how to connect (command line)](https://cloud.mongodb.com/v2/5be012b7c56c9822a3b4ca0e#clusters/commandLineTools/Cluster0)
 - mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017 --ssl --username m4ops_admin --password opl0oUiDw3w9FAH7 --authenticationDatabase admin --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
   - also need --type csv if not json
   - --authenticationDatabase admin just means the user's details are in the admin db
 - Compass URI Connection String: mongodb+srv://m4ops_admin:opl0oUiDw3w9FAH7@cluster0-bfjgs.mongodb.net/admin
+- See also [re Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
+- [whitelist etc](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas)
+- Need [VPC Peering](https://docs.atlas.mongodb.com/security-vpc-peering/?_ga=2.60596525.1806821640.1542128896-679673914.1534237061) and [this](https://www.mongodb.com/blog/post/introducing-vpc-peering-for-mongodb-atlas?jmp=adref) for production, but
+  - (free) M0 clusters don’t support VPC Peering so we need
+  - whitelist 0.0.0.0/0 (access from anywhere)
+- older URI  mongodb://m4ops_r:iS2NPR3HBmsSTheK@cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true
 
 ## Other Notes
 

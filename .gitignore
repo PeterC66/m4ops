@@ -3,11 +3,17 @@
 /**/dist
 client/OldReact
 vuelayers-demo
-.aws
+/server/.aws
+/server/prod.json
 
-# env files
-/**/.env
-/**/env/
+# (client) local env files,  ignored by git (*=development, production or test)
+# See https://cli.vuejs.org/guide/mode-and-env.html
+/client/.env.local
+/client/.env.*.local
+
+# (server) env files
+/server/.env
+/server/env/
 
 # Log files
 npm-debug.log*
