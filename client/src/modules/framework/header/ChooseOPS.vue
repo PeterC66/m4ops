@@ -43,9 +43,8 @@ export default {
   },
   methods: {
     handleChange(value) {
-      console.log(value);
       this.$store.dispatch(actions.request, {
-        baseURL: 'http://localhost:5000/',
+        baseURL: process.env.VUE_APP_BACKEND_URL,
         url: `places/${value[3]}`,
         keyPath: ['place'],
       }).then(() => {

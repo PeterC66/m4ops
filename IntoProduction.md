@@ -50,6 +50,12 @@ claudia create --handler lambda.handler --deploy-proxy-api --region us-east-1 --
 To re-create use
 claudia update --set-env-from-json prod.json
 
+See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/continents)
+ **check costs** !!!
+
+[**Check this**](https://mongoosejs.com/docs/lambda.html)
+[Useful](https://dev.to/saigowthamr/build-and-deploy-a-rest-api--using-serverless-express-and-nodejs-3331)
+[Also](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas)
 
 ## Environment Variables
 
@@ -63,16 +69,16 @@ claudia update --set-env-from-json prod.json
 
 - the environment variables we need are defined in .env.example ( as used by dotenv-safe)
   - PORT (only needed in development)
-  - MONGO_DB_URL
+  - MONGO_DB_URL [see doc](https://docs.mongodb.com/manual/reference/connection-string/#connections-connection-options)
 - they are read before, or very early in, app.js starts
 - console.log(process.env) shows them
 
-#### Development (on PC)
+#### Server: Development (on PC)
 
 - we use [dotenv-safe](https://github.com/rolodato/dotenv-safe) to read from .env (untracked), and this is called if MONGO_DB_URL is not already set
 - they include (but we do not use) all the windows environment variables such as PATH
 
-#### Production
+#### Server: Production
 
 - We use Claudia/AWS Lambda
 - .aws/credentials is stored in %UserProfile% (ie Peter)
@@ -86,5 +92,11 @@ claudia update --set-env-from-json prod.json
   - .env.local          # loaded in all cases, ignored by git
   - .env.[mode]         # only loaded in specified mode
   - .env.[mode].local   # only loaded in specified mode, ignored by git
-  - where [mode] is development, production or test
-  - Only variables that start with VUE_APP_ will be available (via process.env. ), plus BASE_URL & NODE_ENV
+  - (where [mode] is development, production or test)
+  - Only variables that start with **VUE_APP_** will be available (via process.env. ), plus BASE_URL & NODE_ENV
+  - Computed env vars can be in vue.config.js (still prefixed with VUE_APP_)
+- the older Vue CLI 2 had a config directory with dev.env.js and prod.env.js
+
+#### Client: Development (on PC)
+
+#### Client: Production

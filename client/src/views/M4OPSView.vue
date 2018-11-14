@@ -69,28 +69,28 @@ export default {
   created() {
     if (_.isEmpty(this.places)) {
       this.$store.dispatch(actions.request, {
-        baseURL: 'http://localhost:5000/',
+        baseURL: process.env.VUE_APP_BACKEND_URL,
         url: 'places',
         keyPath: ['places'],
       });
     }
     if (_.isEmpty(this.continents)) {
       this.$store.dispatch(actions.request, {
-        baseURL: 'http://localhost:5000/',
+        baseURL: process.env.VUE_APP_BACKEND_URL,
         url: 'continents',
         keyPath: ['continents'],
       });
     }
     if (_.isEmpty(this.m4opsdata)) {
       this.$store.dispatch(actions.request, {
-        baseURL: 'http://localhost:5000/',
+        baseURL: process.env.VUE_APP_BACKEND_URL,
         url: 'm4opsdata',
         keyPath: ['m4opsdata'],
       });
     }
     if (_.isEmpty(this.place)) {
       this.$store.dispatch(actions.request, {
-        baseURL: 'http://localhost:5000/',
+        baseURL: process.env.VUE_APP_BACKEND_URL,
         url: `places/${initialCurrentOptionArray[3]}`,
         keyPath: ['place'],
       }).then(() => {
