@@ -73,12 +73,12 @@ const mutations = {
         if (isDefined(opacity)) {
           moduleState.chosenLayers[layerNumber].opacity = opacity;
         } else {
-          console.log(`Warning: opacity is undefined
-            for layerNumber: ${layerNumber}`); // eslint-disable-line no-console
+          // eslint-disable-next-line max-len, no-console
+          console.log(`Warning: opacity is undefined for layerNumber: ${layerNumber}`);
         }
       } else {
-        console.log(`Warning: defining opacity
-          before ldid for layerNumber: ${layerNumber}`); // eslint-disable-line no-console
+        // eslint-disable-next-line max-len, no-console
+        console.log(`Warning: defining opacity before ldid for layerNumber: ${layerNumber}`);
       }
     }
   },
