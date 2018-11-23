@@ -4,10 +4,11 @@
       ref="mainmap"
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
+      :style="{cursor: mapCursor}"
       data-projection="EPSG:4326"
-      style="height: 100%"
       @click="clickCoordinate = $event.coordinate"
       @mounted="onMapMounted"
+      @pointermove="onMapPointerMove"
     >
       <vl-view
         :ident="viewIdent"
@@ -51,7 +52,15 @@ const methods = {
       new ZoomSlider(),
     ]);
   },
+  onMapPointerMove({ pixel }) {
+    const hit = this.$refs.mainmap.forEachFeatureAtPixel(pixel, () => true);
 
+    if (hit) {
+      this.mapCursor = 'pointer';
+    } else {
+      this.mapCursor = 'default';
+    }
+  },
 };
 
 export default {
@@ -59,6 +68,11 @@ export default {
   components: {
     LayersContainer,
     Selection,
+  },
+  data() {
+    return {
+      mapCursor: 'default',
+    };
   },
   computed: {
     viewIdent() {

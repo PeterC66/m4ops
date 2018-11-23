@@ -1,26 +1,17 @@
+import OlFeature from 'ol/Feature';
+
 import { disabbreviate } from './stringManipulation';
+import {
+  isDefined,
+  isString,
+  // toUCifString,
+} from '../../../global/utils';
 
 export const attributionFromCode = (att) => {
   const attModified = disabbreviate(att);
   // WAS before v4.6.5 return new ol.Attribution({ html: attModified });
   return attModified;
 };
-
-export const dummy = 0;
-
-/*
-import OlFeature from 'ol/feature';
-
-import {
-
-  isDefined,
-  isString,
-  toUCifString,
-} from '../../../global/utils';
-
-// TODO
-const layerDefs = [];
-const map = {};
 
 export const getDirectValueOf = (propertyname, obj) => {
   // console.log("gDV pn, obj = ", propertyname, $.extend({}, obj));
@@ -45,6 +36,15 @@ export const getDirectValueOf = (propertyname, obj) => {
   // If through here then return blank
   return '';
 };
+
+export const dummy = 0;
+
+/*
+
+
+// TODO
+const layerDefs = [];
+const map = {};
 
 // Find the index of the first location of a value (needle) in the "propertyname" element
 // of a haystackArray

@@ -4,12 +4,14 @@
 
 - Production version - Backups
 - Popups – by feature, or in results sidebar (use click choice?)
-  - Freeze/unfreeze
   - details on hover not click?
   - details in separate panel?
+  - Freeze/unfreeze
+  - Format data (with images, events, html etc)
 - Views – 2 maps, spy, slider
 - Click actions
 - Users, Passwords - use Auth0
+  - Admin, Manager, User, Guest
 - projections and BritishNationalGrid
 
 ## Await v0.12 Priority
@@ -56,6 +58,7 @@
 
 ## Low Priority
 
+- User favourite Layers
 - layerAndSourceTile: (tileserver) const OPSCode = 'HcN'; // Kludge TODO (or remove tileserver folder)
 - after OPS choice close box
 - maps created asynchronously with promises
