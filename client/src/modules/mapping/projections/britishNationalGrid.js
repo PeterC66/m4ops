@@ -15,17 +15,14 @@ proj4.defs('EPSG:27700', '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=4
 export function gridrefNumToLet(eOriginal, nOriginal, digits) { // easting & northing, and precision
   // get the 100km-grid indices
   const e100k = Math.floor(eOriginal / 100000);
-
-
   const n100k = Math.floor(nOriginal / 100000);
-
   if (e100k < 0 || e100k > 6 || n100k < 0 || n100k > 12) return '';
 
-  /* eslint-disable no-mixed-operators */
+  const digitsHalf = digits / 2;
+
   // translate those into numeric equivalents of the grid letters
-  let l1 = (19 - n100k) - (19 - n100k) % 5 + Math.floor((e100k + 10) / 5);
-  let l2 = (19 - n100k) * 5 % 25 + e100k % 5;
-  /* eslint-enable no-mixed-operators */
+  let l1 = ((19 - n100k) - ((19 - n100k) % 5)) + Math.floor((e100k + 10) / 5);
+  let l2 = (((19 - n100k) * 5) % 25) + (e100k % 5);
 
   // compensate for skipped 'I' and build grid letter-pairs
   if (l1 > 7) l1 += 1;
@@ -37,8 +34,8 @@ export function gridrefNumToLet(eOriginal, nOriginal, digits) { // easting & nor
   );
 
   // strip 100km-grid indices from easting & northing, and reduce precision
-  const e = Math.floor((eOriginal % 100000) / (10 ** (5 - digits / 2)));
-  const n = Math.floor((nOriginal % 100000) / (10 ** (5 - digits / 2)));
+  const e = Math.floor((eOriginal % 100000) / (10 ** (5 - digitsHalf)));
+  const n = Math.floor((nOriginal % 100000) / (10 ** (5 - digitsHalf)));
   /* was
   e = Math.floor((e % 100000) / Math.pow(10, 5 - digits / 2));
   n = Math.floor((n % 100000) / Math.pow(10, 5 - digits / 2));
@@ -57,7 +54,7 @@ export function gridrefNumToLet(eOriginal, nOriginal, digits) { // easting & nor
   };
 
   // was const gridRef = letPair + e.padLZ(digits / 2) + n.padLZ(digits / 2);
-  const gridRef = letPair + padLZ(e, digits / 2) + padLZ(n, digits / 2);
+  const gridRef = letPair + padLZ(e, digitsHalf) + padLZ(n, digitsHalf);
 
   return gridRef;
 }
@@ -85,8 +82,8 @@ export function gridrefLetToNum(gridref) {
   if (Number.isNaN(numericgridref)) return null; // numericgridref must be numeric (so if "Not A Number" return null)
 
   // convert grid letters into 100km-square indexes from false origin (grid square SV):
-  let e = ((l1 - 2) % 5) * 5 + (l2 % 5);
-  let n = (19 - Math.floor(l1 / 5) * 5) - Math.floor(l2 / 5);
+  let e = (((l1 - 2) % 5) * 5) + (l2 % 5);
+  let n = (19 - (Math.floor(l1 / 5) * 5)) - Math.floor(l2 / 5);
 
   // append numeric part of references to grid index:
   e += numericgridref.slice(0, numericgridref.length / 2);

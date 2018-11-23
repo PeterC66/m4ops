@@ -10,6 +10,11 @@
 - Views – 2 maps, spy, slider
 - Click actions
 - Users, Passwords - use Auth0
+- projections and BritishNationalGrid
+
+## Await v0.12 Priority
+
+- Mouse Position control
 
 ## Medium Priority
 
@@ -17,7 +22,6 @@
 - TODO in comments items
 - implementing loading aspects including "No layers" selected message
 - Zoom: Center as was (??)
-- Allow Rotation: await v0.12
 - window size to screen
 - Upload, compile
 - Demo

@@ -30,6 +30,7 @@
 import { mapGetters } from 'vuex';
 import ScaleLine from 'ol/control/ScaleLine';
 import FullScreen from 'ol/control/FullScreen';
+import Rotate from 'ol/control/Rotate';
 import OverviewMap from 'ol/control/OverviewMap';
 import ZoomSlider from 'ol/control/ZoomSlider';
 
@@ -42,6 +43,7 @@ const methods = {
     this.$refs.mainmap.$map.getControls().extend([
       new ScaleLine(),
       new FullScreen(),
+      new Rotate(),
       new OverviewMap({
         collapsed: false,
         collapsible: true,
