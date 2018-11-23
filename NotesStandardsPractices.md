@@ -105,22 +105,31 @@ The main stack is
 
 - the client: OpenLayers, Vue.js (and Vuex), Webpack
 - \<-via REST API-\>
-- the server: Express, Node, MongoDB
+- the server: Express, Node
+- database: MongoDB
 
 - see [Build full stack web apps with MEVN Stack](https://medium.com/@anaida07/mevn-stack-application-part-1-3a27b61dcae0) and [Part 2](https://medium.com/@anaida07/mevn-stack-application-part-2-2-9ebcf8a22753)
 
 ## Folder and File set-up
 
+``` bash
+**client** Folder Structure
+├── dist - result of the build process
+├── public
+├── src
+└── tests (TODO)
+
 **public** Folder Structure
 ├── index.html (main entry point, includes  \<div id="app"></div> into which the whole app is injected by main.js)
 ├──  ...
-├── img
-│   └── ...
+└── img
+    └── ...
 
 **src** Folder Structure: based on [How to Structure a Vue.js Project](https://itnext.io/how-to-structure-a-vue-js-project-29e4ddc1aeeb)
-├── app.css
-├── App.vue
-├── assets - Where you put any assets that are imported into your components
+├── main.js - the first script loaded
+├── App.vue - the first Vue component - contains all the others router.js
+├── router.js - 'routes' URLs to views
+├── assets - any assets that are imported into components
 │   └── ...
 ├── components - All the components that are not routed (ie not views)
 │   └── ...
@@ -129,37 +138,36 @@ The main stack is
 │   │   └── ...
 │   ├── constants ... system-wide
 │   ├── utils ... functions used in various places
-│   ├── styles - any not included in SFCs
+│   ├── plugins - TODO
 │   │   └── ...
+│   └── styles - any not included in SFCs
+│       └── ...
+├── initialising (used on first load)
 │   └── ...
-├── main.js - the Vue root
-├── mixins ( reused in different components)
-│   └── ...
-├── router
-│   └── index.js
-├── store
-│   ├── index.js          # where we assemble modules and export the store
-│   ├── actions.js        # root actions
-│   ├── mutations.js      # root mutations
-│   ├── modules
-│   │   └── ...
-│   └── mutation-types.js  Vuex constants
-├── modules - for routines by application area (will change) - each has index.js  ??? duck, components, supporting utilities
+├── modules - for routines by application area (will change) - each potentially has index.js, components, submodules, utilities
 │   ├── demo - to do
-│   ├── geography - continents, places (OPS)
+│   ├── framework - header, sidebar
+│   ├── geography - ??
 │   ├── mapping
 │   └── params - parameters to the URL
-├── translations - Locales files (for eg using Vue-i18n)
+├── store
+│   ├── index.js - where we assemble modules and export the store
+│   ├── mutation-types.js - Vuex constants
+│   └── modules - each potentially has index.js, components, submodules, utilities
+│       ├── ...
+│       └── vuexApi - getters etc but no index.js
+├── translations - Locales files (for eg using Vue-i18n) TODO
 │   └── index.js
-├── views - the components that are routed eg  xxx/dashboard
+├── views - the components that are routed in router.js eg  xxx/dashboard
 │   └── ...
 └── other folders ... such as filters,or constants, API.
 
-**server** Folder Structure
-├── controllers
-├── middleware
-├── models
-└── routes
+**server** src Folder Structure
+├── controllers - the various 'find' functions to get data from the database
+├── middleware TODO
+├── models - defining the Mongoose/MongoDB schemas
+└── routes - the routes from the URL to the controllers
+```
 
 Notes: Each folder
 
@@ -234,36 +242,27 @@ See under [Standards and styles](#standards-and-styles)
   - +Create new branch - give it a name (XXX)
   - Do work until system is working OK
   - Checkout to Master branch
-  - Merge branch XXX
+  - Merge branch XXX (into Master branch)
   - Delete branch XXX
 - Every now and then publish changes (to origin - which is peterC66/m4ops)
-- to remove them from tracking: put in .gitignore AND git rm filename --cached
+- to remove them from tracking: put filename in .gitignore AND remove history using git rm filename --cached
 
 ### Eslint for proofing code
 
 - [Set up guide](https://travishorn.com/setting-up-eslint-on-vs-code-with-airbnb-javascript-style-guide-6eb78a535ba6) includes style –uses [eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) (-base for non-react), [guide to configuring](https://eslint.org/docs/user-guide/configuring)
   - npm i -D eslint eslint-config-airbnb-base eslint-plugin-import
   - Create .eslintrc.js: module.exports = { "extends": "airbnb-base" };
-- Actually we use Prettier rather than a style guide
+- Tried using Prettier rather than a style guide, but complications
 
 - Note that we don't use [setting up global eslint in VSCode](https://medium.com/@davidchristophersally/how-to-set-up-eslint-in-vscode-globally-253f25fbaff9) (because create-react requires it local)
 
 - Note that any plugins or shareable configs that you use must also be installed locally to work with a locally-installed ESLint
 - See [eslint-prettier-vue-workflow](https://medium.com/@doppelmutzi/eslint-prettier-vue-workflow-46a3cf54332f)
 - [List of rules](https://eslint.org/docs/rules/) and [Configuring in detail](https://eslint.org/docs/user-guide/configuring) (including [via in-file comments](https://eslint.org/docs/user-guide/configuring.html#disabling-rules-with-inline-comments))
-  - We Use [Prettier](https://prettier.io/docs/en/install.html) so some rules are not relevant, as the code is prettified on save
 
-- can
-  - /* eslint-disable */
-  - // eslint-disable-next-line
-  - // eslint-disable-line
-- for rules
-  - no-console (if wanted)
-  - max-len (where max line length is exceeded)
-  - import/prefer-default-export (where we know more exports are coming)
-  - object-shorthand (where we cannot use shorthand method)
-  - no-alert (if want an alert)
-  - no-use-before-define (for any function we know this applies to)
+- can /* eslint-disable */ or // eslint-disable-next-line or // eslint-disable-line
+  - for rules eg no-console, max-len
+  - but best just right click to implement this
 
 - Vue and EsLint
 
@@ -290,10 +289,13 @@ See under [Standards and styles](#standards-and-styles)
   - pandoc -f docx -t gfm “C:\\Users\\Peter\_2\\Documents\\Mapping\\Software\\M4OPS2\\Documentation\\filename.docx” -o filename.md
 - for relative links use \[a relative link\](other\_file.md)
 - ??Use [VuePress](https://medium.com/@charlesouellet/deep-dive-into-vuepress-craft-a-clean-documentation-blog-de6ac8e0c917)
+- [Percolate](https://github.com/danburzo/percollate) - A command-line tool to turn web pages into beautifully formatted PDFs
 
 ## HTML5 standards
 
 - See [html5doctor's tag/element-index](http://html5doctor.com/element-index/) and [their flow chart](h5d-sectioning-flowchart.png) for use of \<section\> etc
+- [Learn to Code HTML & CSS](https://learn.shayhowe.com/html-css/) - the fundamentals
+- [Learn to Code Advanced HTML & CSS](https://learn.shayhowe.com/advanced-html-css/performance-organization/)
 
 ## JS and ES6 standards
 
@@ -306,7 +308,7 @@ See under [Standards and styles](#standards-and-styles)
 - in Node.js continue to use  module.exports (or just exports.) and  require rather than export and import
 - (NOT YET) could use object literals instead of switch statements as per [this suggestion](https://medium.com/chrisburgin/rewriting-javascript-replacing-the-switch-statement-cfff707cf045)
 - Add comments only to explain complex thoughts
-- Boolean variables, or functions that return a boolean value, should start with “is,” “has” or “should.
+- Boolean variables, or functions that return a boolean value, should start with 'is', 'has' or 'should'
 - use [has()](https://www.npmjs.com/package/has) instaed of hasOwnProperty as it is better
 - (someone says we don't need to call `super(props)`, unless you need to use `this.props` inside the constructor)
 - Could use [Flow](http://flowtype.org/) for typing
@@ -320,40 +322,40 @@ See under [Standards and styles](#standards-and-styles)
   - [array-vs-set-vs-map-vs-object](https://codeburst.io/array-vs-set-vs-map-vs-object-real-time-use-cases-in-javascript-es6-47ee3295329b)
   - Note that we often use [k, v] meaning key, value
   - The [collections.js](http://www.collectionsjs.com/) package provides JavaScript implementations of common collections, with many useful features but they are less relevant now we have maps
-- for arrow functions
+- for [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
   - [ES6 Arrow Functions: Fat and Concise Syntax in JavaScript](https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/)
   - [Flowchart for arrow functions](https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20%26%20beyond/fig1.png)
   - [When (and why) you should use ES6 arrow functions — and when you shouldn’t](https://medium.freecodecamp.org/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26)
-  - [Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [Glossary of Modern JS Concepts](https://auth0.com/blog/glossary-of-modern-javascript-concepts)
 
 ### Special functions & routines
 
 - For URLs etc use [url-parse](https://www.npmjs.com/package/url-parse), which includes [querystringify](https://gitlab.cs.washington.edu/glassctm/CShark/tree/55346ca6b16c6bbdadb94701dd554f26b17a3633/node_modules/querystringify) - which has just parse and stringify methods
 
-- use [cuid](https://github.com/ericelliott/cuid) for IDs (or uuid?)
+- use [uuid/v1](https://www.npmjs.com/package/uuid) for IDs (or cuid?)
 
-- lodash has many useful functions
+- [lodash](https://lodash.com/docs/) has many useful functions
   - just import _ from 'lodash' (see [benchmark](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark))- eventually use [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)
-  - for iteratees see [lodash documentation](https://lodash.com/docs/4.17.10#iteratee), and [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
+  - for [iteratees](https://lodash.com/docs/#iteratee) see [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
 - for promises and async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
 
 ## Client Overview
 
 ### The Starting point
 
-public/index.html is the file a browser will open - this provides a title and a root div, and runs client/src/index.js which takes the output of App.js and puts it into the root div.
+client/public/index.html is the file a browser will open - this provides a title and a root div (app), and runs client/src/main.js which takes the output of App.vue and puts it into the root div.  (registerServiceWorker.js is used just in production)
 
 The client is the system that the user interacts with.  The server is the system that the client system can use, eg if it wants to store or retrieve data). We keep these systems separate, and develop them separately.
 
-When the client needs to communicate with the server it sends an asynchronous request (with a promise attached) and when the server is done it notifies the client the promise has been completed. The client can then do any more processing dependent on the promise being completed. [More on this later.]
+When the client needs to communicate with the server it sends an asynchronous request (with a promise attached) and when the server is done it notifies the client the promise has been completed. The client can then do any more processing dependent on the promise being completed. [More on this later]
 
-(Almost) all of the state of the client is held in the Redux store, and access to it is very structured [see later].
+(Almost) all of the state of the client is held in the Vuex store, and access to it is very structured [see later].
 
 ```mermaid
 graph LR;
-  R[Redux store] -->|selectors| C[Client]
+  M[Vuex store] -->|getters| C[Client]
   C --> A[Actions]
-  A --> |reducers| R
+  A --> |mutations| M
   C -->|POST or GET| S[Server]
   S -->|Promise| C
 ```
@@ -407,9 +409,10 @@ graph LR;
 
 - [Vuex - State management](https://vuex.vuejs.org/)
 - the store is injected into all child components of the root and will be available on them as this.$store
-  - "getters" in the store are computed properties that can be referenced in components via this.$store.getters.xxx (can be functions)
+  - other routines can access the store and its getters etc by simply importing it
+  - "getters" in the store are computed properties that can be referenced in components via store.getters.xxx (can be functions)
   - a mutation is a function eg increment-mutation (state) { state.count++ } - always synchronous
-    - mutation types are UPPERCASE and in mutation-types.js
+    - mutation types are UPPERCASE and defined in mutation-types.js
   - an action **commits** a mutation eg increment-action ({ commit }) { commit('increment-mutation') }
     - can be asynchronous, usually has a payload object, can [handle Promises](https://vuex.vuejs.org/guide/actions.html#composing-actions)
   - we **dispatch** actions in components with this.$store.dispatch('xxx')
@@ -420,18 +423,16 @@ graph LR;
   - inside module actions and getters, the root state will be exposed as as well as the module's state
   - We do not Namespace Modules
 - Various [Vuex Utilities](https://github.com/vuejs/awesome-vue#vuex-utilities)
-- Might use [Vue Auth](https://github.com/websanova/vue-auth) - a simple light-weight authentication library for Vue.js
-- May want the [Logger Plugin](https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin) - createLogger
-  - or use vue-devtools time-travel (p143 of the Fullstack Vue book) - but see [this issue](https://github.com/vuejs/vue-devtools/issues/649) with crashing
 - Not using [vuex-pathify](https://davestewart.github.io/vuex-pathify/) although it simplifies the Vuex wiring
   - see also [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
 - [Vuex getters are great](https://codeburst.io/vuex-getters-are-great-but-dont-overuse-them-9c946689b414) but use mapState for simple ones
-- For demo?? [Vue Tour](https://madewithvuejs.com/vue-tour) - a quick and easy way to guide your users through your application.
 - [Vuex Instance Properties etc](https://vuex.vuejs.org/api/#vuex-store-instance-properties) - available to all components as this.$store.xxx
 
 #### Vuex plugins
 
 - [Documentation](https://vuex.vuejs.org/guide/plugins.html)
+- We use the [Logger Plugin](https://vuex.vuejs.org/guide/plugins.html#built-in-logger-plugin) - createLogger
+  - or use vue-devtools time-travel (p143 of the Fullstack Vue book) - but see [this issue](https://github.com/vuejs/vue-devtools/issues/649) with crashing
 - For ORM [Vuex ORM](https://vuex-orm.github.io/vuex-orm/) - a plugin for Vuex to enable Object-Relational Mapping access
 - [5 Vuex Plugins For Your Next VueJS Project](https://vuejsdevelopers.com/2017/09/11/vue-js-vuex-plugins/)
   - Persisting state
@@ -455,24 +456,32 @@ graph LR;
 - or p 178ff in Fullstack Vue book (action = axios call *then* commit mutation)
   - (need to commit a different mutation when axios call fails)
 
+### Authorisation
+
+- We use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS)
+  - Might have used [Vue Auth](https://github.com/websanova/vue-auth) but no
+
+### Demo
+
+- For demo could use [Vue Tour](https://madewithvuejs.com/vue-tour) - a quick and easy way to guide your users through your application.
+
 ### Icons
 
-- Use [Element Icons](http://element.eleme.io/#/en-US/component/icon)
-- Or, if none suitable, use [fontawesome 5](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs)
+- We use the [Buefy icon](https://buefy.github.io/documentation/icon) with [fontawesome 5](https://fontawesome.com/how-to-use/on-the-web/using-with/vuejs)
   - [Free icons](https://fontawesome.com/icons?d=gallery&m=free)
-  - [More details](https://github.com/FortAwesome/vue-fontawesome)
-  and [a full-guide-to-using-font-awesome-icons-in-vue-js-apps](https://blog.logrocket.com/full-guide-to-using-font-awesome-icons-in-vue-js-apps-5574c74d9b2d)
+  - [More details](https://github.com/FortAwesome/vue-fontawesome) and [a full-guide-to-using-font-awesome-icons-in-vue-js-apps](https://blog.logrocket.com/full-guide-to-using-font-awesome-icons-in-vue-js-apps-5574c74d9b2d)
   - Make sure you register the component and have added icons to your library before you bootstrap your Vue application (see main.js)
   - then use eg \<font-awesome-icon icon="arrow-up" /\>
     - but be aware that in some cases self-closing tags are not allowed
   - [advanced svg icons](https://vuejs.org/v2/cookbook/editable-svg-icons.html)
+- Did use [Element Icons](http://element.eleme.io/#/en-US/component/icon)
 
 ### CSS
 
 - Use [Bulma](https://bulma.io/) via [**Buefy**](https://buefy.github.io/) for a CSS framework (like Bootstrap) - as used by vuelayers
-- [Buefy examples](http://rafaelescala.com/buefy-example/)
-- [Useful way to see Bulma variables](https://bulma-customizer.bstash.io/)
-- [Buefy: Bulma Based UI Components for Vue.js](https://dev.to/aligoren/bulma-based-ui-components-for-vuejs-41i4)
+  - [Buefy examples](http://rafaelescala.com/buefy-example/)
+  - [Useful way to see Bulma variables](https://bulma-customizer.bstash.io/)
+  - [Buefy: Bulma Based UI Components for Vue.js](https://dev.to/aligoren/bulma-based-ui-components-for-vuejs-41i4)
 - Bulma uses [HSL colours](https://www.w3schools.com/colors/colors_hsl.asp)
 - [High quality designs and components for Bulma.io](http://creativebulma.net/) - eg calendar, Lightbox
 - [Bulma-extensions (not Vuejs-specific)](https://wikiki.github.io/) - divider, sexy checkbox and radio,** Icon Picker**, slider, switch, tags, badge,  page-loader, Accordion, Calendar, **Carousel**, Pricing table, **Quickview**, **Steps**, Timeline
@@ -487,12 +496,19 @@ graph LR;
 - See also vue.config.js [css-modules](https://cli.vuejs.org/config/#css-modules)
 - [CSS Specificity: Things You Should Know](https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/)
 - [How to Organize Your CSS with a Modular Architecture (OOCSS, BEM, SMACSS)](https://snipcart.com/blog/organize-css-modular-architecture?)
+- [CSS utility classes](https://gomakethings.com/my-css-methodology)
 
 ### Useful components
 
-#### Element components
+#### Buefy
 
-(**Being replaced by Buefy** when possible)
+- [Buefy Components](https://buefy.github.io/documentation) include all we need except (see below):
+  - Cascader (asked for)
+  - Slider
+
+#### Element UI components
+
+(**We are replacing Element by Buefy** when possible)
 
 - [Guide](http://element.eleme.io/#/en-US/guide/design), [Quick Start and Components](http://element.eleme.io/#/en-US/component/quickstart)
 - [Awesome Element - A curated list of Element projects etc](https://github.com/ElementUI/awesome-element)
@@ -531,7 +547,7 @@ graph LR;
   - Non component filenames are in camelCase according to the job that they perform, eg userDropdown.js.
   - For components it's generally best to use PascalCase in the JavaScript, and kebab-case in the template - but Vue sees them as the same.
   - **Beware** the kebab/Pascal issue (OPSDetails would have become o-p-s-details, so we use opsdetails)
-- Component **data must be a function**, as in export default {data () {return {foo: 'bar'}}}
+- Component data **must be a function**, as in export default {data () {return {foo: 'bar'}}}
 - **Prop definitions** should be as detailed as possible, including where possble a validator function
 - Always **use key** with v-for
 - Never use v-if on the same element as v-for
@@ -547,11 +563,11 @@ graph LR;
 - Elements with multiple attributes should span multiple lines, with one attribute per line (similar to JS object properties)
 - Don’t use arrow functions on an options property or callback, since arrow functions are bound to the parent context, 'this' will not be the Vue instance as you’d expect
 - Don’t use arrow functions in methods and computed properties as they almost always reference this to access the component data
-- Do use arrow functions for filters (sse also the [vue2-filters package](https://www.npmjs.com/package/vue2-filters))
+- Do use arrow functions for filters (see also the [vue2-filters package](https://www.npmjs.com/package/vue2-filters))
 
 - “Mustache” syntax (double curly braces): {{}} for interpolation (of component data into a component template)
 - Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.
-- Complex computed properties should be split into as many simpler properties as possible.
+- Complex computed properties should be split into as many simpler properties as needed.
 - Non-empty HTML attribute values should always be inside quotes (even though without spaces they don't need to be)
 - Directive shorthands (: for v-bind: and @ for v-on:) should be used always or never (we choose always)
 - Component/instance options should be ordered consistently - see [this list](https://vuejs.org/v2/style-guide/#Component-instance-options-order-recommended)
@@ -560,7 +576,7 @@ graph LR;
 
 - For a comparison of Methods vs Watchers vs Computed Properties see page 90 of Vue Handbook.pdf
 
-- Can do [dependency injection](https://vuejs.org/v2/guide/components-edge-cases.html#Dependency-Injection) (provide and inject), [see also](https://codeburst.io/dependency-injection-with-vue-js-f6b44a0dae6d), and [vue-inject](https://www.npmjs.com/package/vue-inject) - but beware
+- Can do [dependency injection](https://vuejs.org/v2/guide/components-edge-cases.html#Dependency-Injection) (provide and inject - sort of 'long-range props'), [see also](https://codeburst.io/dependency-injection-with-vue-js-f6b44a0dae6d), and [vue-inject](https://www.npmjs.com/package/vue-inject) - but beware
 
 ### Vue CLI 3
 
@@ -588,23 +604,6 @@ graph LR;
   - See also [A quick look at Parcel](https://glebbahmutov.com/blog/parcel/), and [Getting Started With Parcel](https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c)
   - OL has [this example](https://github.com/openlayers/ol-parcel), and their [Building an OpenLayers Application tutorial](http://openlayers.org/en/latest/doc/tutorials/bundle.html)
 
-### Production - Client
-
-- Use [GitHub Pages](https://pages.github.com/)?
-- (See also Production - Server)
-- [Vue Production Deployment](https://vuejs.org/v2/guide/deployment.html)
-- [vue-loader](https://vue-loader.vuejs.org/) is a loader for webpack that handles Single-File Components (SFCs):
-- [CSS Extraction](https://vue-loader.vuejs.org/guide/extract-css.html#webpack-4)
-- [Kubernetes vs. Docker: What Does It Really Mean?](https://www.sumologic.com/blog/devops/kubernetes-vs-docker/)
-- See [Dockerize Vue.js App](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
-
-- [Deploying a production Node/Express Mongo App to AWS — soft lessons](https://medium.freecodecamp.org/deploying-a-production-node-express-mongo-app-to-aws-a-reflection-8982894289c6)
-- refers to [How to deploy a Node.js app to the AWS Elastic Beanstalk](https://medium.freecodecamp.org/how-to-deploy-a-node-js-app-to-the-aws-elastic-beanstalk-f150899ed977)
-
-- See [Google](https://www.google.co.uk/search?q=deploy+vue+express+mongodb&ei=marcW9fsOcncgAanirToDw&start=10&sa=N&ved=0ahUKEwiXna7RvbbeAhVJLsAKHScFDf0Q8NMDCMoB&biw=1536&bih=732)
-- [Heroku for Node?](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [How To Deploy Nodejs App To Heroku](https://appdividend.com/2018/04/14/how-to-deploy-nodejs-app-to-heroku/)
-
 ## Debugging
 
 - Use [VS Code debugging](https://code.visualstudio.com/docs/editor/debugging)
@@ -626,25 +625,25 @@ graph LR;
 
 - [Unit Testing Vue Components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html)
 - Test runner [Karma](https://karma-runner.github.io/2.0/index.html)
-- [Vue Test Utils](https://vue-test-utils.vuejs.org/) is the official unit testing utility library for Vue.js.
+- [**Vue Test Utils**](https://vue-test-utils.vuejs.org/) is the official unit testing utility library for Vue.js.
   - Can use [vue-jest preprocessor](https://vue-test-utils.vuejs.org/guides/testing-single-file-components-with-jest.html)
 
 ## OpenLayers
 
-Use version number eg v4.6.5 (which is the one we use) or latest
+Use version number eg v5.3.0 (which is the one we use) or latest
 
-- [Documentation](http://openlayers.org/en/v4.6.5/doc/)
-- [Tutorials](http://openlayers.org/en/v4.6.5/doc/tutorials/)
+- [Documentation](http://openlayers.org/en/v5.3.0/doc/)
+- [Tutorials](http://openlayers.org/en/v5.3.0/doc/tutorials/)
 - [(Current) Workshop](http://openlayers.org/workshop/en/))
-- [API](http://openlayers.org/en/v4.6.5/apidoc/)
-- [Examples](http://openlayers.org/en/v4.6.5/examples/)
+- [API](http://openlayers.org/en/v5.3.0/apidoc/)
+- [Examples](http://openlayers.org/en/v5.3.0/examples/)
 - [(Latest) code](https://github.com/openlayers/openlayers)
 - [ol on npm](https://www.npmjs.com/package/ol)
 - [Releases on GitHub](https://github.com/openlayers/openlayers/releases/)
 
 ### OL and Vue
 
-- Use [vuelayers](https://github.com/ghettovoice/vuelayers): Vue components with the power of OpenLayers
+- Use [vuelayers](https://github.com/ghettovoice/vuelayers) - Vue components with the power of OpenLayers
 - [GitHub](https://vuelayers.github.io/#/) - scroll down for demo, quick start etc
 - [Demo](https://vuelayers.github.io/demo/) and [demo code](https://github.com/ghettovoice/vuelayers-demo/blob/master/src/App.vue), App.vue code copied into [vuelayers-demo](vuelayers-demo\App.vue)
   - also includes [AlexRiceGist/](https://gist.github.com/guidorice/c39db591323d78e5cb659b6bbc5cb0b5) re storing map data in Vuex
@@ -655,7 +654,7 @@ Use version number eg v4.6.5 (which is the one we use) or latest
 - and [use of $](https://github.com/ghettovoice/vuelayers/issues/59)
   - [explanation of $map etc](https://github.com/ghettovoice/vuelayers/issues/89#issuecomment-431653970)
 - [olExt issue](https://github.com/ghettovoice/vuelayers/issues/90#issuecomment-431748771)
-- see [Complex components](#complex-components) for generating layers
+- see [Complex components](#complex-components) for generating eg layer components
 
 - Other Vue OL implementations - fairly simple, could copy
   - [vue-openlayers](https://sombriks.github.io/vue-openlayers/#/introduction): humble wrapper
@@ -691,7 +690,7 @@ Each route (including with parameters eg :id) is
 
 ### Connecting to MongoDB
 
-The MongoDB URL (including database) is set in .env.
+The MongoDB URL (including database) is set in the environment variables (qv)
 
 For each type of data held in the database, (via [Mongoose](https://mongoosejs.com/docs/guides.html)) we have
 
@@ -710,9 +709,7 @@ graph LR;
 
 ### Notes
 
-- the file .env is for environment variables handled by dotenv
 - middleware
-- client/src/registerServiceWorker.js is used just in production
 - server [needed this](https://stackoverflow.com/questions/21658832/npm-install-error-msb3428-could-not-load-the-visual-c-component-vcbuild-ex) then npm i  before running with nodemon
 
 ## MongoDB
@@ -722,45 +719,48 @@ graph LR;
 - [Install MongoDB Community Edition on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
   - Start windows service: Command line as Administrator “net start MongoDB” (not Powershell)
 
-- MongoDB is designed to be run in trusted environments (ie Localhost)
+- MongoDB is designed to be run in trusted environments (ie Localhost) - but in production we use authentication
 
 - URL (if we needed it) is mongodb://localhost:27017/m4opsdb
 
 - See [Introduction to mongodb](https://scotch.io/tutorials/an-introduction-to-mongodb) and [Getting Started](https://docs.mongodb.com/manual/tutorial/getting-started/)
 
-- [MongoDB Compass](https://www.mongodb.com/products/compass) - GUI, queries, CRUD – use localhost:27017 [documentation](https://docs.mongodb.com/compass/master/), [Getting started](https://www.mongodb.com/blog/post/getting-started-with-mongodb-compass)
+- [MongoDB Compass](https://www.mongodb.com/products/compass) provides a GUI, queries, CRUD – use localhost:27017 [documentation](https://docs.mongodb.com/compass/master/), [Getting started](https://www.mongodb.com/blog/post/getting-started-with-mongodb-compass)
   - If problem, use Resource Monitor: cmd as Admin, resmon.exe -\> CPU tab -\> in handles type Compass, and Kill one (will kill all) associated processes - and wait for it to happen.
-- for interactive shell see [the manual](https://docs.mongodb.com/manual/mongo/), or [this tutorial](https://www.tutorialkart.com/mongodb/mongo-shell/)
+- for the MongoDB interactive shell see [the manual](https://docs.mongodb.com/manual/mongo/), or [this tutorial](https://www.tutorialkart.com/mongodb/mongo-shell/) - example use:
   - mongo
   - use m4opsdb
   - show collections
   - db.M4OPSData.drop()
 
 - For imports can use
+  - [MongoDB Compass](https://docs.mongodb.com/compass/current/import-export/) (but did not work)
   - [mongoimport](https://docs.mongodb.com/manual/reference/program/mongoimport/) can import JSON and csv into MongoDB
   - Remember that it is **one (JSON) document per line**, although a single JSON document can span more than one line
   - can use [jsonformatter](https://jsonformatter.curiousconcept.com/) for checking one of the json, not using –jsonArray option
-  - [MongoDB Compass](https://docs.mongodb.com/compass/current/import-export/) (did not work)
   - from terminal, for a whole collection or a single document, use
     - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
     - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
     - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
     - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
+      - and then:
       - Buildings.geojson"
       - Censuses.geojson"
       - HcN land ownership.geojson"
       - OSM20180209.geojson"
     - add --drop so that the target instance drops the collection before importing the data from the input.
     - add --mode upsert to replace documents whose _id matches the document(s) in the import file
-  - (Studies collection is not used now)
+  - (Note that the Studies collection is not used now)
   - maximum BSON (Mongodb) document size is 16 megabytes, or use GridFS API.
 
-To *create Places.json*
+### To create Places.json
 
 - using [M4OPS-manage](https://www.mapping4ops.org/ShowMapsDev/M4OPS-manage.html) and with OPS.csv as chosen file compile all the studies
 - for each study upload the OPS.json file into the study's local folder
-- use concatOPS.bat to create output.txt from all of the individual OPS.json files
+- use concatOPS.bat to create output.txt concatenated from all of the individual OPS.json files
 - rename output.txt as Places.json
+
+### Mongoose
 
 - [Mongoose](https://www.npmjs.com/package/mongoose) is a MongoDB object modeling tool designed to work in an asynchronous environment - see [documentation](https://mongoosejs.com/docs/guide.html)
   - see also [gotchas](https://www.jaygould.co.uk/dev/2018/03/28/concice-collection-mongodb-mongoose-database.html)
@@ -770,85 +770,123 @@ To *create Places.json*
 
 - [creating a RESTful API using Node, Express 4 and Mongoose to interact with MongoDB](https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4)
 
-- Could use [mlab.com](https://mlab.com/) - the leading Database-as-a-Service for MongoDB, 500MB free
-  - see passwords file for command
+## Environment Variables
 
-### MongoDB Atlas implementation
+### Envars General
 
-- [Documentation](https://docs.atlas.mongodb.com/)
-- login (manual) via RoboForm
-  - users m4ops_admin, m4ops_r, m4ops_rw - passwords in db
-  - AWS REGION N. Virginia (us-east-1)
-  - [how to connect (command line)](https://cloud.mongodb.com/v2/5be012b7c56c9822a3b4ca0e#clusters/commandLineTools/Cluster0)
-- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017 --ssl --username m4ops_admin --password opl0oUiDw3w9FAH7 --authenticationDatabase admin --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
-  - also need --type csv if not json
-  - --authenticationDatabase admin just means the user's details are in the admin db
-- Compass URI Connection String: mongodb+srv://m4ops_admin:opl0oUiDw3w9FAH7@cluster0-bfjgs.mongodb.net/admin
-- See also [re Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
-- [whitelist etc](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas)
-- Need [VPC Peering](https://docs.atlas.mongodb.com/security-vpc-peering/?_ga=2.60596525.1806821640.1542128896-679673914.1534237061) and [this](https://www.mongodb.com/blog/post/introducing-vpc-peering-for-mongodb-atlas?jmp=adref) for production, but
-  - (free) M0 clusters don’t support VPC Peering so we need
-  - whitelist 0.0.0.0/0 (access from anywhere)
-- older URI  mongodb://m4ops_r:iS2NPR3HBmsSTheK@cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true
+- [How to handle environment-specific settings in your JavaScript apps](https://medium.freecodecamp.org/environment-settings-in-javascript-apps-c5f9744282b6)
+- [Working with Environment Variables in Node.js](https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html)
+- [Implement NodeJS environment variables in a modern Webpack app](https://itnext.io/implement-nodejs-environment-variables-in-a-modern-webpack-app-df20c27fe5f0)
 
-## Other Notes
+### Envars on Server
 
-- [anatomy-of-a-url](https://doepud.co.uk/blog/anatomy-of-a-url)
-- [Learn to Code HTML & CSS](https://learn.shayhowe.com/html-css/) - the fundamentals
-- [Learn to Code Advanced HTML & CSS](https://learn.shayhowe.com/advanced-html-css/performance-organization/)
-- [Useful conversions](https://transform.now.sh/) (and prettifier) - eg
-  - JS Object to JSON
-  - JSON to Mongoose Schema
-  - Markdown to HTML
-- [regexr](https://regexr.com/) is an online tool to learn, build, & test Regular Expressions
-- Any locally installed command (eg xx) will be available at ./node_modules/.bin/xx in your project
-  - node_modules/.bin directory will be added to system $PATH when your're running npm scripts, so you can directly use the local xx command there
-- [Using Typescript with vue](https://vuejs.org/v2/guide/typescript.html) - we don't
-- [Popular Systems in 2017](https://risingstars.js.org/2017/en/)
-- We have a [codeSandbox](https://codesandbox.io/u/PeterC66) for trying things out
-- [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
-- Beware [Memory Leaks](https://vuejs.org/v2/cookbook/avoiding-memory-leaks.html)
-- [Should You Learn TypeScript? (Benefits & Resources)](https://snipcart.com/blog/learn-typescript-why-use-ts) (answer - not yet!)
-- to [install a specific version](https://60devs.com/npm-install-specific-version.html) use eg npm install vuelayers@^0.11.0 --save
+- the environment variables we need are defined in .env.example ( as used by dotenv-safe)
+  - PORT (only needed in development)
+  - MONGO_DB_URL [see doc](https://docs.mongodb.com/manual/reference/connection-string/#connections-connection-options)
+- they are read before, or very early in, app.js starts
+- console.log(process.env) shows them
+
+#### Envars on Server: PC Development
+
+- we use [dotenv-safe](https://github.com/rolodato/dotenv-safe) to read from .env (untracked), and this is called if MONGO_DB_URL is not already set
+- they include (but we do not use) all the windows environment variables such as PATH
+
+#### Envars on Server: Production
+
+- We use Claudia/AWS Lambda
+- .aws/credentials is stored in %UserProfile% (ie Peter)
+- environment variables are all in prod.json
+- these are read by claudia via --set-env-from-json
+
+### Envars on Client
+
+- In the client we use Vue CLI 3 standards - see [VueCLI 3: Environment Variables and Modes](https://cli.vuejs.org/guide/mode-and-env.html)
+  - .env                # loaded in all cases
+  - .env.local          # loaded in all cases, ignored by git
+  - .env.[mode]         # only loaded in specified mode
+  - .env.[mode].local   # only loaded in specified mode, ignored by git
+  - (where [mode] is development, production or test)
+  - Only variables that start with **VUE_APP_** will be available (via process.env. ), plus BASE_URL & NODE_ENV
+  - Computed env vars can be in vue.config.js (still prefixed with VUE_APP_)
+- Note that the older Vue CLI 2 had a config directory with dev.env.js and prod.env.js
 
 ## Into Production
 
-[Vue.js and AWS Lambda: Developing Production-Ready Apps (Part 1)](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
-TL;DR: In this series, you will use modern technologies like Vue.js, AWS Lambda, Express, MongoDB, and Auth0 to create a production-ready application that acts like a micro-blog engine. The first part of the series (this one) will focus on the setup of the Vue.js client that users will interact with and on the definition of the Express backend app.
+### Principles
 
-[**AWS Lambda**](https://aws.amazon.com/lambda/) needs [AWS API Gateway](https://aws.amazon.com/api-gateway/) to define how external services (or, in this case, a Vue.js client) can communicate with your serverless backend app - makes AWS Lambda not straightforward. So use an open-source tool called [**Claudia**.js](https://claudiajs.com/). Otherwise [see this](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-lambda-integration.html) and [this](https://ig.nore.me/2016/03/setting-up-lambda-and-a-gateway-through-the-cli/).
+- The front end (Vue.js) is built within VS Code then uploaded to an AWS S3 bucket
+- The (Node/Express) back end is constructed using claudia and uploaded into AWS Lamda
+- The (MongoDB) database behind that is implemented in Mongo Atlas
 
-To see what is happening in Lambda, and console messages, use AWS CloudWatch in the region we used (us-east-1). [prices](https://aws.amazon.com/cloudwatch/pricing)
+Where possible we use AWS REGION N. Virginia (us-east-1)
 
-Popular Express middleware to define your backend endpoints
+### Guidance
 
-- [bodyParser](https://github.com/expressjs/body-parser) (have) - Express middleware that parses request bodies so you can access JSON objects sent by clients
-- [cors](https://github.com/expressjs/cors) (have) - Express middleware to make your endpoint accept cross-origin requests
-- [**helmet**](https://github.com/helmetjs/helmet) - Express middleware that helps to secure your apps with various HTTP headers
-- [**morgan**](https://github.com/expressjs/morgan) - HTTP request logger middleware for Node.js web apps
-- [mongodb](https://github.com/mongodb/node-mongodb-native) (we use mongoose??) - the MongoDB **native driver** for Node.js;
+- [Vue.js and AWS Lambda: Developing Production-Ready Apps (Part 1)](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
+- [Vue.js and AWS Lambda: Developing Production-Ready Apps (Part 2)](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-2/)
 
-[Auth0](https://auth0.com) Identity-as-a-Service (IDaaS) - consider for inclusion later
+- Created (m4ops@one-place-studies.org) accounts with:
+  - AWS ( see also ...\Guiding documents\AWS S3 for storing maps.doc)
+  - Auth0 (for later)
+  - MongoDB Atlas (mLab is merging with them)
 
-Uses Folders: client and backend
+- Now we use nodemon src/appd to start development server (Lambda server is at src/app)
 
-Uses Docker to begin with for Mongodb, but later MLab so we ignore Docker.
+### Into Production - Client
 
-[Vue.js and AWS Lambda: Developing Production-Ready Apps (Part 2)](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-2/)
+- [Vue Production Deployment](https://vuejs.org/v2/guide/deployment.html)
+- Not used:
+  - [GitHub Pages](https://pages.github.com/) - we use AWS S3
+  - [vue-loader](https://vue-loader.vuejs.org/) is a loader for webpack that handles Single-File Components (SFCs):
+  - [CSS Extraction](https://vue-loader.vuejs.org/guide/extract-css.html#webpack-4)
+  - [Kubernetes vs. Docker: What Does It Really Mean?](https://www.sumologic.com/blog/devops/kubernetes-vs-docker/)
+  - See [Dockerize Vue.js App](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
 
-Created (m4ops@one-place-studies.org) accounts with:
+#### Client Build
 
-- AWS ( see also ...\Guiding documents\AWS S3 for storing maps.doc)
-- Auth0 (for later)
-- MongoDB Atlas (mLab is merging with them)
+From Terminal: C:\projects\m4ops\client>npm run build
 
-Now we use nodemon src/appd to start development server (Lambda server is at src/app)
+- Compiled with 2 warnings
+  - asset(s) exceed the recommended size limit (244 KiB).
+    - js/chunk-vendors.2cee4a6c.js (1.2 MiB)
+  - entrypoint(s) combined asset size exceeds the recommended limit (244 KiB)
+    - app (1.51 MiB)
+      - css/chunk-vendors.253ba11b.css
+      - js/chunk-vendors.2cee4a6c.js
+      - css/app.655d80b5.css
+      - js/app.a9c51c81.js
 
-[The Most Popular Deployment Tools For Serverless](http://blog.epsagon.com/the-most-popular-deployment-tools-for-serverless)
-[Why serverless newbies should use a deployment framework](https://dev.to/paulswail/why-serverless-newbies-should-use-a-deployment-framework-3ea4) recommends [Serverless Framework](https://github.com/serverless/serverless)
+``` bash
+  File                                      Size             Gzipped
 
-See [MongoDB Atlas implementation](NotesStandardsPractices.md#mongodb-atlas-implementation)
-[Best Practices Connecting from AWS Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
+  dist\js\chunk-vendors.2cee4a6c.js         1229.84 kb       347.15 kb
+  dist\js\app.a9c51c81.js                   47.83 kb         14.06 kb
+  dist\js\about.30fd5a98.js                 1.64 kb          0.68 kb
+  dist\precache-manifest.7a2d93dc6fc2147    1.01 kb          0.40 kb
+  a8173f6a6a2fd6cfb.js
+  dist\service-worker.js                    0.94 kb          0.53 kb
+  dist\css\app.655d80b5.css                 241.59 kb        31.64 kb
+  dist\css\chunk-vendors.253ba11b.css       31.60 kb         5.53 kb
+  dist\css\about.0e433876.css               0.00 kb          0.02 kb
+```
+
+#### Client Upload to AWS
+
+ See [Vue CLI 3 deployment instructions](https://cli.vuejs.org/guide/deployment.html) - essentially drag and drop contents of dist folder into AWS bucket.
+
+ [Our website](http://m4ops.s3-website-us-east-1.amazonaws.com)
+
+### Into Production - Server
+
+#### AWS Lambda
+
+- [AWS Lambda](https://aws.amazon.com/lambda/) needs [AWS API Gateway](https://aws.amazon.com/api-gateway/) to define how external services (or, in this case, a Vue.js client) can communicate with your serverless backend app - makes AWS Lambda not straightforward.
+- We use an open-source tool called [**Claudia**.js](https://claudiajs.com/).
+  - For doing it without claudia [see this](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-lambda-integration.html) and [this](https://ig.nore.me/2016/03/setting-up-lambda-and-a-gateway-through-the-cli/).
+
+- To see what is happening in Lambda, and console messages, use AWS CloudWatch in the region we used (us-east-1) - [prices](https://aws.amazon.com/cloudwatch/pricing)
+
+#### Claudia
 
 [Claudia and Express](https://claudiajs.com/tutorials/serverless-express.html) (now we use node v8.11.3)
 Use the claudia CLI tool to prepare a serverless proxy around Express API:
@@ -866,96 +904,67 @@ claudia update --set-env-from-json prod.json
 See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/continents)
  **check costs** !!!
 
-[**Check this**](https://mongoosejs.com/docs/lambda.html)
-[Useful](https://dev.to/saigowthamr/build-and-deploy-a-rest-api--using-serverless-express-and-nodejs-3331)
-[Also](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas)
+### General
 
-### Environment Variables
+- [Useful](https://dev.to/saigowthamr/build-and-deploy-a-rest-api--using-serverless-express-and-nodejs-3331)
+- Popular Express middleware to define backend endpoints
+  - [bodyParser](https://github.com/expressjs/body-parser) (have) - Express middleware that parses request bodies so you can access JSON objects sent by clients
+  - [cors](https://github.com/expressjs/cors) (have) - Express middleware to make your endpoint accept cross-origin requests
+  - [**helmet**](https://github.com/helmetjs/helmet) - Express middleware that helps to secure your apps with various HTTP headers
+  - [**morgan**](https://github.com/expressjs/morgan) - HTTP request logger middleware for Node.js web apps
+  - [mongodb](https://github.com/mongodb/node-mongodb-native) (we use mongoose??) - the MongoDB **native driver** for Node.js;
 
-#### General
+### Useful but not used
 
-- [How to handle environment-specific settings in your JavaScript apps](https://medium.freecodecamp.org/environment-settings-in-javascript-apps-c5f9744282b6)
-- [Working with Environment Variables in Node.js](https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html)
-- [Implement NodeJS environment variables in a modern Webpack app](https://itnext.io/implement-nodejs-environment-variables-in-a-modern-webpack-app-df20c27fe5f0)
+- [Deploying a production Node/Express Mongo App to AWS — soft lessons](https://medium.freecodecamp.org/deploying-a-production-node-express-mongo-app-to-aws-a-reflection-8982894289c6)
+- refers to [How to deploy a Node.js app to the AWS Elastic Beanstalk](https://medium.freecodecamp.org/how-to-deploy-a-node-js-app-to-the-aws-elastic-beanstalk-f150899ed977)
 
-#### On Server
+- See [Google](https://www.google.co.uk/search?q=deploy+vue+express+mongodb&ei=marcW9fsOcncgAanirToDw&start=10&sa=N&ved=0ahUKEwiXna7RvbbeAhVJLsAKHScFDf0Q8NMDCMoB&biw=1536&bih=732)
+- [Heroku for Node?](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+  - [How To Deploy Nodejs App To Heroku](https://appdividend.com/2018/04/14/how-to-deploy-nodejs-app-to-heroku/)
+- [The Most Popular Deployment Tools For Serverless](http://blog.epsagon.com/the-most-popular-deployment-tools-for-serverless)
+- [Why serverless newbies should use a deployment framework](https://dev.to/paulswail/why-serverless-newbies-should-use-a-deployment-framework-3ea4) recommends [Serverless Framework](https://github.com/serverless/serverless)
+- [Now](https://zeit.co/now) is an alternative to claudia?
 
-- the environment variables we need are defined in .env.example ( as used by dotenv-safe)
-  - PORT (only needed in development)
-  - MONGO_DB_URL [see doc](https://docs.mongodb.com/manual/reference/connection-string/#connections-connection-options)
-- they are read before, or very early in, app.js starts
-- console.log(process.env) shows them
+### Into Production - Database
 
-##### Server: Development (on PC)
+#### MongoDB Atlas implementation
 
-- we use [dotenv-safe](https://github.com/rolodato/dotenv-safe) to read from .env (untracked), and this is called if MONGO_DB_URL is not already set
-- they include (but we do not use) all the windows environment variables such as PATH
+- [Documentation](https://docs.atlas.mongodb.com/) and [pricing](https://www.mongodb.com/cloud/atlas/pricing)
+- Free tier has maximum 512 MB storage, no automatic backups - see [limitations](https://docs.atlas.mongodb.com/reference/free-shared-limitations/#atlas-free-tier)
+- login (manual) via RoboForm
+  - users m4ops_admin, m4ops_r, m4ops_rw - passwords in db
+  - AWS REGION N. Virginia (us-east-1)
+  - [how to connect (command line)](https://cloud.mongodb.com/v2/5be012b7c56c9822a3b4ca0e#clusters/commandLineTools/Cluster0)
+- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017 --ssl --username m4ops_admin --password opl0oUiDw3w9FAH7 --authenticationDatabase admin --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
+  - also need --type csv if not json
+  - --authenticationDatabase admin just means the user's details are in the admin db
+- Compass URI Connection String: mongodb+srv://m4ops_admin:opl0oUiDw3w9FAH7@cluster0-bfjgs.mongodb.net/admin
+- See also [re Lambda](https://docs.atlas.mongodb.com/best-practices-connecting-to-aws-lambda/)
+- [whitelist etc](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas)
+- Need [VPC Peering](https://docs.atlas.mongodb.com/security-vpc-peering/?_ga=2.60596525.1806821640.1542128896-679673914.1534237061) and [this](https://www.mongodb.com/blog/post/introducing-vpc-peering-for-mongodb-atlas?jmp=adref) for production, but
+  - (free) M0 clusters don’t support VPC Peering so we need
+  - whitelist 0.0.0.0/0 (access from anywhere)
+- older URI  mongodb://m4ops_r:iS2NPR3HBmsSTheK@cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017/m4opsdb?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true
+- [**Check this**](https://mongoosejs.com/docs/lambda.html)
+- [Also](https://www.mongodb.com/blog/post/serverless-development-with-nodejs-aws-lambda-mongodb-atlas)
 
-##### Server: Production
+## Other Notes
 
-- We use Claudia/AWS Lambda
-- .aws/credentials is stored in %UserProfile% (ie Peter)
-- environment variables are all in prod.json
-- these are read by claudia via --set-env-from-json
-
-#### On Client
-
-- In the client we use Vue CLI 3 standards - see [VueCLI 3: Environment Variables and Modes](https://cli.vuejs.org/guide/mode-and-env.html)
-  - .env                # loaded in all cases
-  - .env.local          # loaded in all cases, ignored by git
-  - .env.[mode]         # only loaded in specified mode
-  - .env.[mode].local   # only loaded in specified mode, ignored by git
-  - (where [mode] is development, production or test)
-  - Only variables that start with **VUE_APP_** will be available (via process.env. ), plus BASE_URL & NODE_ENV
-  - Computed env vars can be in vue.config.js (still prefixed with VUE_APP_)
-- the older Vue CLI 2 had a config directory with dev.env.js and prod.env.js
-
-### Build
-
-From Terminal ...
-C:\projects\m4ops\client>npm run build
-
-> m4ops@0.1.0 build C:\projects\m4ops\client
-> vue-cli-service build
-
-/  Building for production...
-
- WARNING  Compiled with 2 warnings                                                                                                   20:37:56
- warning
-
-asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
-This can impact web performance.
-Assets:
-  js/chunk-vendors.2cee4a6c.js (1.2 MiB)
-
- warning
-
-entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
-Entrypoints:
-  app (1.51 MiB)
-      css/chunk-vendors.253ba11b.css
-      js/chunk-vendors.2cee4a6c.js
-      css/app.655d80b5.css
-      js/app.a9c51c81.js
-
-  File                                      Size             Gzipped
-
-  dist\js\chunk-vendors.2cee4a6c.js         1229.84 kb       347.15 kb
-  dist\js\app.a9c51c81.js                   47.83 kb         14.06 kb
-  dist\js\about.30fd5a98.js                 1.64 kb          0.68 kb
-  dist\precache-manifest.7a2d93dc6fc2147    1.01 kb          0.40 kb
-  a8173f6a6a2fd6cfb.js
-  dist\service-worker.js                    0.94 kb          0.53 kb
-  dist\css\app.655d80b5.css                 241.59 kb        31.64 kb
-  dist\css\chunk-vendors.253ba11b.css       31.60 kb         5.53 kb
-  dist\css\about.0e433876.css               0.00 kb          0.02 kb
-
-  Images and other types of assets omitted.
-
- DONE  Build complete. The dist directory is ready to be deployed.
-
-### Upload to AWS
-
- See [Vue CLI 3 deployment instructions](https://cli.vuejs.org/guide/deployment.html) - essentially drag and drop contents of dist folder into AWS bucket.
-
- [Our website](http://m4ops.s3-website-us-east-1.amazonaws.com)
+- [The Power of Web Components](https://hacks.mozilla.org/2018/11/the-power-of-web-components/)
+- [anatomy-of-a-url](https://doepud.co.uk/blog/anatomy-of-a-url)
+- [Useful conversions](https://transform.now.sh/) (and prettifier) - eg
+  - JS Object to JSON
+  - JSON to Mongoose Schema
+  - Markdown to HTML
+- [regexr](https://regexr.com/) is an online tool to learn, build, & test Regular Expressions
+- [ReX.js](https://areknawo.github.io/Rex/) is a RegEx companion - maybe use? Some do not like!
+- Any locally installed command (eg xx) will be available at ./node_modules/.bin/xx in your project
+  - node_modules/.bin directory will be added to system $PATH when your're running npm scripts, so you can directly use the local xx command there
+- [Using Typescript with vue](https://vuejs.org/v2/guide/typescript.html) - we don't
+- [Popular Systems in 2017](https://risingstars.js.org/2017/en/) - especially Vue.js
+- We have a [codeSandbox](https://codesandbox.io/u/PeterC66) for trying things out
+- [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
+- Beware [Memory Leaks](https://vuejs.org/v2/cookbook/avoiding-memory-leaks.html)
+- [Should You Learn TypeScript? (Benefits & Resources)](https://snipcart.com/blog/learn-typescript-why-use-ts) (answer - not yet!)
+- to [install a specific version](https://60devs.com/npm-install-specific-version.html) use eg npm install vuelayers@^0.11.0 --save

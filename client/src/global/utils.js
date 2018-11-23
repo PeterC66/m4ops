@@ -1,6 +1,5 @@
 import _ from 'lodash';
-import uuid from 'uuid';
-
+import uuid from 'uuid/v1';
 /**
 |--------------------------------------------------
 | NOte that many of these utility functions are inherited from the old system,
@@ -223,4 +222,9 @@ export function thisAndPrevious(a, prop) {
     return result;
   }
   return [{ thisValue: undefined, previousValue: undefined }];
+}
+
+export function thisYear() {
+  const currentTime = new Date();
+  return currentTime.getFullYear();
 }

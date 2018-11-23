@@ -1,4 +1,4 @@
-import { disabbreviate } from './abbreviation';
+import { disabbreviate } from './stringManipulation';
 
 export const attributionFromCode = (att) => {
   const attModified = disabbreviate(att);
