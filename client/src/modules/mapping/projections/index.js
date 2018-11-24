@@ -10,7 +10,7 @@ export default function initialiseProjections() {
             '+units=m +no_defs');
   // WAS from NLS proj4.defs('EPSG:27700', '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs');
 
-  // This must follow any proj4.defs
+  // This call to register must follow any new proj4.defs
   register(proj4);
-  // 0.10: addProj (addProjection) and createProj (Projection) are just from ol/proj under another name, same parameters
+  // we don't use the vl 0.10 addProj (addProjection) and createProj (Projection) - just from ol/proj under another name, same parameters
 }

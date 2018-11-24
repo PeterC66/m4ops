@@ -4,7 +4,6 @@
 
 - Production version - Backups
 - Popups – by feature, or in results sidebar (use click choice?)
-  - details on hover not click?
   - details in separate panel?
   - Freeze/unfreeze
   - Format data (with images, events, html etc)
@@ -12,7 +11,6 @@
 - Click actions
 - Users, Passwords - use Auth0
   - Admin, Manager, User, Guest
-- projections and BritishNationalGrid
 
 ## Await v0.12 Priority
 

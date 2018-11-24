@@ -1,7 +1,8 @@
 <template>
   <vl-interaction-select
     v-if="drawType == null"
-    :features.sync="selectedFeatures">
+    :features.sync="selectedFeatures"
+    :condition="pointerMove">
     <template slot-scope="select">
       <!-- select styles -->
       <vl-style-box>
@@ -79,6 +80,7 @@
 
 <script>
 import { findPointOnSurface } from 'vuelayers/lib/ol-ext';
+import { pointerMove } from 'ol/events/condition';
 
 export default {
   name: 'Selection',
@@ -88,6 +90,11 @@ export default {
       selectedFeatures: [],
       drawType: undefined,
     };
+  },
+  computed: {
+    pointerMove() {
+      return pointerMove;
+    },
   },
   methods: {
     pointOnSurface: findPointOnSurface,
