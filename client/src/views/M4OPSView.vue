@@ -40,6 +40,7 @@ import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
 import { initialCurrentOptionArray } from '../initialising/initialState';
+import initialiseProjections from '../modules/mapping/projections';
 
 export default {
   name: 'M4OPSView',
@@ -101,6 +102,7 @@ export default {
         this.$store.dispatch('updateView', this.homeView);
       });
     }
+    initialiseProjections();
   },
 };
 </script>

@@ -1,3 +1,5 @@
+// Not Needed??
+
 // import { isDefined } from '../global/utils';
 // import { isLayerDefined } from './mapping/utils/mapUtils';
 // import { layerFromDef } from './mapping/layerhandling/layerFromDef';

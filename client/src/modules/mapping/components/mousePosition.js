@@ -31,6 +31,7 @@ export const mouseposition = new MousePosition({
         ol.coordinate.format(coordinate, '{x}, {y}', 4)
       }&nbsp; <br/>&nbsp;${hdms} &nbsp;`;
     }
+    // Zoom, OS MapRef, EPSG:27700, EPSG:4326
     return `(Zoom ${zoom})  ${strongNGR(NGR)}&nbsp; <br/>${
       ol.coordinate.format(coord27700, '{x}, {y}', 0)
     }&nbsp; <br/>${

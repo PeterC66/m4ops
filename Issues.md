@@ -55,6 +55,7 @@
   - Georeferencing an MFL
   - Transferring a Modifiable layer to become a Managed one (with its LayerDef)
   - (assuming PDC has processes for the Provided layers)
+- use [vuelayers utilities](https://github.com/ghettovoice/vuelayers/tree/master/src/util)
 
 ## Low Priority
 
@@ -66,6 +67,7 @@
 - don't allow already chosen layerDefs in new ChooseLayer, to avoid duplicate key error
 - simplify Continents production FLG etc?
 - reduce bundle size on build
+- use [vuelayers constants](https://github.com/ghettovoice/vuelayers/blob/master/src/ol-ext/consts.js)
 
 ## Issues to be resolved
 

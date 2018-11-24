@@ -9,7 +9,7 @@ export function selectAndDisplay(feature, layer) {
   const onMFL = getDirectValueOf('onMFL', feature);
   // console.log("feat/Lay",$.extend({}, feature),$.extend({}, layer) ,onMFL);
   if (!layer && !onMFL) {
-    return;
+    return false;
   }
   // check that the layer is a simple Vector Layer (not Vector Tiles, for now, which we can ignore)
   //   and that the opacity is not too low
@@ -17,7 +17,7 @@ export function selectAndDisplay(feature, layer) {
     // if (opacity < 0.2) return; // TODO
     const ld = layerDefs[layer.fromLayerDef];
     if (ld.layertype !== 'Vector') {
-      return;
+      return false;
     }
   }
   // This next is for featuresDone - so we can avoid duplicating any features
@@ -38,6 +38,7 @@ export function selectAndDisplay(feature, layer) {
     addToSelectedFeaturesLayer(feature, layer, event.coordinate);
     featuresDone.push(prefix + featureid); // so we do not do duplicates (from SelectedFeaturesLayer)
   }
+  return true;
 }
 
 const OpenButtonText1 = '<div id="resultsOpenButtonDiv" class="ol-control';

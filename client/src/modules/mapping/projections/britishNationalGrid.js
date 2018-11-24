@@ -1,17 +1,6 @@
-import proj4 from 'proj4';
-
 import { isString } from '../../../global/utils';
-// =================================== From NLS with thanks ==================================
-// The parameters for the British National Grid - EPSG:27700
 
-/* eslint max-len: ["error", { "ignoreComments": true }] */
-/* eslint-disable max-len */
-/* cSpell:disable */
-proj4.defs('EPSG:27700', '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs');
-/* cSpell:enable */
-/* eslint-enable max-len */
-
-// This code below converts the (EPSG:27700) lat lon into a British National Grid Reference. With thanks from http://www.movable-type.co.uk/scripts/latlong-gridref.html NT261732
+// Convert (EPSG:27700) lat lon into a British National Grid Reference. With thanks from http://www.movable-type.co.uk/scripts/latlong-gridref.html NT261732
 export function gridrefNumToLet(eOriginal, nOriginal, digits) { // easting & northing, and precision
   // get the 100km-grid indices
   const e100k = Math.floor(eOriginal / 100000);

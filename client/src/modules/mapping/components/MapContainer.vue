@@ -38,6 +38,7 @@ import ZoomSlider from 'ol/control/ZoomSlider';
 import { useVuexForView } from '../../../global/constants';
 import LayersContainer from './LayersContainer.vue';
 import Selection from './Selection.vue';
+// import { selectAndDisplay } from '../features/selectAndDisplay';
 
 const methods = {
   onMapMounted() {
@@ -54,6 +55,8 @@ const methods = {
   },
   onMapPointerMove({ pixel }) {
     const hit = this.$refs.mainmap.forEachFeatureAtPixel(pixel, () => true);
+    // eslint-disable-next-line max-len
+    // const hit = this.$refs.mainmap.forEachFeatureAtPixel(pixel, selectAndDisplay);
 
     if (hit) {
       this.mapCursor = 'pointer';

@@ -16,18 +16,24 @@
 - [Client Overview](#client-overview)
   - [The Starting point](#the-starting-point)
 - [Vue.js](#vuejs)
+  - [Complex components](#complex-components)
   - [Vue Router](#vue-router)
   - [Vuex](#vuex)
-- [HTTP Requests](#http-requests)
+    - [Vuex plugins](#vuex-plugins)
+  - [HTTP Requests](#http-requests)
+  - [Authorisation](#authorisation)
+  - [Demo](#demo)
   - [Icons](#icons)
   - [CSS](#css)
-  - [Element components](#element-components)
-  - [Vue Forms](#vue-forms)
+  - [Useful components](#useful-components)
+    - [Buefy](#buefy)
+    - [Element UI components](#element-ui-components)
+    - [Vue Slider Component](#vue-slider-component)
+    - [Vue Forms](#vue-forms)
   - [Standards and styles](#standards-and-styles)
   - [Vue CLI 3](#vue-cli-3)
 - [Babel](#babel)
 - [Bundler - Webpack](#bundler---webpack)
-  - [Production](#production)
 - [Debugging](#debugging)
 - [Testing](#testing)
 - [OpenLayers](#openlayers)
@@ -37,6 +43,27 @@
   - [Connecting to MongoDB](#connecting-to-mongodb)
   - [Notes](#notes)
 - [MongoDB](#mongodb)
+  - [To create Places.json](#to-create-placesjson)
+  - [Mongoose](#mongoose)
+- [Environment Variables](#environment-variables)
+  - [Envars General](#envars-general)
+  - [Envars on Server](#envars-on-server)
+    - [Envars on Server: PC Development](#envars-on-server--pc-development)
+    - [Envars on Server: Production](#envars-on-server--production)
+  - [Envars on Client](#envars-on-client)
+- [Into Production](#into-production)
+  - [Principles](#principles)
+  - [Guidance](#guidance)
+  - [Into Production - Client](#into-production---client)
+    - [Client Build](#client-build)
+    - [Client Upload to AWS](#client-upload-to-aws)
+  - [Into Production - Server](#into-production---server)
+    - [AWS Lambda](#aws-lambda)
+    - [Claudia](#claudia)
+  - [General](#general)
+  - [Useful but not used](#useful-but-not-used)
+  - [Into Production - Database](#into-production---database)
+    - [MongoDB Atlas implementation](#mongodb-atlas-implementation)
 - [Other Notes](#other-notes)
 
 [Table of contents generated with markdown-toc](http://ecotrust-canada.github.io/markdown-toc/)
@@ -392,6 +419,11 @@ graph LR;
 - [Authentication-system-with-node-js-backend](https://blog.jscrambler.com/vue-js-authentication-system-with-node-js-backend/)
 - any components starting with _base in /global/components/ are globally registered
 - [The correct way to force Vue to re-render a component](https://hackernoon.com/the-correct-way-to-force-vue-to-re-render-a-component-bde2caae34ad) - update the key
+- A template element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
+- [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) can now be in any element
+  - see the excellent [Understanding scoped slots in Vue.js](https://medium.com/binarcode/understanding-scoped-slots-in-vue-js-db5315a42391)
+  - and (video) [The Trick to Understanding Scoped Slots in Vue.js](https://adamwathan.me/the-trick-to-understanding-scoped-slots-in-vuejs/), expliaining that if slotes are like props, then scoped slots are like function props
+  - slot-scope is the name of a temporary variable that holds the props object passed from the child - even simpler if it is destructured
 
 ### Complex components
 
@@ -661,6 +693,57 @@ Use version number eg v5.3.0 (which is the one we use) or latest
   - [vuejs-openlayers](https://github.com/rukandax/vuejs-openlayers)
   - see also [integrating OL was quite easy - but some gotchas](https://stackoverflow.com/questions/47479583/integrate-openlayers-in-vuejs-application)
 
+### Projections
+
+#### Projections - Background
+
+- [FAQ: What projection is OpenLayers using?](http://openlayers.org/en/latest/doc/faq.html#what-projection-is-openlayers-using-) - default is EPSG:3857
+- [Coordinate Systems Worldwide](https://epsg.io/)
+- See the [note on projections](https://www.mapping4ops.org/background/useful-background-on-web-mapping/msg255/#msg255)
+- this note on [Coordinates in M4OPS](https://www.mapping4ops.org/m4ops-technicalities/coordinates-in-m4ops/msg384/#msg384) includes something on projections
+- In M4OPS v1 we had: a Note on projections, From [this discussion](http://gis.stackexchange.com/questions/48949/epsg-3857-or-4326-for-googlemaps-openstreetmap-and-leaflet)
+  - The data in Open Street Map database is stored in EPSG: 4326 ([Spherical Mercator: decimal degrees](http://docs.openlayers.org/library/spherical_mercator.html))
+  - The Open Street Map tiles and the WMS webservice, are in EPSG 3857
+  - So it is usual to have to transform the basic maps from 'EPSG:4326' to 'EPSG:3857'
+  - When you configure a source with features, you have to provide them in the view projection (ie in EPSG:3857) as no transformation is possible.
+- **Correction** Features are always geojson, and always 'EPSG:4326'.  Not sure what the statement above means
+- The values for HcN in the Testbed are
+  - lon0 = -3970;
+  - lat0 = 6860390;
+  - d = 300;
+- Other than that we do everything with GeoJSON in Lon/Lat ('EPSG:4326'), and the View is 'EPSG:3857' (metres) See [these insights](https://github.com/openlayers/ol3/issues/4264)
+
+- in M4OPS v1 we convert from the featureProjection: 'EPSG:3857' to the dataProjection: 'EPSG:4326', decimals: 8}) when we writeFeatures
+- See [Vuelayers on Global data projection](https://vuelayers.github.io/#/docs/quickstart?id=global-data-projection)
+
+#### Projections - Basics
+
+- [EPSG:4326](https://epsg.io/4326) is WGS 84 -- WGS84 - World Geodetic System 1984, used in GPS, or Spherical Mercator: decimal degrees
+  - and HcN is [-0.0322294, 52.3305610] (lon, lat)
+- [EPSG:3857](https://epsg.io/3857) is WGS 84 / Pseudo-Mercator -- Spherical Mercator: metres
+  - used by Google Maps (EPSG:900913), OpenStreetMap, Bing, ArcGIS, ESRI
+  - and HcN is [-3591, 6860098] (x,y) - (metres East, metres North)
+  - We do all georeferencing work based on the EPSG:3857
+- [EPSG:27700](https://epsg.io/27700) is OSGB 1936 / British National Grid -- United Kingdom Ordnance Survey
+  - and HcN is [534174, 272097] or TL3417472097
+- Northings and Eastings
+  - and HcN is 52° 19′ 50″ N 0° 01′ 56″ W
+
+#### Projections - What we do
+
+- For the internal view projection we use EPSG:3857 (the default) - this is the projection with which OpenLayers components will work (ol.View, ol.Feature etc)
+- For the data-projection property on the vl-map component we use EPSG:4326 (as the demo does)
+- We assume that all vector layers are geojson, and always read (and written) as 'EPSG:4326'
+  - Thus for plain coordinates, and GeoJSON encoded features or geometries there is a thin projection transform layer between Vue (EPSG:4326) and OpenLayers (EPSG:3857)
+- to add a projection use createProj, addProj from [ol-ext Projection transform helpers](https://github.com/ghettovoice/vuelayers/blob/master/src/ol-ext/proj.js)
+  - this has lots of other useful transform functions
+- TODO
+  - shiftingProjections.js - we have not adapted yet (see ProjectionsArray in Place)
+  - extents in layerAndSourceTile.js
+  - projection in layerAndSourceWms.js
+  - projection in mousePosition
+  - Use the LayerDefs (string) projection member of their sourcedef
+
 ## Server Overview
 
 When the client needs to communicate with the server it sends an asynchronous GET or POST request via eg fetch(`/continents`). The corresponding route is defined in the server's routes folder (and referenced in its app.js). When the server is done it notifies the client, which can then do any more processing dependent on the promise being completed.
@@ -743,11 +826,11 @@ graph LR;
     - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
     - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
     - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
-      - and then:
-      - Buildings.geojson"
-      - Censuses.geojson"
-      - HcN land ownership.geojson"
-      - OSM20180209.geojson"
+    - and then:
+    - Buildings.geojson"
+    - Censuses.geojson"
+    - HcN land ownership.geojson"
+    - OSM20180209.geojson"
     - add --drop so that the target instance drops the collection before importing the data from the input.
     - add --mode upsert to replace documents whose _id matches the document(s) in the import file
   - (Note that the Studies collection is not used now)
@@ -851,10 +934,10 @@ From Terminal: C:\projects\m4ops\client>npm run build
     - js/chunk-vendors.2cee4a6c.js (1.2 MiB)
   - entrypoint(s) combined asset size exceeds the recommended limit (244 KiB)
     - app (1.51 MiB)
-      - css/chunk-vendors.253ba11b.css
-      - js/chunk-vendors.2cee4a6c.js
-      - css/app.655d80b5.css
-      - js/app.a9c51c81.js
+    - css/chunk-vendors.253ba11b.css
+    - js/chunk-vendors.2cee4a6c.js
+    - css/app.655d80b5.css
+    - js/app.a9c51c81.js
 
 ``` bash
   File                                      Size             Gzipped

@@ -1,128 +1,108 @@
-// import { createAction, handleActions } from 'redux-actions';
-// import { combineReducers } from 'redux';
-// import { createSelector } from 'reselect';
-// import cuid from 'cuid';
-// import _ from 'lodash';
+import { createAction, handleActions } from 'redux-actions';
+import { combineReducers } from 'redux';
+import _ from 'lodash';
+import OlMap from 'ol/map';
 
-// import reducerRegistry from '../../store/reducerRegistry';
+import reducerRegistry from '../../store/reducerRegistry';
 // import { updateItemInArray } from '../../global/reducerUtils';
-// import { isDefined } from '../../global/utils';
-// import { initialStateMainMap } from './overall/initialState';
+import { isDefined, createNamedSelector } from '../../global/utils';
+import { initialStateChosenLayers } from './overall/initialState';
+import { isLayerDefined } from './utils/mapUtils';
+import { layerFromDef } from './layerhandling/layerFromDef';
 
-// // Assign the name for prefixing actions etc
-// const reducerName = 'mapping';
+// Assign the name for prefixing actions etc
+const reducerName = 'mapping';
 
-// const createActionName = name => `app/${reducerName}/${name}`;
+const createActionName = name => `app/${reducerName}/${name}`;
 
-// // ACTION CREATORS
+// ACTION CREATORS
 
-// // export const setupMap = createAction(createActionName('MAP_SETUP'));
-// // payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
-// export const setLayerRequest = createAction(createActionName('LAYER_SET_REQUEST'));
+// export const setupMap = createAction(createActionName('MAP_SETUP'));
+// payload is {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
+export const setLayerRequest = createAction(createActionName('LAYER_SET_REQUEST'));
 
-// // Initial State
-// const initialState = {
-//   mainmap: initialStateMainMap,
-//   // See Map.jsx to tie in
-//   // chosenLayers: [{ cuidKey: 'xxx', ldid: 'World>Basic>OpenStreetMap', originalIndex: null }],
-// };
+// Initial State
+const initialState = {
+  chosenlayers: initialStateChosenLayers,
+};
 
-// // REDUCERS
+// REDUCERS
 
-// // export const getMainmapTemp = state => state[reducerName].value.mainmap;
+// Note that because of combinedReducer all mapping actions have
+// a LayerDefs property (from OPSDetails) that can be used here
 
-// const value = handleActions({
-//   // [setupMap]: {
-//   //   next: (state, action) => ({
-//   //     ...state,
-//   //     mainmap: action.payload.map,
-//   //   }),
-//   // },
-//   [setLayerRequest]: {
-//     next: (state, action) => {
-//       const nextLayers = _.filter(
-//         updateItemInArray(
-//           state.chosenLayers,
-//           action.payload.layerNumber,
-//           () => ({ ldid: action.payload.ldid, cuidKey: cuid(), originalIndex: null }),
-//           true,
-//         ),
-//         v => isDefined(v.ldid),
-//       );
-//       return {
-//         ...state,
-//         chosenLayers: nextLayers,
-//         /*         mainmap: loadLayers(
-//           getMainmapTemp(state),
-//           nextLayers,
-//           getOPSAllLayerDefsArray(state),
-//         ),
-//  */
-//       };
-//     },
-//   },
-// }, initialState);
+const value = handleActions({
+  [setLayerRequest]: {
+    next: (state, action) => {
+      const { LayerDefs } = action;
+      const nextMainMap = _.cloneDeep(state.mainmap);
+      // for payload see above {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
+      const layerindex = action.payload.layerNumber;
+      if (!isDefined(action.payload.ldid)) { // indicating to delete the layer
+        nextMainMap.getLayers().removeAt(layerindex);
+      } else {
+        if (isLayerDefined(nextMainMap, layerindex)) {
+          nextMainMap.getLayers().removeAt(layerindex);
+        }
+        const layerToInsert = layerFromDef(LayerDefs, action.payload.ldid);
+        nextMainMap.getLayers().insertAt(layerindex, layerToInsert);
+      }
+      return {
+        ...state,
+        mainmap: nextMainMap,
+      };
+    },
+  },
+}, initialState);
 
-// /*
-// case setLayerRequest.toString():
-// // If any chosenLayers have changed load them into the map
-// loadLayers(
-//   getMainmap(nextState),
-//   getChosenLayers(prevState),
-//   getChosenLayers(nextState),
-//   getLayerDefs(nextState),
-// );
-// break; */
+const error = handleActions({
+  [setLayerRequest]: {
+    next: state => ({ ...state }),
+    throw: (state, action) => ({
+      ...state,
+      chosenLayers: action.payload.message,
+    }),
+  },
+}, null);
 
+const reducer = combineReducers({
+  error,
+  value,
+});
+export default reducer;
 
-// /*
-// chosenLayers: _.remove(updateItemInArray(
-//   state.chosenLayers,
-//   action.payload.layerNumber,
-//   () => ({ ldid: action.payload.ldid, cuidKey: cuid(), originalIndex: null }),
-//   true,
-// ), (v) => { console.log('RED', v, !isDefined(v.ldid)); return false; }),
-// }),
-// },
-// }, initialState); */
-
-// const error = handleActions({
-//   [setupMap]: {
-//     next: state => ({ ...state }),
-//     throw: (state, action) => ({
-//       ...state,
-//       mainmap: action.payload.message,
-//     }),
-//   },
-//   [setLayerRequest]: {
-//     next: state => ({ ...state }),
-//     throw: (state, action) => ({
-//       ...state,
-//       chosenLayers: action.payload.message,
-//     }),
-//   },
-// }, null);
-
-// const reducer = combineReducers({
-//   error,
-//   value,
-// });
-// export default reducer;
-
-// // Register the reducer
+// Register the reducer
 
 // reducerRegistry.register(reducerName, reducer);
 
-// // SELECTORS
+// SELECTORS
 
-// export const getAllMapping = state => state[reducerName].value;
+export const getAllMapping = state => (state[reducerName] || {}).value || {};
+getAllMapping.reportingName = 'getAllMapping';
 
-// export const getMainmap = createSelector(
-//   getAllMapping,
-//   v => v.mainmap,
-// );
+// Non Redux Selectors - their arguments are NOT state
 
-// export const getChosenLayers = createSelector(
-//   getAllMapping,
-//   v => v.chosenLayers,
-// );
+export const getMainmapFromMap = (map) => {
+  if (isDefined(map) && (map instanceof OlMap)) {
+    return map;
+  }
+  console.log('getMainmapFromMap called with invalid map:', map); // eslint-disable-line no-console
+  return {};
+};
+getMainmapFromMap.reportingName = 'getMainmap';
+
+export const getChosenLayersFromMap = createNamedSelector(
+  'getChosenLayersFromMap',
+  getMainmapFromMap,
+  (map) => {
+    if (isDefined(map) && (map instanceof OlMap)) {
+      const layersArray = map.getLayers().getArray();
+      return layersArray.map((item, index) => ({
+        layerNumber: index,
+        ldid: item.get('ldid'),
+      }));
+    }
+    console.log('getChosenLayersFromMap called with invalid map:', map); // eslint-disable-line no-console
+    return [];
+  },
+);
