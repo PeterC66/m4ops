@@ -9,9 +9,10 @@
     v-if="drawType == null"
     :features.sync="selectedFeatures"
     :multi="true"
-    :condition="pointerMove">
+    :condition="pointerMove"
+  >
 
-    <template slot-scope="select">
+    <template slot-scope="{features}">
 
       <!-- select styles -->
       <vl-style-box>
@@ -38,8 +39,9 @@
       </vl-style-box>
       <!--// select styles -->
 
-      <SelectionPopup
-        :select="select"/>
+      <ResultsSidebar
+        v-if="areResults"
+        :features="features"/>
 
     </template>
   </vl-interaction-select>
@@ -47,13 +49,14 @@
 
 <script>
 import { pointerMove } from 'ol/events/condition';
+import _ from 'lodash';
 
-import SelectionPopup from './SelectionPopup.vue';
+import ResultsSidebar from './ResultsSidebar.vue';
 
 export default {
   name: 'Selection',
   components: {
-    SelectionPopup,
+    ResultsSidebar,
   },
   data() {
     return {
@@ -65,6 +68,9 @@ export default {
   computed: {
     pointerMove() {
       return pointerMove;
+    },
+    areResults() {
+      return !(_.isEmpty(this.selectedFeatures));
     },
   },
   methods: {
