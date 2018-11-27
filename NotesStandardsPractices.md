@@ -223,6 +223,8 @@ See under [Standards and styles](#standards-and-styles)
 
 - Includes [Emmet](https://docs.emmet.io/) - snippets etc
 
+- [Read Only extension](https://github.com/alefragnani/vscode-read-only-indicator)
+
 ### GIT for source code version control
 
 - [GitHub](https://github.com/) P6 XXXX is the git server where my projects are
@@ -420,9 +422,9 @@ graph LR;
 - any components starting with _base in /global/components/ are globally registered
 - [The correct way to force Vue to re-render a component](https://hackernoon.com/the-correct-way-to-force-vue-to-re-render-a-component-bde2caae34ad) - update the key
 - A template element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
-- [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) can now be in any element
+- [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) can be in any element
   - see the excellent [Understanding scoped slots in Vue.js](https://medium.com/binarcode/understanding-scoped-slots-in-vue-js-db5315a42391)
-  - and (video) [The Trick to Understanding Scoped Slots in Vue.js](https://adamwathan.me/the-trick-to-understanding-scoped-slots-in-vuejs/), expliaining that if slotes are like props, then scoped slots are like function props
+  - and (video) [The Trick to Understanding Scoped Slots in Vue.js](https://adamwathan.me/the-trick-to-understanding-scoped-slots-in-vuejs/), explaining that if slots are like props, then scoped slots are like function props
   - slot-scope is the name of a temporary variable that holds the props object passed from the child - even simpler if it is destructured
 
 ### Complex components

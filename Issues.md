@@ -19,6 +19,7 @@
 ## Medium Priority
 
 - WMS and WMTS sources
+- new OPS for HcN
 - TODO in comments items
 - implementing loading aspects including "No layers" selected message
 - Zoom: Center as was (??)

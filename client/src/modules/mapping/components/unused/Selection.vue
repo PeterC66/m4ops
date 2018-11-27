@@ -1,8 +1,7 @@
 <template>
   <vl-interaction-select
     v-if="drawType == null"
-    :features.sync="selectedFeatures"
-    :condition="pointerMove">
+    :features.sync="selectedFeatures">
     <template slot-scope="select">
       <!-- select styles -->
       <vl-style-box>
