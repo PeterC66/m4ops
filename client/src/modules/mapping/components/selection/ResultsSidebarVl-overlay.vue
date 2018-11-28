@@ -1,11 +1,8 @@
 <template>
-  <div
-    id="resultsSideBar"
-    class="panel">
-    <p class="panel-heading">
-      repositories
-    </p>
-    <div class="panel-block">
+  <vl-overlay
+    key="ol"
+    class="feature-popup">
+    <div id="resultsSideBar">
       <ColourKey/>
       <FeatureInfo
         v-for="feature in features"
@@ -13,7 +10,7 @@
         :key="feature.id"
       />
     </div>
-  </div>
+  </vl-overlay>
 </template>
 
 <script>

@@ -33,7 +33,10 @@ export default {
     return {
       options: [{
         value: 'no',
-        label: 'No lat/lon click',
+        label: 'Nothing',
+      }, {
+        value: 'select',
+        label: 'Select',
       }, {
         value: 'm4opscsv',
         label: 'M4OPS lon;lat csv',

@@ -9,7 +9,7 @@
     v-if="drawType == null"
     :features.sync="selectedFeatures"
     :multi="true"
-    :condition="pointerMove"
+    :condition="wantHover ? pointerMove : singleClick"
   >
 
     <template slot-scope="{features}">
@@ -48,8 +48,9 @@
 </template>
 
 <script>
-import { pointerMove } from 'ol/events/condition';
+import { singleClick, pointerMove } from 'ol/events/condition';
 import _ from 'lodash';
+import { mapState } from 'vuex';
 
 import ResultsSidebar from './ResultsSidebar.vue';
 
@@ -66,9 +67,27 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      actionOnClick: state => state.mapping.actionOnClick,
+    }),
+    singleClick() {
+      return singleClick;
+    },
     pointerMove() {
       return pointerMove;
     },
+    wantHover() {
+      // return true;
+      // eslint-disable-next-line no-console
+      console.log(this.actionOnClick, this.actionOnClick !== 'select');
+      return this.actionOnClick !== 'select';
+    },
+    // aocCondition() {
+    //   // eslint-disable-next-line max-len, no-console
+    //   console.log(this.actionOnClick, singleClick, pointerMove, this.actionOnClick === 'select' ? singleClick : this.pointerMove);
+    //   // eslint-disable-next-line max-len
+    //   return this.actionOnClick === 'select' ? singleClick : this.pointerMove;
+    // },
     areResults() {
       return !(_.isEmpty(this.selectedFeatures));
     },
