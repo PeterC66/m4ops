@@ -1,6 +1,6 @@
 <template>
   <div>
-    ?ColourKey
+    Colour Key
   </div>
 </template>
 

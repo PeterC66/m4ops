@@ -426,6 +426,8 @@ graph LR;
   - see the excellent [Understanding scoped slots in Vue.js](https://medium.com/binarcode/understanding-scoped-slots-in-vue-js-db5315a42391)
   - and (video) [The Trick to Understanding Scoped Slots in Vue.js](https://adamwathan.me/the-trick-to-understanding-scoped-slots-in-vuejs/), explaining that if slots are like props, then scoped slots are like function props
   - slot-scope is the name of a temporary variable that holds the props object passed from the child - even simpler if it is destructured
+- [The Vue.js Cheast Sheet](https://flaviocopes.com/vue-cheat-sheet/)
+- [Methods, Computed, and Watchers in Vue.js](https://css-tricks.com/methods-computed-and-watchers-in-vue-js/)
 
 ### Complex components
 
@@ -475,6 +477,13 @@ graph LR;
   - Managing multiple loading states
   - Caching actions
 - [A Vuex Undo/Redo Plugin](https://www.codementor.io/vuejsdevelopers/create-a-vuex-undo-redo-plugin-for-vuejs-dt36c6w3z)
+
+#### Typescript in Vue
+
+- [Using Typescript with vue](https://vuejs.org/v2/guide/typescript.html) - we don't
+- [Should You Learn TypeScript? (Benefits & Resources)](https://snipcart.com/blog/learn-typescript-why-use-ts) (answer - not yet!)
+- [Type Vue without TypeScript](https://blog.usejournal.com/type-vue-without-typescript-b2b49210f0b)
+  - [Type Vuex without TypeScript](https://itnext.io/type-vuex-without-typescript-4f183b83a907)
 
 ### HTTP Requests
 
@@ -1046,10 +1055,8 @@ See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/c
 - [ReX.js](https://areknawo.github.io/Rex/) is a RegEx companion - maybe use? Some do not like!
 - Any locally installed command (eg xx) will be available at ./node_modules/.bin/xx in your project
   - node_modules/.bin directory will be added to system $PATH when your're running npm scripts, so you can directly use the local xx command there
-- [Using Typescript with vue](https://vuejs.org/v2/guide/typescript.html) - we don't
 - [Popular Systems in 2017](https://risingstars.js.org/2017/en/) - especially Vue.js
 - We have a [codeSandbox](https://codesandbox.io/u/PeterC66) for trying things out
 - [unpkg](https://unpkg.com/) is a fast, global content delivery network for everything on npm - it makes every npm package available in the browser
 - Beware [Memory Leaks](https://vuejs.org/v2/cookbook/avoiding-memory-leaks.html)
-- [Should You Learn TypeScript? (Benefits & Resources)](https://snipcart.com/blog/learn-typescript-why-use-ts) (answer - not yet!)
 - to [install a specific version](https://60devs.com/npm-install-specific-version.html) use eg npm install vuelayers@^0.11.0 --save

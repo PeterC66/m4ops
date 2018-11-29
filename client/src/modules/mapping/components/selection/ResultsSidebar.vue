@@ -1,20 +1,14 @@
 <template>
   <div
     id="resultsSideBar"
-    class="panel">
-    <p class="panel-heading">
-      repositories
-    </p>
-    <div class="panel-block">
-      <ColourKey/>
-      <FeatureInfo
-        v-for="feature in features"
-        :feature="feature"
-        :key="feature.id"
-      />
-    </div>
-  </div>
-</template>
+  >
+    <ColourKey/>
+    <FeatureInfo
+      v-for="feature in features"
+      :feature="feature"
+      :key="feature.id"
+    />
+</div></template>
 
 <script>
 import ColourKey from './ColourKey.vue';

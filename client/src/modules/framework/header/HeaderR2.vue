@@ -2,7 +2,38 @@
   <div
     id="buttonsR2"
     class="level">
-    <div class="level-right">
+    <div
+      v-if="!interactionsOn"
+      class="level-right"
+    >
+      <b-tooltip
+        label="Unfreeze everything"
+        position="is-left"
+        multilined>
+        <button
+          class="button is-info is-normal"
+          @click="toggleInteractions()"
+        >
+          Unfreeze
+        </button>
+      </b-tooltip>
+    </div>
+    <div
+      v-else
+      class="level-right"
+    >
+      <b-tooltip
+        label="Freeze things"
+        position="is-left"
+        multilined>
+        <button
+          class="button is-primary is-small"
+          @click="toggleInteractions()">
+          <span class="icon">
+            <font-awesome-icon :icon="['fas','search']"/>
+          </span>
+        </button>
+      </b-tooltip>
       <b-tooltip
         label="Feature search text,
         or coordinates to go to."
@@ -44,6 +75,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'HeaderR2',
   data() {
@@ -53,7 +86,15 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState({
+      interactionsOn: state => state.framework.interactionsOn,
+    }),
+  },
   methods: {
+    ...mapActions([
+      'toggleInteractions',
+    ]),
     tellMe() {
       console.log('tellMe'); // eslint-disable-line no-console
     },

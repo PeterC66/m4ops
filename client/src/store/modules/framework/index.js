@@ -1,11 +1,13 @@
 import {
   SIDEBAR_SWITCH_REQUEST,
   TAB_SELECT_REQUEST,
+  INTERACTIONS_ON_TOGGLE,
 } from '../../mutation-types';
 
 const state = {
   sidebarOpen: true,
   activeTabNumber: 0,
+  interactionsOn: true,
 };
 
 const mutations = {
@@ -15,6 +17,9 @@ const mutations = {
   [TAB_SELECT_REQUEST](moduleState, payload) {
     moduleState.activeTabNumber = payload.activeTabNumber;
   },
+  [INTERACTIONS_ON_TOGGLE](moduleState) {
+    moduleState.interactionsOn = !moduleState.interactionsOn;
+  },
 };
 
 const actions = {
@@ -23,6 +28,9 @@ const actions = {
   },
   selectActiveTab({ commit }, activeTab) {
     commit(TAB_SELECT_REQUEST, { activeTabNumber: activeTab });
+  },
+  toggleInteractions({ commit }) {
+    commit(INTERACTIONS_ON_TOGGLE);
   },
 };
 
