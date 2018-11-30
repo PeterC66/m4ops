@@ -39,5 +39,6 @@ export default {
     overflow: visible;
     z-index: 20000;
     pointer-events: none;
+    background-color: white;
   }
 </style>

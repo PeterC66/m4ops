@@ -4,8 +4,8 @@
 
 - Production version - Backups
 - Popups – by feature, or in results sidebar (use click choice?)
-  - details in separate panel?
-  - Freeze/unfreeze
+  - details in separate panel
+  - Freeze on click, interaction condition
   - Format data (with images, events, html etc)
 - Views – 2 maps, spy, slider
 - Click actions

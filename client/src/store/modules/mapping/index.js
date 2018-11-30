@@ -11,7 +11,7 @@ import { initialCurrentOptionArray } from '../../../initialising/initialState';
 
 const state = {
   mapDisplay: 'overlay',
-  actionOnClick: 'no',
+  actionOnClick: 'select',
   // current map viewport (shared among all vuelayers instances)
   // Note this does not persist if useVuexForView is false
   view: {

@@ -228,3 +228,33 @@ export function thisYear() {
   const currentTime = new Date();
   return currentTime.getFullYear();
 }
+
+function padOneNumberString(pad, strNum, left = true) {
+  // Pad out a string at left (or right)
+  if (typeof strNum === 'undefined') return pad;
+  const padLen = pad.length - strNum.toString.length;
+  const padding = pad.substr(0, padLen);
+  return left ? padding + strNum : strNum + padding;
+}
+
+export function padAllNumbers(strIn) {
+  // Used to create mixed strings that sort numerically as well as non-numerically
+  let result = '';
+  // console.log("pAN",strIn);
+  if (strIn) {
+    const strToUse = String(strIn);
+    const patternDigits = /(\d+)/g; // This recognises digit/non-digit boundaries
+    const astrIn = strToUse.split(patternDigits); // we create an array of alternating digit/non-digit groups
+
+    for (let i = 0; i < astrIn.length; i += 1) {
+      if (astrIn[i] !== '') { // first and last elements can be "" and we don't want these padded out
+        if (astrIn[i].isNaN) {
+          result += astrIn[i];
+        } else {
+          result += padOneNumberString('000000000', astrIn[i]);
+        }
+      }
+    }
+  }
+  return result;
+}

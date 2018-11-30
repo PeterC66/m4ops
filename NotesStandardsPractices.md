@@ -428,6 +428,8 @@ graph LR;
   - slot-scope is the name of a temporary variable that holds the props object passed from the child - even simpler if it is destructured
 - [The Vue.js Cheast Sheet](https://flaviocopes.com/vue-cheat-sheet/)
 - [Methods, Computed, and Watchers in Vue.js](https://css-tricks.com/methods-computed-and-watchers-in-vue-js/)
+- [Vue Filters](https://vuejs.org/v2/guide/filters.html) can be used to apply common text formatting in two places (mustache interpolations and v-bind expressions)
+- [Vue Enter/Leave & List Transitions](https://vuejs.org/v2/guide/transitions.html) - automatically apply classes for CSS transitions and animations etc - \<transition\> goes around an element, \<transition-group\> round a v-for
 
 ### Complex components
 

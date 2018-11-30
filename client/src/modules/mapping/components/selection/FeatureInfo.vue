@@ -2,7 +2,7 @@
   <div>
 
     <p>
-      Feature with ID <strong>{{ feature.id }}</strong>
+      <strong>{{ feature.properties.featureid }}</strong>
     </p>
     <!-- eslint-disable max-len -->
     <p>
