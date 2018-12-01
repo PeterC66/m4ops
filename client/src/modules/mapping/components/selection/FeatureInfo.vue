@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <OpenButton/>
     <p>
       <strong>{{ feature.properties.featureid }}</strong>
     </p>
@@ -13,9 +13,12 @@
 </template>
 
 <script>
+import OpenButton from '../features/OpenButton.vue';
+
 export default {
   name: 'FeatureInfo',
   components: {
+    OpenButton,
   },
   props: {
     feature: {

@@ -213,3 +213,26 @@ export const getAValueFor = (
   return '';
 };
 
+function yearNo(datestring) {
+  if (datestring === '') return '?';
+  const d = new Date(datestring);
+  // else
+  return d.getFullYear().toString();
+}
+
+export function startend(feature, layer) {
+  const startDateString = getAValueFor(
+    'datestart',
+    feature,
+    layer,
+    false,
+  ).toString();
+  const endDateString = getAValueFor(
+    'dateend',
+    feature,
+    layer,
+    false,
+  ).toString();
+  const result = `${yearNo(startDateString)}-${yearNo(endDateString)}`;
+  return (result === '?-?') ? '' : result;
+}

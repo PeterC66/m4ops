@@ -66,8 +66,6 @@ padding: 10px 10px 10px 10px; background: #fff; z-index: 10001;}*/
 .resultsPropertyValue {color: black;}
 .resultsevHead {text-decoration: underline; margin: 0;}
 .resultsevBody {}
-#resultsOpenButtonDiv {position: absolute; top: 0px; right: 0px;}
-#resultsOpenButton {font-size: 0.9em;}
 
 #CreateNewFeatureButtons {margin-bottom: 0;}
 

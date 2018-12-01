@@ -430,6 +430,7 @@ graph LR;
 - [Methods, Computed, and Watchers in Vue.js](https://css-tricks.com/methods-computed-and-watchers-in-vue-js/)
 - [Vue Filters](https://vuejs.org/v2/guide/filters.html) can be used to apply common text formatting in two places (mustache interpolations and v-bind expressions)
 - [Vue Enter/Leave & List Transitions](https://vuejs.org/v2/guide/transitions.html) - automatically apply classes for CSS transitions and animations etc - \<transition\> goes around an element, \<transition-group\> round a v-for
+- [v-cloak](https://vuejs.org/v2/api/#v-cloak) - hide until Vue compiled
 
 ### Complex components
 
@@ -550,6 +551,7 @@ graph LR;
 - [Buefy Components](https://buefy.github.io/documentation) include all we need except (see below):
   - Cascader (asked for)
   - Slider
+- source monitor ? for infinite scroll
 
 #### Element UI components
 
