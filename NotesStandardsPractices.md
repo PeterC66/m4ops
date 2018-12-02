@@ -356,8 +356,9 @@ See under [Standards and styles](#standards-and-styles)
   - [Flowchart for arrow functions](https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20%26%20beyond/fig1.png)
   - [When (and why) you should use ES6 arrow functions — and when you shouldn’t](https://medium.freecodecamp.org/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26)
 - [Glossary of Modern JS Concepts](https://auth0.com/blog/glossary-of-modern-javascript-concepts)
+- [Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) shallow freezes an object (so nothing about it can be changed) whereas Object.seal() seals an object (just preventing new properties from being added to it)
 
-### Special functions & routines
+### Special functions and routines
 
 - For URLs etc use [url-parse](https://www.npmjs.com/package/url-parse), which includes [querystringify](https://gitlab.cs.washington.edu/glassctm/CShark/tree/55346ca6b16c6bbdadb94701dd554f26b17a3633/node_modules/querystringify) - which has just parse and stringify methods
 
@@ -438,6 +439,7 @@ graph LR;
 - Refers a lot to [Vue Instance Properties API](https://vuejs.org/v2/api/#Instance-Properties)
 - Can even use [JSX](https://github.com/vuejs/babel-plugin-transform-vue-jsx)
 - [Another similar explanation of render functions](https://alligator.io/vuejs/introduction-render-functions/)
+- [Use Any Javascript Library With Vue.js](https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/) - Object.defineProperty(Vue.prototype, '$moment', { value: moment }); or ... { get() { return this.$root.moment}}
 
 ### Vue Router
 
@@ -543,6 +545,11 @@ graph LR;
 - [CSS Specificity: Things You Should Know](https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/)
 - [How to Organize Your CSS with a Modular Architecture (OOCSS, BEM, SMACSS)](https://snipcart.com/blog/organize-css-modular-architecture?)
 - [CSS utility classes](https://gomakethings.com/my-css-methodology)
+
+### Dates and Times
+
+- [Moment.js](https://momentjs.com/) - Parse, validate, manipulate, and display dates and times
+  - even better use [Luxon](https://raddevon.com/articles/choose-luxon-date-wrangling-javascript/)
 
 ### Useful components
 
@@ -667,6 +674,7 @@ graph LR;
 
 - Note that a DOM node with a property = a Function is reported as "[object Function]"
   - a property = an Object is reported as "[object Object]" (similarly for an Array etc)
+- Chrome devtools has network tab - can turn on throttling to emulate a slow network (Online, Fast 3G, Slow 3G, Offline)
 
 ## Testing
 
@@ -687,6 +695,8 @@ Use version number eg v5.3.0 (which is the one we use) or latest
 - [(Latest) code](https://github.com/openlayers/openlayers)
 - [ol on npm](https://www.npmjs.com/package/ol)
 - [Releases on GitHub](https://github.com/openlayers/openlayers/releases/)
+- Useful on [Adding a progress indicator](https://medium.com/gis-tips/openlayers-3-adding-a-progress-indicator-341431e3a938) (ie loading layers)
+  - note that we use a v-if and spinner rather than buefy loading
 
 ### OL and Vue
 

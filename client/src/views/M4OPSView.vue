@@ -15,14 +15,16 @@
         </div>
         <div class="column">
           <!-- was style="position: relative" -->
+          <div
+            v-if="isLoading"
+            id="isLoading"
+          >
+            <font-awesome-icon :icon="['fas','spinner']" size="10x" spin/>
+          </div>
           <MapContainer
-            v-if="!loading"
+            v-else
             :zoom-initial="15"
             :center-initial="[-0.0325, 52.329444]"
-          />
-
-          <div
-            v-else
           />
         </div>
       </div>
@@ -33,7 +35,7 @@
 <script>
 import _ from 'lodash';
 import { actions } from 'vuex-api';
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
@@ -52,6 +54,7 @@ export default {
   computed: {
     ...mapState({
       sidebarOpen: state => state.framework.sidebarOpen,
+      loadingIds: state => state.framework.loadingIds,
     }),
     ...mapGetters([
       'm4opsdata',
@@ -60,36 +63,55 @@ export default {
       'continents',
       'homeView',
     ]),
-    loading() {
-      return (_.isEmpty(this.places)) ||
-        (_.isEmpty(this.continents)) ||
-        (_.isEmpty(this.place)) ||
-        (_.isEmpty(this.m4opsdata));
+    isLoading() {
+      // eslint-disable-next-line no-console, max-len
+      console.log(this.loadingIds.length, (this.loadingIds.length > 0) ? 'loading' : 'ready');
+      return this.loadingIds.length > 0;
     },
+    // isloading() {
+    //   return (_.isEmpty(this.places)) ||
+    //     (_.isEmpty(this.continents)) ||
+    //     (_.isEmpty(this.place)) ||
+    //     (_.isEmpty(this.m4opsdata));
+    // },
   },
   created() {
     if (_.isEmpty(this.places)) {
+      const loadingId = 'places';
+      this.$store.dispatch('startLoading', loadingId);
       this.$store.dispatch(actions.request, {
         baseURL: process.env.VUE_APP_BACKEND_URL,
         url: 'places',
         keyPath: ['places'],
+      }).then(() => {
+        this.$store.dispatch('endLoading', loadingId);
       });
     }
     if (_.isEmpty(this.continents)) {
+      const loadingId = 'continents';
+      this.$store.dispatch('startLoading', loadingId);
       this.$store.dispatch(actions.request, {
         baseURL: process.env.VUE_APP_BACKEND_URL,
         url: 'continents',
         keyPath: ['continents'],
+      }).then(() => {
+        this.$store.dispatch('endLoading', loadingId);
       });
     }
     if (_.isEmpty(this.m4opsdata)) {
+      const loadingId = 'm4opsdata';
+      this.$store.dispatch('startLoading', loadingId);
       this.$store.dispatch(actions.request, {
         baseURL: process.env.VUE_APP_BACKEND_URL,
         url: 'm4opsdata',
         keyPath: ['m4opsdata'],
+      }).then(() => {
+        this.$store.dispatch('endLoading', loadingId);
       });
     }
     if (_.isEmpty(this.place)) {
+      const loadingId = 'place';
+      this.$store.dispatch('startLoading', loadingId);
       this.$store.dispatch(actions.request, {
         baseURL: process.env.VUE_APP_BACKEND_URL,
         url: `places/${initialCurrentOptionArray[3]}`,
@@ -100,15 +122,32 @@ export default {
         this.$store.dispatch('initialiseChosenLayers', initialCurrentOptionArray[3]);
       }).then(() => {
         this.$store.dispatch('updateView', this.homeView);
+      }).then(() => {
+        this.$store.dispatch('endLoading', loadingId);
       });
     }
     initialiseProjections();
+  },
+  methods: {
+    ...mapActions([
+      'startLoading',
+      'endLoading',
+    ]),
   },
 };
 </script>
 
 <style scoped>
   .b-tooltip {position: absolute; bottom: 1px; left: 0px;}
+  #isLoading {
+    color:blue;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   /* .el-header, .el-footer {
     background-color: #B3C0D1;

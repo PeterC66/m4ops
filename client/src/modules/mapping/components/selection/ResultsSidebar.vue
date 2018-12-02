@@ -40,5 +40,6 @@ export default {
     z-index: 20000;
     pointer-events: none;
     background-color: white;
+    word-wrap: break-word;
   }
 </style>

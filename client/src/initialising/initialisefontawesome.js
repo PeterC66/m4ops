@@ -16,6 +16,7 @@ import {
   faHome,
   faQuestionCircle,
   faSearch,
+  faSpinner,
 } from '@fortawesome/free-solid-svg-icons'; // fas
 import {
   faEnvelope as faEnvelopeRegular,
@@ -40,6 +41,7 @@ export default function initialiseFontAwesome(Vue) {
     faHome,
     faQuestionCircle,
     faSearch,
+    faSpinner,
   );
   library.add(
     faEnvelopeRegular,

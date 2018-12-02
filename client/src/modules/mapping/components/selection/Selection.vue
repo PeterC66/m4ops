@@ -44,7 +44,7 @@
 
     <ResultsSidebar
       v-if="areResults"
-      :features="selectedFeatures"/>
+      :features="selectedFeaturesToShow"/>
   </div>
 </template>
 
@@ -87,8 +87,48 @@ export default {
       }
       return () => false;
     },
+    selectedFeaturesToShow() {
+      return _.uniqBy(this.selectedFeatures.filter(() => true));
+    },
+    /*
+    Can use filter for following from selectAndDisplay(feature, layer) {
+  // check the layer property, if it is not set then it means we
+  // are over an unmanaged layer and we can ignore this feature - unless it is the MFL
+  // onMFL has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
+  const onMFL = getDirectValueOf('onMFL', feature);
+  // console.log("feat/Lay",$.extend({}, feature),$.extend({}, layer) ,onMFL);
+  if (!layer && !onMFL) {
+    return false;
+  }
+  // check that the layer is a simple Vector Layer (not Vector Tiles, for now, which we can ignore)
+  //   and that the opacity is not too low
+  if (layer) {
+    // if (opacity < 0.2) return; // TODO
+    const ld = layerDefs[layer.fromLayerDef];
+    if (ld.layertype !== 'Vector') {
+      return false;
+    }
+  }
+  Can use uniq for the following
+ // This next is for featuresDone - so we can avoid duplicating any features
+  const featureid = getDirectValueOf('featureid', feature);
+  let prefix = '';
+  if (onMFL) {
+    prefix = 'MFL_';
+  } else {
+    const layerindex = feature.get('layerindex'); // should be 2-4
+    if ([2, 3, 4].indexOf(layerindex) >= 0) {
+      prefix = `${layerindex.toString()}_`;
+    }
+  }
+  if (featuresDone.indexOf(prefix + featureid) === -1) { // not found, so not already done
+AND later
+    featuresDone.push(prefix + featureid); // so we do not do duplicates (from SelectedFeaturesLayer)
+
+*/
+
     areResults() {
-      return !(_.isEmpty(this.selectedFeatures));
+      return !(_.isEmpty(this.selectedFeaturesToShow));
     },
   },
   methods: {

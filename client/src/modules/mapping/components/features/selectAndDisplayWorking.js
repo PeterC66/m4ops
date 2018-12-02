@@ -1,42 +1,10 @@
+/* eslint-disable */
 import { getDirectValueOf } from '../utils/mapUtils';
 
-export const dummy = 1;
-
 export function selectAndDisplay(feature, layer) {
-  // check the layer property, if it is not set then it means we
-  // are over an unmanaged layer and we can ignore this feature - unless it is the MFL
-  // onMFL has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
-  const onMFL = getDirectValueOf('onMFL', feature);
-  // console.log("feat/Lay",$.extend({}, feature),$.extend({}, layer) ,onMFL);
-  if (!layer && !onMFL) {
-    return false;
-  }
-  // check that the layer is a simple Vector Layer (not Vector Tiles, for now, which we can ignore)
-  //   and that the opacity is not too low
-  if (layer) {
-    // if (opacity < 0.2) return; // TODO
-    const ld = layerDefs[layer.fromLayerDef];
-    if (ld.layertype !== 'Vector') {
-      return false;
-    }
-  }
-  // This next is for featuresDone - so we can avoid duplicating any features
-  const featureid = getDirectValueOf('featureid', feature);
-  let prefix = '';
-  if (onMFL) {
-    prefix = 'MFL_';
-  } else {
-    const layerindex = feature.get('layerindex'); // should be 2-4
-    if ([2, 3, 4].indexOf(layerindex) >= 0) {
-      prefix = `${layerindex.toString()}_`;
-    }
-  }
-  if (featuresDone.indexOf(prefix + featureid) === -1) { // not found, so not already done
-    // Put html into the display area
-    featureinfo.innerHTML += htmlForResults(feature, layer);
+ {
     // display text on or by the feature, and highlight the feature
     addToSelectedFeaturesLayer(feature, layer, event.coordinate);
-    featuresDone.push(prefix + featureid); // so we do not do duplicates (from SelectedFeaturesLayer)
   }
   return true;
 }
@@ -46,6 +14,8 @@ function htmlForResults(feature, layer) { // layer is undefined for an MFL
   const onMFL = getDirectValueOf('onMFL', feature); // is False if not a valid property
   let FSid;
   if (layer) FSid = layerDefs[layer.fromLayerDef].FSid; // indicates the fields to show
+
+
   // For both MFL and normal put in the button, shorttext, startend dates, description
   htmlText += HeadAndDesc(`${getAValueFor('shorttext', feature, layer)} ${startend(feature, layer)}`, getAValueFor('description', feature, layer), '', '', '');
   // For normal (and potentially MFL) put in the image

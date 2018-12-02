@@ -21,7 +21,8 @@
 - WMS and WMTS sources
 - new OPS for HcN
 - TODO in comments items
-- implementing loading aspects including "No layers" selected message
+- implementing layer loading aspects - see loadingId etc in M4OPSView
+- add "No layers" selected message
 - Zoom: Center as was (??)
 - window size to screen
 - Upload, compile
