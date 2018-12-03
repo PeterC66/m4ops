@@ -357,6 +357,7 @@ See under [Standards and styles](#standards-and-styles)
   - [When (and why) you should use ES6 arrow functions — and when you shouldn’t](https://medium.freecodecamp.org/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26)
 - [Glossary of Modern JS Concepts](https://auth0.com/blog/glossary-of-modern-javascript-concepts)
 - [Object.freeze()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) shallow freezes an object (so nothing about it can be changed) whereas Object.seal() seals an object (just preventing new properties from being added to it)
+- [Enums in Javascript](https://stijndewitt.com/2014/01/26/enums-in-javascript/)
 
 ### Special functions and routines
 

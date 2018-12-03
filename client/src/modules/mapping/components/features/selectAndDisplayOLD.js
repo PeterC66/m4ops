@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { getDirectValueOf } from '../utils/mapUtils';
 
 export const dummy = 1;
