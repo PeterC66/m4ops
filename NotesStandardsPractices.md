@@ -361,6 +361,7 @@ See under [Standards and styles](#standards-and-styles)
 ### Special functions and routines
 
 - For URLs etc use [url-parse](https://www.npmjs.com/package/url-parse), which includes [querystringify](https://gitlab.cs.washington.edu/glassctm/CShark/tree/55346ca6b16c6bbdadb94701dd554f26b17a3633/node_modules/querystringify) - which has just parse and stringify methods
+  - Note that anything that you put after a hash (#) the browser ignores so that's a special trick that Vue Router uses to just get the frontend to take care of the URLs and not relay this information back to a server, and not reload the page
 
 - use [uuid/v1](https://www.npmjs.com/package/uuid) for IDs (or cuid?)
 
@@ -368,6 +369,7 @@ See under [Standards and styles](#standards-and-styles)
   - just import _ from 'lodash' (see [benchmark](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark))- eventually use [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)
   - for [iteratees](https://lodash.com/docs/#iteratee) see [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
 - for promises and async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
+- to pass 'this' context to a function use [js bind](https://javascript.info/bind#solution-2-bind)
 
 ## Client Overview
 
@@ -445,6 +447,11 @@ graph LR;
 
 - [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
 - maybe use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
+
+### Events
+
+- events can only go from child to parent, but a more general way is to use an  [Event Bus](https://alligator.io/vuejs/global-event-bus/) (and page 106 of the book) - add to Vue.prototype (lecture 98)
+- we usually use Vuex (state) rather than events
 
 ### Vuex
 

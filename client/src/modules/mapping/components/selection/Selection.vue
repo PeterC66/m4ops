@@ -38,13 +38,18 @@
               color="#d43f45"/>
           </vl-style-circle>
         </vl-style-box>
-      <!--// select styles -->
+        <!--// select styles -->
+        <SelectionPopup
+          v-if="areResults"
+          :features="selectedFeatures"
+        />
       </template>
     </vl-interaction-select>
 
     <ResultsSidebar
       v-if="areResults"
-      :features="selectedFeaturesToShow"/>
+      :features="selectedFeaturesToShow"
+    />
   </div>
 </template>
 
@@ -54,11 +59,13 @@ import _ from 'lodash';
 import { mapState } from 'vuex';
 
 import ResultsSidebar from './ResultsSidebar.vue';
+import SelectionPopup from './SelectionPopup.vue';
 
 export default {
   name: 'Selection',
   components: {
     ResultsSidebar,
+    SelectionPopup,
   },
   data() {
     return {

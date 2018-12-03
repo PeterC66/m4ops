@@ -14,12 +14,14 @@
           <Sidebar/>
         </div>
         <div class="column">
-          <!-- was style="position: relative" -->
           <div
             v-if="isLoading"
             id="isLoading"
           >
-            <font-awesome-icon :icon="['fas','spinner']" size="10x" spin/>
+            <font-awesome-icon
+              :icon="['fas','spinner']"
+              size="6x"
+              spin/>
           </div>
           <MapContainer
             v-else
@@ -64,9 +66,7 @@ export default {
       'homeView',
     ]),
     isLoading() {
-      // eslint-disable-next-line no-console, max-len
-      console.log(this.loadingIds.length, (this.loadingIds.length > 0) ? 'loading' : 'ready');
-      return this.loadingIds.length > 0;
+      return !_.isEmpty(this.loadingIds);
     },
     // isloading() {
     //   return (_.isEmpty(this.places)) ||

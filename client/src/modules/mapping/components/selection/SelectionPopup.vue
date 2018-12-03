@@ -1,10 +1,8 @@
 <template>
   <div>
     <vl-overlay
-      v-for="feature in select.features"
-      :key="feature.id"
-      :id="feature.id"
-      :position="pointOnSurface(feature.geometry)"
+      key="overlay"
+      :position="pointOnSurface(features[0].geometry)"
       :auto-pan="false"
       :auto-pan-animation="{ duration: 300 }"
       class="feature-popup">
@@ -14,38 +12,13 @@
       has members "id" etc which can be processed here)-->
       <!-- eslint-enable max-len -->
       <template slot-scope="popup">
-        <section class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              Feature ID {{ feature.id }}
-            </p>
-            <!-- eslint-disable max-len -->
-            <!-- @click="selectedFeatures = selectedFeatures.filter(f => f.id !== feature.id)" -->
-            <!-- eslint-enable max-len -->
-            <a
-              class="card-header-icon"
-              title="Close">
-              <b-icon icon="close"/>
-            </a>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <!-- eslint-disable max-len -->
-              <p>
-                Overlay popup content for Feature with ID <strong>{{ feature.id }}</strong>
-              </p>
-              <!-- eslint-enable max-len -->
-              <p>
-                Popup: {{ JSON.stringify(popup) }}
-              </p>
-              <!-- eslint-disable max-len -->
-              <p>
-                Feature: {{ JSON.stringify({ id: feature.id, properties: feature.properties }) }}
-              </p>
-            <!-- eslint-enable max-len -->
-            </div>
-          </div>
-        </section>
+        <p
+          v-for="feature in features"
+          :key="feature.id"
+          :id="feature.id"
+        >
+          {{ feature.properties.shorttext }}
+        </p>
       </template>
     </vl-overlay>
   </div>
@@ -57,8 +30,8 @@ import { findPointOnSurface } from 'vuelayers/lib/ol-ext';
 export default {
   name: 'SelectionPopup',
   props: {
-    select: {
-      type: Object,
+    features: {
+      type: Array,
       required: true,
     },
   },
@@ -71,3 +44,20 @@ export default {
   },
 };
 </script>
+
+<style>
+  .feature-popup {
+    position: absolute;
+    left: -50px;
+    bottom: 12px;
+    width: 20em;
+    max-width: none;
+    color: rgb(0,0,0,0.9);
+    font-size: small;
+    text-shadow:
+      -1px -1px 0 rgb(255,255,255,0.2),
+      1px -1px 0 rgb(255,255,255,0.2),
+      -1px 1px 0 rgb(255,255,255,0.2),
+      1px 1px 0 rgb(255,255,255,0.2);
+  };
+</style>

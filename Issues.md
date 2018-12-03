@@ -7,6 +7,7 @@
   - details in separate panel
   - Freeze on click, interaction condition
   - Format data (with images, events, html etc)
+  - SelectionPopup towards centre
 - Views – 2 maps, spy, slider
 - Click actions
 - Users, Passwords - use Auth0
@@ -21,7 +22,7 @@
 - WMS and WMTS sources
 - new OPS for HcN
 - TODO in comments items
-- implementing layer loading aspects - see loadingId etc in M4OPSView
+- implementing layer loading aspects - see loadingId etc in M4OPSView, openlayers-3-adding-a-progress-indicator-341431e3a938
 - add "No layers" selected message
 - Zoom: Center as was (??)
 - window size to screen
