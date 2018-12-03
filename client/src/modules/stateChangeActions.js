@@ -26,15 +26,15 @@ const stateChangeActions = (prevState, nextState, action) => {
     //   const { LayerDefs } = action;
     //   const map = {};
     //   // for payload see above {ldid:string_index_into_LayerDefsArray, layerNumber: eg 0}
-    //   const layerindex = action.payload.layerNumber;
+    //   const layerIndex = action.payload.layerNumber;
     //   if (!isDefined(action.payload.ldid)) { // indicating to delete the layer
-    //     map.getLayers().removeAt(layerindex);
+    //     map.getLayers().removeAt(layerIndex);
     //   } else {
-    //     if (isLayerDefined(map, layerindex)) {
-    //       map.getLayers().removeAt(layerindex);
+    //     if (isLayerDefined(map, layerIndex)) {
+    //       map.getLayers().removeAt(layerIndex);
     //     }
     //     const layerToInsert = layerFromDef(LayerDefs, action.payload.ldid);
-    //     map.getLayers().insertAt(layerindex, layerToInsert);
+    //     map.getLayers().insertAt(layerIndex, layerToInsert);
     //   }
     //   break;
     // }

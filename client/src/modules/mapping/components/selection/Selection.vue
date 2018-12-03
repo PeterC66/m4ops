@@ -101,10 +101,10 @@ export default {
     Can use filter for following from selectAndDisplay(feature, layer) {
   // check the layer property, if it is not set then it means we
   // are over an unmanaged layer and we can ignore this feature - unless it is the MFL
-  // onMFL has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
-  const onMFL = getDirectValueOf('onMFL', feature);
-  // console.log("feat/Lay",$.extend({}, feature),$.extend({}, layer) ,onMFL);
-  if (!layer && !onMFL) {
+  // onMfl has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
+  const onMfl = getDirectValueOf('onMfl', feature);
+  // console.log("feat/Lay",$.extend({}, feature),$.extend({}, layer) ,onMfl);
+  if (!layer && !onMfl) {
     return false;
   }
   // check that the layer is a simple Vector Layer (not Vector Tiles, for now, which we can ignore)
@@ -120,12 +120,12 @@ export default {
  // This next is for featuresDone - so we can avoid duplicating any features
   const featureid = getDirectValueOf('featureid', feature);
   let prefix = '';
-  if (onMFL) {
+  if (onMfl) {
     prefix = 'MFL_';
   } else {
-    const layerindex = feature.get('layerindex'); // should be 2-4
-    if ([2, 3, 4].indexOf(layerindex) >= 0) {
-      prefix = `${layerindex.toString()}_`;
+    const layerIndex = feature.get('layerIndex'); // should be 2-4
+    if ([2, 3, 4].indexOf(layerIndex) >= 0) {
+      prefix = `${layerIndex.toString()}_`;
     }
   }
   if (featuresDone.indexOf(prefix + featureid) === -1) { // not found, so not already done

@@ -159,7 +159,7 @@ export function pointStyleArray(pinIn, symbolIn, colorIn, radiusIn) {
 // Called by defaultStyles, which is called by defaultGeometryStyleFunction,
 //     which is where all features get their style from, unless specifically defined otherwise
 // Image (for points only): Icon, and Circle for the exact point - possibly in an array of styles
-export function defaultPointStyleArray(feature, resolution, layerindex) {
+export function defaultPointStyleArray(feature, resolution, layerIndex) {
   let pin = 0;
   let symbol = '';
   let color = '';
@@ -171,7 +171,7 @@ export function defaultPointStyleArray(feature, resolution, layerindex) {
   if (document.getElementById('wantIcons').checked && (pin || symbol || color || radius)) {
     return pointStyleArray(pin, symbol, color, radius);
   }
-  return pointStyleArray(0, '', chosenColor(feature, defaultColor('Circle', layerindex)), 5);
+  return pointStyleArray(0, '', chosenColor(feature, defaultColor('Circle', layerIndex)), 5);
   // The array returned here has one element: just a circle of the colour for the layer
 }
 
@@ -179,8 +179,8 @@ export function defaultPointStyleArray(feature, resolution, layerindex) {
 //  unless specifically defined otherwise
 export function defaultStyles(feature, resolution, selected) {
   // selected is true when called for the selectedFeaturesLayer
-  const layerindex = getDirectValueOf('layerindex', feature); // should be 2-4, MFL is null hence ""
-  // Use ldFromLayer(layerindex); to override?
+  const layerIndex = getDirectValueOf('layerIndex', feature); // should be 2-4, MFL is null hence ""
+  // Use ldFromLayer(layerIndex); to override?
   // getType() is One of 'Point', 'LineString', 'LinearRing', 'Polygon',
   //  'MultiPoint', 'MultiLineString', 'MultiPolygon', 'GeometryCollection', 'Circle'.
   let defStyle = {};
@@ -189,17 +189,17 @@ export function defaultStyles(feature, resolution, selected) {
   switch (feature.getGeometry().getType()) {
     case 'Point':
     case 'MultiPoint':
-      defStyle = defaultPointStyleArray(feature, resolution, layerindex);
+      defStyle = defaultPointStyleArray(feature, resolution, layerIndex);
       if (selected) {
         selStyle = new OlStyle.Style({
-          image: selectedImageStyle(defaultColor('Point', layerindex)),
+          image: selectedImageStyle(defaultColor('Point', layerIndex)),
         });
         return selStyle;
       } // not selected
       return defStyle;
 
     case 'LineString':
-      chColor = chosenColor(feature, defaultColor('LineString', layerindex));
+      chColor = chosenColor(feature, defaultColor('LineString', layerIndex));
       defStyle = new OlStyle.Style({
         stroke: new OlStyle.Stroke({
           color: chColor,
@@ -219,7 +219,7 @@ export function defaultStyles(feature, resolution, selected) {
 
 
     case 'MultiLineString':
-      chColor = chosenColor(feature, defaultColor('MultiLineString', layerindex));
+      chColor = chosenColor(feature, defaultColor('MultiLineString', layerIndex));
       defStyle = new OlStyle.Style({
         stroke: new OlStyle.Stroke({
           color: chColor,
@@ -239,7 +239,7 @@ export function defaultStyles(feature, resolution, selected) {
 
 
     case 'Polygon':
-      chColor = chosenColor(feature, defaultColor('Polygon', layerindex));
+      chColor = chosenColor(feature, defaultColor('Polygon', layerIndex));
       defStyle = new OlStyle.Style({
         stroke: new OlStyle.Stroke({
           color: chColor,
@@ -267,7 +267,7 @@ export function defaultStyles(feature, resolution, selected) {
 
 
     case 'MultiPolygon':
-      chColor = chosenColor(feature, defaultColor('MultiPolygon', layerindex));
+      chColor = chosenColor(feature, defaultColor('MultiPolygon', layerIndex));
       defStyle = new OlStyle.Style({
         stroke: new OlStyle.Stroke({
           color: chColor,
@@ -295,7 +295,7 @@ export function defaultStyles(feature, resolution, selected) {
 
 
     case 'GeometryCollection':
-      chColor = chosenColor(feature, defaultColor('GeometryCollection', layerindex));
+      chColor = chosenColor(feature, defaultColor('GeometryCollection', layerIndex));
       defStyle = new OlStyle.Style({
         stroke: new OlStyle.Stroke({
           color: chColor,
@@ -324,7 +324,7 @@ export function defaultStyles(feature, resolution, selected) {
 
     case 'Circle':
       console.log('We dont expect to be here!'); // eslint-disable-line no-console
-      chColor = chosenColor(feature, defaultColor('Circle', layerindex));
+      chColor = chosenColor(feature, defaultColor('Circle', layerIndex));
       return new OlStyle.Style({
         stroke: new OlStyle.Stroke({
           color: chColor,
@@ -336,7 +336,7 @@ export function defaultStyles(feature, resolution, selected) {
       });
 
     default:
-      return defaultPointStyleArray(feature, resolution, layerindex);
+      return defaultPointStyleArray(feature, resolution, layerIndex);
   }
 }
 

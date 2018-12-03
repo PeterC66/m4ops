@@ -65,18 +65,18 @@ const map = {};
 
 
 // Is the given layer (0=Base, 1=Overlay, 2,3,4=Vector) defined?
-export const isLayerDefined = (givenMap, layerindex) => {
+export const isLayerDefined = (givenMap, layerIndex) => {
   let defined = true;
-  const layer = givenMap.getLayers().getArray()[layerindex];
+  const layer = givenMap.getLayers().getArray()[layerIndex];
   if (!isDefined(layer)) defined = false;
   return defined;
 };
 
 // Is the given layer (0=Base, 1=Overlay, 2,3,4=Vector) defined and visible?
-export const isLayerVisible = (givenMap, layerindex) => {
+export const isLayerVisible = (givenMap, layerIndex) => {
   let visible = true;
-  if (isLayerDefined(givenMap, layerindex)) {
-    const layer = givenMap.getLayers().getArray()[layerindex];
+  if (isLayerDefined(givenMap, layerIndex)) {
+    const layer = givenMap.getLayers().getArray()[layerIndex];
     if (!layer.getVisible()) visible = false;
   } else {
     visible = false;
@@ -84,9 +84,9 @@ export const isLayerVisible = (givenMap, layerindex) => {
   return visible;
 };
 
-export const ldFromLayer = (layerindex) => {
-  if (isLayerDefined(map, layerindex)) {
-    return (layerDefs[map.getLayers().getArray()[layerindex].fromLayerDef]);
+export const ldFromLayer = (layerIndex) => {
+  if (isLayerDefined(map, layerIndex)) {
+    return (layerDefs[map.getLayers().getArray()[layerIndex].fromLayerDef]);
   }
   return null;
 };

@@ -10,8 +10,8 @@ export function selectAndDisplay(feature, layer) {
 }
 function htmlForResults(feature, layer) { // layer is undefined for an MFL
   // Create the html for the featureInfo:
-  // onMFL has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
-  const onMFL = getDirectValueOf('onMFL', feature); // is False if not a valid property
+  // onMfl has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
+  const onMfl = getDirectValueOf('onMfl', feature); // is False if not a valid property
   let FSid;
   if (layer) FSid = layerDefs[layer.fromLayerDef].FSid; // indicates the fields to show
 
@@ -64,8 +64,8 @@ function htmlForResults(feature, layer) { // layer is undefined for an MFL
   }
 
   let FSindex = notOK; // -999
-  // onMFL has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
-  if (onMFL) {
+  // onMfl has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
+  if (onMfl) {
     FSindex = checkFSOK(); // -1 means AllProperties
   } else if (FSid) { // ie the Layer has a FieldSpec defined
     FSindex = checkFSOK(FSid);

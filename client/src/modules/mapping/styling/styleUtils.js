@@ -16,9 +16,9 @@ export function selectedImageStyle(rgba) {
   return imgStyle;
 }
 
-export function styleArraysIndex(layerindex) {
-  if (!layerindex || layerindex < 2 || layerindex > 4) {
+export function styleArraysIndex(layerIndex) {
+  if (!layerIndex || layerIndex < 2 || layerIndex > 4) {
     return 3; // for MFL (and any error)
   }
-  return layerindex - 2; // so 2-4 become 0-2
+  return layerIndex - 2; // so 2-4 become 0-2
 }

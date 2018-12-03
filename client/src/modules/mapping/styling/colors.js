@@ -47,17 +47,17 @@ export function typeColor(type, ColourSet) {
   return null;
 }
 
-export function defaultColor(type, layerindex) {
+export function defaultColor(type, layerIndex) {
   // Look up the ColourSet specified for this layer, if given
   let layerColourSet;
   let strRGBA;
   if (OPSDetails.ColourSetsArray) {
-    if (layerindex) {
-      const LD = ldFromLayer(layerindex);
+    if (layerIndex) {
+      const LD = ldFromLayer(layerIndex);
       if (LD) {
         layerColourSet = pdcArraySearch(LD.csname.ColourSetsArray, 'csname');
       }
-    } else { // No layerindex, so MFL
+    } else { // No layerIndex, so MFL
       layerColourSet = pdcArraySearch(OPSDetails.csnameMFL.ColourSetsArray, 'csname');
     }
   }
@@ -65,14 +65,14 @@ export function defaultColor(type, layerindex) {
     strRGBA = typeColor(type, layerColourSet);
     if (strRGBA) return strRGBA;
   } else if (M4OPS.DefaultColourSetsArray) {
-    // Given the geometry type and layerindex (values 2-4 and undefined=MFL)
+    // Given the geometry type and layerIndex (values 2-4 and undefined=MFL)
     // return the default colour
-    const layerDefaultColourSet = M4OPS.DefaultColourSetsArray[styleArraysIndex(layerindex)];
+    const layerDefaultColourSet = M4OPS.DefaultColourSetsArray[styleArraysIndex(layerIndex)];
     if (layerDefaultColourSet) {
       strRGBA = typeColor(type, layerDefaultColourSet);
       if (strRGBA) return strRGBA;
     } else {
-      console.log(`Error with layerDefaultColourSet, layerindex = ${layerindex}`); // eslint-disable-line no-console
+      console.log(`Error with layerDefaultColourSet, layerIndex = ${layerIndex}`); // eslint-disable-line no-console
       return 'rgba(255, 0, 0, 1.0)'; // red
     }
   } else {
