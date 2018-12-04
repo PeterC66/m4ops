@@ -41,9 +41,9 @@ export default Vue.component('layer-and-source', {
       },
       key: `ML${this.layerNumber}${ldid}`,
     };
-    // eslint-disable-next-line max-len
-    // console.log(`rendering ML ${this.layerNumber} ${opacity} ${ldid}`, { ...layerDataObject.attrs }, { ...layerDataObject.props });
-    vlLayerElement = layerAndSourceCreate(
+
+    const layerAndSourceCreateBound = layerAndSourceCreate.bind(this);
+    vlLayerElement = layerAndSourceCreateBound(
       createElement,
       this.layerDef,
       layerDataObject,

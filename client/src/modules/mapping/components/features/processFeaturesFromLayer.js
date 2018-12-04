@@ -5,7 +5,7 @@
 //   document.getElementById(id).innerHTML = n.toString();
 // }
 
-function processFeaturesActions(src, options) {
+function processFeaturesActions(layer, src, options) {
   const {
     propertyEquivToShorttext,
     hideUnhide,
@@ -73,21 +73,38 @@ function processFeaturesActions(src, options) {
 usage eg processFeatures(vectorLayer, {ldid:ldid})
 */
 
-export default function processFeatures(vectorSource, options) {
+export default function processFeatures(vectorLayer, options) {
   // These are the routines to do things with features (see https://gis.stackexchange.com/questions/215878/how-to-get-the-features-in-a-source-for-a-geojson-vector-layer-and-then-alter-t)
   // We do it all in one place to avoid errors
-  // eslint-disable-next-line no-console
-  console.log('processFeatures', vectorSource, options);
-  const source = vectorSource;
+  // console.log("processFeatures", vectorLayer, options);
+  // let source = vectorLayer.getSource();
+  // eslint-disable-next-line no-underscore-dangle
+  let { source } = vectorLayer.values_;
   if (source) {
     const numFeatures = source.getFeatures().length;
-    // eslint-disable-next-line no-console
-    console.log(numFeatures);
-    if (source.getState() === 'ready') {
-      return processFeaturesActions(source, options);
+    // console.log(numFeatures);
+    if (numFeatures === 0) { // ie because the source has not been acquired yet
+      // Known problem that numFeatures may genuinely be zero (ie there are no features)
+      vectorLayer.getSource().once('change', (event) => {
+        source = event.target;
+        if (source.getState() === 'ready') {
+          return processFeaturesActions(vectorLayer, source, options);
+        }
+        // eslint-disable-next-line max-len, no-console
+        console.log('In processFeatures source acquired, but not ready', vectorLayer, options, source);
+        return false;
+      });
+    } else {
+      if (source.getState() === 'ready') {
+        return processFeaturesActions(vectorLayer, source, options);
+      }
+      // eslint-disable-next-line max-len, no-console
+      console.log('In processFeatures source found, but not ready', vectorLayer, options, source);
+      return false;
     }
+  } else {
     // eslint-disable-next-line max-len, no-console
-    console.log('In processFeatures source found, but not ready', options, source);
+    console.log('In processFeatures no source found', vectorLayer, options);
     return false;
   }
   return undefined;

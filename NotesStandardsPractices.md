@@ -435,14 +435,16 @@ graph LR;
 - [Vue Filters](https://vuejs.org/v2/guide/filters.html) can be used to apply common text formatting in two places (mustache interpolations and v-bind expressions)
 - [Vue Enter/Leave & List Transitions](https://vuejs.org/v2/guide/transitions.html) - automatically apply classes for CSS transitions and animations etc - \<transition\> goes around an element, \<transition-group\> round a v-for
 - [v-cloak](https://vuejs.org/v2/api/#v-cloak) - hide until Vue compiled
+- special abstract component [keep-alive](https://vuejs.org/v2/api/#keep-alive) tells Vue not to destroy and recreate its child, instead keep it in memory.
 
 ### Complex components
 
-- [Render Functions & JSX](https://vuejs.org/v2/guide/render-function.html) - use instead of templates to generate components
-- Refers a lot to [Vue Instance Properties API](https://vuejs.org/v2/api/#Instance-Properties)
-- Can even use [JSX](https://github.com/vuejs/babel-plugin-transform-vue-jsx)
-- [Another similar explanation of render functions](https://alligator.io/vuejs/introduction-render-functions/)
+- [Render Functions](https://vuejs.org/v2/guide/render-function.html) - use instead of templates to generate components
+  - Refers a lot to [Vue Instance Properties API](https://vuejs.org/v2/api/#Instance-Properties)
+  - Can even use [JSX](https://github.com/vuejs/babel-plugin-transform-vue-jsx)
+  - [Another similar explanation of render functions](https://alligator.io/vuejs/introduction-render-functions/)
 - [Use Any Javascript Library With Vue.js](https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/) - Object.defineProperty(Vue.prototype, '$moment', { value: moment }); or ... { get() { return this.$root.moment}}
+- [Vue.JS Components for building Search UIs](https://medium.appbase.io/vue-js-components-for-building-search-uis-7b2a1b6fe159) - Reactive Search for Vue, using Elasticsearch
 
 ### Vue Router
 
@@ -516,6 +518,7 @@ graph LR;
 
 - We use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS)
   - Might have used [Vue Auth](https://github.com/websanova/vue-auth) but no
+- See also [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
 
 ### Demo
 
@@ -714,7 +717,7 @@ Use version number eg v5.3.0 (which is the one we use) or latest
   - also includes [AlexRiceGist/](https://gist.github.com/guidorice/c39db591323d78e5cb659b6bbc5cb0b5) re storing map data in Vuex
 - [My fork](https://github.com/PeterC66/vuelayers/)
   - Demo uses [vue-loader](https://vue-loader-v14.vuejs.org/en/), [vuejs-templates](https://github.com/vuejs-templates), and the [webpack template](https://vuejs-templates.github.io/webpack/)
-  - but these are not need now because Vue CLI 3 does it all
+  - but these are not needed now because Vue CLI 3 does it all
 - see [how to track what vuelayers/OLmap is doing](https://github.com/ghettovoice/vuelayers/issues/73)
 - and [use of $](https://github.com/ghettovoice/vuelayers/issues/59)
   - [explanation of $map etc](https://github.com/ghettovoice/vuelayers/issues/89#issuecomment-431653970)

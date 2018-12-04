@@ -8,7 +8,6 @@ import processFeatures from '../features/processFeatures';
 
 function sourceVector(
   createElement,
-  ldid,
   sourcedef,
   opsCode,
 ) {
@@ -24,17 +23,6 @@ function sourceVector(
     const layerId = replaceAll(befaft(url, '.')[0], ' ', '_'); // assumes only one period
     const urlToUse = `${process.env.VUE_APP_BACKEND_URL}featurelayers/${opsCode}_${layerId}`; // eslint-disable-line max-len
     const atts = attribution ? [attributionFromCode(attribution)] : [];
-
-    const myRef = `source_${uuid()}`;
-    const onMounted = () => {
-      // eslint-disable-next-line no-console
-      console.log('mounted2', this.$refs[myRef], this.$refs[myRef].$source);
-      // eslint-disable-next-line no-console
-      console.log(
-        'processFeatures',
-        processFeatures(this.$refs[myRef].$source, { ldid }),
-      );
-    };
     switch (ext) {
       case 'geojson':
         vlSourceElementVector = createElement(
@@ -44,8 +32,6 @@ function sourceVector(
               url: urlToUse,
               attributions: atts,
             },
-            ref: myRef,
-            on: { mounted: onMounted },
           },
         );
         break;
@@ -88,10 +74,8 @@ export default function layerAndSourceVector(
   } = layerDef;
 
   if (sourcedef) {
-    const sourceVectorBound = sourceVector.bind(this);
-    vlSourceElementVector = sourceVectorBound(
+    vlSourceElementVector = sourceVector(
       createElement,
-      ldid,
       sourcedef,
       opsCode,
     );
@@ -101,10 +85,20 @@ export default function layerAndSourceVector(
       opsCode,
     );
     if (!_.isEmpty(vlSourceElementVector)) {
+      const myRef = `layer_${uuid()}`;
+      const onMounted = () => {
+        // eslint-disable-next-line no-console
+        console.log('mounted7', this.$refs[myRef], this.$refs[myRef].$layer);
+        // eslint-disable-next-line no-console
+        console.log(
+          'processFeatures',
+          processFeatures(this.$refs[myRef].$layer, { ldid }),
+        );
+      };
       vlLayerElementVector = createElement(
         'vl-layer-vector',
         // eslint-disable-next-line max-len, no-console
-        { ...layerDataObject },
+        { ...layerDataObject, ref: myRef, on: { mounted: onMounted } },
         [
           vlSourceElementVector,
           vlLayerStyle,
