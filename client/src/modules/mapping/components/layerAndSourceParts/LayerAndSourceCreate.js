@@ -8,46 +8,46 @@ import layerAndSourceGroup from './layerAndSourceGroup';
 
 export default function layerAndSourceCreate(
   createElement,
-  layer,
+  layerDef,
   layerDataObject,
   opsCode,
 ) {
   const {
     ldid,
     layertype,
-  } = layer;
+  } = layerDef;
   let vlLayerElement = {};
 
   if (layertype === 'Tile') {
     vlLayerElement = layerAndSourceTile(
       createElement,
-      layer,
+      layerDef,
       layerDataObject,
     );
   } else if (layertype === 'WMTS') { // the layerDef is defined by its catalogue entry
     // See https://mapping4ops.org/background/useful-background-on-web-mapping/ re WMTS/WMS
     vlLayerElement = layerAndSourceWmts(
       createElement,
-      layer,
+      layerDef,
       layerDataObject,
     );
   } else if (layertype === 'WMS') {
     vlLayerElement = layerAndSourceWms(
       createElement,
-      layer,
+      layerDef,
       layerDataObject,
     );
   } else if (layertype === 'Vector') {
     vlLayerElement = layerAndSourceVector(
       createElement,
-      layer,
+      layerDef,
       layerDataObject,
       opsCode,
     );
   } else if (layertype === 'Group') {
     vlLayerElement = layerAndSourceGroup(
       createElement,
-      layer,
+      layerDef,
       layerDataObject,
       opsCode,
     );

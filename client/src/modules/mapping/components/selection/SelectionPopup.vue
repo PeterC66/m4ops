@@ -52,7 +52,7 @@ export default {
     bottom: 12px;
     width: 20em;
     max-width: none;
-    color: rgb(0,0,0,0.9);
+    color: rgb(0,0,0,1.0);
     font-size: small;
     text-shadow:
       -1px -1px 0 rgb(255,255,255,0.2),

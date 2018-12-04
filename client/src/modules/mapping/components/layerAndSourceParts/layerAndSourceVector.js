@@ -59,7 +59,7 @@ function layerStyle(
 
 export default function layerAndSourceVector(
   createElement,
-  layer,
+  layerDef,
   layerDataObject,
   opsCode,
 ) {
@@ -69,7 +69,7 @@ export default function layerAndSourceVector(
   const {
     ldid,
     sourcedef,
-  } = layer;
+  } = layerDef;
   if (sourcedef) {
     vlSourceElementVector = sourceVector(
       createElement,

@@ -142,12 +142,12 @@ const getters = {
     rootGetters,
   ) {
     return join(
-      rootGetters.OPSAllLayerDefsArray,
-      moduleGetters.chosenLayersMainmap,
-      'ldid',
-      'ldid',
-      false, // so includes unmatched rows
-      (mainTableRow, lookupTableRow) => ({
+      rootGetters.OPSAllLayerDefsArray, //   lookupTable,
+      moduleGetters.chosenLayersMainmap, // mainTable
+      'ldid', // lookupKey
+      'ldid', // mainKey
+      false, // isInner, ie includes unmatched rows
+      (mainTableRow, lookupTableRow) => ({ // select ie all columns of both
         ...mainTableRow,
         ...lookupTableRow,
       }),

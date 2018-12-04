@@ -1,9 +1,9 @@
 <template>
   <div>
     <layer-and-source
-      v-for="(layer, index) in chosenLayerDefsMainmap"
-      :layer="layer"
-      :key="'MCL'+index+layer.ldid"
+      v-for="(layerDef, index) in chosenLayerDefsMainmap"
+      :layer-def="layerDef"
+      :key="'MCL'+index+layerDef.ldid"
       :layer-number="index"
       :ops-code="OPSDetails.OPSCode"
     />

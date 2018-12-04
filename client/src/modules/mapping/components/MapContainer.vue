@@ -8,8 +8,8 @@
       data-projection="EPSG:4326"
       @click="clickCoordinate = $event.coordinate"
       @mounted="onMapMounted"
+      @pointermove="onMapPointerMove"
     >
-      <!-- @pointermove="onMapPointerMove" -->
       <vl-view
         :ident="viewIdent"
         :zoom.sync="zoom"
@@ -53,14 +53,14 @@ const methods = {
       new ZoomSlider(),
     ]);
   },
-  // onMapPointerMove({ pixel }) {
-  //   const hit = this.$refs.mainmap.forEachFeatureAtPixel(pixel, () => true);
-  //   if (hit) {
-  //     this.mapCursor = 'pointer';
-  //   } else {
-  //     this.mapCursor = 'default';
-  //   }
-  // },
+  onMapPointerMove({ pixel }) {
+    const hit = this.$refs.mainmap.forEachFeatureAtPixel(pixel, () => true);
+    if (hit) {
+      this.mapCursor = 'pointer';
+    } else {
+      this.mapCursor = 'default';
+    }
+  },
 };
 
 export default {

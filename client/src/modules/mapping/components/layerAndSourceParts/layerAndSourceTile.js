@@ -105,7 +105,7 @@ function sourceTile(
 
 export default function layerAndSourceTile(
   createElement,
-  layer,
+  layerDef,
   layerDataObject,
 ) {
   let vlSourceElementTile = {};
@@ -115,7 +115,7 @@ export default function layerAndSourceTile(
     sourcedef,
     folder,
     storageName,
-  } = layer;
+  } = layerDef;
   if (sourcedef) {
     vlSourceElementTile = sourceTile(
       createElement,

@@ -75,7 +75,7 @@ Example:
 
 export default function layerAndSourceWms(
   createElement,
-  layer,
+  layerDef,
   layerDataObject,
 ) {
   let vlSourceElementWms = {};
@@ -83,8 +83,8 @@ export default function layerAndSourceWms(
   const {
     ldid,
     sourcedef,
-  } = layer;
-  console.log('layer:', layer, 'SD:', sourcedef, 'LDO:', layerDataObject); // eslint-disable-line no-console
+  } = layerDef;
+  console.log('layerDef:', layerDef, 'SD:', sourcedef, 'LDO:', layerDataObject); // eslint-disable-line no-console
   if (sourcedef) {
     vlSourceElementWms = sourceWms(
       createElement,

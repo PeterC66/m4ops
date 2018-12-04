@@ -8,7 +8,7 @@ import store from '../../../../store';
     if (ld.sourcedef) {
       // this source definition needs transforming into a proper Open Layers source
       layerToReturn.setLayers(layerCollectionFromDef(ld.sourcedef));
-      // ld.sourcedef is a string array of layers
+      // ld.sourcedef is a string array of layerDefs
     }
 
     if (ld.extent) {
@@ -18,7 +18,7 @@ import store from '../../../../store';
       layerToReturn.setExtent(OlProj.transformExtent(extent, 'EPSG:4326', 'EPSG:3857'));
     } else if (ld.sourcedef) {
       const extent = groupExtentFromDef(ld.sourcedef); // eslint-disable-line no-use-before-define
-      // assuming ld.sourcedef is a string array of layers
+      // assuming ld.sourcedef is a string array of layerDefs
       if (extent) layerToReturn.setExtent(extent);
     }
     layerToReturn.candownload = string2bool(ld.candownload, false);
@@ -47,21 +47,21 @@ function LayersInGroup(
     const layerTitles = getLayerTitles(url);
     let i = 0;
     layerTitles.forEach((layerTitle) => {
-      const layer = store.getters.getOPSAllLayerDefsArrayByTitle(layerTitle);
+      const layerDef = store.getters.getOPSAllLayerDefsArrayByTitle(layerTitle);
       const subLayerDataObject = {
         ...layerDataObject,
         key: `${layerDataObject.key}_${i}`,
       };
       let vlLayerElement = {};
-      if (layer) {
+      if (layerDef) {
         vlLayerElement = layerAndSourceCreate(
           createElement,
-          layer,
+          layerDef,
           subLayerDataObject,
         );
         i += 1;
       } else {
-        console.log(`Cannot find Layer ${layerTitle}`); // eslint-disable-line no-console
+        console.log(`Cannot find layerDef ${layerTitle}`); // eslint-disable-line no-console
       }
 
       if (_.isEmpty(vlLayerElement)) {
@@ -76,7 +76,7 @@ function LayersInGroup(
 
 export default function layerAndSourceGroup(
   createElement,
-  layer,
+  layerDef,
   layerDataObject,
 ) {
   let vlLayerElementGroup = {};
@@ -84,7 +84,7 @@ export default function layerAndSourceGroup(
   const {
     ldid,
     sourcedef,
-  } = layer;
+  } = layerDef;
   const { props: { 'z-index': zIndex }, key } = layerDataObject;
 
   const sublayerDataObject = {

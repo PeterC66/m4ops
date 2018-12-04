@@ -34,7 +34,7 @@ function sourceWmts(
 
 export default function layerAndSourceWmts(
   createElement,
-  layer,
+  layerDef,
   layerDataObject,
 ) {
   let vlSourceElementWmts = {};
@@ -44,7 +44,7 @@ export default function layerAndSourceWmts(
     sourcedef,
     folder,
     storageName,
-  } = layer;
+  } = layerDef;
   if (sourcedef) {
     vlSourceElementWmts = sourceWmts(
       createElement,

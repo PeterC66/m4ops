@@ -13,6 +13,7 @@ function processFeaturesActions(layer, src, options) {
     doHtmls,
     setFeatureid,
     layerIndex,
+    ldid,
     setOnMflTo,
     setModifiableFeatures,
     textForSearch,
@@ -20,7 +21,9 @@ function processFeaturesActions(layer, src, options) {
   } = options;
 
   // As src is now defined we do all the actions here, guided by the calling parameters
-  // The only return value is from the textForSearch option (see below)
+  // It returns an array value from the textForSearch option (see below)
+  //  otherwise it returns whether it succeeds or not
+
   // 8) If we want to set modifiableFeatures (for use elsewhere)
   // console.log("pFActions",layer, src, options);
 
@@ -48,12 +51,27 @@ function processFeaturesActions(layer, src, options) {
     doHtmls ||
     setFeatureid ||
     layerIndex ||
+    ldid ||
     setOnMflTo ||
     textForSearch ||
     searchOption
   )) return false;
+
+  // Do the things
+  src.forEachFeature((feature) => {
+    // If we want to set the features' ldid (so we can use any details of its layer)
+    // ldid being truthy implies to set it
+    if (ldid) {
+      feature.set('ldid', ldid);
+    }
+  });
+
   return true;
 }
+
+/*
+usage eg processFeatures(vectorLayer, {ldid:ldid})
+*/
 
 export default function processFeatures(vectorLayer, options) {
   // These are the routines to do things with features (see https://gis.stackexchange.com/questions/215878/how-to-get-the-features-in-a-source-for-a-geojson-vector-layer-and-then-alter-t)
@@ -63,14 +81,16 @@ export default function processFeatures(vectorLayer, options) {
   if (source) {
     const numFeatures = source.getFeatures().length;
     // console.log(numFeatures);
-    // Known problem that numFeatures may genuinely be zero
-    if (numFeatures === 0) {
+    if (numFeatures === 0) { // ie because the source has not been acquired yet
+      // Known problem that numFeatures may genuinely be zero (ie there are no features)
       vectorLayer.getSource().once('change', (event) => {
         source = event.target;
         if (source.getState() === 'ready') {
           return processFeaturesActions(vectorLayer, source, options);
         }
-        return undefined;
+        // eslint-disable-next-line max-len, no-console
+        console.log('In processFeatures source acquired, but not ready', vectorLayer, options, source);
+        return false;
       });
     } else {
       if (source.getState() === 'ready') {
@@ -78,10 +98,12 @@ export default function processFeatures(vectorLayer, options) {
       }
       // eslint-disable-next-line max-len, no-console
       console.log('In processFeatures source found, but not ready', vectorLayer, options, source);
+      return false;
     }
   } else {
     // eslint-disable-next-line max-len, no-console
     console.log('In processFeatures no source found', vectorLayer, options);
+    return false;
   }
   return undefined;
 }

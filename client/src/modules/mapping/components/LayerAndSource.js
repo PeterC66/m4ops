@@ -5,7 +5,7 @@ import layerAndSourceCreate from './layerAndSourceParts/LayerAndSourceCreate';
 
 export default Vue.component('layer-and-source', {
   props: {
-    layer: {
+    layerDef: { // One of the layerDef in chosenLayerDefsMainmap
       type: Object,
       required: true,
     },
@@ -25,11 +25,11 @@ export default Vue.component('layer-and-source', {
       title,
       layerdescription,
       opacity,
-    } = this.layer;
+    } = this.layerDef;
     const visible = true;
     const layerDataObject = {
       attrs: {
-        layer: this.layer,
+        layerDef: this.layerDef,
         layerdescription,
         title,
       },
@@ -45,7 +45,7 @@ export default Vue.component('layer-and-source', {
     // console.log(`rendering ML ${this.layerNumber} ${opacity} ${ldid}`, { ...layerDataObject.attrs }, { ...layerDataObject.props });
     vlLayerElement = layerAndSourceCreate(
       createElement,
-      this.layer,
+      this.layerDef,
       layerDataObject,
       this.opsCode,
     );
