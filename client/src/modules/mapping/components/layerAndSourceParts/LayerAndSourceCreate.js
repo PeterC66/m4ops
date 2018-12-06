@@ -38,8 +38,7 @@ export default function layerAndSourceCreate(
       layerDataObject,
     );
   } else if (layertype === 'Vector') {
-    const layerAndSourceVectorBound = layerAndSourceVector.bind(this);
-    vlLayerElement = layerAndSourceVectorBound(
+    vlLayerElement = layerAndSourceVector(
       createElement,
       layerDef,
       layerDataObject,

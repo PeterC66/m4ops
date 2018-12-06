@@ -42,8 +42,7 @@ export default Vue.component('layer-and-source', {
       key: `ML${this.layerNumber}${ldid}`,
     };
 
-    const layerAndSourceCreateBound = layerAndSourceCreate.bind(this);
-    vlLayerElement = layerAndSourceCreateBound(
+    vlLayerElement = layerAndSourceCreate(
       createElement,
       this.layerDef,
       layerDataObject,
