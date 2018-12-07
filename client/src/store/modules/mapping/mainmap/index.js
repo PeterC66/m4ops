@@ -5,6 +5,7 @@ import {
   thisAndPrevious,
 } from '../../../../global/utils';
 import { tidyChosenLayers } from '../utils';
+import { displayTypeEnum } from '../../../../global/constants';
 
 import {
   INITIALISE_CHOSEN_LAYERS,
@@ -35,7 +36,10 @@ const mutations = {
     if (isDefined(layerNumber)) {
       if (layerNumber < arrayLength) {
         let { opacity } = moduleState.chosenLayers[layerNumber];
-        if (layerNumber === 0 || displaytype === 'B') opacity = 1;
+        if (
+          layerNumber === 0 ||
+          displaytype === displayTypeEnum.mostlyVectors
+        ) opacity = 1;
         // Use splice to ensure reactivity
         moduleState.chosenLayers.splice(
           layerNumber,
@@ -52,7 +56,10 @@ const mutations = {
           0,
           {
             ldid: ldid || newVoid(),
-            opacity: (layerNumber === 0 || displaytype === 'B') ? 1 : 0.5,
+            opacity: (
+              layerNumber === 0 ||
+              displaytype === displayTypeEnum.mostlyVectors
+            ) ? 1 : 0.5,
             displaytype,
           },
         );

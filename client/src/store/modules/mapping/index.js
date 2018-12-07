@@ -6,8 +6,12 @@ import {
   UPDATE_ACTION_ON_CLICK,
   UPDATE_VIEW,
   UPDATE_CURRENT_OPTION_ARRAY,
+  RH_LAYER_SET_REQUEST,
 } from '../../mutation-types';
-import { initialCurrentOptionArray } from '../../../initialising/initialState';
+import {
+  initialCurrentOptionArray,
+  initialStateRhChosenLayer,
+} from '../../../initialising/initialState';
 
 const state = {
   mapDisplay: 'overlay',
@@ -21,7 +25,7 @@ const state = {
     rotation: 0,
   },
   currentOptionArray: initialCurrentOptionArray,
-
+  chosenRhLayer: initialStateRhChosenLayer,
 };
 
 const mutations = {
@@ -48,6 +52,9 @@ const mutations = {
   [UPDATE_CURRENT_OPTION_ARRAY](moduleState, payload) {
     moduleState.currentOptionArray = payload.currentOptionArray;
   },
+  [RH_LAYER_SET_REQUEST](moduleState, payload) {
+    moduleState.chosenRhLayer = payload.chosenRhLayer;
+  },
 };
 
 const actions = {
@@ -71,6 +78,10 @@ const actions = {
   },
   updateCurrentOptionArray({ commit }, currentOptionArray) {
     commit(UPDATE_CURRENT_OPTION_ARRAY, { currentOptionArray });
+  },
+  // payload is { ldid:string_index_into_LayerDefsArray }
+  setRhLayer({ commit }, { ldid }) {
+    commit(RH_LAYER_SET_REQUEST, { chosenRhLayer: ldid });
   },
 };
 

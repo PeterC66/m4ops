@@ -5,7 +5,7 @@
       :options="layerOptions"
       :show-all-levels="false"
       v-model="selectedOption"
-      :clearable="true"
+      :clearable="layerNumber > 0"
       expand-trigger="hover"
       @change="handleLdidChange"
       @blur="handleBlur"
@@ -40,6 +40,7 @@ import vueSlider from 'vue-slider-component';
 
 import { ldidToCategoryAndLayer } from '../../../store/modules/vuexApi/categoriesAndLayers'; // eslint-disable-line max-len
 import { newVoid } from '../../../global/utils';
+import { displayTypeEnum } from '../../../global/constants';
 
 export default {
   name: 'ChooseLayer',
@@ -105,18 +106,22 @@ export default {
     handleLdidChange(value) {
       // value is array of length 2 (category, ldid), or of length 0 if chosen layer is deleted
       const ldid = value[1];
-      let displaytype = 'A';
+      let displaytype = displayTypeEnum.mostlyRasters; // default
       if (ldid) {
         const ld = this.$store.getters.getOPSAllLayerDefsArrayByLdid(ldid);
         if (ld) {
-          displaytype = ld.displaytype || 'A';
+          displaytype = ld.displaytype || displayTypeEnum.mostlyRasters;
         }
       }
-      this.$store.dispatch('setLayer', {
-        ldid,
-        layerNumber: this.layerNumber,
-        displaytype,
-      });
+      if (this.layerNumber < 0) {
+        this.$store.dispatch('setRhLayer', { ldid });
+      } else {
+        this.$store.dispatch('setLayer', {
+          ldid,
+          layerNumber: this.layerNumber,
+          displaytype,
+        });
+      }
     },
     handleOpacityChange(value) {
       // value is opacity per cent

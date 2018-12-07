@@ -27,3 +27,9 @@ export const keyDownEnum = {
   SERIES: 3, // was keydownMode_Series = 2
   NORMAL: 4, // was keydownMode_Normal = 3
 };
+
+// keydownMode is used to tell the keydownHandler what mode it is in (see the following constants)
+export const displayTypeEnum = {
+  mostlyRasters: 'A', // sorted first
+  mostlyVectors: 'B', // sorted second
+};

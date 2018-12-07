@@ -16,10 +16,25 @@
       :show-slider="false"
       :show-up-button="false"
     />
+    <div
+      v-if="mapDisplay === 'side-by-side'"
+    >
+      <p class="rhmap">
+        RH Map
+      </p>
+      <ChooseLayer
+        key="SCLRH"
+        :layer="{ldid:chosenRhLayer}"
+        :layer-number="-1"
+        :show-slider="false"
+        :show-up-button="false"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ChooseLayer from './ChooseLayer.vue';
 import { maxChooseLayers } from '../../../global/constants';
 import { newVoid } from '../../../global/utils';
@@ -47,10 +62,14 @@ export default {
     voidLdid() {
       return newVoid();
     },
+    ...mapState({
+      mapDisplay: state => state.mapping.mapDisplay,
+      chosenRhLayer: state => state.mapping.chosenRhLayer,
+    }),
   },
 };
 </script>
 
 <style>
-
+  .rhmap {text-align: center;}
 </style>

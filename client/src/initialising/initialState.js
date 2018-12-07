@@ -1,12 +1,26 @@
-import { ldidOSM, ldidBingAerial } from '../modules/mapping/constants';
+import {
+  ldidOSM,
+  ldidBingAerial,
+  ldidOpenTopo,
+} from '../modules/mapping/constants';
+import { displayTypeEnum } from '../global/constants';
 
 const initialStateChosenLayers = {};
 
 initialStateChosenLayers.default = [
-  { ldid: ldidBingAerial, opacity: 1, displaytype: 'A' },
-  { ldid: ldidOSM, opacity: 0.5, displaytype: 'A' },
+  {
+    ldid: ldidBingAerial,
+    opacity: 1,
+    displaytype: displayTypeEnum.mostlyRasters,
+  },
+  {
+    ldid: ldidOSM,
+    opacity: 0.5,
+    displaytype: displayTypeEnum.mostlyRasters,
+  },
 ];
-// Add other initial states here
+
+export const initialStateRhChosenLayer = ldidOpenTopo;
 
 export const initialStateChosenLayersByOpsCode =
   (opsCode) => {

@@ -273,7 +273,7 @@ See under [Standards and styles](#standards-and-styles)
   - Checkout to Master branch
   - Merge branch XXX (into Master branch)
   - Delete branch XXX
-- Every now and then publish changes (to origin - which is peterC66/m4ops)
+- Every now and then publish changes (to [origin](https://github.com/PeterC66/m4ops))
 - to remove them from tracking: put filename in .gitignore AND remove history using git rm filename --cached
 
 ### Eslint for proofing code
