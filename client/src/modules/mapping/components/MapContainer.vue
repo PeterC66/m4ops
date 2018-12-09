@@ -1,6 +1,7 @@
 <template>
   <div>
     <vl-map
+      id="mainmap"
       ref="mainmap"
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
@@ -19,16 +20,31 @@
       <Selection/>
       <LayersContainer :chosen-layer-defs-mainmap="chosenLayerDefsMainmap"/>
     </vl-map>
-    <div style="padding: 20px; text-align: left;">
-      Zoom: {{ zoom }}<br>
-      Center: {{ center }}<br>
-      Rotation: {{ rotation }}<br>
-    </div>
+    <vl-map
+      v-if="mapDisplay === 'side-by-side'"
+      id="rhmap"
+      ref="rhmap"
+      :load-tiles-while-animating="true"
+      :load-tiles-while-interacting="true"
+      :style="{cursor: mapCursor}"
+      data-projection="EPSG:4326"
+      @click="clickCoordinate = $event.coordinate"
+      @mounted="onMapMounted"
+      @pointermove="onMapPointerMove"
+    >
+      <vl-view
+        :ident="viewIdent"
+        :zoom.sync="zoom"
+        :center.sync="center"
+        :rotation.sync="rotation"
+      />
+      <RhLayersContainer/>
+    </vl-map>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import ScaleLine from 'ol/control/ScaleLine';
 import FullScreen from 'ol/control/FullScreen';
 import Rotate from 'ol/control/Rotate';
@@ -38,7 +54,7 @@ import ZoomSlider from 'ol/control/ZoomSlider';
 import { useVuexForView } from '../../../global/constants';
 import LayersContainer from './LayersContainer.vue';
 import Selection from './selection/Selection.vue';
-// import { selectAndDisplay } from '../features/selectAndDisplay';
+import RhLayersContainer from './RhLayersContainer.vue';
 
 const methods = {
   onMapMounted() {
@@ -68,6 +84,7 @@ export default {
   components: {
     LayersContainer,
     Selection,
+    RhLayersContainer,
   },
   data() {
     return {
@@ -111,6 +128,9 @@ export default {
     ...mapGetters([
       'chosenLayerDefsMainmap',
     ]),
+    ...mapState({
+      mapDisplay: state => state.mapping.mapDisplay,
+    }),
   },
   methods,
 };

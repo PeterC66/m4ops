@@ -1,14 +1,15 @@
 import _ from 'lodash';
-// import uuid from 'uuid/v1';
+import uuid from 'uuid/v1';
 
 import { attributionFromCode } from '../../utils/mapUtils';
 import { befaft, replaceAll } from '../../../../global/utils';
 import { createVlStyleBox } from '../other/styleComponents';
-import processFeatures from '../features/processFeatures';
+import { processFeatures } from '../features/processFeatures';
 
 function sourceVector(
   createElement,
   sourcedef,
+  ldid,
   opsCode,
 ) {
   const {
@@ -23,17 +24,17 @@ function sourceVector(
     const layerId = replaceAll(befaft(url, '.')[0], ' ', '_'); // assumes only one period
     const urlToUse = `${process.env.VUE_APP_BACKEND_URL}featurelayers/${opsCode}_${layerId}`; // eslint-disable-line max-len
     const atts = attribution ? [attributionFromCode(attribution)] : [];
+    const myRef = `source_${uuid()}`;
 
-    // const myRef = `source_${uuid()}`;
-    // const onMounted = (thisLayer) => {
-    //   thisLayer.$mountPromise.then(() => {
-    //     // eslint-disable-next-line no-console
-    //     console.log(
-    //       'processFeatures returns',
-    //       processFeatures(thisLayer.$source, { ldid }),
-    //     );
-    //   });
-    // };
+    const onMounted = (thisSource) => {
+      thisSource.$mountPromise.then(() => {
+        // eslint-disable-next-line no-console
+        console.log(
+          'processFeatures returns',
+          processFeatures(thisSource.$source, { ldid }),
+        );
+      });
+    };
     switch (ext) {
       case 'geojson':
         vlSourceElementVector = createElement(
@@ -43,8 +44,9 @@ function sourceVector(
               url: urlToUse,
               attributions: atts,
             },
-            // ref: myRef,
-            // on: { mounted: onMounted },
+            // eslint-disable-next-line no-console
+            on: { mounted: onMounted, 'update:features': e => console.log(e) },
+            ref: myRef,
           },
         );
         break;
@@ -90,6 +92,7 @@ export default function layerAndSourceVector(
     vlSourceElementVector = sourceVector(
       createElement,
       sourcedef,
+      ldid,
       opsCode,
     );
     vlLayerStyle = layerStyle(
@@ -99,19 +102,19 @@ export default function layerAndSourceVector(
     );
     if (!_.isEmpty(vlSourceElementVector)) {
       // const myRef = `layer_${uuid()}`;
-      const onMounted = (thisLayer) => {
-        thisLayer.$mountPromise.then(() => {
-          // eslint-disable-next-line no-console
-          console.log(
-            'processFeatures returns',
-            processFeatures(thisLayer.$layer, { ldid }),
-          );
-        });
-      };
+      // const onMounted = (thisLayer) => {
+      //   thisLayer.$mountPromise.then(() => {
+      //     // eslint-disable-next-line no-console
+      //     console.log(
+      //       'processFeatures returns',
+      //       processFeatures(thisLayer.$layer, { ldid }),
+      //     );
+      //   });
+      // };
       vlLayerElementVector = createElement(
         'vl-layer-vector',
         // eslint-disable-next-line max-len, no-console
-        { ...layerDataObject, on: { mounted: onMounted } }, // , ref: myRef
+        { ...layerDataObject }, // , ref: myRef
         [
           vlSourceElementVector,
           vlLayerStyle,

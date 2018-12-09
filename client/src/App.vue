@@ -31,7 +31,7 @@
 </template>
 
 <style lang="scss">
-  @import './global/styles/App.scss';
+  @import './global/styles/Buefy.scss';
 
   body { background: #f1e8f1 url(./assets/images/backdropDEV.png) repeat-x;}
   /* PROD: #EEF2E9 url(../../assets/images/backdrop.png) repeat-x;*/

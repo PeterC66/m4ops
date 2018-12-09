@@ -1,19 +1,19 @@
 <template>
   <section style="position: relative">
-    <LayersContainer :chosen-layers-mainmap="chosenLayersMainmap"/>
+    <LayerChoicesContainer :chosen-layers-mainmap="chosenLayersMainmap"/>
     <TabsContainer :active-tab-number="activeTabNumber"/>
   </section>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import LayersContainer from './LayersContainer.vue';
+import LayerChoicesContainer from './LayerChoicesContainer.vue';
 import TabsContainer from './TabsContainer.vue';
 
 export default {
   name: 'Sidebar',
   components: {
-    LayersContainer,
+    LayerChoicesContainer,
     TabsContainer,
   },
   props: {

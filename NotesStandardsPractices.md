@@ -453,8 +453,9 @@ graph LR;
 
 ### Events
 
-- events can only go from child to parent, but a more general way is to use an  [Event Bus](https://alligator.io/vuejs/global-event-bus/) (and page 106 of the book) - add to Vue.prototype (lecture 98)
+- In Vue.js events can only go from child to parent, but a more general way is to use an  [Event Bus](https://alligator.io/vuejs/global-event-bus/) (and page 106 of the book) - add to Vue.prototype (lecture 98)
 - we usually use Vuex (state) rather than events
+- [Debouncing and Throttling Explained Through Examples](https://css-tricks.com/debouncing-throttling-explained-examples/) - see also [this Vue guide for example](https://vuejs.org/v2/guide/computed.html#Watchers) and [lodash function](https://lodash.com/docs#debounce)
 
 ### Vuex
 

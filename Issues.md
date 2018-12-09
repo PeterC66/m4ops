@@ -12,6 +12,7 @@
 - Click actions
 - Users, Passwords - use Auth0
   - Admin, Manager, User, Guest
+- Debounce mouse movements
 
 ## Await v0.12 Priority
 

@@ -104,7 +104,7 @@ export default function processFeatures(vectorLayer, options) {
     }
   } else {
     // eslint-disable-next-line max-len, no-console
-    console.log('In processFeatures no source found', vectorLayer, options);
+    console.log('In processFeatures no source found', vectorLayer, options, source);
     return false;
   }
   return undefined;

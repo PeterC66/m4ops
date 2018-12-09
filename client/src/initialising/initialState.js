@@ -1,7 +1,7 @@
 import {
   ldidOSM,
   ldidBingAerial,
-  ldidOpenTopo,
+  ldidBingAerialWithLabels,
 } from '../modules/mapping/constants';
 import { displayTypeEnum } from '../global/constants';
 
@@ -20,7 +20,7 @@ initialStateChosenLayers.default = [
   },
 ];
 
-export const initialStateRhChosenLayer = ldidOpenTopo;
+export const initialStateRhChosenLayer = ldidBingAerialWithLabels;
 
 export const initialStateChosenLayersByOpsCode =
   (opsCode) => {

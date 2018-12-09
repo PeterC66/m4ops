@@ -8,6 +8,7 @@ export const bingApiKey = 'MHa7q07ui9757RJld6va~1IPp2elvmkSrGFA7QPrs6A~Aj0hERxm4
 // NOTE that ldid is treated as one word because otherwise of case issues
 export const ldidOSM = 'World>Basic>OpenStreetMap';
 export const ldidBingAerial = 'World>Basic>Bing_Aerial';
+export const ldidBingAerialWithLabels = 'World>Basic>Bing_Aerial_with_Labels';
 export const ldidOpenTopo = 'World>Basic>OpenTopoMap';
 
 export const bingImagerySets = [

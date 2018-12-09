@@ -40,7 +40,7 @@ import { maxChooseLayers } from '../../../global/constants';
 import { newVoid } from '../../../global/utils';
 
 export default {
-  name: 'LayersContainer',
+  name: 'LayerChoicesContainer',
   components: {
     ChooseLayer,
   },
