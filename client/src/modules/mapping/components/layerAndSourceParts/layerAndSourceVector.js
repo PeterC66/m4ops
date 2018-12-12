@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import _ from 'lodash';
 import uuid from 'uuid/v1';
 
@@ -26,14 +27,8 @@ function sourceVector(
     const atts = attribution ? [attributionFromCode(attribution)] : [];
     const myRef = `source_${uuid()}`;
 
-    const onMounted = (thisSource) => {
-      thisSource.$mountPromise.then(() => {
-        // eslint-disable-next-line no-console
-        console.log(
-          'processFeatures returns',
-          processFeatures(thisSource.$source, { ldid }),
-        );
-      });
+    const onMounted = (vm) => {
+      processFeatures(vm, { ldid });
     };
     switch (ext) {
       case 'geojson':
@@ -45,7 +40,7 @@ function sourceVector(
               attributions: atts,
             },
             // eslint-disable-next-line no-console
-            on: { mounted: onMounted, 'update:features': e => console.log(e) },
+            on: { mounted: onMounted },
             ref: myRef,
           },
         );

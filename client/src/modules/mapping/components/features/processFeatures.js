@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 // import _ from 'lodash';
 // import { searchOptionEnum } from '../../../../global/constants';
 
@@ -65,6 +66,7 @@ export function processFeatureActions(feature, options) {
 }
 
 function processFeaturesActions(src, options) {
+  // console.log('In processFeaturesActions', src, options);
   const {
     propertyEquivToShorttext,
     hideUnhide,
@@ -123,6 +125,7 @@ function processFeaturesActions(src, options) {
     featureCount += 1;
   });
 
+  // console.log('pFA featureCount', featureCount);
   return featureCount;
 }
 
@@ -130,26 +133,35 @@ function processFeaturesActions(src, options) {
 usage eg processFeatures(vectorLayer, {ldid:ldid})
 */
 
-export function processFeatures(vectorSource, options) {
+export function processFeatures(vmSource, options) {
   // These are the routines to do things with features (see https://gis.stackexchange.com/questions/215878/how-to-get-the-features-in-a-source-for-a-geojson-vector-layer-and-then-alter-t)
   // We do it all in one place to avoid errors
   // eslint-disable-next-line no-console
-  console.log('processFeatures', vectorSource, options);
-  const source = vectorSource;
+  // console.log('In processFeatures', vmSource, options);
+  let source = vmSource.$source;
   if (source) {
     const numFeatures = source.getFeatures().length;
+    const vmLayer = vmSource.$parent;
+    const vectorLayer = vmLayer.$layer;
     // eslint-disable-next-line no-console
-    console.log(numFeatures);
-    if (source.getState() === 'ready') {
-      // const debouncedProcessFeaturesActions =
-      // _.debounce(processFeaturesActions, 1000, { trailing: true });
-      // source.on('addfeature', e => console.log(e));// debouncedProcessFeaturesActions(source, options));
-      // return 'OK';
-      return processFeaturesActions(source, options);
+    // console.log('pF2', vmLayer, vectorLayer, numFeatures);
+    // Known problem that numFeatures may genuinely be zero
+    if (numFeatures === 0) {
+      vectorLayer.getSource().once('change', (event) => {
+        source = event.target;
+        if (source.getState() === 'ready') {
+          processFeaturesActions(source, options);
+        } else {
+          console.log('In getSource change, source not ready', source, source.getState());
+        }
+      });
+    } else if (source.getState() === 'ready') {
+      processFeaturesActions(source, options);
+    } else {
+      console.log('In pF numFeatures>0, but not ready', options, source);
     }
-    // eslint-disable-next-line max-len, no-console
-    console.log('In processFeatures source found, but not ready', options, source);
-    return false;
+  } else {
+  // eslint-disable-next-line max-len, no-console
+    console.log('In pF source not found', options, source);
   }
-  return undefined;
 }

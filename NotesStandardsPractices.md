@@ -436,7 +436,8 @@ graph LR;
 - [Vue Filters](https://vuejs.org/v2/guide/filters.html) can be used to apply common text formatting in two places (mustache interpolations and v-bind expressions)
 - [Vue Enter/Leave & List Transitions](https://vuejs.org/v2/guide/transitions.html) - automatically apply classes for CSS transitions and animations etc - \<transition\> goes around an element, \<transition-group\> round a v-for
 - [v-cloak](https://vuejs.org/v2/api/#v-cloak) - hide until Vue compiled
-- special abstract component [keep-alive](https://vuejs.org/v2/api/#keep-alive) tells Vue not to destroy and recreate its child, instead keep it in memory.
+- special abstract component [keep-alive](https://vuejs.org/v2/api/#keep-alive) tells Vue not to destroy and recreate its child, instead keep it in memory
+- [Access And Change Parent Variables From A Child Component With Vue.js](https://www.thepolyglotdeveloper.com/2018/04/access-change-parent-variables-child-component-vuejs/)
 
 ### Complex components
 
