@@ -57,4 +57,3 @@ export default Vue.component('layer-and-source', {
     return vlLayerElement;
   },
 });
-

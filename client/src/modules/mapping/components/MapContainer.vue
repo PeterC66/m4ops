@@ -3,6 +3,7 @@
     <vl-map
       id="mainmap"
       ref="mainmap"
+      :class="{halved: toHalve}"
       :load-tiles-while-animating="true"
       :load-tiles-while-interacting="true"
       :style="{cursor: mapCursor}"
@@ -38,10 +39,13 @@
         :center.sync="center"
         :rotation.sync="rotation"
       />
-      <RhLayersContainer/>
+      <RhLayersContainer
+        :mouse-position="mousePosition"
+      />
     </vl-map>
   </div>
 </template>
+
 
 <script>
 import { mapState, mapGetters } from 'vuex';
@@ -89,6 +93,7 @@ export default {
   data() {
     return {
       mapCursor: 'default',
+      mousePosition: [0, 0],
     };
   },
   computed: {
@@ -131,7 +136,16 @@ export default {
     ...mapState({
       mapDisplay: state => state.mapping.mapDisplay,
     }),
+    toHalve() {
+      return (this.mapDisplay === 'side-by-side');
+    },
   },
   methods,
 };
 </script>
+
+<style scoped>
+  #mainmap { height:100%; display:inline-block}
+  #rhmap { width:50%; height:100%; right:0px; display:inline-block}
+  .halved { width:50%; }
+</style>

@@ -8,4 +8,3 @@ export default {
     const options = { ...optionsDefaults, ...opts };
   },
 };
-

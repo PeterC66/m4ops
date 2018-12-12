@@ -2,12 +2,14 @@ import Vue from 'vue';
 import { ApiHandlerComponent } from 'vuex-api';
 import Buefy from 'buefy';
 // import 'buefy/dist/buefy.css';
+import VueLayers from 'vuelayers';
+import 'vuelayers/lib/style.css'; // needs css-loader
 
 import globalPlugin1 from './global/plugins/globalPlugin1';
 
 import initialiseFontAwesome from './initialising/initialisefontawesome';
 import initialiseElementComponents from './initialising/initialiseElementComponents'; // eslint-disable-line max-len
-import initialiseVueLayers from './initialising/initialiseVueLayers';
+// import initialiseVueLayers from './initialising/initialiseVueLayers';
 import initialiseWarnings from './initialising/initialiseWarnings';
 
 import App from './App.vue';
@@ -19,9 +21,11 @@ import './global/components/_global'; // globally registers any _base components
 
 // console.log('env', process.env);
 
+Vue.use(VueLayers);
+
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);
-initialiseVueLayers(Vue);
+// initialiseVueLayers(Vue);
 initialiseWarnings();
 
 Vue.use(Buefy, {

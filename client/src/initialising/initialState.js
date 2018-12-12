@@ -22,12 +22,11 @@ initialStateChosenLayers.default = [
 
 export const initialStateRhChosenLayer = ldidBingAerialWithLabels;
 
-export const initialStateChosenLayersByOpsCode =
-  (opsCode) => {
-    const result = initialStateChosenLayers[opsCode]
+export const initialStateChosenLayersByOpsCode = (opsCode) => {
+  const result = initialStateChosenLayers[opsCode]
     || initialStateChosenLayers.default;
-    return result;
-  };
+  return result;
+};
 
 export const initialCurrentOptionArray = [
   'Europe',

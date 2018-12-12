@@ -42,16 +42,16 @@ export function processFeatureActions(feature, options) {
 
   // Check if we want to do anything else
   if (!(
-    propertyEquivToShorttext ||
-    hideUnhide ||
-    doImages ||
-    doHtmls ||
-    setFeatureid ||
-    layerIndex ||
-    ldid ||
-    setOnMflTo ||
-    textForSearch ||
-    searchOption
+    propertyEquivToShorttext
+    || hideUnhide
+    || doImages
+    || doHtmls
+    || setFeatureid
+    || layerIndex
+    || ldid
+    || setOnMflTo
+    || textForSearch
+    || searchOption
   )) return false;
 
   // Do the things
@@ -104,16 +104,16 @@ function processFeaturesActions(src, options) {
 
   // Check if we want to do anything else
   if (!(
-    propertyEquivToShorttext ||
-    hideUnhide ||
-    doImages ||
-    doHtmls ||
-    setFeatureid ||
-    layerIndex ||
-    ldid ||
-    setOnMflTo ||
-    textForSearch ||
-    searchOption
+    propertyEquivToShorttext
+    || hideUnhide
+    || doImages
+    || doHtmls
+    || setFeatureid
+    || layerIndex
+    || ldid
+    || setOnMflTo
+    || textForSearch
+    || searchOption
   )) return false;
 
   let featureCount = 0;

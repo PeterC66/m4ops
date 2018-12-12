@@ -398,6 +398,7 @@ graph LR;
 - [Main guide to Vue.js](https://vuejs.org/v2/guide/index.html)
 - [Vue.js API](https://vuejs.org/v2/api/)
 - [Vue.js cookbook](https://vuejs.org/v2/cookbook/index.html)
+- [Vue Development In 2019: What You Need To Know](https://vuejsdevelopers.com/2018/12/04/vue-js-2019-knowledge-map/)
 - to open the visual interface for managing project > vue ui
 
 - [Vue.js User Forum](https://forum.vuejs.org/)

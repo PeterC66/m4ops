@@ -42,9 +42,8 @@ const optionsByPlaces = (continents, places) => {
   }
   console.log('A', options); // eslint-disable-line no-console
 
-  const opsCodes =
-    options
-      .map(option => (option[3]));
+  const opsCodes = options
+    .map(option => (option[3]));
   console.log('C', opsCodes); // eslint-disable-line no-console
   console.log('D', places); // eslint-disable-line no-console
 

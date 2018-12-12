@@ -81,9 +81,9 @@ export default {
   },
   computed: {
     placename() {
-      return this.opsdetails ?
-        `${this.opsdetails.OPSCode}) ${this.opsdetails.OPSName}` :
-        '(Unknown)';
+      return this.opsdetails
+        ? `${this.opsdetails.OPSCode}) ${this.opsdetails.OPSName}`
+        : '(Unknown)';
     },
   },
   methods: {

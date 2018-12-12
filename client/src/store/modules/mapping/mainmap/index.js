@@ -37,8 +37,8 @@ const mutations = {
       if (layerNumber < arrayLength) {
         let { opacity } = moduleState.chosenLayers[layerNumber];
         if (
-          layerNumber === 0 ||
-          displaytype === displayTypeEnum.mostlyVectors
+          layerNumber === 0
+          || displaytype === displayTypeEnum.mostlyVectors
         ) opacity = 1;
         // Use splice to ensure reactivity
         moduleState.chosenLayers.splice(
@@ -57,8 +57,8 @@ const mutations = {
           {
             ldid: ldid || newVoid(),
             opacity: (
-              layerNumber === 0 ||
-              displaytype === displayTypeEnum.mostlyVectors
+              layerNumber === 0
+              || displaytype === displayTypeEnum.mostlyVectors
             ) ? 1 : 0.5,
             displaytype,
           },

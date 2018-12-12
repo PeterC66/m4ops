@@ -45,16 +45,16 @@ function processFeaturesActions(layer, src, options) {
 
   // Check if we want to do anything else
   if (!(
-    propertyEquivToShorttext ||
-    hideUnhide ||
-    doImages ||
-    doHtmls ||
-    setFeatureid ||
-    layerIndex ||
-    ldid ||
-    setOnMflTo ||
-    textForSearch ||
-    searchOption
+    propertyEquivToShorttext
+    || hideUnhide
+    || doImages
+    || doHtmls
+    || setFeatureid
+    || layerIndex
+    || ldid
+    || setOnMflTo
+    || textForSearch
+    || searchOption
   )) return false;
 
   // Do the things

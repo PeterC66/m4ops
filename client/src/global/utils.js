@@ -38,8 +38,7 @@ export const isEmptyArray = arr => Array.isArray(arr) && _.isEmpty(arr);
 export const isNonemptyArray = arr => Array.isArray(arr) && !_.isEmpty(arr);
 
 // Copy of Array so another can be assigned to it
-export const copyOfArray = arr =>
-  arr.splice(0);
+export const copyOfArray = arr => arr.splice(0);
 
 // Is the given value defined and boolean true
 export const isTrue = (val) => {
@@ -62,8 +61,7 @@ export const isBoolean = obj => (typeof (obj) === 'boolean');
 
 // From https://stackoverflow.com/questions/4059147/check-if-a-variable-is-a-string
 // Note must be called with raw data not after eg Decode, else argument will be a string "Undefined"
-export const isString =
-  obj => (Object.prototype.toString.call(obj) === '[object String]');
+export const isString = obj => (Object.prototype.toString.call(obj) === '[object String]');
 
 export const toUCifString = (val) => {
   if (isString(val)) {
@@ -89,8 +87,7 @@ export const string2bool = (strV0, defaultifnull = false) => {
 
 // From https://www.codementor.io/michelre/use-function-composition-in-javascript-gkmxos5mj
 // Use eg pipe(mapWords, reduceWords)(['foo', 'bar', 'baz']); - left to right
-export const pipe =
-  (...functions) => args => functions.reduce((arg, fn) => fn(arg), args);
+export const pipe = (...functions) => args => functions.reduce((arg, fn) => fn(arg), args);
 
 export const beginsWith = (string = '', target) => _.startsWith(string, target);
 

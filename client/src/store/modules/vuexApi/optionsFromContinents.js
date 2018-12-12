@@ -35,11 +35,10 @@ const optionsFromContinents = (continents, places) => {
     ));
   // Create one 'continent' containing all the known OPS
   const allOps = !places ? [] : places
-    .map(place =>
-      ({
-        value: place.OPSCode,
-        label: `${place.OPSCode} ${place.OPSName}`,
-      }));
+    .map(place => ({
+      value: place.OPSCode,
+      label: `${place.OPSCode} ${place.OPSName}`,
+    }));
   allOps.sort((a, b) => {
     const x = a.label.toLowerCase().split(' ')[1];
     const y = b.label.toLowerCase().split(' ')[1];
