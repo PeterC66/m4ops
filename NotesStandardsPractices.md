@@ -521,6 +521,8 @@ graph LR;
 
 - We use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS)
   - Might have used [Vue Auth](https://github.com/websanova/vue-auth) but no
+- For guidance see half way down [Developing Production-Ready Apps](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
+  - and also the [quick start](https://auth0.com/docs/quickstart/spa/vuejs)
 - See also [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
 
 ### Demo

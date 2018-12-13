@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import _ from 'lodash';
 import uuid from 'uuid/v1';
 

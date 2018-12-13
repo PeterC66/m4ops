@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 // import _ from 'lodash';
 // import { searchOptionEnum } from '../../../../global/constants';
 
@@ -152,12 +151,14 @@ export function processFeatures(vmSource, options) {
         if (source.getState() === 'ready') {
           processFeaturesActions(source, options);
         } else {
+          // eslint-disable-next-line max-len, no-console
           console.log('In getSource change, source not ready', source, source.getState());
         }
       });
     } else if (source.getState() === 'ready') {
       processFeaturesActions(source, options);
     } else {
+      // eslint-disable-next-line no-console
       console.log('In pF numFeatures>0, but not ready', options, source);
     }
   } else {

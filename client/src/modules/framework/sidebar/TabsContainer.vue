@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/component-name-in-template-casing -->
 <template>
   <b-tabs
     v-model="activeTab"
@@ -5,6 +6,13 @@
     @change="selectActiveTab"
   >
     <b-tab-item label="Actions">
+      <button
+        v-if="profile"
+        @click="signOut"
+      >
+        Sign Out
+      </button>
+
       <p>Content of Actions Tab Pane</p>
     </b-tab-item>
     <b-tab-item label="MFL">
