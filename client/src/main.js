@@ -12,6 +12,7 @@ import initialiseElementComponents from './initialising/initialiseElementCompone
 // import initialiseVueLayers from './initialising/initialiseVueLayers';
 import initialiseWarnings from './initialising/initialiseWarnings';
 
+// import App from './App.vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';

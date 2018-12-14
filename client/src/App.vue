@@ -3,16 +3,23 @@
     <nav
       class="navbar"
       role="navigation"
-      aria-label="main navigation">
+      aria-label="main navigation"
+    >
       <div class="navbar-brand">
         <div class="navbar-item">
-          <router-link to="/">Home</router-link>
+          <router-link to="/">
+            Home
+          </router-link>
         </div>
         <div class="navbar-item">
-          <router-link to="/maps">Maps</router-link>
+          <router-link to="/maps">
+            Maps
+          </router-link>
         </div>
         <div class="navbar-item">
-          <router-link to="/about">About</router-link>
+          <router-link to="/about">
+            About
+          </router-link>
         </div>
       </div>
       <!-- navbar items, navbar burger... -->
@@ -23,12 +30,36 @@
 
         <div class="navbar-end">
         <!-- navbar items -->
-      </div>      </div>
+        </div>
+      </div>
     </nav>
     <!-- component matched by the route will render here -->
-    <router-view/>
+    <!-- :auth="auth"
+      :authenticated="authenticated" -->
+    <router-view />
   </div>
 </template>
+
+<script>
+// import auth from './modules/auth/AuthService';
+
+export default {
+  name: 'App',
+  // data() {
+  //   return {
+  //     auth,
+  //     authenticated: auth.authenticated,
+  //   };
+  // },
+  // created() {
+  //   auth.authNotifier.on('authChange', (authState) => {
+  //     this.authenticated = authState.authenticated;
+  //   });
+
+  //   auth.renewSession();
+  // },
+};
+</script>
 
 <style lang="scss">
   @import './global/styles/Buefy.scss';

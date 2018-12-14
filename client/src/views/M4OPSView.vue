@@ -9,9 +9,12 @@
       <div class="columns is-gapless">
         <div
           v-if="sidebarOpen"
-          class="column is-3">
+          class="column is-3"
+        >
           <!-- was style="position: relative" -->
-          <Sidebar/>
+          <!-- :auth="auth"
+            :authenticated="authenticated" -->
+          <Sidebar />
         </div>
         <div class="column">
           <div
@@ -21,7 +24,8 @@
             <font-awesome-icon
               :icon="['fas','spinner']"
               size="6x"
-              spin/>
+              spin
+            />
           </div>
           <MapContainer
             v-else
@@ -53,6 +57,16 @@ export default {
     Header,
     Sidebar,
   },
+  // props: {
+  //   auth: {
+  //     type: Object,
+  //     required: true,
+  //   },
+  //   authenticated: {
+  //     type: Boolean,
+  //     required: true,
+  //   },
+  // },
   computed: {
     ...mapState({
       sidebarOpen: state => state.framework.sidebarOpen,

@@ -1,25 +1,38 @@
-<script>
-import auth0Client from './AuthService';
+<template>
+  <div
+    id="isAuthorising"
+  >
+    <font-awesome-icon
+      :icon="['fas','spinner']"
+      size="6x"
+      spin
+    />
+  </div>
+</template>
 
+<script>
 export default {
   name: 'Callback',
-  async created() {
-    await auth0Client.handleAuthentication();
-    this.$router.push('/maps');
+  props: {
+    auth: {
+      type: Object,
+      required: true,
+    },
+  },
+  created() {
+    this.auth.handleAuthentication();
   },
 };
 </script>
 
-<template>
-  <div>
-    <p>Loading your profile...</p>
-  </div>
-</template>
-
-<style scoped>
-  div > p {
-    margin: 0 auto;
-    text-align: center;
-    font-size: 22px;
+<style>
+  #isAuthorising {
+    color:red;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
-</style>
+  </style>

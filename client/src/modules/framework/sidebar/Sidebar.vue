@@ -1,39 +1,37 @@
 <template>
   <section style="position: relative">
-    <div
-      v-if="!profile"
-      @click="signIn"
-    >
-      <button>
-        Sign In
-      </button>
-    </div>
-    <div v-else>
-      <LayerChoicesContainer :chosen-layers-mainmap="chosenLayersMainmap" />
-      <TabsContainer :active-tab-number="activeTabNumber" />
-    </div>
+    <!-- <LoginOrLogout
+      :auth="auth"
+      :authenticated="authenticated"
+    /> -->
+    <LayerChoicesContainer :chosen-layers-mainmap="chosenLayersMainmap" />
+    <TabsContainer :active-tab-number="activeTabNumber" />
   </section>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex';
+// import LoginOrLogout from '../../auth/LoginOrLogout.vue';
 import LayerChoicesContainer from './LayerChoicesContainer.vue';
 import TabsContainer from './TabsContainer.vue';
-import auth0Client from '../../auth/AuthService';
 
 export default {
   name: 'Sidebar',
   components: {
+    // LoginOrLogout,
     LayerChoicesContainer,
     TabsContainer,
   },
-  props: {
-  },
-  data() {
-    return {
-      profile: null,
-    };
-  },
+  // props: {
+  //   auth: {
+  //     type: Object,
+  //     required: true,
+  //   },
+  //   authenticated: {
+  //     type: Boolean,
+  //     required: true,
+  //   },
+  // },
   computed: {
     ...mapGetters([
       'chosenLayersMainmap',
@@ -42,36 +40,7 @@ export default {
       activeTabNumber: state => state.framework.activeTabNumber,
     }),
   },
-  methods: {
-    signIn: auth0Client.signIn,
-  },
 };
-
-/*
-
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      microPosts: [],
-      error: '',
-      profile: null
-    }
-  },
-  async created () {
-    try {
-      this.microPosts = await MicroPostService.getMicroPosts()
-      this.profile = auth0Client.getProfile()
-    } catch (error) {
-      this.error = error.message
-    }
-  },
-  methods: {
-    signIn: auth0Client.signIn,
-    signOut: auth0Client.signOut
-  }
-}
-*/
 
 </script>
 

@@ -5,7 +5,6 @@
         alt="Vue logo"
         src="../assets/logo.png"
       >
-
     </div>
     <div class="column">
       <div class="home">
@@ -13,7 +12,7 @@
           alt="Vue logo"
           src="../assets/logo.png"
         >
-        <HelloWorld msg="Welcome to Peter's Vue.js App"/>
+        <HelloWorld msg="Welcome to Peter's Vue.js App" />
       </div>
     </div>
   </div>

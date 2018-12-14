@@ -452,6 +452,7 @@ graph LR;
 
 - [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
 - maybe use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
+- [Missing manual](https://blog.webf.zone/vue-router-the-missing-manual-ce51c21430b0)
 
 ### Events
 
@@ -519,11 +520,15 @@ graph LR;
 
 ### Authorisation
 
-- We use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS)
-  - Might have used [Vue Auth](https://github.com/websanova/vue-auth) but no
-- For guidance see half way down [Developing Production-Ready Apps](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
+- We use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS), [Managing](https://manage.auth0.com/)
+- We use [Universal Login](https://auth0.com/docs/hosted-pages/login), as seen the [Vue QWuickstart](https://auth0.com/docs/quickstart/spa/vuejs)
+- Use [vue-auth0-handler](https://github.com/felipe-tonon/vue-auth0-handler) and [vue-cookie](https://github.com/alfhen/vue-cookie)
+- We have v9 of auth0-js [see reference documentation](https://auth0.com/docs/libraries/auth0js/v9)
+- [Auth0 Community](https://community.auth0.com/top/all)
+- For other guidance see half way down [Developing Production-Ready Apps](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
   - and also the [quick start](https://auth0.com/docs/quickstart/spa/vuejs)
 - See also [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
+  - Might have used [Vue Auth](https://github.com/websanova/vue-auth) but no
 
 ### Demo
 
