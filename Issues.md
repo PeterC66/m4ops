@@ -8,7 +8,7 @@
   - Freeze on click, interaction condition
   - Format data (with images, events, html etc)
   - SelectionPopup towards centre
-- Views – 2 maps, spy, slider
+- Views – spy, slider
 - Click actions
 - Users, Passwords - use Auth0
   - Admin, Manager, User, Guest

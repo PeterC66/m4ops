@@ -2,13 +2,14 @@
   <div
     id="resultsSideBar"
   >
-    <ColourKey/>
+    <ColourKey />
     <FeatureInfo
       v-for="feature in features"
-      :feature="feature"
       :key="feature.id"
+      :feature="feature"
     />
-</div></template>
+  </div>
+</template>
 
 <script>
 import ColourKey from './ColourKey.vue';

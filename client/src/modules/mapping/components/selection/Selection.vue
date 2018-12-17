@@ -12,30 +12,33 @@
       :multi="true"
       :condition="desiredCondition"
     >
-
+      <!-- eslint-disable-next-line vue/no-unused-vars -->
       <template slot-scope="{features}">
-
         <!-- select styles -->
         <vl-style-box>
           <vl-style-stroke
             :width="7"
-            color="#423e9e"/>
-          <vl-style-fill :color="[254, 178, 76, 0.7]"/>
+            color="#423e9e"
+          />
+          <vl-style-fill :color="[254, 178, 76, 0.7]" />
           <vl-style-circle :radius="5">
             <vl-style-stroke
               :width="7"
-              color="#423e9e"/>
-            <vl-style-fill :color="[254, 178, 76, 0.7]"/>
+              color="#423e9e"
+            />
+            <vl-style-fill :color="[254, 178, 76, 0.7]" />
           </vl-style-circle>
         </vl-style-box>
         <vl-style-box :z-index="1">
           <vl-style-stroke
             :width="2"
-            color="#d43f45"/>
+            color="#d43f45"
+          />
           <vl-style-circle :radius="5">
             <vl-style-stroke
               :width="2"
-              color="#d43f45"/>
+              color="#d43f45"
+            />
           </vl-style-circle>
         </vl-style-box>
         <!--// select styles -->

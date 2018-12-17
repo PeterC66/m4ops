@@ -1,3 +1,5 @@
+<!-- This is text that appears next to the selected features. -->
+
 <template>
   <div>
     <vl-overlay
@@ -5,17 +7,18 @@
       :position="pointOnSurface(features[0].geometry)"
       :auto-pan="false"
       :auto-pan-animation="{ duration: 300 }"
-      class="feature-popup">
+      class="feature-popup"
+    >
       <!-- eslint-disable max-len -->
       <!-- Note that vl-overlay has a scoped slot with  :id="id" :position="position" :offset="offset" :positioning="positioning"
       so slot-scope="popup" here means that the object called "popup" here
       has members "id" etc which can be processed here)-->
       <!-- eslint-enable max-len -->
-      <template slot-scope="popup">
+      <template>
         <p
           v-for="feature in features"
-          :key="feature.id"
           :id="feature.id"
+          :key="feature.id"
         >
           {{ feature.properties.shorttext }}
         </p>

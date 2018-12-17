@@ -52,6 +52,8 @@ module.exports = {
           "vl-interaction-select",
           "vl-interaction-snap",
           "vl-style-box",
+          "vl-style-stroke",
+          "vl-style-fill",
           "vl-style-circle",
         ]
       }]

@@ -1,24 +1,41 @@
 <template>
   <div>
-    <OpenButton/>
-    <p>
-      <strong>{{ feature.properties.featureid }}</strong>
-    </p>
-    <!-- eslint-disable max-len -->
-    <p>
-      Feature: {{ JSON.stringify({ id: feature.id, properties: feature.properties }) }}
-    </p>
-    <!-- eslint-enable max-len -->
+    <OpenButton />
+    <HeadAndDesc
+      :feature="feature"
+    />
+    <Images
+      :feature="feature"
+    />
+    <HtmlFile
+      :feature="feature"
+    />
+    <EventsInfo
+      :feature="feature"
+    />
+    <SpecifiedFields
+      :feature="feature"
+    />
   </div>
 </template>
 
 <script>
 import OpenButton from '../features/OpenButton.vue';
+import HeadAndDesc from './HeadAndDesc.vue';
+import Images from './Images.vue';
+import HtmlFile from './HtmlFile.vue';
+import EventsInfo from './EventsInfo.vue';
+import SpecifiedFields from './SpecifiedFields.vue';
 
 export default {
   name: 'FeatureInfo',
   components: {
     OpenButton,
+    HeadAndDesc,
+    Images,
+    HtmlFile,
+    EventsInfo,
+    SpecifiedFields,
   },
   props: {
     feature: {

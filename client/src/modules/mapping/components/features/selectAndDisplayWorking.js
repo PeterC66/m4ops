@@ -1,13 +1,5 @@
 /* eslint-disable */
-import { getDirectValueOf } from '../utils/mapUtils';
 
-export function selectAndDisplay(feature, layer) {
- {
-    // display text on or by the feature, and highlight the feature
-    addToSelectedFeaturesLayer(feature, layer, event.coordinate);
-  }
-  return true;
-}
 function htmlForResults(feature, layer) { // layer is undefined for an MFL
   // Create the html for the featureInfo:
   // onMfl has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
@@ -17,7 +9,7 @@ function htmlForResults(feature, layer) { // layer is undefined for an MFL
 
 
   // For both MFL and normal put in the button, shorttext, startend dates, description
-  htmlText += HeadAndDesc(`${getAValueFor('shorttext', feature, layer)} ${startend(feature, layer)}`, getAValueFor('description', feature, layer), '', '', '');
+  // htmlText += HeadAndDesc(`${getAValueFor('shorttext', feature, layer)} ${startend(feature, layer)}`, getAValueFor('description', feature, layer), '', '', '');
   // For normal (and potentially MFL) put in the image
   const imagefile = getAValueFor('image', feature, layer);
   if (imagefile) {
