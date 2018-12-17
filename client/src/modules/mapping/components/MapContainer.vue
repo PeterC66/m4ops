@@ -18,8 +18,8 @@
         :center.sync="center"
         :rotation.sync="rotation"
       />
-      <Selection/>
-      <LayersContainer :chosen-layer-defs-mainmap="chosenLayerDefsMainmap"/>
+      <Selection />
+      <LayersContainer :chosen-layer-defs-mainmap="chosenLayerDefsMainmap" />
     </vl-map>
     <vl-map
       v-if="mapDisplay === 'side-by-side'"
@@ -83,6 +83,10 @@ const methods = {
   },
 };
 
+const nudge = (vm) => {
+  setTimeout(() => { vm.$refs.mainmap.updateSize(); }, 50);
+};
+
 export default {
   name: 'MapContainer',
   components: {
@@ -138,6 +142,11 @@ export default {
     }),
     toHalve() {
       return (this.mapDisplay === 'side-by-side');
+    },
+  },
+  watch: {
+    toHalve() {
+      nudge(this);
     },
   },
   methods,
