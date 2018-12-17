@@ -2,9 +2,9 @@
   <div>
     <!-- Keep using el-cascader -->
     <el-cascader
+      v-model="selectedOption"
       :options="layerOptions"
       :show-all-levels="false"
-      v-model="selectedOption"
       :clearable="layerNumber > 0"
       expand-trigger="hover"
       @change="handleLdidChange"
@@ -18,7 +18,8 @@
         v-if="showUpButton"
         style="color: lightgreen; text-decoration: none;"
         class="button is-small is-text has-text-centered"
-        @click="moveUp()">
+        @click="moveUp()"
+      >
         <font-awesome-icon icon="arrow-up" />
       </button>
     </b-tooltip>

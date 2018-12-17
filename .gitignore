@@ -1,10 +1,12 @@
 .DS_Store
 /**/node_modules
 /**/dist
-client/OldReact
-vuelayers-demo
+/client/OldReact
+/vuelayers-demo
 /server/.aws
 /server/prod.json
+/client/public/OPS
+
 
 # (client) local env files,  ignored by git (*=development, production or test)
 # See https://cli.vuejs.org/guide/mode-and-env.html

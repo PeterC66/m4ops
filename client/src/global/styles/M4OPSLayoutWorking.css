@@ -60,8 +60,6 @@ padding: 10px 10px 10px 10px; background: #fff; z-index: 10001;}*/
 .keyBody {display: inline-block; float: right;}
 .smallsquare { display: inline-block; width: 1em; height: 1em; margin: 0 0 0 5px; border: 1px solid rgba(0, 0, 0, .2); float: right;}
 
-.resultsHead {text-decoration: underline; color: magenta; margin: 0;}
-.resultsBody {color: blue;}
 .resultsProperty {color: DarkCyan; margin-bottom: 1px;}
 .resultsPropertyValue {color: black;}
 .resultsevHead {text-decoration: underline; margin: 0;}

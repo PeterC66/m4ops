@@ -1,4 +1,4 @@
-import OlFeature from 'ol/Feature';
+// import OlFeature from 'ol/Feature';
 
 import { disabbreviate } from './stringManipulation';
 import {
@@ -16,7 +16,6 @@ export const attributionFromCode = (att) => {
 };
 
 export const getDirectValueOf = (propertyname, obj) => {
-  // console.log("gDV pn, obj = ", propertyname, $.extend({}, obj));
   // Note that this returns any property considered false or undefined as blank
   if (!propertyname || !obj) {
     return '';
@@ -26,13 +25,10 @@ export const getDirectValueOf = (propertyname, obj) => {
     console.log('propertyname, obj = ', propertyname, { ...obj }); // eslint-disable-line no-console
     return '';
   }
-  const isFeature = (obj instanceof OlFeature);
 
-  if (isFeature) {
-    if (isDefined(obj.get(propertyname))) {
-      return obj.get(propertyname);
-    }
-  } else if (propertyname in obj) return obj[propertyname];
+  if (propertyname in obj) return obj[propertyname];
+  if ('properties' in obj
+    && propertyname in obj.properties) return obj.properties[propertyname];
   // was hasOwnProperty but this did not see eg value
 
   // If through here then return blank
@@ -118,7 +114,6 @@ function mflEquivalent(propertyname, FSindex) {
 export const getAValueFor = (
   propertyname,
   object,
-  layer,
   usedefaults = true,
   useMflEquivalent = false,
 ) => {
@@ -131,7 +126,8 @@ export const getAValueFor = (
     console.log('Error getAValueFor has no propertyname');
     return 'Error';
   }
-  // console.log("getAValueForIN",propertyname, $.extend({}, object), usedefaults);
+  // eslint-disable-next-line no-console, max-len
+  // console.log('getAValueForIN', propertyname, object, usedefaults, useMflEquivalent);
 
   // Handle Constants - indicated by # being the first character
   if (propertyname.charAt(0) === '#') {
@@ -143,7 +139,7 @@ export const getAValueFor = (
     const propertynames = propertyname.split('&');
     let result = '';
     for (let i = 0; i < propertynames.length; i += 1) {
-      result += getAValueFor(propertynames[i], object, layer, usedefaults);
+      result += getAValueFor(propertynames[i], object, usedefaults);
     }
     if (result) return result;
   }
@@ -155,7 +151,18 @@ export const getAValueFor = (
   // If not found, look for the equivalent of the propertyname
   //  Note that equivalents are always in the same structure as propertyname
   let equivalencies;
-  if (layer) equivalencies = layer.get('equivalencies');
+  let layerDef;
+  const ldid = getDirectValueOf('ldid', object);
+  if (ldid) {
+    layerDef = store.getters.getOPSAllLayerDefsArrayByLdid(ldid);
+  }
+  if (layerDef) {
+    // eslint-disable-next-line prefer-destructuring
+    equivalencies = layerDef.equivalencies;
+  } else {
+    // eslint-disable-next-line no-console, max-len
+    console.log('getAValueFor NO layerDef', propertyname, object, ldid);
+  }
   // Each equivalency can be a ?-separated string of fieldnames
   if (equivalencies) {
     if (equivalencies[propertyname]) {
@@ -166,7 +173,7 @@ export const getAValueFor = (
           console.log(`Technical error: Self-reference for ${propertyname}`);
           return 'ERROR';
         }
-        const result = getAValueFor(equivsToTry[i], object, layer);
+        const result = getAValueFor(equivsToTry[i], object);
         if (result) return result;
       }
     }
@@ -187,7 +194,7 @@ export const getAValueFor = (
     switch (propertyname) {
       case 'textforsort':
         // console.log("GAV", object, layer);
-        return padAllNumbers(getAValueFor('fl_col1', object, layer));
+        return padAllNumbers(getAValueFor('fl_col1', object));
       case 'description':
         // was      return getAValueFor("shorttext", object, layer); // This value is set (if it has an equivalent then it is also set as this)
         return '';
@@ -220,17 +227,15 @@ function yearNo(datestring) {
   return d.getFullYear().toString();
 }
 
-export function startend(feature, layer) {
+export function startend(feature) {
   const startDateString = getAValueFor(
     'datestart',
     feature,
-    layer,
     false,
   ).toString();
   const endDateString = getAValueFor(
     'dateend',
     feature,
-    layer,
     false,
   ).toString();
   const result = `${yearNo(startDateString)}-${yearNo(endDateString)}`;

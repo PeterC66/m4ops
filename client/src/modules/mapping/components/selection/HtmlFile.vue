@@ -1,8 +1,6 @@
 <template>
   <div>
-    <p>
-      <strong>{{ feature.properties.featureid }}</strong>
-    </p>
+    <!-- TODO -->
   </div>
 </template>
 

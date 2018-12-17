@@ -36,12 +36,12 @@
     // 2) If we want to set the shorttext property to be the same as the given property
     if (propertyEquivToShorttext) {
       //console.log("setshorttext",feature.id,feature.clone());
-      feature.set("shorttext", getAValueFor("shorttext", feature, layer));
+      feature.set("shorttext", getAValueFor("shorttext", feature));
     }
     // 3) If we want to Hide and Unhide, dependent on the timeslider values, and the dates in the feature
     if (hideUnhide) {
-      var startDate = new Date(getAValueFor('datestart', feature, layer).toString()); // getAValueFor has default values hard-coded
-      var endDate = new Date(getAValueFor('dateend', feature, layer).toString()); // getAValueFor has default values hard-coded
+      var startDate = new Date(getAValueFor('datestart', feature).toString()); // getAValueFor has default values hard-coded
+      var endDate = new Date(getAValueFor('dateend', feature).toString()); // getAValueFor has default values hard-coded
       if (((startDate > upperDate) || (endDate < lowerDate))) {
         feature.set('hidden', true); // Hides it, as the style uses this property
       } else {

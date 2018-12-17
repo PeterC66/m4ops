@@ -14,12 +14,17 @@ module.exports = {
     "vue/component-name-in-template-casing": ["error", "PascalCase", { 
         "ignores": [
           "anchored-heading",
-          "font-awesome-icon",
           "b-dropdown",
           "b-dropdown-item",
+          "b-field",
           "b-icon",
+          "b-input",
           "b-tabs",
           "b-tab-item",
+          "b-tooltip",
+          "el-cascader",
+          "font-awesome-icon",
+          "layer-and-source",
           "router-link",
           "router-view",
           "vl-geoloc",
@@ -55,6 +60,7 @@ module.exports = {
           "vl-style-stroke",
           "vl-style-fill",
           "vl-style-circle",
+          "vue-slider",
         ]
       }]
   },

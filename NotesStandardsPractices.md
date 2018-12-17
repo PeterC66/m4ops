@@ -149,7 +149,11 @@ The main stack is
 **public** Folder Structure
 ├── index.html (main entry point, includes  \<div id="app"></div> into which the whole app is injected by main.js)
 ├──  ...
-└── img
+├── OPS (one folder for each OPS)
+│   ├── HcN - all the images, html files etc used for HcN in M4OPS
+│   ├── HNB
+│   └── ...
+└── img (used by the system)
     └── ...
 
 **src** Folder Structure: based on [How to Structure a Vue.js Project](https://itnext.io/how-to-structure-a-vue-js-project-29e4ddc1aeeb)
@@ -202,6 +206,10 @@ Notes: Each folder
 - can have .gitignore for files to be excluded from git
 - can have .eslintignore for files to be excluded from eslint
 - can have .eslintrc.json to direct eslint and give it parameters
+
+Our OPS images etc go in the public folder - see [this](https://cli.vuejs.org/guide/html-and-static-assets.html#the-public-folder)
+
+- storing them in the MongoDB database would use up space too much???
 
 ## Naming conventions
 

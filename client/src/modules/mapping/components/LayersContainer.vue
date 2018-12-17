@@ -2,8 +2,8 @@
   <div>
     <layer-and-source
       v-for="(layerDef, index) in chosenLayerDefsMainmap"
-      :layer-def="layerDef"
       :key="'MCL'+index+layerDef.ldid"
+      :layer-def="layerDef"
       :layer-number="index"
       :ops-code="OPSDetails.OPSCode"
     />

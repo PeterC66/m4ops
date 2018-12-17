@@ -22,15 +22,13 @@ export default {
     },
   },
   computed: {
-    layer() {
-      return 0;
-    },
     textHead() {
-      // eslint-disable-next-line max-len
-      return `${getAValueFor('shorttext', this.feature, this.layer)} ${startend(this.feature, this.layer)}`;
+      const shortText = getAValueFor('shorttext', this.feature);
+      const startEnd = startend(this.feature, this.layer);
+      return `${shortText} ${startEnd}`;
     },
     textDesc() {
-      return getAValueFor('description', this.feature, this.layer);
+      return getAValueFor('description', this.feature);
     },
 
   },
@@ -38,5 +36,7 @@ export default {
 </script>
 
 <style scoped>
+.resultsHead {text-decoration: underline; color: magenta; margin: 0;}
+.resultsBody {color: blue;}
 
 </style>

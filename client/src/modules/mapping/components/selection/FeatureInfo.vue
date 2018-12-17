@@ -5,6 +5,7 @@
       :feature="feature"
     />
     <Images
+      :v-if="imageOK"
       :feature="feature"
     />
     <HtmlFile
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+import { getAValueFor } from '../../utils/mapUtils';
 import OpenButton from '../features/OpenButton.vue';
 import HeadAndDesc from './HeadAndDesc.vue';
 import Images from './Images.vue';
@@ -41,6 +43,14 @@ export default {
     feature: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    imageOK() {
+      const f = getAValueFor('image', this.feature);
+      // eslint-disable-next-line no-console
+      console.log(f.length > 0);
+      return f.length > 0;
     },
   },
 };

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-function htmlForResults(feature, layer) { // layer is undefined for an MFL
+function htmlForResults(feature) { // layer is undefined for an MFL
   // Create the html for the featureInfo:
   // onMfl has values False(0) Not on MFL, True(-1) on normal MFL, (also) True(1) on AllFeatures MFL
   const onMfl = getDirectValueOf('onMfl', feature); // is False if not a valid property
@@ -9,15 +9,15 @@ function htmlForResults(feature, layer) { // layer is undefined for an MFL
 
 
   // For both MFL and normal put in the button, shorttext, startend dates, description
-  // htmlText += HeadAndDesc(`${getAValueFor('shorttext', feature, layer)} ${startend(feature, layer)}`, getAValueFor('description', feature, layer), '', '', '');
+  // htmlText += HeadAndDesc(`${getAValueFor('shorttext', feature)} ${startend(feature)}`, getAValueFor('description', feature), '', '', '');
   // For normal (and potentially MFL) put in the image
-  const imagefile = getAValueFor('image', feature, layer);
-  if (imagefile) {
-    htmlText += `<a target="_blank" title="Click for a zoomable version in a new tab" href="JuiceBoxSozi/sozi.php?T=${encodeURIComponent(getAValueFor('shorttext', feature, layer))}&I=${encodeURIComponent(fullOpsURL(`Images/${imagefile}`))}">`;
-    htmlText += `<img src="${fullOpsURL(`Images/${imagefile}`)}" style="max-width: 100%;" /></a>`;
-  }
+  // const imagefile = getAValueFor('image', feature);
+  // if (imagefile) {
+  //   htmlText += `<a target="_blank" title="Click for a zoomable version in a new tab" href="JuiceBoxSozi/sozi.php?T=${encodeURIComponent(getAValueFor('shorttext', feature))}&I=${encodeURIComponent(fullOpsURL(`Images/${imagefile}`))}">`;
+  //   htmlText += `<img src="${fullOpsURL(`Images/${imagefile}`)}" style="max-width: 100%;" /></a>`;
+  // }
   // For normal (and potentially MFL) put in the htmlfile
-  const htmlfile = getAValueFor('html', feature, layer);
+  const htmlfile = getAValueFor('html', feature);
   if (htmlfile) {
     const htmlPageText = htmlFromFile(htmlfile);
     if (htmlPageText) {
@@ -43,9 +43,9 @@ function htmlForResults(feature, layer) { // layer is undefined for an MFL
               ea[i],
               layer,
             ).toString() ); // getAValueFor has default values hard-coded
-            endDate = new Date(getAValueFor('evdateend', ea[i], layer).toString());
+            endDate = new Date(getAValueFor('evdateend', ea[i]).toString());
             if (!((startDate > upperDate) || (endDate < lowerDate))) {
-              htmlText += HeadAndDesc(getAValueFor('evshorttext', ea[i], layer), getAValueFor('evdescription', ea[i], layer), 'ev', '', '');
+              htmlText += HeadAndDesc(getAValueFor('evshorttext', ea[i]), getAValueFor('evdescription', ea[i]), 'ev', '', '');
             }
           }
         } else {
