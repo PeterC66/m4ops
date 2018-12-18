@@ -1,6 +1,6 @@
 <template>
   <div>
-    <layer-and-source
+    <LayerAndSource
       key="RHL"
       :layer-def="getOPSAllLayerDefsArrayByLdid(chosenRhLayer)"
       :layer-number="0"
@@ -56,7 +56,7 @@ import MousePointer from './MousePointer.vue';
 export default {
   name: 'RhLayersContainer',
   components: {
-    'layer-and-source': LayerAndSource,
+    LayerAndSource,
     MousePointer,
   },
   props: {

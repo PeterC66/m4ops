@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import layerAndSourceCreate from './layerAndSourceParts/LayerAndSourceCreate';
 
-export default Vue.component('layer-and-source', {
+export default Vue.component('LayerAndSource', {
   props: {
     layerDef: { // One of the layerDef in chosenLayerDefsMainmap
       type: Object,

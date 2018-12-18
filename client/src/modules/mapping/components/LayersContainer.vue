@@ -1,6 +1,6 @@
 <template>
   <div>
-    <layer-and-source
+    <LayerAndSource
       v-for="(layerDef, index) in chosenLayerDefsMainmap"
       :key="'MCL'+index+layerDef.ldid"
       :layer-def="layerDef"
@@ -18,7 +18,7 @@ import LayerAndSource from './LayerAndSource';
 export default {
   name: 'LayersContainer',
   components: {
-    'layer-and-source': LayerAndSource,
+    LayerAndSource,
   },
   props: {
     chosenLayerDefsMainmap: {

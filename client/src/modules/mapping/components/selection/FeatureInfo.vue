@@ -5,7 +5,7 @@
       :feature="feature"
     />
     <Images
-      :v-if="imageOK"
+      v-if="imageOK"
       :feature="feature"
     />
     <HtmlFile

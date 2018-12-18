@@ -24,7 +24,6 @@ module.exports = {
           "b-tooltip",
           "el-cascader",
           "font-awesome-icon",
-          "layer-and-source",
           "router-link",
           "router-view",
           "vl-geoloc",
