@@ -17,14 +17,14 @@ function htmlForResults(feature) { // layer is undefined for an MFL
   //   htmlText += `<img src="${fullOpsURL(`Images/${imagefile}`)}" style="max-width: 100%;" /></a>`;
   // }
   // For normal (and potentially MFL) put in the htmlfile
-  const htmlfile = getAValueFor('html', feature);
-  if (htmlfile) {
-    const htmlPageText = htmlFromFile(htmlfile);
-    if (htmlPageText) {
-      const htmlOfBody = withinTags(htmlPageText, 'body');
-      htmlText += tailorImgs(withinTags(htmlOfBody, 'font'));
-    }
-  }
+  // const htmlfile = getAValueFor('html', feature);
+  // if (htmlfile) {
+  //   const htmlPageText = htmlFromFile(htmlfile);
+  //   if (htmlPageText) {
+  //     const htmlOfBody = withinTags(htmlPageText, 'body');
+  //     htmlText += tailorImgs(withinTags(htmlOfBody, 'font'));
+  //   }
+  // }
   // For normal (and potentially MFL) put in the event shorttext, description within startend dates
   let startDate;
   let endDate;

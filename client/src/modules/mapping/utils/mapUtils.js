@@ -1,7 +1,9 @@
 // import OlFeature from 'ol/Feature';
+import _ from 'lodash';
 
 import { disabbreviate } from './stringManipulation';
 import {
+  beginsWith,
   isDefined,
   isString,
   toUCifString,
@@ -241,3 +243,20 @@ export function startend(feature) {
   const result = `${yearNo(startDateString)}-${yearNo(endDateString)}`;
   return (result === '?-?') ? '' : result;
 }
+
+export const fullOpsUrl = (url) => {
+  let result = url;
+  if (!beginsWith(result, 'http')) { // it is in short form (eg *.geojson) and needs topping
+    const { OPSDetails } = store.getters;
+    result = `OPS/${OPSDetails.OPSCode}/${result}`;
+  }
+  return result;
+};
+
+// For encodeURI etc use see http://xkr.us/articles/javascript/encode-compare/
+export const encodedFullOpsURL = (path, filename) => {
+  const result = fullOpsUrl(path);
+  return encodeURI(result)
+  + (_.endsWith(result, '/') ? '' : '/')
+  + encodeURIComponent(filename); // So any # in filename are encoded
+};

@@ -19,9 +19,10 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import { getAValueFor } from '../../utils/mapUtils';
-
-/* eslint-disable no-console */
+import {
+  getAValueFor,
+  fullOpsUrl,
+} from '../../utils/mapUtils';
 
 export default {
   name: 'Images',
@@ -37,12 +38,12 @@ export default {
     ]),
     filename() {
       const f = getAValueFor('image', this.feature);
+      // eslint-disable-next-line no-console
       if (f.length === 0) console.log('blank image', this.feature);
       return f;
     },
     fullFilename() {
-      // eslint-disable-next-line max-len
-      const fn = `/OPS/${this.OPSDetails.OPSCode}/${this.filename}`;
+      const fn = fullOpsUrl(`Images/${this.filename}`);
       return fn;
     },
   },

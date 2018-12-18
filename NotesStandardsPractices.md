@@ -12,19 +12,23 @@
 - [Documenting](#documenting)
 - [HTML5 standards](#html5-standards)
 - [JS and ES6 standards](#js-and-es6-standards)
-  - [Special functions & routines](#special-functions---routines)
+  - [Special functions and routines](#special-functions-and-routines)
+  - [Regular Expressions](#regular-expressions)
 - [Client Overview](#client-overview)
   - [The Starting point](#the-starting-point)
 - [Vue.js](#vuejs)
   - [Complex components](#complex-components)
   - [Vue Router](#vue-router)
+  - [Events](#events)
   - [Vuex](#vuex)
     - [Vuex plugins](#vuex-plugins)
+    - [Typescript in Vue](#typescript-in-vue)
   - [HTTP Requests](#http-requests)
   - [Authorisation](#authorisation)
   - [Demo](#demo)
   - [Icons](#icons)
   - [CSS](#css)
+  - [Dates and Times](#dates-and-times)
   - [Useful components](#useful-components)
     - [Buefy](#buefy)
     - [Element UI components](#element-ui-components)
@@ -38,6 +42,10 @@
 - [Testing](#testing)
 - [OpenLayers](#openlayers)
   - [OL and Vue](#ol-and-vue)
+  - [Projections](#projections)
+    - [Projections - Background](#projections---background)
+    - [Projections - Basics](#projections---basics)
+    - [Projections - What we do](#projections---what-we-do)
 - [Server Overview](#server-overview)
   - [Routes](#routes)
   - [Connecting to MongoDB](#connecting-to-mongodb)
@@ -379,6 +387,19 @@ See under [Standards and styles](#standards-and-styles)
   - for [iteratees](https://lodash.com/docs/#iteratee) see [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
 - for promises and async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
 - to pass 'this' context to a function use [js bind](https://javascript.info/bind#solution-2-bind)
+
+### Regular Expressions
+
+- [regexr](https://regexr.com/) is an online tool to learn, build, & test Regular Expressions
+- [ReX.js](https://areknawo.github.io/Rex/) is a RegEx companion - maybe use? Some do not like!
+- [eloquent](https://eloquentjavascript.net/09_regexp.html)
+- [w3schools](https://www.w3schools.com/js/js_regexp.asp) & [objects](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
+- [regexp methods](https://javascript.info/regexp-methods)  Excellent on replace
+- [exec vs match](https://stackoverflow.com/questions/9214754/what-is-the-difference-between-regexp-s-exec-function-and-string-s-match-fun)
+- [Quick Reference](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
+
+with a global regular expression, .exec is meant to be used in a loop, as it will retrieve all matched subexpressions.  String.match does this for you and discards the captured groups.
+Without the /g both exec and match return the first match ([0]) and any captured groups ([1] etc)
 
 ## Client Overview
 
@@ -1094,8 +1115,6 @@ See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/c
   - JS Object to JSON
   - JSON to Mongoose Schema
   - Markdown to HTML
-- [regexr](https://regexr.com/) is an online tool to learn, build, & test Regular Expressions
-- [ReX.js](https://areknawo.github.io/Rex/) is a RegEx companion - maybe use? Some do not like!
 - Any locally installed command (eg xx) will be available at ./node_modules/.bin/xx in your project
   - node_modules/.bin directory will be added to system $PATH when your're running npm scripts, so you can directly use the local xx command there
 - [Popular Systems in 2017](https://risingstars.js.org/2017/en/) - especially Vue.js

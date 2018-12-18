@@ -61,6 +61,7 @@ export const isBoolean = obj => (typeof (obj) === 'boolean');
 
 // From https://stackoverflow.com/questions/4059147/check-if-a-variable-is-a-string
 // Note must be called with raw data not after eg Decode, else argument will be a string "Undefined"
+// eslint-disable-next-line max-len
 export const isString = obj => (Object.prototype.toString.call(obj) === '[object String]');
 
 export const toUCifString = (val) => {
@@ -87,6 +88,7 @@ export const string2bool = (strV0, defaultifnull = false) => {
 
 // From https://www.codementor.io/michelre/use-function-composition-in-javascript-gkmxos5mj
 // Use eg pipe(mapWords, reduceWords)(['foo', 'bar', 'baz']); - left to right
+// eslint-disable-next-line max-len
 export const pipe = (...functions) => args => functions.reduce((arg, fn) => fn(arg), args);
 
 export const beginsWith = (string = '', target) => _.startsWith(string, target);

@@ -9,6 +9,7 @@
       :feature="feature"
     />
     <HtmlFile
+      v-if="htmlOK"
       :feature="feature"
     />
     <EventsInfo
@@ -48,8 +49,10 @@ export default {
   computed: {
     imageOK() {
       const f = getAValueFor('image', this.feature);
-      // eslint-disable-next-line no-console
-      console.log(f.length > 0);
+      return f.length > 0;
+    },
+    htmlOK() {
+      const f = getAValueFor('html', this.feature);
       return f.length > 0;
     },
   },
