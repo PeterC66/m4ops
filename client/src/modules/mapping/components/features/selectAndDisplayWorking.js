@@ -8,23 +8,7 @@ function htmlForResults(feature) { // layer is undefined for an MFL
   if (layer) FSid = layerDefs[layer.fromLayerDef].FSid; // indicates the fields to show
 
 
-  // For both MFL and normal put in the button, shorttext, startend dates, description
-  // htmlText += HeadAndDesc(`${getAValueFor('shorttext', feature)} ${startend(feature)}`, getAValueFor('description', feature), '', '', '');
-  // For normal (and potentially MFL) put in the image
-  // const imagefile = getAValueFor('image', feature);
-  // if (imagefile) {
-  //   htmlText += `<a target="_blank" title="Click for a zoomable version in a new tab" href="JuiceBoxSozi/sozi.php?T=${encodeURIComponent(getAValueFor('shorttext', feature))}&I=${encodeURIComponent(fullOpsURL(`Images/${imagefile}`))}">`;
-  //   htmlText += `<img src="${fullOpsURL(`Images/${imagefile}`)}" style="max-width: 100%;" /></a>`;
-  // }
-  // For normal (and potentially MFL) put in the htmlfile
-  // const htmlfile = getAValueFor('html', feature);
-  // if (htmlfile) {
-  //   const htmlPageText = htmlFromFile(htmlfile);
-  //   if (htmlPageText) {
-  //     const htmlOfBody = withinTags(htmlPageText, 'body');
-  //     htmlText += tailorImgs(withinTags(htmlOfBody, 'font'));
-  //   }
-  // }
+
   // For normal (and potentially MFL) put in the event shorttext, description within startend dates
   let startDate;
   let endDate;

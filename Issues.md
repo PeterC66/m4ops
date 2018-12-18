@@ -13,6 +13,7 @@
 - Users, Passwords - use Auth0
   - Admin, Manager, User, Guest
 - Debounce mouse movements
+- -[v-viewer](http://mirari.cc/v-viewer/) gallery
 
 ## Await v0.12 Priority
 

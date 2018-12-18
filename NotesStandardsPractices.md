@@ -470,6 +470,8 @@ graph LR;
 
 ### Complex components
 
+- Vuescript.com aims to offer latest free Vue.js components for web application developers. - eg [Gallery components](https://www.vuescript.com/gallery)
+  - For gallery we use [v-viewer](http://mirari.cc/v-viewer/)
 - [Render Functions](https://vuejs.org/v2/guide/render-function.html) - use instead of templates to generate components
   - Refers a lot to [Vue Instance Properties API](https://vuejs.org/v2/api/#Instance-Properties)
   - Can even use [JSX](https://github.com/vuejs/babel-plugin-transform-vue-jsx)
@@ -482,6 +484,10 @@ graph LR;
 - [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
 - maybe use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
 - [Missing manual](https://blog.webf.zone/vue-router-the-missing-manual-ce51c21430b0)
+- [Yes, this is how vue-router **guards** work & when to use them](https://medium.com/@arieldi/yes-this-is-how-vue-router-guards-work-when-to-use-them-ed7e34946211)
+  - Global guards (on the instance) - each time the URL changes
+  - Route guards (on route definitions) - when the associated ROUTE is matched
+  - Route Component guards - when a ROUTE COMPONENT is used/unused
 
 ### Events
 
@@ -635,6 +641,7 @@ graph LR;
 - Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 - or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO as it is too all-embracing - using Element UI et al
 - see [VeeValidate 2.1: Validation Providers](https://medium.com/@logaretm/vee-validate-validation-providers-b5b38647c05c)
+- [Vue.js — Forms, components and considerations](https://blog.webf.zone/vue-js-forms-components-and-considerations-d81b3ffe9efb)
 
 ### Standards and styles
 
