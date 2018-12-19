@@ -1,6 +1,6 @@
 <template>
   <div>
-   <!-- Colour Key -->
+    <!-- Colour Key -->
   </div>
 </template>
 

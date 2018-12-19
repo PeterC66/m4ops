@@ -4,24 +4,28 @@
       label="Map with overlays (slider or spyglass),
         or side by side maps?"
       position="is-top"
-      multilined>
-      <SelectMapDisplay :map-display="mapDisplay"/>
+      multilined
+    >
+      <SelectMapDisplay :map-display="mapDisplay" />
     </b-tooltip>
     <b-tooltip
       label="Select what happens when you click"
       position="is-top"
-      multilined>
-      <SelectActionOnClick :action-on-click="actionOnClick"/>
+      multilined
+    >
+      <SelectActionOnClick :action-on-click="actionOnClick" />
     </b-tooltip>
     <b-tooltip
       label="Open or close the sidebar"
       position="is-right"
-      multilined>
+      multilined
+    >
       <div class="field">
         <b-switch
           v-model="switchValue"
           size="is-small"
-          @input="switchSidebar"/>
+          @input="switchSidebar"
+        />
       </div>
     </b-tooltip>
   </div>

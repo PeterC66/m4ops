@@ -8,11 +8,13 @@
       </div>
       <h1
         id="mainhead"
-        class="level-item has-text-centered">
+        class="level-item has-text-centered"
+      >
         <b-tooltip
           label="Open the forum for Mapping for One-Place Studies"
           position="is-right"
-          multilined>
+          multilined
+        >
           <a
             href="http://mapping4ops.org/"
             target="_blank"
@@ -37,15 +39,18 @@
         </div>
       </div>
       <div
-        class="level-item">
+        class="level-item"
+      >
         <b-tooltip
           label="Click for details of this OPS"
           position="is-left"
-          multilined>
+          multilined
+        >
           <button
             style="color: lightgreen; text-decoration: none;"
             class="button is-text has-text-centered"
-            @click="tellMe()">
+            @click="tellMe()"
+          >
             Maps for {{ placename }}
           </button>
         </b-tooltip>

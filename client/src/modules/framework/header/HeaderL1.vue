@@ -1,18 +1,20 @@
 <template>
   <div
-    id="buttonsL1">
+    id="buttonsL1"
+  >
     <b-dropdown>
       <button
         slot="trigger"
-        class="button is-primary is-small">
+        class="button is-primary is-small"
+      >
         <span>Choose a One-Place Study</span>
-        <b-icon icon="menu-down"/>
+        <b-icon icon="menu-down" />
       </button>
 
       <b-dropdown-item
         custom
       >
-        <ChooseOPS :current-option-array="currentOptionArray"/>
+        <ChooseOPS :current-option-array="currentOptionArray" />
         <p>
           Select the Continent, Country, County (eg), Study Area.
         </p>

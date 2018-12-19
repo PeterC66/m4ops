@@ -17,6 +17,11 @@
           </router-link>
         </div>
         <div class="navbar-item">
+          <router-link to="/form">
+            Form
+          </router-link>
+        </div>
+        <div class="navbar-item">
           <router-link to="/about">
             About
           </router-link>

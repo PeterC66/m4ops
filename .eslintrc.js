@@ -19,6 +19,7 @@ module.exports = {
           "b-field",
           "b-icon",
           "b-input",
+          "b-switch",
           "b-tabs",
           "b-tab-item",
           "b-tooltip",
@@ -59,6 +60,7 @@ module.exports = {
           "vl-style-stroke",
           "vl-style-fill",
           "vl-style-circle",
+          "vue-form-generator",
           "vue-slider",
         ]
       }]

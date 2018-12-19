@@ -1,5 +1,4 @@
 <template>
-
   <div
     id="resultsOpenButtonDiv"
     :class="classObject"
@@ -7,14 +6,15 @@
     <b-tooltip
       label="Open all these results in a new window"
       position="is-left"
-      multilined>
+      multilined
+    >
       <button
         style="color: lightgreen; text-decoration: none;"
         class="button is-text has-text-centered"
         @click="openResultsWindow()"
       >
         <span class="icon">
-          <font-awesome-icon :icon="['fas','book-open']"/>
+          <font-awesome-icon :icon="['fas','book-open']" />
         </span>
       </button>
     </b-tooltip>
@@ -38,7 +38,6 @@
   openHTML(htmlFull,"Results");
 } -->
   <!-- eslint-enable max-len -->
-
 </template>
 
 <script>

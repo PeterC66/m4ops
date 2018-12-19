@@ -341,7 +341,7 @@ See under [Standards and styles](#standards-and-styles)
 - See [html5doctor's tag/element-index](http://html5doctor.com/element-index/) and [their flow chart](h5d-sectioning-flowchart.png) for use of \<section\> etc
 - [Learn to Code HTML & CSS](https://learn.shayhowe.com/html-css/) - the fundamentals
 - [Learn to Code Advanced HTML & CSS](https://learn.shayhowe.com/advanced-html-css/performance-organization/)
-[HTML Living Standard](https://html.spec.whatwg.org/multipage/)
+- [HTML Living Standard](https://html.spec.whatwg.org/multipage/)
 
 ## JS and ES6 standards
 
@@ -643,6 +643,11 @@ graph LR;
 
 #### Vue Forms
 
+- Official [Form Input Bindings](https://vuejs.org/v2/guide/forms.html)
+  - [Further descriptions](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/)
+  - [and this](https://vegibit.com/vuejs-form-example/)
+  - [Use form element](https://alligator.io/vuejs/vue-form-handling/)
+  - [interestipng](https://auralinna.blog/post/2018/how-to-build-a-complete-form-with-vue-js) - use i18n translation strings even if only one language?
 - We use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
 - [Working with Dynamic Components in Vue.js](https://www.raymondcamden.com/2018/10/31/working-with-dynamic-components-in-vuejs) - useful vanilla Vue using :is
 - Could (but don't) use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
@@ -653,6 +658,7 @@ graph LR;
 - See also [this list of form components](https://github.com/vuejs/awesome-vue#form)
   - includes Rich Text Editing etc
 - [Modals](https://github.com/vuejs/awesome-vue#overlay)
+- Interesting: [How to Handle Multi-row Forms with Vue, Vuex and vuex-map-fields](https://markus.oberlehner.net/blog/how-to-handle-multi-row-forms-with-vue-vuex-and-vuex-map-fields/) (automates computed get/set)
 
 #### Other
 

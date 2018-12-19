@@ -5,16 +5,19 @@
   >
     <button
       slot="trigger"
-      class="button is-primary  is-small">
+      class="button is-primary  is-small"
+    >
       <span>Map display</span>
-      <b-icon icon="menu-down"/>
+      <b-icon icon="menu-down" />
     </button>
 
     <b-dropdown-item
       v-for="item in options"
       :key="item.value"
       :value="item.value"
-    >{{ item.label }}</b-dropdown-item>
+    >
+      {{ item.label }}
+    </b-dropdown-item>
   </b-dropdown>
 </template>
 

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import M4OPSView from './views/M4OPSView.vue';
+import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
 import Callback from './modules/auth/Callback.vue';
 
@@ -20,6 +21,11 @@ export default new Router({
       path: '/maps',
       name: 'maps',
       component: M4OPSView,
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: Form,
     },
     {
       path: '/about',

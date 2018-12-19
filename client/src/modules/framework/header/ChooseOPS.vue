@@ -2,9 +2,9 @@
   <div class="block">
     <!-- Keep using el-cascader -->
     <el-cascader
+      v-model="selectedOption"
       :options="placeOptions"
       :show-all-levels="false"
-      v-model="selectedOption"
       @change="handleChange"
     />
   </div>

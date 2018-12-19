@@ -1,7 +1,8 @@
 <template>
   <div
     id="buttonsR2"
-    class="level">
+    class="level"
+  >
     <div
       v-if="!interactionsOn"
       class="level-right"
@@ -9,7 +10,8 @@
       <b-tooltip
         label="Unfreeze everything"
         position="is-left"
-        multilined>
+        multilined
+      >
         <button
           class="button is-info is-normal"
           @click="toggleInteractions()"
@@ -25,12 +27,14 @@
       <b-tooltip
         label="Freeze things"
         position="is-left"
-        multilined>
+        multilined
+      >
         <button
           class="button is-primary is-small"
-          @click="toggleInteractions()">
+          @click="toggleInteractions()"
+        >
           <span class="icon">
-            <font-awesome-icon :icon="['fas','search']"/>
+            <font-awesome-icon :icon="['fas','search']" />
           </span>
         </button>
       </b-tooltip>
@@ -38,35 +42,41 @@
         label="Feature search text,
         or coordinates to go to."
         position="is-bottom"
-        multilined>
+        multilined
+      >
         <b-field>
           <b-input
             v-model="formInline.textForSearchOrCoords"
             size="is-small"
-            placeholder="Text or Coords to GoTo"/>
+            placeholder="Text or Coords to GoTo"
+          />
         </b-field>
       </b-tooltip>
       <b-tooltip
         label="GoTo as specified"
         position="is-left"
-        multilined>
+        multilined
+      >
         <button
           class="button is-primary is-small"
-          @click="tellMe()">
+          @click="tellMe()"
+        >
           <span class="icon">
-            <font-awesome-icon :icon="['fas','search']"/>
+            <font-awesome-icon :icon="['fas','search']" />
           </span>
         </button>
       </b-tooltip>
       <b-tooltip
         label="Make the current view of M4OPS available as a URL to copy"
         position="is-left"
-        multilined>
+        multilined
+      >
         <button
           class="button is-primary is-small"
-          @click="tellMe()">
+          @click="tellMe()"
+        >
           <span class="icon">
-            <font-awesome-icon :icon="['far','clone']"/>
+            <font-awesome-icon :icon="['far','clone']" />
           </span>
         </button>
       </b-tooltip>
