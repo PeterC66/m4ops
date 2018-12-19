@@ -7,8 +7,6 @@ function htmlForResults(feature) { // layer is undefined for an MFL
   let FSid;
   if (layer) FSid = layerDefs[layer.fromLayerDef].FSid; // indicates the fields to show
 
-
-
   // For normal (and potentially MFL) put in the event shorttext, description within startend dates
   let startDate;
   let endDate;

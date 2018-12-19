@@ -2,6 +2,9 @@ export const coordDecimalPlaces = 7;
 
 export const maxChooseLayers = 6;
 
+export const notOK = -999; // Used where boolean not suitable
+
+
 // Used to mitigate Vuex issue in devtools
 // Needs to be true in production and for map redisplay after goHome
 export const useVuexForView = false;

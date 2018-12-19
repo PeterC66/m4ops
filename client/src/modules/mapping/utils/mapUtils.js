@@ -11,6 +11,8 @@ import {
 } from '../../../global/utils';
 import store from '../../../store';
 
+import { notOK } from '../../../global/constants';
+
 export const attributionFromCode = (att) => {
   const attModified = disabbreviate(att);
   // WAS before v4.6.5 return new ol.Attribution({ html: attModified });
@@ -260,3 +262,124 @@ export const encodedFullOpsURL = (path, filename) => {
   + (_.endsWith(result, '/') ? '' : '/')
   + encodeURIComponent(filename); // So any # in filename are encoded
 };
+
+function nonspecialMFLProps(feature) {
+  // Return an array of relevant MFL properties
+  function nonspecial(item) {
+    // For filtering out non-relevant MFL properties
+    return (['geometry', 'onMFL'].indexOf(item) < 0);
+  }
+  let propsArray = [];
+  if (feature) {
+    propsArray = Object.keys(feature.getProperties()).filter(nonspecial);
+  }
+  return propsArray;
+}
+
+function allProperties(feature) {
+  const result = [];
+  if (feature) {
+    const propsArray = nonspecialMFLProps(feature);
+    const propsSorted = propsArray.sort((a, b) => {
+      const nameA = a.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      // through here names must be equal
+      return 0;
+    });
+    // console.log(propsArray, propsSorted);
+    for (let i = 0; i < propsSorted.length; i += 1) {
+      const prop = propsSorted[i];
+      const fspec = {};
+      fspec.fieldname = prop;
+      // Treat as colour if name contains color or colour
+      if (prop.indexOf('color') >= 0 || prop.indexOf('colour') >= 0) {
+        fspec.fieldtype = 'color';
+      } else { // would be nice to know other fieldtypes
+        fspec.fieldtype = 'text';
+      }
+      fspec.label = prop;
+      fspec.placeholder = prop;
+      fspec.tooltip = 'The property';
+      fspec.required = false;
+      fspec.description = 'From the existing feature';
+      fspec.comment = 'No comment';
+      result.push(fspec);
+    }
+  }
+  return result;
+}
+
+export function checkFSOK(FSindex) {
+  // Given an integer index into the FieldSpecsArray check all is OK
+  // Given a string value look for its value as FSid in FieldSpecsArray, then do the check
+  // Given no such index (for an MFL), look it up from the mflSpecCombo and then do the check
+  // Return the index, or notOK (-999) if not OK
+  let FSindexToReturn;
+  const { OPSDetails } = store.getters;
+
+  // FSindex is the index into the FieldSpecsArray, if not given we look it up
+  if (!isDefined(FSindex)) { // (For an MFL)
+    // eslint-disable-next-line max-len
+    const MFLScomboindex = document.getElementById('mflSpecCombo').selectedIndex;
+    if (MFLScomboindex === 0) return -1; // combo index 0 is the special case of 'All (current) Properties' - no other validation is needed
+    FSindexToReturn = MFLScomboindex - 1;
+  } else if (isString(FSindex)) {
+    if (!OPSDetails.FieldSpecsArray) {
+      // eslint-disable-next-line no-console
+      console.log(`No FieldSpecsArray: FSindex=${FSindex}`);
+      return notOK;
+    }
+    // eslint-disable-next-line max-len
+    FSindexToReturn = indexOfArrayM4(OPSDetails.FieldSpecsArray, FSindex, 'FSid');
+    if (FSindexToReturn < 0) {
+      // eslint-disable-next-line no-alert, max-len
+      alert(`Error 73: THere is a problem with FSid=${FSindex}, please contact Peter`);
+      return notOK;
+    }
+  } else { // Parameter is given and not a string, assumed an integer
+    FSindexToReturn = FSindex;
+  }
+
+  // Validation
+  if (!OPSDetails.FieldSpecsArray) {
+    // eslint-disable-next-line no-alert, max-len
+    alert('Sorry but you cannot enter details as you do not have any FieldSpecs set up yet. Try recompiling (and clear cache) and if still a problem, contact Peter.');
+    return notOK;
+  }
+  if (!OPSDetails.FieldSpecsArray[FSindexToReturn]) {
+    // eslint-disable-next-line no-alert, max-len
+    alert(`Cannot find the given FieldSpec for index=${FSindexToReturn}. Try recompiling (and clear cache) and if still a problem, contact Peter.`);
+    return notOK;
+  }
+  return FSindexToReturn;
+}
+
+export function fieldSpecWanted(FSindex, feature) {
+  // Used after checkFSOK so can assume all validated
+  let fieldSpec = {};
+  if (FSindex >= 0) {
+    const { OPSDetails } = store.getters;
+    fieldSpec = OPSDetails.FieldSpecsArray[FSindex];
+  } else { // -1 is a special case of 'All (current) Properties'
+    fieldSpec.FSid = 'AP';
+    fieldSpec.FSname = 'All Properties';
+    // was    allCurrentProperties = allProperties(featureToBeAltered);
+    // was    fieldSpec.FieldArray = allCurrentProperties;
+    fieldSpec.FieldArray = allProperties(feature);
+  }
+  return fieldSpec;
+}
+
+export function fieldsWanted(fieldSpec) {
+  // Used after checkFSOK and fieldSpecWanted
+  const fields = fieldSpec.FieldArray; // even for MFLScomboindex == 0 - 'All (current) Properties'
+  // Note that field named BB in FS has id in the form as D_BB (to avoid any duplication)
+  //   and its value is taken from and put back into the property BB of the featureToBeAltered
+  return fields;
+}

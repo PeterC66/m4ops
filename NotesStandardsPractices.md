@@ -333,7 +333,7 @@ See under [Standards and styles](#standards-and-styles)
   - cd C:\\Users\\Peter Admin\\AppData\\Roaming\\pandoc, and do everything there
   - pandoc -f docx -t gfm “C:\\Users\\Peter\_2\\Documents\\Mapping\\Software\\M4OPS2\\Documentation\\filename.docx” -o filename.md
 - for relative links use \[a relative link\](other\_file.md)
-- ??Use [VuePress](https://medium.com/@charlesouellet/deep-dive-into-vuepress-craft-a-clean-documentation-blog-de6ac8e0c917)
+- ??Use [VuePress](https://medium.com/@charlesouellet/deep-dive-into-vuepress-craft-a-clean-documentation-blog-de6ac8e0c917), a [Vue-powered Static Site Generator](https://vuepress.vuejs.org/)
 - [Percolate](https://github.com/danburzo/percollate) - A command-line tool to turn web pages into beautifully formatted PDFs
 
 ## HTML5 standards
@@ -341,6 +341,7 @@ See under [Standards and styles](#standards-and-styles)
 - See [html5doctor's tag/element-index](http://html5doctor.com/element-index/) and [their flow chart](h5d-sectioning-flowchart.png) for use of \<section\> etc
 - [Learn to Code HTML & CSS](https://learn.shayhowe.com/html-css/) - the fundamentals
 - [Learn to Code Advanced HTML & CSS](https://learn.shayhowe.com/advanced-html-css/performance-organization/)
+[HTML Living Standard](https://html.spec.whatwg.org/multipage/)
 
 ## JS and ES6 standards
 
@@ -429,7 +430,6 @@ graph LR;
 - [Vue.js cookbook](https://vuejs.org/v2/cookbook/index.html)
 - [Vue Development In 2019: What You Need To Know](https://vuejsdevelopers.com/2018/12/04/vue-js-2019-knowledge-map/)
 - to open the visual interface for managing project > vue ui
-
 - [Vue.js User Forum](https://forum.vuejs.org/)
 - [GitHub for Vue.js](https://github.com/vuejs)
 - [**Awesome Vue.js**](https://github.com/vuejs/awesome-vue) is a HUGE curated list of things related to Vue.js, including components
@@ -467,6 +467,7 @@ graph LR;
 - [v-cloak](https://vuejs.org/v2/api/#v-cloak) - hide until Vue compiled
 - special abstract component [keep-alive](https://vuejs.org/v2/api/#keep-alive) tells Vue not to destroy and recreate its child, instead keep it in memory
 - [Access And Change Parent Variables From A Child Component With Vue.js](https://www.thepolyglotdeveloper.com/2018/04/access-change-parent-variables-child-component-vuejs/)
+- [Simplify Your Vue Components with Computed Setters](https://medium.com/@Taha_Shashtari/simplify-your-components-with-computed-setters-2f687f193fb0) - get/set for a computed property
 
 ### Complex components
 
@@ -555,6 +556,11 @@ graph LR;
 
 ### Authorisation
 
+- Could use [Firebase](https://firebase.google.com/) - Google's realtime service, see [Introduction](https://hackernoon.com/introduction-to-firebase-218a23186cd7)
+  - [VueSchool](https://vueschool.io/courses/vuejs-firebase-authentication), with [code](https://github.com/vueschool/vuejs-firebase-authentication)
+  - Useful: [Build a Vue App with Firebase Authentication and Database](https://blog.bitsrc.io/build-a-vue-app-with-firebase-authentication-and-database-e7d6816f79af)
+  - uses [vuefire](https://github.com/vuejs/vuefire)
+  - also [useful](https://medium.freecodecamp.org/how-to-build-a-spa-using-vue-js-vuex-vuetify-and-firebase-adding-authentication-with-firebase-d9932d1e4365) - OK on firebase and vuex, but too Vuetify!
 - We use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS), [Managing](https://manage.auth0.com/)
 - We use [Universal Login](https://auth0.com/docs/hosted-pages/login), as seen the [Vue QWuickstart](https://auth0.com/docs/quickstart/spa/vuejs)
 - Use [vue-auth0-handler](https://github.com/felipe-tonon/vue-auth0-handler) and [vue-cookie](https://github.com/alfhen/vue-cookie)
@@ -562,6 +568,7 @@ graph LR;
 - [Auth0 Community](https://community.auth0.com/top/all)
 - For other guidance see half way down [Developing Production-Ready Apps](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
   - and also the [quick start](https://auth0.com/docs/quickstart/spa/vuejs)
+- [Other Possibles](https://github.com/vuejs/awesome-vue#authenticationauthorization)
 - See also [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
   - Might have used [Vue Auth](https://github.com/websanova/vue-auth) but no
 
@@ -602,12 +609,12 @@ graph LR;
 - [How to Organize Your CSS with a Modular Architecture (OOCSS, BEM, SMACSS)](https://snipcart.com/blog/organize-css-modular-architecture?)
 - [CSS utility classes](https://gomakethings.com/my-css-methodology)
 
-### Dates and Times
+### Useful components
+
+#### Dates and Times
 
 - [Moment.js](https://momentjs.com/) - Parse, validate, manipulate, and display dates and times
   - even better use [Luxon](https://raddevon.com/articles/choose-luxon-date-wrangling-javascript/)
-
-### Useful components
 
 #### Buefy
 
@@ -636,16 +643,33 @@ graph LR;
 
 #### Vue Forms
 
-- [Working with Dynamic Components in Vue.js](https://www.raymondcamden.com/2018/10/31/working-with-dynamic-components-in-vuejs)
-- Can use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
-- Can use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
+- We use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
+- [Working with Dynamic Components in Vue.js](https://www.raymondcamden.com/2018/10/31/working-with-dynamic-components-in-vuejs) - useful vanilla Vue using :is
+- Could (but don't) use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 - or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO as it is too all-embracing - using Element UI et al
 - see [VeeValidate 2.1: Validation Providers](https://medium.com/@logaretm/vee-validate-validation-providers-b5b38647c05c)
-- [Vue.js — Forms, components and considerations](https://blog.webf.zone/vue-js-forms-components-and-considerations-d81b3ffe9efb)
+- [Vue.js — Forms, components and considerations](https://blog.webf.zone/vue-js-forms-components-and-considerations-d81b3ffe9efb) - some dos and don'ts
+- [Vue-multiselect](https://vue-multiselect.js.org/) - included in vue-form-generator
+- See also [this list of form components](https://github.com/vuejs/awesome-vue#form)
+  - includes Rich Text Editing etc
+- [Modals](https://github.com/vuejs/awesome-vue#overlay)
+
+#### Other
+
+- [vue-stepper-component](https://adi518.github.io/vue-stepper-component/)
+- [scrolling etc](https://github.com/vuejs/awesome-vue#scroll)
+  - [infinite-scroll](https://github.com/vuejs/awesome-vue#infinite-scroll)
+- [pagination](https://github.com/vuejs/awesome-vue#pagination)
+- [Create documentation](https://github.com/vuejs/awesome-vue#docs)
+- [Tables/grids](https://github.com/vuejs/awesome-vue#table)
+- [Charts](https://github.com/vuejs/awesome-vue#charts)
+- [Markdown](https://github.com/vuejs/awesome-vue#markdown)
+- [Trees](https://github.com/vuejs/awesome-vue#tree)
+- [search](https://github.com/vuejs/awesome-vue#search)
 
 ### Standards and styles
 
-- See [the official style guide](https://vuejs.org/v2/style-guide/)
+- See [the official style guide](https://vuejs.org/v2/style-guide/) 1 > 2 > 3
 
 - **Naming conventions**
   - Component names are always **multi-word**, except for the root “App” component.
@@ -739,6 +763,7 @@ graph LR;
 - Test runner [Karma](https://karma-runner.github.io/2.0/index.html)
 - [**Vue Test Utils**](https://vue-test-utils.vuejs.org/) is the official unit testing utility library for Vue.js.
   - Can use [vue-jest preprocessor](https://vue-test-utils.vuejs.org/guides/testing-single-file-components-with-jest.html)
+- [Possibles](https://github.com/vuejs/awesome-vue#test)
 
 ## OpenLayers
 

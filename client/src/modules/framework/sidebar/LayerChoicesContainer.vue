@@ -2,16 +2,16 @@
   <div>
     <ChooseLayer
       v-for="(layer, index) in chosenLayersMainmap"
-      :layer="layer"
       :key="'SCL'+index+layer.ldid"
+      :layer="layer"
       :layer-number="index"
       :show-slider="index>0"
       :show-up-button="index>0"
     />
     <ChooseLayer
       v-if="nChosenLayers < maxChooseLayers"
-      :layer="{ldid:voidLdid, opacity: 0.5}"
       :key="'SCL'+nChosenLayers"
+      :layer="{ldid:voidLdid, opacity: 0.5}"
       :layer-number="nChosenLayers"
       :show-slider="false"
       :show-up-button="false"

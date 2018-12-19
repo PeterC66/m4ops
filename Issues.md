@@ -13,7 +13,7 @@
 - Users, Passwords - use Auth0
   - Admin, Manager, User, Guest
 - Debounce mouse movements
-- -[v-viewer](http://mirari.cc/v-viewer/) gallery
+- -[v-viewer](http://mirari.cc/v-viewer/) gallery, or [Carousel](https://github.com/vuejs/awesome-vue#carousel)
 
 ## Await v0.12 Priority
 
@@ -59,6 +59,8 @@
   - Transferring a Modifiable layer to become a Managed one (with its LayerDef)
   - (assuming PDC has processes for the Provided layers)
 - use [vuelayers utilities](https://github.com/ghettovoice/vuelayers/tree/master/src/util)
+- [context menu](https://github.com/vuejs/awesome-vue#context-menu)?
+- [print to paper](https://github.com/mycure-inc/vue-html-to-paper)
 
 ## Low Priority
 
