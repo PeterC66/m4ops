@@ -1081,6 +1081,7 @@ From Terminal: C:\projects\m4ops\client>npm run build
   - For doing it without claudia [see this](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-with-lambda-integration.html) and [this](https://ig.nore.me/2016/03/setting-up-lambda-and-a-gateway-through-the-cli/).
 
 - To see what is happening in Lambda, and console messages, use AWS CloudWatch in the region we used (us-east-1) - [prices](https://aws.amazon.com/cloudwatch/pricing)
+- but see [the serverless_computing_study](https://www.theregister.co.uk/2018/12/19/serverless_computing_study/)
 
 #### Claudia
 

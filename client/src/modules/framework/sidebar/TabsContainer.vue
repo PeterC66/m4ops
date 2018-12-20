@@ -5,16 +5,16 @@
     @change="selectActiveTab"
   >
     <b-tab-item label="Actions">
-      <p>Content of Actions Tab Pane</p>
+      <ActionsPane />
     </b-tab-item>
     <b-tab-item label="MFL">
-      Content of MFL Tab Pane
+      <MFLPane />
     </b-tab-item>
     <b-tab-item label="Upload">
-      Content of Upload Tab Pane
+      <UploadPane />
     </b-tab-item>
     <b-tab-item label="Time">
-      Content of Time Tab Pane
+      <TimePane />
     </b-tab-item>
   </b-tabs>
 </template>
@@ -22,8 +22,19 @@
 <script>
 import { mapActions } from 'vuex';
 
+import ActionsPane from './ActionsPane.vue';
+import MFLPane from './MFLPane.vue';
+import UploadPane from './UploadPane.vue';
+import TimePane from './TimePane.vue';
+
 export default {
   name: 'TabsContainer',
+  components: {
+    ActionsPane,
+    MFLPane,
+    UploadPane,
+    TimePane,
+  },
   props: {
     activeTabNumber: {
       type: Number,
