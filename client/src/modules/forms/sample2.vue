@@ -1,6 +1,6 @@
 <template>
   <div class="panel-block">
-    <form style="background-color:white">
+    <form>
       <vue-form-generator
         :schema="schema"
         :model="model"
@@ -9,16 +9,13 @@
     </form>
   </div>
 </template>
-
 <script>
 import VueFormGenerator from 'vue-form-generator';
-// import 'vue-form-generator/dist/vfg.css';
+import Vue from 'vue';
+
+Vue.use(VueFormGenerator);
 
 export default {
-  name: 'SampleForm',
-  components: {
-    'vue-form-generator': VueFormGenerator.component,
-  },
   data() {
     return {
 
@@ -91,6 +88,7 @@ export default {
             ],
           },
         ],
+
       },
       formOptions: {
         validateAfterLoad: true,

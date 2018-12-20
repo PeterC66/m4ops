@@ -8,7 +8,7 @@
 import SampleForm from '../modules/forms/sample.vue';
 
 export default {
-  name: 'About',
+  name: 'Form',
   components: {
     SampleForm,
   },
