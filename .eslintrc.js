@@ -14,11 +14,13 @@ module.exports = {
     "vue/component-name-in-template-casing": ["error", "PascalCase", { 
         "ignores": [
           "anchored-heading",
+          "b-checkbox",
           "b-dropdown",
           "b-dropdown-item",
           "b-field",
           "b-icon",
           "b-input",
+          "b-modal",
           "b-switch",
           "b-tabs",
           "b-tab-item",

@@ -1,5 +1,5 @@
 <template>
-  <div class="panel-block">
+  <div class="panel-body">
     <form style="background-color:white">
       <vue-form-generator
         :schema="schema"

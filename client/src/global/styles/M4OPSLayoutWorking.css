@@ -109,23 +109,6 @@ td.flbody {padding-left: 1em; text-indent:-1em;} /* so all text after first line
 #BOTextLine {}
 #BOTextOverlay {}
 
-/* Based on http://www.bootply.com/s6x5oKLiDG */
-/* CSS used here will be applied after bootstrap.css */
-.modal-header-M4OPS {
-	color:#fff;
-	padding:9px 15px;
-	border-bottom:1px solid #eee;
-	background-color: #729246;
-	-webkit-border-top-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	 border-top-left-radius: 5px;
-	 border-top-right-radius: 5px;
-}
-.modal-body-M4OPS {background-color: #F8F8F8;}
-.modal-footer-M4OPS {background-color: #EEF2E9;}
-
 .btn-left {float: left;}
 
 #DNModalTitle {text-align: center;}

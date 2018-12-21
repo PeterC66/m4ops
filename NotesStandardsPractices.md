@@ -648,7 +648,9 @@ graph LR;
   - [and this](https://vegibit.com/vuejs-form-example/)
   - [Use form element](https://alligator.io/vuejs/vue-form-handling/)
   - [interestipng](https://auralinna.blog/post/2018/how-to-build-a-complete-form-with-vue-js) - use i18n translation strings even if only one language?
-- We use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://icebob.gitbooks.io/vueformgenerator/content/)
+- We use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://vue-generators.gitbook.io/vue-generators/)
+  - [Issues #503 and my #569](https://github.com/vue-generators/vue-form-generator/issues/503)
+  - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
 - [Working with Dynamic Components in Vue.js](https://www.raymondcamden.com/2018/10/31/working-with-dynamic-components-in-vuejs) - useful vanilla Vue using :is
 - Could (but don't) use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 - or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO as it is too all-embracing - using Element UI et al
@@ -657,7 +659,8 @@ graph LR;
 - [Vue-multiselect](https://vue-multiselect.js.org/) - included in vue-form-generator
 - See also [this list of form components](https://github.com/vuejs/awesome-vue#form)
   - includes Rich Text Editing etc
-- [Modals](https://github.com/vuejs/awesome-vue#overlay)
+- [Modals](https://github.com/vuejs/awesome-vue#overlay) - use buefy
+  - Use [portal-vue](https://linusborg.github.io/portal-vue/#/) - see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design](https://adamwathan.me/advanced-vue-component-design/)
 - Interesting: [How to Handle Multi-row Forms with Vue, Vuex and vuex-map-fields](https://markus.oberlehner.net/blog/how-to-handle-multi-row-forms-with-vue-vuex-and-vuex-map-fields/) (automates computed get/set)
 
 #### Other
