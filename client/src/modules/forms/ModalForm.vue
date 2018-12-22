@@ -10,26 +10,13 @@
         </p>
       </header>
       <section class="modal-card-body modal-body-M4OPS">
-        <b-field label="Email">
-          <b-input
-            type="email"
-            :value="email"
-            placeholder="Your email"
-            required
+        <form style="background-color:white">
+          <vue-form-generator
+            :schema="schema"
+            :model="model"
+            :options="formOptions"
           />
-        </b-field>
-
-        <b-field label="Password">
-          <b-input
-            type="password"
-            :value="password"
-            password-reveal
-            placeholder="Your password"
-            required
-          />
-        </b-field>
-
-        <b-checkbox>Remember me</b-checkbox>
+        </form>
       </section>
       <footer class="modal-card-foot modal-footer-M4OPS">
         <button
@@ -48,19 +35,85 @@
 </template>
 
 <script>
-import { Portal, PortalTarget } from 'portal-vue';
+// import { Portal, PortalTarget } from 'portal-vue';
+import VueFormGenerator from 'vue-form-generator';
+import 'vue-form-generator/dist/vfg.css';
 
 export default {
+  name: 'ModalForm',
   components: {
-    Portal,
-    PortalTarget,
+    'vue-form-generator': VueFormGenerator.component,
+    // Portal,
+    // PortalTarget,
+  },
+  data() {
+    return {
+
+      model: {
+        id: 1,
+        name: '',
+        address: '',
+        comment: '',
+      },
+
+      schema: {
+        fields: [
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'ID (disabled text field)',
+            model: 'id',
+            readonly: true,
+            disabled: true,
+          },
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'Name',
+            model: 'name',
+            placeholder: 'Name',
+            required: true,
+            hint: 'The name of the feature',
+            help: 'A short name',
+            validator: 'string',
+            description: 'PDC non-VFG property',
+          },
+          {
+
+            type: 'input',
+            inputType: 'text',
+            label: 'Address',
+            model: 'address',
+            placeholder: 'Address',
+            required: true,
+            help: 'The address of the feature',
+            validator: 'string',
+            description: 'PDC non-VFG property',
+          },
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'Comment',
+            model: 'comment',
+            placeholder: 'Name',
+            required: false,
+            help: 'Enter any comment here',
+            validator: 'string',
+            description: 'Any comment about the feature',
+          },
+        ],
+      },
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true,
+      },
+    };
   },
 };
 </script>
 
 <style scoped>
 /* Based on http://www.bootply.com/s6x5oKLiDG */
-/* CSS used here will be applied after bootstrap.css */
 .modal-header-M4OPS {
   padding:9px 15px;
   border-bottom:1px solid #eee;

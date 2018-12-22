@@ -218,6 +218,7 @@ Notes: Each folder
 Our OPS images etc go in the public folder - see [this](https://cli.vuejs.org/guide/html-and-static-assets.html#the-public-folder)
 
 - storing them in the MongoDB database would use up space too much???
+- consider [Fractal Project Structure](https://github.com/davezuko/react-redux-starter-kit/wiki/Fractal-Project-Structure)
 
 ## Naming conventions
 
@@ -643,27 +644,45 @@ graph LR;
 
 #### Vue Forms
 
-- Official [Form Input Bindings](https://vuejs.org/v2/guide/forms.html)
-  - [Further descriptions](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/)
-  - [and this](https://vegibit.com/vuejs-form-example/)
-  - [Use form element](https://alligator.io/vuejs/vue-form-handling/)
-  - [interestipng](https://auralinna.blog/post/2018/how-to-build-a-complete-form-with-vue-js) - use i18n translation strings even if only one language?
-- We use [vue-form-generator](https://github.com/vue-generators/vue-form-generator) - [documentation](https://vue-generators.gitbook.io/vue-generators/)
-  - [Issues #503 and my #569](https://github.com/vue-generators/vue-form-generator/issues/503)
-  - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
+##### Plain
+
+- [Form Input Bindings](https://vuejs.org/v2/guide/forms.html)
+- [Further descriptions](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/)
+- [and this](https://vegibit.com/vuejs-form-example/)
+- [Use form element](https://alligator.io/vuejs/vue-form-handling/)
+- [interestipng](https://auralinna.blog/post/2018/how-to-build-a-complete-form-with-vue-js) - use i18n translation strings even if only one language?
 - [Working with Dynamic Components in Vue.js](https://www.raymondcamden.com/2018/10/31/working-with-dynamic-components-in-vuejs) - useful vanilla Vue using :is
+- [Vue.js — Forms, components and considerations](https://blog.webf.zone/vue-js-forms-components-and-considerations-d81b3ffe9efb) - some dos and don'ts
+- [Building Custom Multi-Option Form Components with Vue.js](https://markus.oberlehner.net/blog/building-custom-multi-option-form-components-with-vue/)
+
+#### VueFormGenerator
+
+- On [github](https://github.com/vue-generators/vue-form-generator) - [on npm](https://www.npmjs.com/package/vue-form-generator)
+- [Documentation](https://vue-generators.gitbook.io/vue-generators/), on [github](https://github.com/vue-generators/vue-form-generator-docs), [my fork](https://github.com/PeterC66/vue-form-generator-docs) ( see [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/))
+- [another example](https://vuejsexamples.net/vue-form-generator/) and on [Vue.js Feed](https://vuejsfeed.com/blog/vue-form-generator)
+- [css aspects](https://github.com/vue-generators/vue-form-generator/issues/384) and [this fiddle](https://jsfiddle.net/76of8ucs/)
+- [How to dynamically load (part of) a form schema asynchronously](https://stackoverflow.com/questions/50060179/how-to-dynamically-load-a-vue-form-generator-schema)
+- [Populate vue-form-generator's select field with dynamic values](https://stackoverflow.com/questions/48562255/populate-vue-form-generators-select-field-with-dynamic-values)
+- [Attributes compatibility for input types](https://vue-generators.gitbook.io/vue-generators/fields/core-fields/input#attributes-compatibility)
+- VFG generator: [Issues #503 and my #569](https://github.com/vue-generators/vue-form-generator/issues/503)
+  - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
+- [Vue-multiselect](https://vue-multiselect.js.org/) - used in vue-form-generator
+
+#### Other on forms
+
 - Could (but don't) use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 - or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO as it is too all-embracing - using Element UI et al
 - see [VeeValidate 2.1: Validation Providers](https://medium.com/@logaretm/vee-validate-validation-providers-b5b38647c05c)
-- [Vue.js — Forms, components and considerations](https://blog.webf.zone/vue-js-forms-components-and-considerations-d81b3ffe9efb) - some dos and don'ts
-- [Vue-multiselect](https://vue-multiselect.js.org/) - included in vue-form-generator
 - See also [this list of form components](https://github.com/vuejs/awesome-vue#form)
   - includes Rich Text Editing etc
-- [Modals](https://github.com/vuejs/awesome-vue#overlay) - use buefy
-  - Use [portal-vue](https://linusborg.github.io/portal-vue/#/) - see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design](https://adamwathan.me/advanced-vue-component-design/)
 - Interesting: [How to Handle Multi-row Forms with Vue, Vuex and vuex-map-fields](https://markus.oberlehner.net/blog/how-to-handle-multi-row-forms-with-vue-vuex-and-vuex-map-fields/) (automates computed get/set)
 
-#### Other
+### Modals
+
+- [Modals](https://github.com/vuejs/awesome-vue#overlay) - use buefy
+- Use [portal-vue](https://linusborg.github.io/portal-vue/#/) - see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design](https://adamwathan.me/advanced-vue-component-design/)
+
+#### Other Vue aspects
 
 - [vue-stepper-component](https://adi518.github.io/vue-stepper-component/)
 - [scrolling etc](https://github.com/vuejs/awesome-vue#scroll)
