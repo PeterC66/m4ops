@@ -1,29 +1,34 @@
 <template>
   <vl-interaction-select
     v-if="drawType == null"
-    :features.sync="selectedFeatures">
+    :features.sync="selectedFeatures"
+  >
     <template slot-scope="select">
       <!-- select styles -->
       <vl-style-box>
         <vl-style-stroke
           :width="7"
-          color="#423e9e"/>
-        <vl-style-fill :color="[254, 178, 76, 0.7]"/>
+          color="#423e9e"
+        />
+        <vl-style-fill :color="[254, 178, 76, 0.7]" />
         <vl-style-circle :radius="5">
           <vl-style-stroke
             :width="7"
-            color="#423e9e"/>
-          <vl-style-fill :color="[254, 178, 76, 0.7]"/>
+            color="#423e9e"
+          />
+          <vl-style-fill :color="[254, 178, 76, 0.7]" />
         </vl-style-circle>
       </vl-style-box>
       <vl-style-box :z-index="1">
         <vl-style-stroke
           :width="2"
-          color="#d43f45"/>
+          color="#d43f45"
+        />
         <vl-style-circle :radius="5">
           <vl-style-stroke
             :width="2"
-            color="#d43f45"/>
+            color="#d43f45"
+          />
         </vl-style-circle>
       </vl-style-box>
       <!--// select styles -->
@@ -31,12 +36,13 @@
       <!-- selected feature popup -->
       <vl-overlay
         v-for="feature in select.features"
-        :key="feature.id"
         :id="feature.id"
+        :key="feature.id"
         :position="pointOnSurface(feature.geometry)"
         :auto-pan="true"
         :auto-pan-animation="{ duration: 300 }"
-        class="feature-popup">
+        class="feature-popup"
+      >
         <template slot-scope="popup">
           <section class="card">
             <header class="card-header">
@@ -47,9 +53,10 @@
               <a
                 class="card-header-icon"
                 title="Close"
-                @click="selectedFeatures = selectedFeatures.filter(f => f.id !== feature.id)">
+                @click="selectedFeatures = selectedFeatures.filter(f => f.id !== feature.id)"
+              >
                 <!-- eslint-enable max-len -->
-                <b-icon icon="close"/>
+                <b-icon icon="close" />
               </a>
             </header>
             <div class="card-content">

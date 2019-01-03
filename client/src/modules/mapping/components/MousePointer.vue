@@ -2,13 +2,14 @@
   <vl-layer-vector :overlay="true">
     <vl-source-vector>
       <vl-feature :id="'mouse-' + rh?'RH':'Main'">
-        <vl-geom-point :coordinates="position"/>
+        <vl-geom-point :coordinates="position" />
         <vl-style-box>
-          <vl-style-icon
+          <VlStyleIcon
             :anchor="[10, 10]"
             anchor-xunits="pixels"
             anchor-yunits="pixels"
-            src="../../../assets/images/cross.png"/>
+            src="../../../assets/images/cross.png"
+          />
         </vl-style-box>
       </vl-feature>
     </vl-source-vector>

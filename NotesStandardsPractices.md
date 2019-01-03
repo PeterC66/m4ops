@@ -228,7 +228,9 @@ See under [Standards and styles](#standards-and-styles)
 
 - Our main development environment is VSCode - intelligent code editing
 - [Documentation](https://code.visualstudio.com/docs?start=true) and [Chrome debugging in VSCode](https://github.com/Microsoft/vscode-chrome-debug/blob/master/README.md#troubleshooting)
-
+- a workspace (defined by an editable workspace file) is defined to be one or more folders and VSCode settings - we will not use them, unless it becomes necessary
+- Note that all VSCode settings (including cSpell words) are done at the **folder** level (eg in C:\projects\m4ops\.vscode\settings.json), rather than at the User (C:\Users\Peter_2\AppData\Roaming\Code\User) or workspace level
+- Similarly for ESLint
 - Use Ctrl+Shift+P for the list of commands (Ctrl+S to save - but we have set it to save automatically), and use Ctrl+space for **context-sensitive snippets** (or start typing)
 
 - For documentation and markdown see separate [Documenting](#Documenting) section below
@@ -303,7 +305,7 @@ See under [Standards and styles](#standards-and-styles)
 - Note that we don't use [setting up global eslint in VSCode](https://medium.com/@davidchristophersally/how-to-set-up-eslint-in-vscode-globally-253f25fbaff9) (because create-react requires it local)
 
 - Note that any plugins or shareable configs that you use must also be installed locally to work with a locally-installed ESLint
-- See [eslint-prettier-vue-workflow](https://medium.com/@doppelmutzi/eslint-prettier-vue-workflow-46a3cf54332f)
+- See [eslint-prettier-vue-workflow](https://medium.com/@doppelmutzi/eslint-prettier-vue-workflow-46a3cf54332f) - seems good but not actually tried
 - [List of rules](https://eslint.org/docs/rules/) and [Configuring in detail](https://eslint.org/docs/user-guide/configuring) (including [via in-file comments](https://eslint.org/docs/user-guide/configuring.html#disabling-rules-with-inline-comments))
 
 - can /* eslint-disable */ or // eslint-disable-next-line or // eslint-disable-line
@@ -316,6 +318,7 @@ See under [Standards and styles](#standards-and-styles)
   - [Eslint plugin for Vue](https://github.com/vuejs/eslint-plugin-vue)
   - See especially [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
   - Also installed Vue 2 Snippets, Vue Peek
+  - Note that "npm run lint" runs "vue-cli-service lint" - which probably has different eslint options set
 
 ## Documenting
 
@@ -343,6 +346,7 @@ See under [Standards and styles](#standards-and-styles)
 - [Learn to Code HTML & CSS](https://learn.shayhowe.com/html-css/) - the fundamentals
 - [Learn to Code Advanced HTML & CSS](https://learn.shayhowe.com/advanced-html-css/performance-organization/)
 - [HTML Living Standard](https://html.spec.whatwg.org/multipage/)
+- [HTML etc Cleanup](https://www.10bestdesign.com/dirtymarkup/)
 
 ## JS and ES6 standards
 

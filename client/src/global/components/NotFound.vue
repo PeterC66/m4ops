@@ -1,6 +1,8 @@
 <template>
   <div class="has-text-centered">
-    <h1 class="title">Sorry. Page Not Found :(</h1>
+    <h1 class="title">
+      Sorry. Page Not Found :(
+    </h1>
     <p>Use the navigation links above to navigate to a valid page.</p>
   </div>
 </template>
