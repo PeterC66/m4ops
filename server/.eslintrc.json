@@ -1,17 +1,28 @@
 {
-  "extends": "airbnb",
-  "env": {
-    "node": true,
-    "es6": true,
-    "browser": true
-  },
-  "parser": "babel-eslint",
-  "plugins": [
-    "react",
-    "jsx-a11y",
-    "import"
-  ],
   "rules": {
-    "linebreak-style": 0
-   }
- }
+    "linebreak-style": "off",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_id"
+        ]
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "ignoreComments": true
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "moduleState"
+        ]
+      }
+    ]
+  }
+}

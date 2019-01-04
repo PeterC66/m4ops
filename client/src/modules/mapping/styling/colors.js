@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { pdcArraySearch, isEmpty } from '../../../global/utils';
 import { ldFromLayer } from '../utils/mapUtils';
 import { styleArraysIndex } from './styleUtils';

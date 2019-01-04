@@ -1,3 +1,4 @@
+/* eslint-disable */
 import OlStyle from 'ol/style';
 
 import { getDirectValueOf } from '../utils/mapUtils';

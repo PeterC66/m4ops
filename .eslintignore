@@ -1,3 +1,15 @@
-**/node_modules/*
+# Paths are relative to this .eslintignore location (ie /m4ops/)
+# Use forward slashes (/)
+
+**/unused/**
+**/*OLD*/**
+
+
+**/node_modules/**
+**/dist/**
+
 .aws/*
-*OLD*
+client/OldReact/*
+client/vuelayers-demo/*
+
+

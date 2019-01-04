@@ -297,28 +297,39 @@ See under [Standards and styles](#standards-and-styles)
 
 ### Eslint for proofing code
 
-- [Set up guide](https://travishorn.com/setting-up-eslint-on-vs-code-with-airbnb-javascript-style-guide-6eb78a535ba6) includes style –uses [eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) (-base for non-react), [guide to configuring](https://eslint.org/docs/user-guide/configuring)
+- [Set up guide](https://travishorn.com/setting-up-eslint-on-vs-code-with-airbnb-javascript-style-guide-6eb78a535ba6) includes style –uses [eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) (-base for non-react)
   - npm i -D eslint eslint-config-airbnb-base eslint-plugin-import
-  - Create .eslintrc.js: module.exports = { "extends": "airbnb-base" };
 - Tried using Prettier rather than a style guide, but complications
 
 - Note that we don't use [setting up global eslint in VSCode](https://medium.com/@davidchristophersally/how-to-set-up-eslint-in-vscode-globally-253f25fbaff9) (because create-react requires it local)
 
 - Note that any plugins or shareable configs that you use must also be installed locally to work with a locally-installed ESLint
-- See [eslint-prettier-vue-workflow](https://medium.com/@doppelmutzi/eslint-prettier-vue-workflow-46a3cf54332f) - seems good but not actually tried
-- [List of rules](https://eslint.org/docs/rules/) and [Configuring in detail](https://eslint.org/docs/user-guide/configuring) (including [via in-file comments](https://eslint.org/docs/user-guide/configuring.html#disabling-rules-with-inline-comments))
-
-- can /* eslint-disable */ or // eslint-disable-next-line or // eslint-disable-line
-  - for rules eg no-console, max-len
-  - but best just right click to implement this
 
 - Vue and EsLint
 
+- See [eslint-prettier-vue-workflow](https://medium.com/@doppelmutzi/eslint-prettier-vue-workflow-46a3cf54332f) - seems good but not actually tried
   - [Vetur Vue tooling for VS Code](https://vuejs.github.io/vetur/)
   - [Eslint plugin for Vue](https://github.com/vuejs/eslint-plugin-vue)
   - See especially [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
-  - Also installed Vue 2 Snippets, Vue Peek
+- Also installed Vue 2 Snippets, Vue Peek
+- To run on all files in eg client/src folder use ../node_modules/.bin/eslint . (but see .eslintignore below)
   - Note that "npm run lint" runs "vue-cli-service lint" - which probably has different eslint options set
+
+### Configuring eslint
+
+- See [guide to configuring](https://eslint.org/docs/user-guide/configuring)
+- [List of rules](https://eslint.org/docs/rules/)
+- We do use some [Configuration (in-file) comments](https://eslint.org/docs/user-guide/configuring.html#disabling-rules-with-inline-comments))
+  - /* eslint-disable */ or // eslint-disable-next-line or // eslint-disable-line
+    - for rules eg no-console, max-len
+    - can just right click in VSCode to implement this
+- We do not use the eslintConfig field, but do use .eslintrc.json files
+  - /m4ops/.eslintrc.json has the basic configuration that applies to both client and server code
+    - do not include any rules (even common ones) as the whole rules object is overwritten by that in either the client or server file
+  - /m4ops/client/.eslintrc.json has any specific configuration needed for the client (Vue) system, including rules
+  - /m4ops/server/.eslintrc.json is similar for the server (Express) system, including rules
+- We also use an /m4ops/.eslintignore file in any folder we run eslint in (note that [only one such file is used](https://eslint.org/docs/user-guide/configuring#eslintignore))
+  - for patterns see [gitignore](https://git-scm.com/docs/gitignore#_pattern_format)
 
 ## Documenting
 

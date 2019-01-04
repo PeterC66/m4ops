@@ -1,3 +1,4 @@
+/* eslint-disable */
 export function HeadAndDescText(head, desc, ev, fnHead, fnBody) {
   // return a string with a heading/description pair eg that can be appended
   // the ev argument is a string (eg "", or "ev") that is inserted into the id of the element - for the CSS

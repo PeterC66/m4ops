@@ -1,3 +1,4 @@
+/* eslint-disable */
 import MousePosition from 'ol/control/MousePosition';
 
 import store from '../../../store';

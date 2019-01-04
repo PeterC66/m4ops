@@ -1,3 +1,4 @@
+/* eslint-disable */
 import proj4 from 'proj4';
 import OlProj from 'ol/proj';
 
