@@ -80,6 +80,19 @@
 
 This is an eclectic, pragmatic working document to help me remember how to do things, and evolving as I get more experience (or change technologies!). It has lots of links for useful reference. Be aware that although the intention is there, it is likely that at any time the code will not meet the standards by a long way. There is also lots of stuff here that I do not understand yet!
 
+Whilst the codebase represented here is usually a working system, there is currently quite a bit of the code that is non-functional or not yet working, because it is:
+
+- redundant
+- in process of being adopted from v1 of M4OPS
+- experimental, or
+- under development
+
+These files are excluded from linting by virtue of
+
+- being in a folder called "unused" (per src/.eslintignore)
+- being in a folder with the word OLD in the name (per src/.eslintignore, or
+- starting with the line /* eslint-disable */
+
 Although fairly complex, this is a simplified approach to aid understanding, development and maintenance, and has been adapted in the light of experience. See other possibilities in [M4OPS2 Other Technical Possibilities](M4OPS2OtherTechnicalPossibilities.md), although as we go on any that are actually used will be moved from there into this document.
 
 ### Notes on this document
@@ -229,8 +242,9 @@ See under [Standards and styles](#standards-and-styles)
 - Our main development environment is VSCode - intelligent code editing
 - [Documentation](https://code.visualstudio.com/docs?start=true) and [Chrome debugging in VSCode](https://github.com/Microsoft/vscode-chrome-debug/blob/master/README.md#troubleshooting)
 - a workspace (defined by an editable workspace file) is defined to be one or more folders and VSCode settings - we will not use them, unless it becomes necessary
-- Note that all VSCode settings (including cSpell words) are done at the **folder** level (eg in C:\projects\m4ops\.vscode\settings.json), rather than at the User (C:\Users\Peter_2\AppData\Roaming\Code\User) or workspace level
+- Note that almost all VSCode settings (including cSpell words) are done at the **folder** level (eg in C:\projects\m4ops\.vscode\settings.json), rather than at the User (C:\Users\Peter_2\AppData\Roaming\Code\User) or workspace level
 - Similarly for ESLint
+- as the VSCode shell defaults to PowerShell on Windows 10 we set the terminal.integrated.shell.windows in user settings to "C:\\Windows\\System32\\cmd.exe"
 - Use Ctrl+Shift+P for the list of commands (Ctrl+S to save - but we have set it to save automatically), and use Ctrl+space for **context-sensitive snippets** (or start typing)
 
 - For documentation and markdown see separate [Documenting](#Documenting) section below
@@ -312,7 +326,7 @@ See under [Standards and styles](#standards-and-styles)
   - [Eslint plugin for Vue](https://github.com/vuejs/eslint-plugin-vue)
   - See especially [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
 - Also installed Vue 2 Snippets, Vue Peek
-- To run on all files in eg client/src folder use ../node_modules/.bin/eslint . (but see .eslintignore below)
+- To run on all files in eg client/src folder use "../node_modules/.bin/eslint" . (but see .eslintignore below)
   - Note that "npm run lint" runs "vue-cli-service lint" - which probably has different eslint options set
 
 ### Configuring eslint
