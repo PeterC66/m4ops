@@ -572,12 +572,12 @@ graph LR;
 
 ### HTTP Requests
 
-- Did use [**vuex-api**](https://github.com/vouill/vuex-api)
+- Use [**vuex-api**](https://github.com/vouill/vuex-api)
   - for GETS use [json-api](https://github.com/vouill/vuex-api#using-a-component)
-- But now use plain [Axios](https://www.npmjs.com/package/axios) rather than plain fetch
-- [perform HTTP requests using Axios](https://flaviocopes.com/axios/) - simple examples
-- See [fetch-vs-axios](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
-- see [Using Axios to Consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html) for a simple approach
+- Considered later using plain [Axios](https://www.npmjs.com/package/axios), but too hard to change
+  - [perform HTTP requests using Axios](https://flaviocopes.com/axios/) - simple examples
+  - Rather than plain fetch, see [fetch-vs-axios](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5)
+  - see [Using Axios to Consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html) for a simple approach
 - See [vue.config.js](https://cli.vuejs.org/config/) is an optional config file, and needed for eg devserver-proxy
 - Not using [vuex-rest-api](https://christianmalek.github.io/vuex-rest-api) (makes part of the store), nor [vue-api-request](https://ftgibran.github.io/#/vue-api-request) (which has lots of options)
   - from [section on Utilities for HTTP requests](https://github.com/vuejs/awesome-vue#http-requests)
@@ -586,20 +586,27 @@ graph LR;
 
 ### Authorisation
 
+#### Simple Authorisation
+
+- very simple [with mock data](https://www.thepolyglotdeveloper.com/2018/04/simple-user-login-vuejs-web-application/)
+- more complete: [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
+- we use [Jason Watmore's approach](http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example), including [API](http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management)
+
+#### More complex Authorisation
+
 - Could use [Firebase](https://firebase.google.com/) - Google's realtime service, see [Introduction](https://hackernoon.com/introduction-to-firebase-218a23186cd7)
-  - [VueSchool](https://vueschool.io/courses/vuejs-firebase-authentication), with [code](https://github.com/vueschool/vuejs-firebase-authentication)
+  - [VueSchool](https://vueschool.io/courses/vuejs-firebase-authentication) - not free, with [code](https://github.com/vueschool/vuejs-firebase-authentication)
   - Useful: [Build a Vue App with Firebase Authentication and Database](https://blog.bitsrc.io/build-a-vue-app-with-firebase-authentication-and-database-e7d6816f79af)
   - uses [vuefire](https://github.com/vuejs/vuefire)
   - also [useful](https://medium.freecodecamp.org/how-to-build-a-spa-using-vue-js-vuex-vuetify-and-firebase-adding-authentication-with-firebase-d9932d1e4365) - OK on firebase and vuex, but too Vuetify!
-- We use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS), [Managing](https://manage.auth0.com/)
-- We use [Universal Login](https://auth0.com/docs/hosted-pages/login), as seen the [Vue QWuickstart](https://auth0.com/docs/quickstart/spa/vuejs)
-- Use [vue-auth0-handler](https://github.com/felipe-tonon/vue-auth0-handler) and [vue-cookie](https://github.com/alfhen/vue-cookie)
-- We have v9 of auth0-js [see reference documentation](https://auth0.com/docs/libraries/auth0js/v9)
-- [Auth0 Community](https://community.auth0.com/top/all)
-- For other guidance see half way down [Developing Production-Ready Apps](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
-  - and also the [quick start](https://auth0.com/docs/quickstart/spa/vuejs)
+- We use tried to [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS), [Managing](https://manage.auth0.com/)
+  - We use [Universal Login](https://auth0.com/docs/hosted-pages/login), as seen the [Vue QWuickstart](https://auth0.com/docs/quickstart/spa/vuejs)
+  - Use [vue-auth0-handler](https://github.com/felipe-tonon/vue-auth0-handler) and [vue-cookie](https://github.com/alfhen/vue-cookie)
+  - We have v9 of auth0-js [see reference documentation](https://auth0.com/docs/libraries/auth0js/v9)
+  - [Auth0 Community](https://community.auth0.com/top/all)
+  - For other guidance see half way down [Developing Production-Ready Apps](https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/)
+    - and also the [quick start](https://auth0.com/docs/quickstart/spa/vuejs)
 - [Other Possibles](https://github.com/vuejs/awesome-vue#authenticationauthorization)
-- See also [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
   - Might have used [Vue Auth](https://github.com/websanova/vue-auth) but no
 
 ### Demo
