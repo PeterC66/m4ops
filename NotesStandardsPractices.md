@@ -590,7 +590,7 @@ graph LR;
 
 - very simple [with mock data](https://www.thepolyglotdeveloper.com/2018/04/simple-user-login-vuejs-web-application/)
 - more complete: [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
-- we use [Jason Watmore's approach](http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example), including [API](http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management)
+- we use [Jason Watmore's approach](http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example), including [API](http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management) - see users module
 
 #### More complex Authorisation
 
