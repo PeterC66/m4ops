@@ -5,13 +5,12 @@ import M4OPSView from './views/M4OPSView.vue';
 import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
 
-import HomePage from './modules/users/home/HomePage.vue';
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -56,20 +55,6 @@ export default new Router({
   ],
 });
 
-/*
-// eslint-disable-next-line import/prefer-default-export
-export const router = new Router({
-  mode: 'history',
-  routes: [
-    { path: '/', component: HomePage },
-    { path: '/login', component: LoginPage },
-    { path: '/register', component: RegisterPage },
-
-    // otherwise redirect to home
-    { path: '*', redirect: '/' },
-  ],
-});
-
 // eslint-disable-next-line consistent-return
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
@@ -83,4 +68,5 @@ router.beforeEach((to, from, next) => {
 
   next();
 });
-*/
+
+export default router;
