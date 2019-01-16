@@ -1,5 +1,5 @@
+/*
 // src/Auth/AuthService.js from https://auth0.com/docs/quickstart/spa/vuejs
-
 import auth0 from 'auth0-js';
 import EventEmitter from 'eventemitter3';
 import router from '../../router';
@@ -94,3 +94,4 @@ class AuthService {
 }
 
 export default new AuthService();
+*/

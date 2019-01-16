@@ -4,13 +4,15 @@ import Home from './views/Home.vue';
 import M4OPSView from './views/M4OPSView.vue';
 import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
-import Callback from './modules/auth/Callback.vue';
+
+import HomePage from './modules/users/home/HomePage.vue';
+import LoginPage from './views/LoginPage.vue';
+import RegisterPage from './views/RegisterPage.vue';
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -37,14 +39,48 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     {
-      path: '/callback',
-      name: 'Callback',
-      component: Callback,
+      path: '/login',
+      name: 'login',
+      component: LoginPage,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterPage,
     },
     {
       path: '*',
-      name: 'NotFound',
+      name: 'notFound',
       component: NotFound,
     },
   ],
 });
+
+/*
+// eslint-disable-next-line import/prefer-default-export
+export const router = new Router({
+  mode: 'history',
+  routes: [
+    { path: '/', component: HomePage },
+    { path: '/login', component: LoginPage },
+    { path: '/register', component: RegisterPage },
+
+    // otherwise redirect to home
+    { path: '*', redirect: '/' },
+  ],
+});
+
+// eslint-disable-next-line consistent-return
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/login', '/register'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  if (authRequired && !loggedIn) {
+    return next('/login');
+  }
+
+  next();
+});
+*/

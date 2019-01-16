@@ -1,3 +1,4 @@
+/*
 // From https://auth0.com/blog/vue-js-and-lambda-developing-production-ready-apps-part-1/
 import auth0 from 'auth0-js';
 
@@ -66,3 +67,4 @@ class Auth {
 const auth0Client = new Auth();
 
 export default auth0Client;
+*/
