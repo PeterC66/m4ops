@@ -1,3 +1,4 @@
+/*
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
@@ -21,3 +22,4 @@ new Vue({
   store,
   render: h => h(App),
 });
+*/

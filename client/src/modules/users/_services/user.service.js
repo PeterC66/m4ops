@@ -2,7 +2,7 @@
 import { authHeader } from '../_helpers';
 
 // We are replacing the webpack config global by our process.env method
-// import config from 'config';
+// instead of import config from 'config';
 const config = {};
 config.apiUrl = process.env.CONFIG_APIURL;
 

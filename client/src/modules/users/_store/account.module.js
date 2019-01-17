@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign , import/prefer-default-export, no-unused-vars, no-shadow */
 import { userService } from '../_services';
-import { router } from '../_helpers';
+import router from '../../../router';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user

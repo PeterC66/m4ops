@@ -8,6 +8,9 @@ import mapping from './modules/mapping';
 import vuexApiGetters from './modules/vuexApi/vuexApiGetters';
 import framework from './modules/framework';
 import demo from './modules/demo';
+import { alert } from '../modules/users/_store/alert.module';
+import { account } from '../modules/users/_store/account.module';
+import { users } from '../modules/users/_store/users.module';
 
 Vue.use(Vuex);
 
@@ -21,5 +24,8 @@ export default new Vuex.Store({
     mapping,
     framework,
     demo,
+    alert,
+    account,
+    users,
   },
 });
