@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export, no-param-reassign, no-shadow */
+/* eslint-disable no-param-reassign, no-shadow */
 const state = {
   type: null,
   message: null,
@@ -31,9 +31,11 @@ const mutations = {
   },
 };
 
-export const alert = {
+const alert = {
   namespaced: true,
   state,
   actions,
   mutations,
 };
+
+export default alert;

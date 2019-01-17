@@ -1,5 +1,5 @@
-/* eslint-disable no-param-reassign , import/prefer-default-export, no-unused-vars, no-shadow */
-import { userService } from '../_services';
+/* eslint-disable no-param-reassign, no-unused-vars, no-shadow */
+import { userService } from '../../../modules/users/_services';
 import router from '../../../router';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -77,9 +77,11 @@ const mutations = {
   },
 };
 
-export const account = {
+const account = {
   namespaced: true,
   state,
   actions,
   mutations,
 };
+
+export default account;

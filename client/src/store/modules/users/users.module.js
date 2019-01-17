@@ -1,5 +1,5 @@
-/* eslint-disable import/prefer-default-export, no-param-reassign, no-shadow, no-unused-vars */
-import { userService } from '../_services';
+/* eslint-disable no-param-reassign, no-shadow, no-unused-vars */
+import { userService } from '../../../modules/users/_services';
 
 const state = {
   all: {},
@@ -62,9 +62,11 @@ const mutations = {
   },
 };
 
-export const users = {
+const users = {
   namespaced: true,
   state,
   actions,
   mutations,
 };
+
+export default users;

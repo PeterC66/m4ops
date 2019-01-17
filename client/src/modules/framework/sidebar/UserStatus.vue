@@ -1,5 +1,11 @@
 <template>
   <div>
+    <p
+      v-if="alert.message"
+      :class="`alert ${alert.type}`"
+    >
+      {{ alert.message }}
+    </p>
     <p>
       User Peter
            <!-- User {{ account.user.firstName }} -->
@@ -17,9 +23,17 @@ import { mapState, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapState({
-      account: state => state.account,
-      users: state => state.users.all,
+      account: state => state.users.account,
+      users: state => state.users.users.all,
+      alert: state => state.users.alert,
     }),
+  },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    $route(to, from) {
+      // clear alert on location change
+      this.clearAlert();
+    },
   },
   created() {
     this.getAllUsers();
@@ -28,6 +42,7 @@ export default {
     ...mapActions('users', {
       getAllUsers: 'getAll',
       deleteUser: 'delete',
+      clearAlert: 'alert/clear',
     }),
   },
 };
