@@ -18,10 +18,12 @@
     "dotenv": "^6.0.0",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
     "helmet": "^3.15.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.11",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "rootpath": "^0.1.2"
   },
   "devDependencies": {
     "claudia": "^5.1.2"

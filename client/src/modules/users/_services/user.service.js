@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { authHeader } from '../_helpers';
 
-// We are replacing JW's webpack config global by our process.env method
+// We are replacing Jason's webpack config global by our process.env method
 // instead of import config from 'config';
 const config = {};
 config.apiUrl = process.env.CONFIG_APIURL;
