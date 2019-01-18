@@ -22,6 +22,11 @@
           </router-link>
         </div>
         <div class="navbar-item">
+          <router-link to="/manage">
+            Manage
+          </router-link>
+        </div>
+        <div class="navbar-item">
           <router-link to="/about">
             About
           </router-link>

@@ -7,6 +7,7 @@ import NotFound from './global/components/NotFound.vue';
 
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
+import ManagePage from './views/ManagePage.vue';
 
 Vue.use(Router);
 
@@ -46,6 +47,11 @@ const router = new Router({
       path: '/register',
       name: 'register',
       component: RegisterPage,
+    },
+    {
+      path: '/manage',
+      name: 'manage',
+      component: ManagePage,
     },
     {
       path: '*',

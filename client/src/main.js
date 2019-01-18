@@ -28,7 +28,9 @@ import { configureFakeBackend } from './modules/users/_helpers';
 // console.log('env', process.env);
 
 Vue.use(VueLayers);
-Vue.use(VeeValidate);
+Vue.use(VeeValidate, {
+  errorBagName: 'vErrors',
+});
 
 configureFakeBackend();
 
