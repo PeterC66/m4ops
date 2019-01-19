@@ -586,20 +586,66 @@ graph LR;
 
 ### Authorisation
 
-#### Simple Authorisation
+- We use Jason Watmore's approach, and have absorbed his routines into ours (users modules), adapted to our standards
+
+#### JWT
+
+- JSON Web Tokens are an open, industry standard method for representing claims securely between two parties - [jwt.io](https://jwt.io/)  allows you to decode, verify and generate JWT
+- We use [jwt-express](https://www.npmjs.com/package/jwt-express) to facilitate this on the server
+  - it uses [express-unless](https://www.npmjs.com/package/express-unless) to conditionally prevent itself from running
+- As well as in REST APIs, JWTs can also be used in everyday web applications to store session data in a cookie - the JWT contains all the information we need
+- We ignore the issue of [CSRF/Cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
+- JWTs can be stale (different than expired) after a period of inactivity, so sometimes need to ensure their JWT is fresh, as well as valid
+
+#### Client system
+
+- See [Jason Watmore's approach - client](http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example)
+- clone of Jason Watmore's system is in C:projects/vue-vuex-registration-login-example
+- routines in \client\src
+  - \store\modules\users - defines the user aspects of the Vuex store (state, actions, mutations)
+    - account.module.js - the current user and their loggedin status
+    - alert.module.js - alert state: type and message
+    - users.module.js - all users
+  - \views
+    - LoginPage.vue - includes logout
+    - RegisterPage.vue
+    - ManagePage - (originally HomePage) sb only accessible by administrator
+  - \modules\users
+    - \_helpers
+      - auth-header.js - generates a header
+      - fake-backend.ts - intercepts certain api requests and mimics the behaviour of a real api
+      - user.service.js - all backend api calls, and logging in/out (handleResponse handles if the JWT token is no longer valid for any reason)
+
+#### Server system
+
+- See [Jason Watmore's approach - server/API](http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management)
+- clone of Jason Watmore's system is in C:projects/node-mongo-registration-login-api (server)
+- routines in \server\src
+  - \models\User.js for the Schema/model
+  - \modules\users for routines:
+    - config.json - has just the secret
+    - error-handler.js - centralised handling of api errors (TO DO include other modules' errors?)
+    - jwt.js - calls expressJwt to revoke the user token unless the route is specified as not requiring authentication
+    - user.service.js - contains the core business logic, encapsulates all interaction with the mongoose user model, and exposes a simple set of methods
+  - app.js includes a new major route: '/users', usersRoute
+  - \routes\user.js defines the actions for each sub-route (including our normal Controller aspects)
+
+#### Management
+
+- A list of users is given at menu option 'Manage', and they can be delete from there
+- the API calls that are public are in jwt.js
+
+#### Other Approaches
 
 - very simple [with mock data](https://www.thepolyglotdeveloper.com/2018/04/simple-user-login-vuejs-web-application/)
 - more complete: [Structuring a Vue project — Authentication](https://medium.com/@zitko/structuring-a-vue-project-authentication-87032e5bfe16)
-- we use [Jason Watmore's approach](http://jasonwatmore.com/post/2018/07/14/vue-vuex-user-registration-and-login-tutorial-example), including [API](http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management) - see users module
-
-#### More complex Authorisation
 
 - Could use [Firebase](https://firebase.google.com/) - Google's realtime service, see [Introduction](https://hackernoon.com/introduction-to-firebase-218a23186cd7)
   - [VueSchool](https://vueschool.io/courses/vuejs-firebase-authentication) - not free, with [code](https://github.com/vueschool/vuejs-firebase-authentication)
   - Useful: [Build a Vue App with Firebase Authentication and Database](https://blog.bitsrc.io/build-a-vue-app-with-firebase-authentication-and-database-e7d6816f79af)
   - uses [vuefire](https://github.com/vuejs/vuefire)
   - also [useful](https://medium.freecodecamp.org/how-to-build-a-spa-using-vue-js-vuex-vuetify-and-firebase-adding-authentication-with-firebase-d9932d1e4365) - OK on firebase and vuex, but too Vuetify!
-- We use tried to [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS), [Managing](https://manage.auth0.com/)
+- We tried to use [Auth0](https://auth0.com) Identity-as-a-Service (IDaaS), [Managing](https://manage.auth0.com/)
   - We use [Universal Login](https://auth0.com/docs/hosted-pages/login), as seen the [Vue QWuickstart](https://auth0.com/docs/quickstart/spa/vuejs)
   - Use [vue-auth0-handler](https://github.com/felipe-tonon/vue-auth0-handler) and [vue-cookie](https://github.com/alfhen/vue-cookie)
   - We have v9 of auth0-js [see reference documentation](https://auth0.com/docs/libraries/auth0js/v9)

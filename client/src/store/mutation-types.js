@@ -22,3 +22,5 @@ export const LOADING_END = 'LOADING_END';
 
 // demo mutation types
 export const SHOW_LEVEL_SET_REQUEST = 'SHOW_LEVEL_SET_REQUEST';
+
+// users mutation types - see the routines in \store\modules\users

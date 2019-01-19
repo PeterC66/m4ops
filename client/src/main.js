@@ -20,10 +20,12 @@ import store from './store';
 import './registerServiceWorker';
 import './global/components/_global'; // globally registers any _base components
 
-// setup fake backend
+// setup fake backend - comment out this section to use the real backend/server/api
 // eslint-disable-next-line import/no-duplicates
 import { configureFakeBackend } from './modules/users/_helpers';
 
+configureFakeBackend();
+// End of setup fake backend
 
 // console.log('env', process.env);
 
@@ -32,7 +34,6 @@ Vue.use(VeeValidate, {
   errorBagName: 'vErrors',
 });
 
-configureFakeBackend();
 
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);

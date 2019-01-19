@@ -55,9 +55,6 @@ app.use('/users', usersRoute);
 module.exports = app;
 
 /*
+Not included:  (needed?)  To DO
 mongoose.Promise = global.Promise;
-
-module.exports = {
-    User: require('../users/user.model')
-};
 */
