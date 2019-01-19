@@ -13,7 +13,7 @@ const placeRoute = require('./routes/place');
 const continentRoute = require('./routes/continent');
 const m4opsDataRoute = require('./routes/m4opsdata');
 const featureLayerRoute = require('./routes/featurelayer');
-const usersRoute = require('./routes/users');
+const usersRoute = require('./routes/user');
 
 if (!process.env.MONGO_DB_URL) {
   require('dotenv-safe').config();
