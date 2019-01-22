@@ -9,12 +9,11 @@
         :schema="schema"
         :model="model"
         :options="formOptions"
-        @validated="onValidated"
       />
       <div class="form-group">
         <button
           class="btn btn-primary"
-          :disabled="status.registering"
+          :disabled="status.registering || !valid"
         >
           Register
         </button>
@@ -38,7 +37,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import VueFormGenerator from 'vue-form-generator';
-// import 'vue-form-generator/dist/vfg.css';
+// Note import  of vfg.css etc is in main.js
 
 export default {
   name: 'RegisterPage',
@@ -110,25 +109,25 @@ export default {
     ...mapState({
       status: state => state.users.account.status,
     }),
+    valid() {
+      return this.model.firstName
+      && this.model.lastName
+      && this.model.username
+      && this.model.password
+      && (this.model.password.length >= 6);
+    },
   },
   methods: {
     // originally ...mapActions('account', ['register']), where arg1 is the namespace
     ...mapActions(['register']),
     // eslint-disable-next-line no-unused-vars
-    onValidated(isValid, errors) {
-      // eslint-disable-next-line no-console
-      // console.log('Validation result: ', isValid, ', Errors:', errors);
-    },
-    // eslint-disable-next-line no-unused-vars
     handleSubmit(e) {
       this.submitted = true;
       // eslint-disable-next-line no-console
       console.log('in handleSubmit', e, this.model);
-      // this.$validator.validate().then((valid) => {
-      //   if (valid) {
+      // Can assume valid
       this.register(this.model);
-      //   }
-      // });
+      this.$router.push('/');
     },
   },
 };

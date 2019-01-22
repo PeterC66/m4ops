@@ -37,7 +37,7 @@
 <script>
 // import { Portal, PortalTarget } from 'portal-vue';
 import VueFormGenerator from 'vue-form-generator';
-import 'vue-form-generator/dist/vfg.css';
+// Note import  of vfg.css etc is in main.js
 
 export default {
   name: 'ModalForm',

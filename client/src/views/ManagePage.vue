@@ -44,6 +44,12 @@
       <router-link to="/logout">
         Logout
       </router-link>
+      <router-link
+        to="/register"
+        class="btn btn-link"
+      >
+        Register
+      </router-link>
     </p>
   </div>
 </template>

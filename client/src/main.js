@@ -4,6 +4,8 @@ import Buefy from 'buefy';
 // import 'buefy/dist/buefy.css';
 import VueLayers from 'vuelayers';
 import 'vuelayers/lib/style.css'; // needs css-loader
+import 'vue-form-generator/dist/vfg.css';
+import './global/styles/vfgModifications.css';
 
 import globalPlugin1 from './global/plugins/globalPlugin1';
 

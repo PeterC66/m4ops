@@ -687,6 +687,16 @@ graph LR;
 
 ### CSS
 
+- [CSS Basics](https://www.cssbasics.com/#page_start): selector { property: value; property: value }
+- [CSS Properties](https://www.w3schools.com/cssref/default.asp), and [defaults](https://www.w3schools.com/cssref/css_default_values.asp)
+- [CSS Selectors](https://www.w3schools.com/cssref/css_selectors.asp), and [Tester](https://www.w3schools.com/cssref/trysel.asp)
+  - class selector begins with a (.) period, id selector begins with a (#) number sign
+    - comma between selectors means for both
+    - space between selectors means for the right one within the left
+    - > between selectors means for the right one where its parent is the left one
+    - \[attribute=value\] means all elements with the given attribute having the given value
+    - etc
+  - Pseudo classes/elements precede by (:) colon eg a:visited and p:first-line
 - Use [Bulma](https://bulma.io/) via [**Buefy**](https://buefy.github.io/) for a CSS framework (like Bootstrap) - as used by vuelayers
   - [Buefy examples](http://rafaelescala.com/buefy-example/)
   - [Useful way to see Bulma variables](https://bulma-customizer.bstash.io/)
@@ -775,6 +785,7 @@ graph LR;
 - [other field types we might use](https://vue-generators.gitbook.io/vue-generators/fields/optional_fields) include cleave, image, pikaday, switch, vueMultiSelect (trying to avoid jQuery)
 - fields can be [grouped](https://vue-generators.gitbook.io/vue-generators/groups)
 - [Built in Validators](https://vue-generators.gitbook.io/vue-generators/validation/built-in-validators) are number, integer, double, string, array, date, regexp, email, url, creditCard, alpha, alphaNumeric - [Custom Validators](https://vue-generators.gitbook.io/vue-generators/validation/custom-validators) are possible
+- for style see vfg.css.txt
 
 ##### Other on forms
 
@@ -1284,6 +1295,7 @@ See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/c
   - JS Object to JSON
   - JSON to Mongoose Schema
   - Markdown to HTML
+  - [CSS Formatter](https://www.cleancss.com/css-beautify/)
 - Any locally installed command (eg xx) will be available at ./node_modules/.bin/xx in your project
   - node_modules/.bin directory will be added to system $PATH when your're running npm scripts, so you can directly use the local xx command there
 - [Popular Systems in 2017](https://risingstars.js.org/2017/en/) - especially Vue.js

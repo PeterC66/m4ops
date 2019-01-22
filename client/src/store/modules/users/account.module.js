@@ -34,7 +34,7 @@ const actions = {
       .then(
         (user) => {
           commit('registerSuccess', user);
-          router.push('/login');
+          router.push('/');
           setTimeout(() => {
             // display success message after route change completes
             // eslint-disable-next-line max-len
