@@ -62,7 +62,7 @@ export default {
     this.getAllUsers();
   },
   methods: {
-    ...mapActions('users', {
+    ...mapActions({ // was 'users', for namespace
       getAllUsers: 'getAll',
       deleteUser: 'delete',
     }),

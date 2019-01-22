@@ -63,7 +63,7 @@ const mutations = {
 };
 
 const users = {
-  namespaced: true,
+  // namespaced: true,
   state,
   actions,
   mutations,

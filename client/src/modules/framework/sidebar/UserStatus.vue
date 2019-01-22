@@ -39,7 +39,7 @@ export default {
     this.getAllUsers();
   },
   methods: {
-    ...mapActions('users', {
+    ...mapActions({ // was 'users',
       getAllUsers: 'getAll',
       deleteUser: 'delete',
       clearAlert: 'alert/clear',

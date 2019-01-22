@@ -6,7 +6,7 @@ import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
 
 import LoginPage from './views/LoginPage.vue';
-import RegisterPage from './views/RegisterPage.vue';
+import RegisterPage from './views/RegisterPage2.vue';
 import ManagePage from './views/ManagePage.vue';
 
 Vue.use(Router);

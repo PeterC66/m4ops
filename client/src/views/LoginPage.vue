@@ -74,14 +74,17 @@ export default {
     };
   },
   computed: {
-    ...mapState('account', ['status']),
+    // was for namespace...mapState('account', ['status']),
+    ...mapState({
+      status: state => state.users.account.status,
+    }),
   },
   created() {
     // reset login status
     this.logout();
   },
   methods: {
-    ...mapActions('account', ['login', 'logout']),
+    ...mapActions(['login', 'logout']), // was 'account', for namespace
     // eslint-disable-next-line no-unused-vars
     handleSubmit(e) {
       this.submitted = true;

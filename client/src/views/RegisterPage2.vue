@@ -1,0 +1,126 @@
+<template>
+  <div class="panel-body">
+    <h2>Register</h2>
+    <form style="background-color:white">
+      <vue-form-generator
+        :schema="schema"
+        :model="model"
+        :options="formOptions"
+      />
+      <div class="form-group">
+        <button
+          class="btn btn-primary"
+          :disabled="status.registering"
+        >
+          Register
+        </button>
+        <!-- eslint-disable max-len -->
+        <img
+          v-show="status.registering"
+          src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        >
+        <!-- eslint-enable max-len -->
+        <router-link
+          to="/login"
+          class="btn btn-link"
+        >
+          Cancel
+        </router-link>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+import { mapState, mapActions } from 'vuex';
+import VueFormGenerator from 'vue-form-generator';
+// import 'vue-form-generator/dist/vfg.css';
+
+export default {
+  name: 'RegisterPage',
+  components: {
+    'vue-form-generator': VueFormGenerator.component,
+  },
+  data() {
+    return {
+      // Fields from original RegisterPage form: firstName, lastName, username, password
+      // model is user in the original form
+      model: {
+        firstName: '',
+        lastName: '',
+        username: '',
+        password: '',
+      },
+      submitted: false,
+
+      schema: {
+        fields: [
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'First Name',
+            model: 'firstName',
+            placeholder: 'First name',
+            featured: true,
+            required: true,
+          },
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'Last Name',
+            model: 'lastName',
+            placeholder: 'Last name',
+            featured: true,
+            required: true,
+          },
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'User Name',
+            model: 'username',
+            id: 'user_name',
+            placeholder: 'User Name',
+            featured: true,
+            required: true,
+          },
+          {
+            type: 'input',
+            inputType: 'password',
+            label: 'Password',
+            model: 'password',
+            min: 6,
+            required: true,
+            hint: 'Minimum 6 characters',
+            validator: 'string',
+            validateDebounceTime: 100,
+          },
+        ],
+      },
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true,
+        fieldIdPrefix: 'user-',
+      },
+    };
+  },
+  computed: {
+    // originally ...mapState('account', ['status']) where arg1 is the namespace, arg2 is an array of strings map
+    ...mapState({
+      status: state => state.users.account.status,
+    }),
+  },
+  methods: {
+    // originally ...mapActions('account', ['register']), where arg1 is the namespace
+    ...mapActions(['register']),
+    // eslint-disable-next-line no-unused-vars
+    handleSubmit(e) {
+      this.submitted = true;
+      this.$validator.validate().then((valid) => {
+        if (valid) {
+          this.register(this.user);
+        }
+      });
+    },
+  },
+};
+</script>

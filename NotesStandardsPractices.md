@@ -308,6 +308,7 @@ See under [Standards and styles](#standards-and-styles)
   - Delete branch XXX
 - Every now and then publish changes (to [origin](https://github.com/PeterC66/m4ops))
 - to remove them from tracking: put filename in .gitignore AND remove history using git rm filename --cached
+- More on [fork and pull](https://www.openstreetmap.org/user/alexkemp/diary/47452)
 
 ### Eslint for proofing code
 
@@ -542,7 +543,7 @@ graph LR;
     - mapGetters to map store getters to local computed properties
     - mapActions maps component methods to store.dispatch
   - inside module actions and getters, the root state will be exposed as as well as the module's state
-  - We do not Namespace Modules
+  - We do not [Namespace](https://vuex.vuejs.org/guide/modules.html#namespacing) Modules
 - Various [Vuex Utilities](https://github.com/vuejs/awesome-vue#vuex-utilities)
 - Not using [vuex-pathify](https://davestewart.github.io/vuex-pathify/) although it simplifies the Vuex wiring
   - see also [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
@@ -749,6 +750,17 @@ graph LR;
 - VFG generator: [Issues #503 and my #569](https://github.com/vue-generators/vue-form-generator/issues/503)
   - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
 - [Vue-multiselect](https://vue-multiselect.js.org/) - used in vue-form-generator
+
+##### VFG documentation
+
+- multiple, and multi: true fields, is about fields that can have more than one value (cf [see this](https://html.com/attributes/select-multiple/))
+- featured means **bold**
+- validateDebounceTime (milliseconds) is used eg on text fields with validation
+- fields can have [complex definitions](https://vue-generators.gitbook.io/vue-generators/fields/field_properties), and even incorporate [buttons](https://vue-generators.gitbook.io/vue-generators/fields/field_properties/inside_buttons)
+- [core field types](https://vue-generators.gitbook.io/vue-generators/fields/core-fields) are checkbox, checklist, input, label, radios, select, submit (button), textArea
+- [other field types we might use](https://vue-generators.gitbook.io/vue-generators/fields/optional_fields) include cleave, image, pikaday, switch, vueMultiSelect (trying to avoid jQuery)
+- fields can be [grouped](https://vue-generators.gitbook.io/vue-generators/groups)
+- [Built in Validators](https://vue-generators.gitbook.io/vue-generators/validation/built-in-validators) are number, integer, double, string, array, date, regexp, email, url, creditCard, alpha, alphaNumeric - [Custom Validators](https://vue-generators.gitbook.io/vue-generators/validation/custom-validators) are possible
 
 #### Other on forms
 

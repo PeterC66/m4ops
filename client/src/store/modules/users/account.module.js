@@ -78,7 +78,7 @@ const mutations = {
 };
 
 const account = {
-  namespaced: true,
+  // namespaced: true,
   state,
   actions,
   mutations,

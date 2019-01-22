@@ -11,10 +11,12 @@ function jwt() {
             // public routes that don't require authentication
             '/users/authenticate',
             '/users/register',
-            '/places',
+            /\/places.*/,
             '/continents',
             '/m4opsdata',
-            '/featurelayers',
+            /\/featurelayers.*/,
+            '/users/current',
+            /\/users\/.*/,
         ]
     });
 }

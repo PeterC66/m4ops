@@ -5,7 +5,7 @@ const FeatureLayerController = require('../controllers/FeatureLayerController');
 
 
 router.get('/', (req, res, next) => {
-  res.send('Need OPS_Xxxx after the \'featurelayer\/\'');
+  res.send('Need OPS_Xxxx after the \'featurelayers\/\'');
 });
 
 router.get('/:ops_layer', (req, res, next) => {
