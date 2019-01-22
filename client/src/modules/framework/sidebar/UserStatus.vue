@@ -6,13 +6,23 @@
     >
       {{ alert.message }}
     </p>
-    <p>
-      User Peter
-           <!-- User {{ account.user.firstName }} -->
-           <!-- login resets status on creation -->
-           <router-link to="/login">
-             Logout
-           </router-link>
+    <p
+      v-if="account.user"
+    >
+      User {{ account.user.firstName }}
+      <!-- User {{ account.user.firstName }} -->
+      <!-- login resets status on creation -->
+      <router-link to="/logout">
+        Logout
+      </router-link>
+    </p>
+    <p
+      v-else
+    >
+      Guest
+      <router-link to="/login">
+        Login
+      </router-link>
     </p>
   </div>
 </template>

@@ -9,6 +9,7 @@
 - [Visual Studio Code](#visual-studio-code)
   - [GIT for source code version control](#git-for-source-code-version-control)
   - [Eslint for proofing code](#eslint-for-proofing-code)
+  - [Configuring eslint](#configuring-eslint)
 - [Documenting](#documenting)
 - [HTML5 standards](#html5-standards)
 - [JS and ES6 standards](#js-and-es6-standards)
@@ -25,15 +26,26 @@
     - [Typescript in Vue](#typescript-in-vue)
   - [HTTP Requests](#http-requests)
   - [Authorisation](#authorisation)
+    - [JWT](#jwt)
+    - [Client system](#client-system)
+    - [Server system](#server-system)
+    - [Management](#management)
+    - [Other Approaches](#other-approaches)
   - [Demo](#demo)
   - [Icons](#icons)
   - [CSS](#css)
-  - [Dates and Times](#dates-and-times)
   - [Useful components](#useful-components)
+    - [Dates and Times](#dates-and-times)
     - [Buefy](#buefy)
     - [Element UI components](#element-ui-components)
     - [Vue Slider Component](#vue-slider-component)
     - [Vue Forms](#vue-forms)
+      - [Plain](#plain)
+      - [VueFormGenerator](#vueformgenerator)
+        - [VFG documentation](#vfg-documentation)
+      - [Other on forms](#other-on-forms)
+    - [Modals](#modals)
+    - [Other Vue aspects](#other-vue-aspects)
   - [Standards and styles](#standards-and-styles)
   - [Vue CLI 3](#vue-cli-3)
 - [Babel](#babel)
@@ -246,6 +258,7 @@ See under [Standards and styles](#standards-and-styles)
 - Similarly for ESLint
 - as the VSCode shell defaults to PowerShell on Windows 10 we set the terminal.integrated.shell.windows in user settings to "C:\\Windows\\System32\\cmd.exe"
 - Use Ctrl+Shift+P for the list of commands (Ctrl+S to save - but we have set it to save automatically), and use Ctrl+space for **context-sensitive snippets** (or start typing)
+- Ctrl+/ toggles lines as comments
 
 - For documentation and markdown see separate [Documenting](#Documenting) section below
   
@@ -543,7 +556,7 @@ graph LR;
     - mapGetters to map store getters to local computed properties
     - mapActions maps component methods to store.dispatch
   - inside module actions and getters, the root state will be exposed as as well as the module's state
-  - We do not [Namespace](https://vuex.vuejs.org/guide/modules.html#namespacing) Modules
+  - We do not [Namespace](https://vuex.vuejs.org/guide/modules.html#namespacing) vuex Modules (except alert)
 - Various [Vuex Utilities](https://github.com/vuejs/awesome-vue#vuex-utilities)
 - Not using [vuex-pathify](https://davestewart.github.io/vuex-pathify/) although it simplifies the Vuex wiring
   - see also [Tame the Vuex Beast with vuex-pathify](https://alligator.io/vuejs/vuex-pathify/)
@@ -613,9 +626,10 @@ graph LR;
     - ManagePage - (originally HomePage) sb only accessible by administrator
   - \modules\users
     - \_helpers
-      - auth-header.js - generates a header
-      - fake-backend.ts - intercepts certain api requests and mimics the behaviour of a real api
-      - user.service.js - all backend api calls, and logging in/out (handleResponse handles if the JWT token is no longer valid for any reason)
+    - auth-header.js - generates a header
+    - fake-backend.ts - intercepts certain api requests and mimics the behaviour of a real api
+    - user.service.js - all backend api calls, and logging in/out (handleResponse handles if the JWT token is no longer valid for any reason)
+- the URLs that are public are in router.js (beforeEach)
 
 #### Server system
 
@@ -630,11 +644,11 @@ graph LR;
     - user.service.js - contains the core business logic, encapsulates all interaction with the mongoose user model, and exposes a simple set of methods
   - app.js includes a new major route: '/users', usersRoute
   - \routes\user.js defines the actions for each sub-route (including our normal Controller aspects)
+- the API calls that are public are in jwt.js
 
 #### Management
 
-- A list of users is given at menu option 'Manage', and they can be delete from there
-- the API calls that are public are in jwt.js
+- A list of users is given at menu option 'Manage', and they can be deleted from there
 
 #### Other Approaches
 
@@ -738,7 +752,7 @@ graph LR;
 - [Vue.js — Forms, components and considerations](https://blog.webf.zone/vue-js-forms-components-and-considerations-d81b3ffe9efb) - some dos and don'ts
 - [Building Custom Multi-Option Form Components with Vue.js](https://markus.oberlehner.net/blog/building-custom-multi-option-form-components-with-vue/)
 
-#### VueFormGenerator
+##### VueFormGenerator
 
 - On [github](https://github.com/vue-generators/vue-form-generator) - [on npm](https://www.npmjs.com/package/vue-form-generator)
 - [Documentation](https://vue-generators.gitbook.io/vue-generators/), on [github](https://github.com/vue-generators/vue-form-generator-docs), [my fork](https://github.com/PeterC66/vue-form-generator-docs) ( see [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/))
@@ -751,7 +765,7 @@ graph LR;
   - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
 - [Vue-multiselect](https://vue-multiselect.js.org/) - used in vue-form-generator
 
-##### VFG documentation
+###### VFG documentation
 
 - multiple, and multi: true fields, is about fields that can have more than one value (cf [see this](https://html.com/attributes/select-multiple/))
 - featured means **bold**
@@ -762,7 +776,7 @@ graph LR;
 - fields can be [grouped](https://vue-generators.gitbook.io/vue-generators/groups)
 - [Built in Validators](https://vue-generators.gitbook.io/vue-generators/validation/built-in-validators) are number, integer, double, string, array, date, regexp, email, url, creditCard, alpha, alphaNumeric - [Custom Validators](https://vue-generators.gitbook.io/vue-generators/validation/custom-validators) are possible
 
-#### Other on forms
+##### Other on forms
 
 - Could (but don't) use [Vuelidate](https://monterail.github.io/vuelidate/) validation - see [introduction](https://www.monterail.com/blog/2016/rethinking-validations-for-vue-js) - for forms and other validations
 - or [Vuetify - Material Design Component Framework](https://vuetifyjs.com/en/), see also [extending Vuetify’s input field validation](https://alligator.io/vuejs/vuetify-validate-empty-fields) NO as it is too all-embracing - using Element UI et al
@@ -771,7 +785,7 @@ graph LR;
   - includes Rich Text Editing etc
 - Interesting: [How to Handle Multi-row Forms with Vue, Vuex and vuex-map-fields](https://markus.oberlehner.net/blog/how-to-handle-multi-row-forms-with-vue-vuex-and-vuex-map-fields/) (automates computed get/set)
 
-### Modals
+#### Modals
 
 - [Modals](https://github.com/vuejs/awesome-vue#overlay) - use buefy
 - Use [portal-vue](https://linusborg.github.io/portal-vue/#/) - see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design](https://adamwathan.me/advanced-vue-component-design/)

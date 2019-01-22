@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import { ApiHandlerComponent } from 'vuex-api';
-import VeeValidate from 'vee-validate';
 import Buefy from 'buefy';
 // import 'buefy/dist/buefy.css';
 import VueLayers from 'vuelayers';
@@ -20,22 +19,16 @@ import store from './store';
 import './registerServiceWorker';
 import './global/components/_global'; // globally registers any _base components
 
-/*
 // setup fake backend - comment out this section to use the real backend/server/api
 // eslint-disable-next-line import/no-duplicates
 import { configureFakeBackend } from './modules/users/_helpers';
 
 configureFakeBackend();
 // End of setup fake backend
-*/
 
 // console.log('env', process.env);
 
 Vue.use(VueLayers);
-Vue.use(VeeValidate, {
-  errorBagName: 'vErrors',
-});
-
 
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);

@@ -32,7 +32,7 @@ const mutations = {
 };
 
 const alert = {
-  // namespaced: true,
+  namespaced: true,
   state,
   actions,
   mutations,

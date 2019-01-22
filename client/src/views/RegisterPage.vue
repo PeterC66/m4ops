@@ -1,83 +1,16 @@
 <template>
-  <div>
+  <div class="panel-body">
     <h2>Register</h2>
-    <form @submit.prevent="handleSubmit">
-      <div class="form-group">
-        <label for="firstName">
-          First Name
-        </label>
-        <input
-          v-model="user.firstName"
-          v-validate="'required'"
-          type="text"
-          name="firstName"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && errors.has('firstName') }"
-        >
-        <div
-          v-if="submitted && errors.has('firstName')"
-          class="invalid-feedback"
-        >
-          {{ errors.first('firstName') }}
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="lastName">
-          Last Name
-        </label>
-        <input
-          v-model="user.lastName"
-          v-validate="'required'"
-          type="text"
-          name="lastName"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && errors.has('lastName') }"
-        >
-        <div
-          v-if="submitted && errors.has('lastName')"
-          class="invalid-feedback"
-        >
-          {{ errors.first('lastName') }}
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="username">
-          Username
-        </label>
-        <input
-          v-model="user.username"
-          v-validate="'required'"
-          type="text"
-          name="username"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && errors.has('username') }"
-        >
-        <div
-          v-if="submitted && errors.has('username')"
-          class="invalid-feedback"
-        >
-          {{ errors.first('username') }}
-        </div>
-      </div>
-      <div class="form-group">
-        <label htmlFor="password">
-          Password
-        </label>
-        <input
-          v-model="user.password"
-          v-validate="{ required: true, min: 6 }"
-          type="password"
-          name="password"
-          class="form-control"
-          :class="{ 'is-invalid': submitted && errors.has('password') }"
-        >
-        <div
-          v-if="submitted && errors.has('password')"
-          class="invalid-feedback"
-        >
-          {{ errors.first('password') }}
-        </div>
-      </div>
+    <form
+      style="background-color:white"
+      @submit.prevent="handleSubmit"
+    >
+      <vue-form-generator
+        :schema="schema"
+        :model="model"
+        :options="formOptions"
+        @validated="onValidated"
+      />
       <div class="form-group">
         <button
           class="btn btn-primary"
@@ -104,32 +37,98 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import VueFormGenerator from 'vue-form-generator';
+// import 'vue-form-generator/dist/vfg.css';
 
 export default {
+  name: 'RegisterPage',
+  components: {
+    'vue-form-generator': VueFormGenerator.component,
+  },
   data() {
     return {
-      user: {
+      // Fields from original RegisterPage form: firstName, lastName, username, password
+      // model is user in the original form
+      model: {
         firstName: '',
         lastName: '',
         username: '',
         password: '',
       },
       submitted: false,
+
+      schema: {
+        fields: [
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'First Name',
+            model: 'firstName',
+            placeholder: 'First name',
+            required: true,
+          },
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'Last Name',
+            model: 'lastName',
+            placeholder: 'Last name',
+            required: true,
+          },
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'User Name',
+            model: 'username',
+            id: 'user_name',
+            placeholder: 'User Name',
+            featured: true,
+            required: true,
+          },
+          {
+            type: 'input',
+            inputType: 'password',
+            label: 'Password',
+            model: 'password',
+            min: 6,
+            required: true,
+            hint: 'Minimum 6 characters',
+            validator: 'string',
+            validateDebounceTime: 2000,
+          },
+        ],
+      },
+      formOptions: {
+        validateAfterLoad: false,
+        validateAfterChanged: true,
+        fieldIdPrefix: 'user-',
+      },
     };
   },
   computed: {
-    ...mapState('account', ['status']),
+    // originally ...mapState('account', ['status']) where arg1 is the namespace, arg2 is an array of strings map
+    ...mapState({
+      status: state => state.users.account.status,
+    }),
   },
   methods: {
-    ...mapActions('account', ['register']),
+    // originally ...mapActions('account', ['register']), where arg1 is the namespace
+    ...mapActions(['register']),
+    // eslint-disable-next-line no-unused-vars
+    onValidated(isValid, errors) {
+      // eslint-disable-next-line no-console
+      // console.log('Validation result: ', isValid, ', Errors:', errors);
+    },
     // eslint-disable-next-line no-unused-vars
     handleSubmit(e) {
       this.submitted = true;
-      this.$validator.validate().then((valid) => {
-        if (valid) {
-          this.register(this.user);
-        }
-      });
+      // eslint-disable-next-line no-console
+      console.log('in handleSubmit', e, this.model);
+      // this.$validator.validate().then((valid) => {
+      //   if (valid) {
+      this.register(this.model);
+      //   }
+      // });
     },
   },
 };

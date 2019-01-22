@@ -41,7 +41,7 @@
       </li>
     </ul>
     <p>
-      <router-link to="/login">
+      <router-link to="/logout">
         Logout
       </router-link>
     </p>

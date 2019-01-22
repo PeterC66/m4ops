@@ -6,7 +6,8 @@ import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
 
 import LoginPage from './views/LoginPage.vue';
-import RegisterPage from './views/RegisterPage2.vue';
+import LogoutPage from './views/LogoutPage.vue';
+import RegisterPage from './views/RegisterPage.vue';
 import ManagePage from './views/ManagePage.vue';
 
 Vue.use(Router);
@@ -44,6 +45,11 @@ const router = new Router({
       component: LoginPage,
     },
     {
+      path: '/logout',
+      name: 'logout',
+      component: LogoutPage,
+    },
+    {
       path: '/register',
       name: 'register',
       component: RegisterPage,
@@ -64,7 +70,14 @@ const router = new Router({
 // eslint-disable-next-line consistent-return
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login', '/register'];
+  const publicPages = [
+    '/',
+    '/login',
+    '/logout',
+    '/register',
+    '/about',
+    '/maps',
+  ];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 
