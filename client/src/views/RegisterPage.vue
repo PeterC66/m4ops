@@ -134,7 +134,7 @@ export default {
       console.log('in handleSubmit', e, this.model);
       // Can assume valid
       this.register(this.model);
-      this.$router.push('/');
+      // this.$router.push('/');
     },
   },
 };

@@ -1328,3 +1328,4 @@ See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/c
 - Beware [Memory Leaks](https://vuejs.org/v2/cookbook/avoiding-memory-leaks.html)
 - to [install a specific version](https://60devs.com/npm-install-specific-version.html) use eg npm install vuelayers@^0.11.0 --save
 - to reload not from cache use location.reload(true) - the parameter forces it to reload from the server
+- more slots, less props

@@ -22,7 +22,7 @@ function sourceVector(
   if (url) {
     const ext = befaft(url, '.')[1].toLowerCase(); // assumes only one period
     const layerId = replaceAll(befaft(url, '.')[0], ' ', '_'); // assumes only one period
-    const urlToUse = `${process.env.VUE_APP_BACKEND_URL}featurelayers/${opsCode}_${layerId}`; // eslint-disable-line max-len
+    const urlToUse = `${process.env.VUE_APP_BACKEND_URL}/featurelayers/${opsCode}_${layerId}`; // eslint-disable-line max-len
     const atts = attribution ? [attributionFromCode(attribution)] : [];
     const myRef = `source_${uuid()}`;
 

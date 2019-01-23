@@ -3,8 +3,6 @@ import { authHeader } from '../_helpers';
 
 // We are replacing Jason's webpack config global by our process.env method
 // instead of import config from 'config';
-const config = {};
-config.apiUrl = process.env.CONFIG_APIURL;
 
 function logout() {
   // remove user from local storage to log user out
@@ -37,7 +35,10 @@ function login(username, password) {
     body: JSON.stringify({ username, password }),
   };
 
-  return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+  return fetch(
+    `${process.env.VUE_APP_BACKEND_URL}/users/authenticate`,
+    requestOptions,
+  )
     .then(handleResponse)
     .then((user) => {
       // login successful if there's a jwt token in the response
@@ -57,8 +58,10 @@ function register(user) {
     body: JSON.stringify(user),
   };
 
-  // eslint-disable-next-line max-len
-  return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+  return fetch(
+    `${process.env.VUE_APP_BACKEND_URL}/users/register`,
+    requestOptions,
+  ).then(handleResponse);
 }
 
 function getAll() {
@@ -67,7 +70,10 @@ function getAll() {
     headers: authHeader(),
   };
 
-  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+  return fetch(
+    `${process.env.VUE_APP_BACKEND_URL}/users`,
+    requestOptions,
+  ).then(handleResponse);
 }
 
 
@@ -77,8 +83,10 @@ function getById(id) {
     headers: authHeader(),
   };
 
-  // eslint-disable-next-line max-len
-  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+  return fetch(
+    `${process.env.VUE_APP_BACKEND_URL}/users/${id}`,
+    requestOptions,
+  ).then(handleResponse);
 }
 
 function update(user) {
@@ -88,8 +96,10 @@ function update(user) {
     body: JSON.stringify(user),
   };
 
-  // eslint-disable-next-line max-len
-  return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
+  return fetch(
+    `${process.env.VUE_APP_BACKEND_URL}/users/${user.id}`,
+    requestOptions,
+  ).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -100,8 +110,10 @@ function _delete(id) {
     headers: authHeader(),
   };
 
-  // eslint-disable-next-line max-len
-  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+  return fetch(
+    `${process.env.VUE_APP_BACKEND_URL}/users/${id}`,
+    requestOptions,
+  ).then(handleResponse);
 }
 
 export const userService = {
