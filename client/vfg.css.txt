@@ -1,13 +1,5 @@
-/* vue-form-generator v2.3.3 vfg.css
-
-CSS syntax
-selector { property: value; property: value }
-can combine elements into one selector eg h1, h2, h3, h4, h5, h6 
-a class selector begins with a (.) period
-
-
-
-*/
+/* vue-form-generator v2.3.3 vfg.css */
+/* NB Issue re .form-group is resolved */
 
 .vue-form-generator *{
   box-sizing:border-box

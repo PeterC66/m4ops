@@ -47,6 +47,7 @@
     <!-- :auth="auth"
       :authenticated="authenticated" -->
     <router-view />
+    <portal-target name="modals" />
   </div>
 </template>
 
@@ -79,6 +80,21 @@ export default {
 </style>
 
 <style scoped>
+/* Based on http://www.bootply.com/s6x5oKLiDG */
+.modal-header-M4OPS {
+  padding:9px 15px;
+  border-bottom:1px solid #eee;
+  background-color: #729246;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+}
+.modal-title-M4OPS {color:#fff;}
+.modal-body-M4OPS {background-color: #F8F8F8;}
+.modal-footer-M4OPS {background-color: #EEF2E9;}
 
 .navbar-item,
 .navbar-link {
@@ -92,26 +108,4 @@ a.router-link-exact-active {
   color: yellow;
 }
 
-/* #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  background-color: #B3C0D1;
-  color: #333;
-  padding: 2px;
-  text-align: left;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-} */
 </style>

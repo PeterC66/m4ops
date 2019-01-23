@@ -47,6 +47,8 @@
           "b-tooltip",
           "el-cascader",
           "font-awesome-icon",
+          "portal",
+          "portal-target",
           "router-link",
           "router-view",
           "vl-geoloc",

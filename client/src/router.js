@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import M4OPSView from './views/M4OPSView.vue';
 import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
+import Testing from './global/components/Testing.vue';
 
 import LoginPage from './views/LoginPage.vue';
 import LogoutPage from './views/LogoutPage.vue';
@@ -14,6 +15,16 @@ Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
+  // From https://dev.to/napoleon039/the-lesser-known-amazing-things-vuerouter-can-do-25di
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    if (to.hash) {
+      return { selector: to.hash };
+    }
+    return { x: 0, y: 0 };
+  },
   routes: [
     {
       path: '/',
@@ -60,6 +71,17 @@ const router = new Router({
       component: ManagePage,
     },
     {
+      // eslint-disable-next-line max-len
+      path: '/test/:OPS?'
+      + '/:layers([A-Za-z]\\w*)*'
+      + '/:opacities(\\d+)*'
+      + '(/[ZF])?:ZoomOrFitTo(\\d+)?'
+      + '/:Lon([-+]?\\d+\\.?\\d*)?'
+      + '/:Lat([-+]?\\d+\\.?\\d*)?',
+      name: 'test',
+      component: Testing,
+    },
+    {
       path: '*',
       name: 'notFound',
       component: NotFound,
@@ -78,7 +100,8 @@ router.beforeEach((to, from, next) => {
     '/about',
     '/maps',
   ];
-  const authRequired = !publicPages.includes(to.path);
+  let authRequired = !publicPages.includes(to.path);
+  if (to.path.startsWith('/test')) authRequired = false;
   const loggedIn = localStorage.getItem('user');
 
   if (authRequired && !loggedIn) {

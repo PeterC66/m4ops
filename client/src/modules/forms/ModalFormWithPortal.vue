@@ -1,37 +1,39 @@
 <template>
-  <form action="">
-    <div
-      class="modal-card"
-      style="width: auto"
-    >
-      <header class="modal-header-M4OPS">
-        <p class="modal-title-M4OPS">
-          Login
-        </p>
-      </header>
-      <section class="modal-card-body modal-body-M4OPS">
-        <form style="background-color:white">
-          <vue-form-generator
-            :schema="schema"
-            :model="model"
-            :options="formOptions"
-          />
-        </form>
-      </section>
-      <footer class="modal-card-foot modal-footer-M4OPS">
-        <button
-          class="button"
-          type="button"
-          @click="$parent.close()"
-        >
-          Close
-        </button>
-        <button class="button is-primary">
-          Login
-        </button>
-      </footer>
-    </div>
-  </form>
+  <portal to="modals">
+    <form action="">
+      <div
+        class="modal-card"
+        style="width: auto"
+      >
+        <header class="modal-header-M4OPS">
+          <p class="modal-title-M4OPS">
+            Login
+          </p>
+        </header>
+        <section class="modal-card-body modal-body-M4OPS">
+          <form style="background-color:white">
+            <vue-form-generator
+              :schema="schema"
+              :model="model"
+              :options="formOptions"
+            />
+          </form>
+        </section>
+        <footer class="modal-card-foot modal-footer-M4OPS">
+          <button
+            class="button"
+            type="button"
+            @click="$parent.close()"
+          >
+            Close
+          </button>
+          <button class="button is-primary">
+            Login
+          </button>
+        </footer>
+      </div>
+    </form>
+  </portal>
 </template>
 
 <script>

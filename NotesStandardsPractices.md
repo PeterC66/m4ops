@@ -355,6 +355,7 @@ See under [Standards and styles](#standards-and-styles)
   - /m4ops/.eslintrc.json has the basic configuration that applies to both client and server code
     - do not include any rules (even common ones) as the whole rules object is overwritten by that in either the client or server file
   - /m4ops/client/.eslintrc.json has any specific configuration needed for the client (Vue) system, including rules
+    - in particular it has the kebab-case names of imported components, the PascalCase rule is ignored
   - /m4ops/server/.eslintrc.json is similar for the server (Express) system, including rules
 - We also use an /m4ops/.eslintignore file in any folder we run eslint in (note that [only one such file is used](https://eslint.org/docs/user-guide/configuring#eslintignore))
   - for patterns see [gitignore](https://git-scm.com/docs/gitignore#_pattern_format)
@@ -436,7 +437,7 @@ See under [Standards and styles](#standards-and-styles)
 ### Regular Expressions
 
 - [regexr](https://regexr.com/) is an online tool to learn, build, & test Regular Expressions
-- [ReX.js](https://areknawo.github.io/Rex/) is a RegEx companion - maybe use? Some do not like!
+- [regular expressions.info](https://www.regular-expressions.info/quickstart.html) is useful
 - [eloquent](https://eloquentjavascript.net/09_regexp.html)
 - [w3schools](https://www.w3schools.com/js/js_regexp.asp) & [objects](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
 - [regexp methods](https://javascript.info/regexp-methods)  Excellent on replace
@@ -526,13 +527,35 @@ graph LR;
 
 ### Vue Router
 
-- [Vue Router](https://router.vuejs.org/), and [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
-- maybe use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync)
+- [Vue Router](https://router.vuejs.org/), and [its API ref](https://router.vuejs.org/api/)
+  - we have access to the router (as this.$router) and the current route (as this.$route) inside any component
+  - although better to decouple components from the router by [using props:](https://router.vuejs.org/guide/essentials/passing-props.html#passing-props-to-route-components)
+  - a dynamic segment is denoted by a colon : - the value of the dynamic segments is in this.$route.params
+    - eg for /user/:username/post/:post_id, /user/evan/post/123 yields params = { username: 'evan', post_id: '123' }
+  - uses [path-to-regexp](https://github.com/pillarjs/path-to-regexp) for path matching - [example](https://github.com/vuejs/vue-router/blob/dev/examples/route-matching/app.js)
+    - supports eg optional dynamic segments, zero or more / one or more requirements
+    - includes [compile](https://github.com/pillarjs/path-to-regexp#compile-reverse-path-to-regexp) ("Reverse" Path-To-RegExp)
+  - can have nested router-views (use the children option in routes), and named router-views
+  - \<router-link :to="..."\> is the equivalent of router.push(...)
+    - there are also router.replace, router.go
+- [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
+- Use path parameters, with their specific order, where there is an implied hierarchy, otherwise [use query parameters](https://medium.com/@BjornKrols/tutorial-dynamic-content-via-url-query-parameters-in-vue-js-d2df19b66633)
+- See [Synchronize with Vue Router](https://community.algolia.com/vue-instantsearch/advanced/vue-router-url-sync.html) for passing route parameters as props, and keep the URL in sync with changes
+- use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync) to sync $route into vuex store's state
 - [Missing manual](https://blog.webf.zone/vue-router-the-missing-manual-ce51c21430b0)
+  - compares state-router vs url-router
+  - can pass complex data from one-route to another during transition without making the data part of URL
+  - Prefer tree configuration over a flat configuration
+  - create a store injector function
+  - for a route configuration with an asynchronous component may need to watch/unwatch $route in the parent
 - [Yes, this is how vue-router **guards** work & when to use them](https://medium.com/@arieldi/yes-this-is-how-vue-router-guards-work-when-to-use-them-ed7e34946211)
   - Global guards (on the instance) - each time the URL changes
   - Route guards (on route definitions) - when the associated ROUTE is matched
   - Route Component guards - when a ROUTE COMPONENT is used/unused
+
+#### Our URL scheme
+
+- /
 
 ### Events
 
@@ -630,6 +653,7 @@ graph LR;
     - fake-backend.ts - intercepts certain api requests and mimics the behaviour of a real api
     - user.service.js - all backend api calls, and logging in/out (handleResponse handles if the JWT token is no longer valid for any reason)
 - the URLs that are public are in router.js (beforeEach)
+- Now use [Route Meta Fields](https://router.vuejs.org/guide/advanced/meta.html) to determine navigation limits
 
 #### Server system
 
@@ -785,7 +809,7 @@ graph LR;
 - [other field types we might use](https://vue-generators.gitbook.io/vue-generators/fields/optional_fields) include cleave, image, pikaday, switch, vueMultiSelect (trying to avoid jQuery)
 - fields can be [grouped](https://vue-generators.gitbook.io/vue-generators/groups)
 - [Built in Validators](https://vue-generators.gitbook.io/vue-generators/validation/built-in-validators) are number, integer, double, string, array, date, regexp, email, url, creditCard, alpha, alphaNumeric - [Custom Validators](https://vue-generators.gitbook.io/vue-generators/validation/custom-validators) are possible
-- for style see vfg.css.txt
+- for style see client\vfg.css.txt
 
 ##### Other on forms
 
@@ -799,7 +823,7 @@ graph LR;
 #### Modals
 
 - [Modals](https://github.com/vuejs/awesome-vue#overlay) - use buefy
-- Use [portal-vue](https://linusborg.github.io/portal-vue/#/) - see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design](https://adamwathan.me/advanced-vue-component-design/)
+- Use [portal-vue](https://linusborg.github.io/portal-vue/#/) (a set of two components that allow you to render a component's template (or a part of it) anywhere in the document - even outside the part controlled by your Vue App!) - see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design (not free)](https://adamwathan.me/advanced-vue-component-design/)
 
 #### Other Vue aspects
 

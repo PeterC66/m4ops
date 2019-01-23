@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import { ApiHandlerComponent } from 'vuex-api';
+import { sync } from 'vuex-router-sync';
 import Buefy from 'buefy';
 // import 'buefy/dist/buefy.css';
+import PortalVue from 'portal-vue';
 import VueLayers from 'vuelayers';
 import 'vuelayers/lib/style.css'; // needs css-loader
 import 'vue-form-generator/dist/vfg.css';
@@ -30,7 +32,12 @@ configureFakeBackend();
 
 // console.log('env', process.env);
 
+Vue.use(PortalVue);
 Vue.use(VueLayers);
+
+// eslint-disable-next-line no-unused-vars
+const unsync = sync(store, router, { moduleName: 'route' }); // returns an unsync callback fn
+// if you want to release/destroy Vue components/resources) use unsync()
 
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);

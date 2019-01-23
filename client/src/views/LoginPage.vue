@@ -11,7 +11,7 @@
         :options="formOptions"
       />
       <button
-        class="btn btn-primary"
+        class="button is-primary"
         :disabled="status.loggingIn"
       >
         Login
@@ -24,16 +24,16 @@
       <!-- eslint-enable max-len -->
       <router-link
         to="/register"
-        class="btn btn-link"
+        class="button is-primary"
       >
         Register
       </router-link>
-      <router-link
-        to="/login"
-        class="btn btn-link"
+      <button
+        class="button is-primary"
+        @click="goBack()"
       >
         Cancel
-      </router-link>
+      </button>
     </form>
   </div>
 </template>
