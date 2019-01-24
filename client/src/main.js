@@ -56,7 +56,6 @@ Vue.use(Buefy, {
 Vue.component(
   'json-api',
   ApiHandlerComponent({
-    // requestConfig: { baseURL: 'http://localhost:5000' },
     requestConfig: { baseURL: process.env.VUE_APP_BACKEND_URL },
   }),
 );

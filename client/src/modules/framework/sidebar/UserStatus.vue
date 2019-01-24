@@ -51,7 +51,6 @@ export default {
   methods: {
     ...mapActions({ // was 'users',
       getAllUsers: 'getAll',
-      deleteUser: 'delete',
       clearAlert: 'alert/clear',
     }),
   },

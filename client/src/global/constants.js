@@ -36,3 +36,19 @@ export const displayTypeEnum = {
   mostlyRasters: 'A', // sorted first
   mostlyVectors: 'B', // sorted second
 };
+
+// protection status relates to OPS and layers
+export const protectionStatusEnum = {
+  Unprotected: 'UN', // default
+  Protected: 'PD',
+  Personal: 'PL',
+  Test: 'TT',
+};
+
+// user rights relates to users and OPS
+export const userRightsEnum = {
+  opsViewer: 'OV',
+  opsTeamMember: 'OT',
+  opsAdmin: 'OA',
+  globalAdmin: 'GA', // No OPS needed
+};

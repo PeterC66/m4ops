@@ -624,15 +624,46 @@ graph LR;
 ### Authorisation
 
 - We use Jason Watmore's approach, and have absorbed his routines into ours (users modules), adapted to our standards
+- The source of truth is in the server database
 
-#### JWT
+#### Our structure
 
-- JSON Web Tokens are an open, industry standard method for representing claims securely between two parties - [jwt.io](https://jwt.io/)  allows you to decode, verify and generate JWT
-- We use [jwt-express](https://www.npmjs.com/package/jwt-express) to facilitate this on the server
-  - it uses [express-unless](https://www.npmjs.com/package/express-unless) to conditionally prevent itself from running
-- As well as in REST APIs, JWTs can also be used in everyday web applications to store session data in a cookie - the JWT contains all the information we need
-- We ignore the issue of [CSRF/Cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
-- JWTs can be stale (different than expired) after a period of inactivity, so sometimes need to ensure their JWT is fresh, as well as valid
+- The key constraints are on:
+  - being able to see an OPS at all
+  - being able to see a layer
+  - being able to upload a file
+  - being able to compile
+  - being able to set up, alter, delete users
+
+- OPS are one of:
+  - Unprotected - anyone can see it
+  - Protected - users need a specific right to see it
+
+- Layers (settled and modifiable/MFL) are one of:
+  - Unprotected - anyone can see it
+  - Protected - users need to be logged-in to see it (eg with Census images)
+  - Personal - only the one user (and admin) can see it
+  - Test - only an admin (globalAdmin, or opsAdmin for that OPS) can see it, and then only if the Test switch is On
+
+- Everyone (including [not logged-in] Guests) can see all Unprotected layers in all Unprotected OPS
+  - and login as a User (thereby acquiring any specific rights they have)
+  - and register as a User (but without any specific rights)
+  - but not Upload, compile, create or change an MFL
+- Logged-in Users (without needing any specific rights) can see all Protected (and Unprotected) layers in all Unprotected OPS
+  - and their own Personal layers
+  - and create an MFL, or change an MFL they can see
+
+- In addition, Users can have none, one or more of the following specific rights:
+  - opsViewer - as well as everything a Logged-in User can do
+    - can see all Protected layers in the specific OPS (this right is only needed if the OPS is Protected)
+    - but not Upload, compile, create or change an MFL
+  - opsTeamMember - can do everything the opsViewer can do
+    - and Upload, compile, create or change an MFL in the specific OPS
+  - opsAdmin - can do anything in the specific OPS
+    - including everything an opsTeamMember can do
+    - and see all Personal layers in that OPS (from everyone)
+    - and Register/edit Users as opsTeamMembers and opsViewers
+  - globalAdmin - can do anything
 
 #### Client system
 
@@ -653,9 +684,20 @@ graph LR;
     - fake-backend.ts - intercepts certain api requests and mimics the behaviour of a real api
     - user.service.js - all backend api calls, and logging in/out (handleResponse handles if the JWT token is no longer valid for any reason)
 - the URLs that are public are in router.js (beforeEach)
-- Now use [Route Meta Fields](https://router.vuejs.org/guide/advanced/meta.html) to determine navigation limits
+- Could use [Route Meta Fields](https://router.vuejs.org/guide/advanced/meta.html) to determine navigation limits
 
 #### Server system
+
+##### JSON Web Tokens (JWT)
+
+- JSON Web Tokens are an open, industry standard method for representing claims securely between two parties - and the library  [jwt.io](https://jwt.io/)  allows you to decode, verify and generate JWT
+- We use [jwt-express](https://www.npmjs.com/package/jwt-express) to facilitate this on the server
+  - it uses [express-unless](https://www.npmjs.com/package/express-unless) to conditionally prevent itself from running
+- As well as in REST APIs, JWTs can also be used in everyday web applications to store session data in a cookie - the JWT contains all the information we need
+- We ignore the issue of [CSRF/Cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
+- JWTs can be stale (different than expired) after a period of inactivity, so sometimes need to ensure their JWT is fresh, as well as valid
+
+##### General Server system
 
 - See [Jason Watmore's approach - server/API](http://jasonwatmore.com/post/2018/06/14/nodejs-mongodb-simple-api-for-authentication-registration-and-user-management)
 - clone of Jason Watmore's system is in C:projects/node-mongo-registration-login-api (server)
@@ -668,7 +710,7 @@ graph LR;
     - user.service.js - contains the core business logic, encapsulates all interaction with the mongoose user model, and exposes a simple set of methods
   - app.js includes a new major route: '/users', usersRoute
   - \routes\user.js defines the actions for each sub-route (including our normal Controller aspects)
-- the API calls that are public are in jwt.js
+- the API calls that are public are in jwt.js, and to begin with we allow all calls
 
 #### Management
 
@@ -1044,7 +1086,7 @@ Each route (including with parameters eg :id) is
 
 - All on localhost:5000 (and formatted by JSONView)
   - /places - list of studies in M4OPS
-    - /places/xxx - OPSDetails for XXX studye, with all its bits and arrays
+    - /places/xxx - OPSDetails for XXX study, with all its bits and arrays
   - /continents - continent/country/location/study (each has M4OPS:true where it is/contains an included study)
   - /m4opsdata - the M4OPS.json file, with all its bits and arrays
   - /featurelayers/OPS_Xxxx - the given feature layer from the given OPS in FeatureLayers
