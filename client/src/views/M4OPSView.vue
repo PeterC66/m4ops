@@ -47,8 +47,69 @@ import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
-import { initialCurrentOptionArray } from '../initialising/initialState';
+import { initialOpsCode } from '../initialising/initialState';
 import initialiseProjections from '../modules/mapping/projections';
+
+import { protectionStatusEnum, userRightsEnum } from '../global/constants';
+
+function checkAuthorisation(caller, store) {
+  // Called from both mounted() and beforeUpdate() to:
+  //   check whether the current user can do everything in the URL (now in vuex route store)
+  //   and then report any issues and/or move the data to the relevant bits of vuex and let the maps component open
+
+  /* eslint-disable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len, padded-blocks */
+
+  const errorsToReport = [];
+  const canContinue = true;
+
+  // Find out about the current user and desired OPS
+  if (caller === 'Created') console.log('cA0', store.state);
+  const currentUser = store.state.users.account;
+  const currentUserLoggedIn = currentUser.status.loggedIn;
+  const currentOPSCode = store.getters.place.OPSCode;
+  const desiredOPSCode = store.state.route.params.ops || initialOpsCode;
+
+
+  if (currentUser.status.loggedIn) {
+    console.log('loggedIn', currentUser);
+
+  } else {
+    console.log('Not loggedIn', currentUser);
+
+  }
+
+  // Report any errors
+
+
+  // We are OK to go - move the data to the relevant bits of vuex so this component can mount
+  if (!currentOPSCode || (currentOPSCode !== desiredOPSCode)) {
+    const loadingId = 'place';
+    store.dispatch('startLoading', loadingId);
+    store.dispatch(actions.request, {
+      baseURL: process.env.VUE_APP_BACKEND_URL,
+      url: `places/${desiredOPSCode}`,
+      keyPath: ['place'],
+    })
+      .then(() => {
+      // The state has been updated and you can do whatever you want with it
+      // eslint-disable-next-line
+      store.dispatch('initialiseChosenLayers', desiredOPSCode);
+      })
+      .then(() => {
+        store.dispatch('updateView', store.getters.homeView);
+      })
+      .then(() => {
+        store.dispatch('updateCurrentOptionArray', store.getters.getOptionsArrayByPlace(desiredOPSCode));
+      })
+      .then(() => {
+        store.dispatch('endLoading', loadingId);
+      });
+  }
+
+
+
+  /* eslint-enable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len */
+}
 
 export default {
   name: 'M4OPSView',
@@ -57,16 +118,6 @@ export default {
     Header,
     Sidebar,
   },
-  // props: {
-  //   auth: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  //   authenticated: {
-  //     type: Boolean,
-  //     required: true,
-  //   },
-  // },
   computed: {
     ...mapState({
       sidebarOpen: state => state.framework.sidebarOpen,
@@ -83,11 +134,18 @@ export default {
       return !_.isEmpty(this.loadingIds);
     },
     // isloading() {
-    //   return (_.isEmpty(this.places)) ||
-    //     (_.isEmpty(this.continents)) ||
-    //     (_.isEmpty(this.place)) ||
-    //     (_.isEmpty(this.m4opsdata));
+    //   return false
+    //     || (_.isEmpty(this.places))
+    //     || (_.isEmpty(this.continents))
+    //     || (_.isEmpty(this.place))
+    //     || (_.isEmpty(this.m4opsdata));
     // },
+  },
+  watch: {
+    // call again the method if the route changes
+    $route() {
+      checkAuthorisation('Watch', this.$store);
+    },
   },
   created() {
     if (_.isEmpty(this.places)) {
@@ -123,24 +181,8 @@ export default {
         this.$store.dispatch('endLoading', loadingId);
       });
     }
-    if (_.isEmpty(this.place)) {
-      const loadingId = 'place';
-      this.$store.dispatch('startLoading', loadingId);
-      this.$store.dispatch(actions.request, {
-        baseURL: process.env.VUE_APP_BACKEND_URL,
-        url: `places/${initialCurrentOptionArray[3]}`,
-        keyPath: ['place'],
-      }).then(() => {
-        // The state has been updated and you can do whatever you want with the resp
-        // eslint-disable-next-line max-len
-        this.$store.dispatch('initialiseChosenLayers', initialCurrentOptionArray[3]);
-      }).then(() => {
-        this.$store.dispatch('updateView', this.homeView);
-      }).then(() => {
-        this.$store.dispatch('endLoading', loadingId);
-      });
-    }
     initialiseProjections();
+    checkAuthorisation('Created', this.$store);
   },
   methods: {
     ...mapActions([

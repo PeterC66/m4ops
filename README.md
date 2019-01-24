@@ -16,4 +16,3 @@ Principal software used (besides Vue.js/ Vuex/ Vue Router)
 - vuex-api - for connecting with the backend server
 - vuelayers - for connecting with OpenLayers
 - MongoDB - database
-

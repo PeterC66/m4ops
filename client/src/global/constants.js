@@ -37,7 +37,7 @@ export const displayTypeEnum = {
   mostlyVectors: 'B', // sorted second
 };
 
-// protection status relates to OPS and layers
+// protection status relates to layers
 export const protectionStatusEnum = {
   Unprotected: 'UN', // default
   Protected: 'PD',

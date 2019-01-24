@@ -14,15 +14,12 @@
 import { actions } from 'vuex-api';
 import { mapGetters } from 'vuex';
 
-// import { initialCurrentOptionArray } from '../../../initialising/initialState';
-
 export default {
   name: 'ChooseOPS',
   props: {
     currentOptionArray: {
       type: Array,
-      // default: () => initialCurrentOptionArray,
-      default: () => [
+      default: () => [ // TODO ??
         'Europe',
         'England',
         'Cambridgeshire',

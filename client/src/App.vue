@@ -56,19 +56,6 @@
 
 export default {
   name: 'App',
-  // data() {
-  //   return {
-  //     auth,
-  //     authenticated: auth.authenticated,
-  //   };
-  // },
-  // created() {
-  //   auth.authNotifier.on('authChange', (authState) => {
-  //     this.authenticated = authState.authenticated;
-  //   });
-
-  //   auth.renewSession();
-  // },
 };
 </script>
 

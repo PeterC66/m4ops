@@ -15,7 +15,7 @@ module.exports = {
   },
 
   findPlaces(params, callback) {
-    Place.find(params, '_id OPSCode	OPSName', (err, results) => {
+    Place.find(params, '_id OPSCode	OPSName Protected', (err, results) => {
       if (err) {
         callback(err, null);
         return;

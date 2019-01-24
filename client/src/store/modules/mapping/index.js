@@ -9,7 +9,6 @@ import {
   RH_LAYER_SET_REQUEST,
 } from '../../mutation-types';
 import {
-  initialCurrentOptionArray,
   initialStateRhChosenLayer,
 } from '../../../initialising/initialState';
 
@@ -24,7 +23,7 @@ const state = {
     center: [-105.8701, 34.5199],
     rotation: 0,
   },
-  currentOptionArray: initialCurrentOptionArray,
+  currentOptionArray: [],
   chosenRhLayer: initialStateRhChosenLayer,
 };
 

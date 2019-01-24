@@ -4,7 +4,6 @@ import Home from './views/Home.vue';
 import M4OPSView from './views/M4OPSView.vue';
 import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
-import Testing from './global/components/Testing.vue';
 
 import LoginPage from './views/LoginPage.vue';
 import LogoutPage from './views/LogoutPage.vue';
@@ -71,15 +70,14 @@ const router = new Router({
       component: ManagePage,
     },
     {
-      // eslint-disable-next-line max-len
-      path: '/test/:OPS?'
+      path: '/test/:ops?'
       + '/:layers([A-Za-z]\\w*)*'
       + '/:opacities(\\d+)*'
       + '(/[ZF])?:ZoomOrFitTo(\\d+)?'
       + '/:Lon([-+]?\\d+\\.?\\d*)?'
       + '/:Lat([-+]?\\d+\\.?\\d*)?',
       name: 'test',
-      component: Testing,
+      component: M4OPSView,
     },
     {
       path: '*',

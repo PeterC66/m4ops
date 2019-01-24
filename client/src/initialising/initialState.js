@@ -28,9 +28,4 @@ export const initialStateChosenLayersByOpsCode = (opsCode) => {
   return result;
 };
 
-export const initialCurrentOptionArray = [
-  'Europe',
-  'England',
-  'Cambridgeshire',
-  'HcN',
-];
+export const initialOpsCode = 'HcN';

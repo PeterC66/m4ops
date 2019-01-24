@@ -636,11 +636,11 @@ graph LR;
   - being able to set up, alter, delete users
 
 - OPS are one of:
-  - Unprotected - anyone can see it
+  - Unprotected - anyone can see it (default)
   - Protected - users need a specific right to see it
 
 - Layers (settled and modifiable/MFL) are one of:
-  - Unprotected - anyone can see it
+  - Unprotected - anyone can see it (default)
   - Protected - users need to be logged-in to see it (eg with Census images)
   - Personal - only the one user (and admin) can see it
   - Test - only an admin (globalAdmin, or opsAdmin for that OPS) can see it, and then only if the Test switch is On
@@ -1136,25 +1136,26 @@ graph LR;
   - show collections
   - db.M4OPSData.drop()
 
-- For imports can use
-  - [MongoDB Compass](https://docs.mongodb.com/compass/current/import-export/) (but did not work)
-  - [mongoimport](https://docs.mongodb.com/manual/reference/program/mongoimport/) can import JSON and csv into MongoDB
-  - Remember that it is **one (JSON) document per line**, although a single JSON document can span more than one line
-  - can use [jsonformatter](https://jsonformatter.curiousconcept.com/) for checking one of the json, not using –jsonArray option
-  - from terminal, for a whole collection or a single document, use
-    - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
-    - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
-    - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
-    - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
-    - and then:
-    - Buildings.geojson"
-    - Censuses.geojson"
-    - HcN land ownership.geojson"
-    - OSM20180209.geojson"
-    - add --drop so that the target instance drops the collection before importing the data from the input.
-    - add --mode upsert to replace documents whose _id matches the document(s) in the import file
-  - (Note that the Studies collection is not used now)
-  - maximum BSON (Mongodb) document size is 16 megabytes, or use GridFS API.
+### Imports into MongoDB
+
+- [MongoDB Compass](https://docs.mongodb.com/compass/current/import-export/) (but did not work)
+- [mongoimport](https://docs.mongodb.com/manual/reference/program/mongoimport/) can import JSON and csv into MongoDB
+- Remember that it is **one (JSON) document per line**, although a single JSON document can span more than one line
+- can use [jsonformatter](https://jsonformatter.curiousconcept.com/) for checking one of the json, not using –jsonArray option
+- from terminal, for a whole collection or a single document, use
+  - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
+  - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
+  - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
+  - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
+  - and then:
+  - Buildings.geojson"
+  - Censuses.geojson"
+  - HcN land ownership.geojson"
+  - OSM20180209.geojson"
+  - (adding --drop ensures the target instance drops the collection before importing the data from the input)
+  - (adding --mode upsert to replace documents whose _id matches the document(s) in the import file)
+- (Note that the Studies collection is not used now)
+- maximum BSON (Mongodb) document size is 16 megabytes, or use GridFS API.
 
 ### To create Places.json
 

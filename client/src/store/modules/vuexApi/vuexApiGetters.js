@@ -7,7 +7,7 @@ import {
 } from '../../../global/utils';
 import optionsFromContinents from './optionsFromContinents';
 import categoriesAndLayers from './categoriesAndLayers';
-// import optionsByPlaces from './optionsByPlaces';
+import optionsByPlaces from './optionsByPlaces';
 
 const vuexApiGetters = {};
 
@@ -141,11 +141,8 @@ vuexApiGetters.continents = moduleState => (moduleState.continents
 
 vuexApiGetters.placeOptions = (moduleState, getters) => optionsFromContinents(getters.continents, getters.places);
 
-// vuexApiGetters.placeOptionsLinear = (moduleState, getters) =>
-//   optionsByPlaces(getters.continents, getters.places) || [];
+vuexApiGetters.placeOptionsLinear = (moduleState, getters) => optionsByPlaces(getters.continents, getters.places) || [];
 
-// vuexApiGetters.getOptionsArrayByPlace = (moduleState, getters) =>
-//   opsCode =>
-//     _.find(getters.placeOptionsLinear, { opsCode });
+vuexApiGetters.getOptionsArrayByPlace = (moduleState, getters) => opsCode => _.find(getters.placeOptionsLinear, o => o[3] === opsCode);
 
 export default vuexApiGetters;

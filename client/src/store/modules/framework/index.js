@@ -35,8 +35,8 @@ const mutations = {
     );
     const arrayLengthNew = moduleState.loadingIds.length;
     if (arrayLengthNew !== arrayLengthOld + 1) {
-      // eslint-disable-next-line no-console
-      console.log('Problem with loadingIds', moduleState.loadingIds);
+      // eslint-disable-next-line no-console, max-len
+      console.log('loadingIds problem at start', `Length New is ${arrayLengthNew}, old was ${arrayLengthOld}`, moduleState.loadingIds);
     }
   },
   [LOADING_END](moduleState, payload) {
@@ -45,8 +45,8 @@ const mutations = {
     moduleState.loadingIds = _.without(moduleState.loadingIds, loadingId);
     const arrayLengthNew = moduleState.loadingIds.length;
     if (arrayLengthNew !== arrayLengthOld - 1) {
-      // eslint-disable-next-line no-console
-      console.log('Problem with loadingIds', moduleState.loadingIds);
+      // eslint-disable-next-line no-console, max-len
+      console.log('loadingIds problem at end', `Length New is ${arrayLengthNew}, old was ${arrayLengthOld}`, moduleState.loadingIds);
     }
   },
 };
