@@ -31,11 +31,6 @@ const router = new Router({
       component: Home,
     },
     {
-      path: '/maps',
-      name: 'maps',
-      component: M4OPSView,
-    },
-    {
       path: '/form',
       name: 'form',
       component: Form,
@@ -70,15 +65,23 @@ const router = new Router({
       component: ManagePage,
     },
     {
-      path: '/test/:ops?'
+      path: '/maps/:ops?'
       + '/:layers([A-Za-z]\\w*)*'
       + '/:opacities(\\d+)*'
-      + '(/[ZF])?:ZoomOrFitTo(\\d+)?'
-      + '/:Lon([-+]?\\d+\\.?\\d*)?'
-      + '/:Lat([-+]?\\d+\\.?\\d*)?',
-      name: 'test',
+      + '(/)?([ZF])?:ZoomOrFitTo(\\d+)?',
+      name: 'maps',
       component: M4OPSView,
     },
+    // {
+    //   path: '/maps/:ops?'
+    //   + '/:layers([A-Za-z]\\w*)*'
+    //   + '/:opacities(\\d+)*'
+    //   + '(/[ZF])?:ZoomOrFitTo(\\d+)?'
+    //   + '/:Lon([-+]?\\d+\\.?\\d*)?'
+    //   + '/:Lat([-+]?\\d+\\.?\\d*)?',
+    //   name: 'maps',
+    //   component: M4OPSView,
+    // },
     {
       path: '*',
       name: 'notFound',
@@ -87,6 +90,7 @@ const router = new Router({
   ],
 });
 
+/*
 // eslint-disable-next-line consistent-return
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
@@ -108,5 +112,6 @@ router.beforeEach((to, from, next) => {
 
   next();
 });
+*/
 
 export default router;

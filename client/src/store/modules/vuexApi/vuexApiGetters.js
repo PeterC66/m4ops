@@ -143,6 +143,8 @@ vuexApiGetters.placeOptions = (moduleState, getters) => optionsFromContinents(ge
 
 vuexApiGetters.placeOptionsLinear = (moduleState, getters) => optionsByPlaces(getters.continents, getters.places) || [];
 
-vuexApiGetters.getOptionsArrayByPlace = (moduleState, getters) => opsCode => _.find(getters.placeOptionsLinear, o => o[3] === opsCode);
+vuexApiGetters.getOptionsArrayByPlace = (moduleState, getters) => opsCode => _.find(getters.placeOptionsLinear, po => po[3] === opsCode);
+
+vuexApiGetters.getPlaceFromPlaces = (moduleState, getters) => opsCode => _.find(getters.places, p => p.OPSCode === opsCode);
 
 export default vuexApiGetters;

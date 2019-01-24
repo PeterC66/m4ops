@@ -3,7 +3,7 @@
 ## path parameters
 
 (specific order separated by /) - see client\src\router.js
-/test/:ops? /:layers([A-Za-z]\\w*)* /:opacities(\\d+)* (/[ZF])?:ZoomOrFitTo(\\d+)? /:Lon([-+]?\\d+\\.?\\d*)? /:Lat([-+]?\\d+\\.?\\d*)?
+/maps/:ops?/:layers([A-Za-z]\\w*)*/:opacities(\\d+)*(/[ZF])?:ZoomOrFitTo(\\d+)?/:Lon([-+]?\\d+\\.?\\d*)?/:Lat([-+]?\\d+\\.?\\d*)?
 
 - :ops: code for the OPS (optional - default HcN)
 - :layers: zero or more layer titles (starting at layer 0) separated by / (if none then default is Bing%20Aerial/OSM)
@@ -15,7 +15,7 @@
 
 ## Examples
 
-[Basic](http://localhost:8080/test/HcN/Layer0/Layer1/Layer2/55/)
+[Basic](http://localhost:8080/maps/HcN/Layer0/Layer1/Layer2/55/)
 
 ## query parameters
 

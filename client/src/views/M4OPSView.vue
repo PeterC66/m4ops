@@ -68,7 +68,8 @@ function checkAuthorisation(caller, store) {
   const currentUserLoggedIn = currentUser.status.loggedIn;
   const currentOPSCode = store.getters.place.OPSCode;
   const desiredOPSCode = store.state.route.params.ops || initialOpsCode;
-
+  const place = store.getters.getPlaceFromPlaces(desiredOPSCode);
+  console.log('place', desiredOPSCode, place);
 
   if (currentUser.status.loggedIn) {
     console.log('loggedIn', currentUser);
@@ -148,6 +149,7 @@ export default {
     },
   },
   created() {
+    initialiseProjections();
     if (_.isEmpty(this.places)) {
       const loadingId = 'places';
       this.$store.dispatch('startLoading', loadingId);
@@ -181,7 +183,6 @@ export default {
         this.$store.dispatch('endLoading', loadingId);
       });
     }
-    initialiseProjections();
     checkAuthorisation('Created', this.$store);
   },
   methods: {
