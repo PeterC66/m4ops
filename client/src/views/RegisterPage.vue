@@ -38,6 +38,8 @@
 import { mapState, mapActions } from 'vuex';
 import VueFormGenerator from 'vue-form-generator';
 // Note import  of vfg.css etc is in main.js
+import { userRightsEnum } from '../global/constants';
+import { enumToSelect } from '../global/utils';
 
 export default {
   name: 'RegisterPage',
@@ -53,6 +55,8 @@ export default {
         lastName: '',
         username: '',
         password: '',
+        right0: '',
+        OPS0: '',
       },
       submitted: false,
 
@@ -95,6 +99,20 @@ export default {
             validator: 'string',
             validateDebounceTime: 2000,
           },
+          {
+            type: 'select',
+            label: 'Status',
+            model: 'right0',
+            values() {
+              return enumToSelect(userRightsEnum);
+            },
+          },
+          {
+            type: 'select',
+            label: 'OPS',
+            model: 'OPS0',
+            values: ['HcN', 'HNB'],
+          },
         ],
       },
       formOptions: {
@@ -130,10 +148,19 @@ export default {
     // eslint-disable-next-line no-unused-vars
     handleSubmit(e) {
       this.submitted = true;
-      // eslint-disable-next-line no-console
-      console.log('in handleSubmit', e, this.model);
+      // temporarily have just one element in the rightsArray
+      const userDetails = { ...this.model };
+      if (this.model.right0) {
+        userDetails.rightsArray = [
+          { userRight: this.model.right0, opsCode: this.model.OPS0 },
+        ];
+      }
+      delete userDetails.right0;
+      delete userDetails.OPS0;
       // Can assume valid
-      this.register(this.model);
+      // eslint-disable-next-line no-console
+      console.log('in handleSubmit', this.model, userDetails);
+      this.register(userDetails);
       // this.$router.push('/');
     },
   },

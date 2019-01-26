@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign, no-unused-vars, no-shadow */
+import _ from 'lodash';
 import { userService } from '../../../modules/users/_services';
 import router from '../../../router';
 
@@ -77,11 +78,26 @@ const mutations = {
   },
 };
 
+const getters = { // All for current user
+  // Note that firstName and lastName are required, so guaranteed to be non-empty
+  // eslint-disable-next-line max-len
+  fullName: moduleState => `${moduleState.user.firstName} ${moduleState.user.lastName}`,
+  // Sort by the right (each starts with integer) then find the first for the given opsCode
+  bestRightForOPS: moduleState => opsCode => _.find(
+    _.sortBy(
+      moduleState.user.rightsArray,
+      [ur => ur.userRight],
+    ),
+    r => !r.opsCode || r.opsCode === opsCode,
+  ).userRight,
+};
+
 const account = {
   // namespaced: true,
   state,
   actions,
   mutations,
+  getters,
 };
 
 export default account;

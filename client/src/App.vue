@@ -12,7 +12,7 @@
           </router-link>
         </div>
         <div class="navbar-item">
-          <router-link to="/maps">
+          <router-link to="/maps/">
             Maps
           </router-link>
         </div>

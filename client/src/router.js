@@ -64,24 +64,24 @@ const router = new Router({
       name: 'manage',
       component: ManagePage,
     },
-    {
-      path: '/maps/:ops?'
-      + '/:layers([A-Za-z]\\w*)*'
-      + '/:opacities(\\d+)*'
-      + '(/)?([ZF])?:ZoomOrFitTo(\\d+)?',
-      name: 'maps',
-      component: M4OPSView,
-    },
     // {
     //   path: '/maps/:ops?'
     //   + '/:layers([A-Za-z]\\w*)*'
     //   + '/:opacities(\\d+)*'
-    //   + '(/[ZF])?:ZoomOrFitTo(\\d+)?'
-    //   + '/:Lon([-+]?\\d+\\.?\\d*)?'
-    //   + '/:Lat([-+]?\\d+\\.?\\d*)?',
+    //   + '(/)?([ZF])?:ZoomOrFitTo(\\d+)?',
     //   name: 'maps',
     //   component: M4OPSView,
     // },
+    {
+      path: '/maps/:ops?'
+      + '/:layers([A-Za-z]\\w*)*'
+      + '/:opacities(\\d+)*'
+      + '(/[ZF])?:ZoomOrFitTo(\\d+)?'
+      + '/:Lon([-+]?\\d+\\.?\\d*)?'
+      + '/:Lat([-+]?\\d+\\.?\\d*)?',
+      name: 'maps',
+      component: M4OPSView,
+    },
     {
       path: '*',
       name: 'notFound',
@@ -90,20 +90,18 @@ const router = new Router({
   ],
 });
 
-/*
 // eslint-disable-next-line consistent-return
 router.beforeEach((to, from, next) => {
-  // redirect to login page if not logged in and trying to access a restricted page
+  // redirect to login page if not logged in and trying to access a restricted page (eg Manage)
   const publicPages = [
     '/',
     '/login',
     '/logout',
     '/register',
     '/about',
-    '/maps',
   ];
   let authRequired = !publicPages.includes(to.path);
-  if (to.path.startsWith('/test')) authRequired = false;
+  if (to.path.startsWith('/maps')) authRequired = false; // Handled by M4OPSView
   const loggedIn = localStorage.getItem('user');
 
   if (authRequired && !loggedIn) {
@@ -112,6 +110,6 @@ router.beforeEach((to, from, next) => {
 
   next();
 });
-*/
+
 
 export default router;

@@ -47,70 +47,8 @@ import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
-import { initialOpsCode } from '../initialising/initialState';
 import initialiseProjections from '../modules/mapping/projections';
-
-import { protectionStatusEnum, userRightsEnum } from '../global/constants';
-
-function checkAuthorisation(caller, store) {
-  // Called from both mounted() and beforeUpdate() to:
-  //   check whether the current user can do everything in the URL (now in vuex route store)
-  //   and then report any issues and/or move the data to the relevant bits of vuex and let the maps component open
-
-  /* eslint-disable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len, padded-blocks */
-
-  const errorsToReport = [];
-  const canContinue = true;
-
-  // Find out about the current user and desired OPS
-  if (caller === 'Created') console.log('cA0', store.state);
-  const currentUser = store.state.users.account;
-  const currentUserLoggedIn = currentUser.status.loggedIn;
-  const currentOPSCode = store.getters.place.OPSCode;
-  const desiredOPSCode = store.state.route.params.ops || initialOpsCode;
-  const place = store.getters.getPlaceFromPlaces(desiredOPSCode);
-  console.log('place', desiredOPSCode, place);
-
-  if (currentUser.status.loggedIn) {
-    console.log('loggedIn', currentUser);
-
-  } else {
-    console.log('Not loggedIn', currentUser);
-
-  }
-
-  // Report any errors
-
-
-  // We are OK to go - move the data to the relevant bits of vuex so this component can mount
-  if (!currentOPSCode || (currentOPSCode !== desiredOPSCode)) {
-    const loadingId = 'place';
-    store.dispatch('startLoading', loadingId);
-    store.dispatch(actions.request, {
-      baseURL: process.env.VUE_APP_BACKEND_URL,
-      url: `places/${desiredOPSCode}`,
-      keyPath: ['place'],
-    })
-      .then(() => {
-      // The state has been updated and you can do whatever you want with it
-      // eslint-disable-next-line
-      store.dispatch('initialiseChosenLayers', desiredOPSCode);
-      })
-      .then(() => {
-        store.dispatch('updateView', store.getters.homeView);
-      })
-      .then(() => {
-        store.dispatch('updateCurrentOptionArray', store.getters.getOptionsArrayByPlace(desiredOPSCode));
-      })
-      .then(() => {
-        store.dispatch('endLoading', loadingId);
-      });
-  }
-
-
-
-  /* eslint-enable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len */
-}
+import authoriseAndOpen from '../modules/users/authoriseAndOpen';
 
 export default {
   name: 'M4OPSView',
@@ -134,7 +72,7 @@ export default {
     isLoading() {
       return !_.isEmpty(this.loadingIds);
     },
-    // isloading() {
+    // isloading() { // doesn't work
     //   return false
     //     || (_.isEmpty(this.places))
     //     || (_.isEmpty(this.continents))
@@ -145,22 +83,30 @@ export default {
   watch: {
     // call again the method if the route changes
     $route() {
-      checkAuthorisation('Watch', this.$store);
+      // we need an immediately resolved promise
+      const promise = new Promise(resolve => resolve('done!'));
+      authoriseAndOpen('Watch', this.$store, promise, this.$router);
     },
   },
   created() {
     initialiseProjections();
-    if (_.isEmpty(this.places)) {
-      const loadingId = 'places';
-      this.$store.dispatch('startLoading', loadingId);
-      this.$store.dispatch(actions.request, {
-        baseURL: process.env.VUE_APP_BACKEND_URL,
-        url: 'places',
-        keyPath: ['places'],
-      }).then(() => {
-        this.$store.dispatch('endLoading', loadingId);
-      });
-    }
+    const placesLoadedPromise = new Promise((resolve) => {
+      if (_.isEmpty(this.places)) {
+        const loadingId = 'places';
+        this.$store.dispatch('startLoading', loadingId);
+        this.$store.dispatch(actions.request, {
+          baseURL: process.env.VUE_APP_BACKEND_URL,
+          url: 'places',
+          keyPath: ['places'],
+        }).then(() => {
+          this.$store.dispatch('endLoading', loadingId);
+        }).then(() => {
+          resolve('done!');
+        });
+      } else {
+        resolve('already done');
+      }
+    });
     if (_.isEmpty(this.continents)) {
       const loadingId = 'continents';
       this.$store.dispatch('startLoading', loadingId);
@@ -183,7 +129,7 @@ export default {
         this.$store.dispatch('endLoading', loadingId);
       });
     }
-    checkAuthorisation('Created', this.$store);
+    authoriseAndOpen('Created', this.$store, placesLoadedPromise, this.$router);
   },
   methods: {
     ...mapActions([

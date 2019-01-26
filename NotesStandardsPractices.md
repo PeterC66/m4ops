@@ -431,7 +431,8 @@ See under [Standards and styles](#standards-and-styles)
 - [lodash](https://lodash.com/docs/) has many useful functions
   - just import _ from 'lodash' (see [benchmark](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark))- eventually use [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)
   - for [iteratees](https://lodash.com/docs/#iteratee) see [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
-- for promises and async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
+- for async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
+- for promises see [Javascript.Info](https://javascript.info/promise-basics)
 - to pass 'this' context to a function use [js bind](https://javascript.info/bind#solution-2-bind)
 
 ### Regular Expressions
@@ -541,7 +542,7 @@ graph LR;
 - [advanced uses](https://medium.com/@NAPOLEON039/the-lesser-known-amazing-things-vuerouter-can-do-3fbb2c191c00)
 - Use path parameters, with their specific order, where there is an implied hierarchy, otherwise [use query parameters](https://medium.com/@BjornKrols/tutorial-dynamic-content-via-url-query-parameters-in-vue-js-d2df19b66633)
 - See [Synchronize with Vue Router](https://community.algolia.com/vue-instantsearch/advanced/vue-router-url-sync.html) for passing route parameters as props, and keep the URL in sync with changes
-- use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync) to sync $route into vuex store's state
+- We use [https://github.com/vuejs/vuex-router-sync](https://github.com/vuejs/vuex-router-sync) to sync $route into vuex store's state
 - [Missing manual](https://blog.webf.zone/vue-router-the-missing-manual-ce51c21430b0)
   - compares state-router vs url-router
   - can pass complex data from one-route to another during transition without making the data part of URL
@@ -639,7 +640,7 @@ graph LR;
   - Unprotected - anyone can see it (default)
   - Protected - users need a specific right to see it
 
-- Layers (settled and modifiable/MFL) are one of:
+- Layers (settled and modifiable/MFL) are one of [see protectionStatusEnum]:
   - Unprotected - anyone can see it (default)
   - Protected - users need to be logged-in to see it (eg with Census images)
   - Personal - only the one user (and admin) can see it
@@ -653,7 +654,7 @@ graph LR;
   - and their own Personal layers
   - and create an MFL, or change an MFL they can see
 
-- In addition, Users can have none, one or more of the following specific rights:
+- In addition, Users can have none, one or more of the following specific rights [see userRightsEnum]:
   - opsViewer - as well as everything a Logged-in User can do
     - can see all Protected layers in the specific OPS (this right is only needed if the OPS is Protected)
     - but not Upload, compile, create or change an MFL

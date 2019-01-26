@@ -257,3 +257,13 @@ export function padAllNumbers(strIn) {
   }
   return result;
 }
+
+export function enumToSelect(enumConstant) {
+  // Given an enum object, usually in contants.js, return an array suitable for VFG selects
+  const result = [];
+
+  Object.keys(enumConstant).forEach((key) => {
+    result.push({ id: enumConstant[key], name: key });
+  });
+  return result;
+}

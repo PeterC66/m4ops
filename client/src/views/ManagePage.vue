@@ -3,7 +3,7 @@
     class="panel-body"
     style="background-color:white"
   >
-    <h1>Hi {{ account.user.firstName }}!</h1>
+    <h1>Hi {{ fullName }}!</h1>
     <p>You're logged in with Vue + Vuex & JWT!!</p>
     <h3>Users from secure api end point:</h3>
     <em v-if="users.loading">
@@ -20,7 +20,7 @@
         v-for="user in users.items"
         :key="user.id"
       >
-        {{ user.firstName + ' ' + user.lastName }}
+        {{ `${user.firstName} ${user.lastName} (${user.username})` }}
         <span v-if="user.deleting">
           <em> - Deleting...</em>
         </span>
@@ -31,22 +31,33 @@
           - ERROR: {{ user.deleteError }}
         </span>
         <span v-else>
-          - <a
-            class="text-danger"
+          <button
+            class="button is-danger"
             @click="deleteUser(user.id)"
           >
             Delete
-          </a>
+          </button>
         </span>
+        <ul v-if="user.rightsArray">
+          <li
+            v-for="userRight in user.rightsArray"
+            :key="userRight.id"
+          >
+            {{ `├──${userRight.opsCode} - ${userRight.userRight}` }}
+          </li>
+        </ul>
       </li>
     </ul>
     <p>
-      <router-link to="/logout">
+      <router-link
+        to="/logout"
+        class="button is-primary"
+      >
         Logout
       </router-link>
       <router-link
         to="/register"
-        class="btn btn-link"
+        class="button is-primary"
       >
         Register
       </router-link>
@@ -55,7 +66,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   computed: {
@@ -63,6 +74,9 @@ export default {
       account: state => state.users.account,
       users: state => state.users.users.all,
     }),
+    ...mapGetters([
+      'fullName',
+    ]),
   },
   created() {
     this.getAllUsers();
