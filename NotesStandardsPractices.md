@@ -557,6 +557,9 @@ graph LR;
   - Fetching After Navigation (in created and watch $route) - but problem with validation?
   - Fetching Before Navigation (beforeRouteEnter and beforeRouteUpdate guards) - only call next when the fetch is complete
   - see also [Fetching/ using store in router](https://stackoverflow.com/questions/42579601/how-to-access-async-store-data-in-vue-router-for-usage-in-beforeenter-hook)
+  - [using Vue Router Navigation Guards](https://serversideup.net/vue-router-navigation-guards-vuex/)
+    - from [Roast And Brew tutorials](https://github.com/serversideup/roastandbrew)
+    - eg [routes.js](https://github.com/serversideup/roastandbrew/blob/master/resources/assets/js/routes.js)
 
 #### Our URL scheme
 

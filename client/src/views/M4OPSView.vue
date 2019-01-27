@@ -40,15 +40,15 @@
 
 <script>
 import _ from 'lodash';
+import { mapState, mapGetters } from 'vuex';
 import { actions } from 'vuex-api';
-import { mapState, mapGetters, mapActions } from 'vuex';
 
 import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
 import initialiseProjections from '../modules/mapping/projections';
-import authoriseAndOpen from '../modules/users/authoriseAndOpen';
+import { initialOpsCode } from '../initialising/initialState';
 
 export default {
   name: 'M4OPSView',
@@ -61,6 +61,7 @@ export default {
     ...mapState({
       sidebarOpen: state => state.framework.sidebarOpen,
       loadingIds: state => state.framework.loadingIds,
+      currentOptionArray: state => state.mapping.currentOptionArray,
     }),
     ...mapGetters([
       'm4opsdata',
@@ -68,6 +69,7 @@ export default {
       'place',
       'continents',
       'homeView',
+      'getOptionsArrayByPlace',
     ]),
     isLoading() {
       return !_.isEmpty(this.loadingIds);
@@ -80,62 +82,37 @@ export default {
     //     || (_.isEmpty(this.m4opsdata));
     // },
   },
-  watch: {
-    // call again the method if the route changes
-    $route() {
-      // we need an immediately resolved promise
-      const promise = new Promise(resolve => resolve('done!'));
-      authoriseAndOpen('Watch', this.$store, promise, this.$router);
-    },
-  },
   created() {
     initialiseProjections();
-    const placesLoadedPromise = new Promise((resolve) => {
-      if (_.isEmpty(this.places)) {
-        const loadingId = 'places';
-        this.$store.dispatch('startLoading', loadingId);
-        this.$store.dispatch(actions.request, {
-          baseURL: process.env.VUE_APP_BACKEND_URL,
-          url: 'places',
-          keyPath: ['places'],
-        }).then(() => {
-          this.$store.dispatch('endLoading', loadingId);
-        }).then(() => {
-          resolve('done!');
+    const currentOPSCode = this.place.OPSCode;
+    const desiredOPSCode = this.currentOptionArray[3] || initialOpsCode;
+    if (!currentOPSCode || (currentOPSCode !== desiredOPSCode)) {
+      // const loadingId = 'place';
+      this.$store.dispatch(actions.request, {
+        baseURL: process.env.VUE_APP_BACKEND_URL,
+        url: `places/${desiredOPSCode}`,
+        keyPath: ['place'],
+      })
+        .then(() => { // TODO
+          // The state has been updated and you can do whatever you want with it
+          // eslint-disable-next-line
+          this.$store.dispatch('initialiseChosenLayers', desiredOPSCode);
+        })
+        .then(() => {
+          this.$store.dispatch('updateView', this.homeView);
+        })
+        .then(() => {
+          this.$store.dispatch(
+            'updateCurrentOptionArray',
+            this.getOptionsArrayByPlace(desiredOPSCode),
+          );
         });
-      } else {
-        resolve('already done');
-      }
-    });
-    if (_.isEmpty(this.continents)) {
-      const loadingId = 'continents';
-      this.$store.dispatch('startLoading', loadingId);
-      this.$store.dispatch(actions.request, {
-        baseURL: process.env.VUE_APP_BACKEND_URL,
-        url: 'continents',
-        keyPath: ['continents'],
-      }).then(() => {
-        this.$store.dispatch('endLoading', loadingId);
-      });
     }
-    if (_.isEmpty(this.m4opsdata)) {
-      const loadingId = 'm4opsdata';
-      this.$store.dispatch('startLoading', loadingId);
-      this.$store.dispatch(actions.request, {
-        baseURL: process.env.VUE_APP_BACKEND_URL,
-        url: 'm4opsdata',
-        keyPath: ['m4opsdata'],
-      }).then(() => {
-        this.$store.dispatch('endLoading', loadingId);
-      });
-    }
-    authoriseAndOpen('Created', this.$store, placesLoadedPromise, this.$router);
   },
-  methods: {
-    ...mapActions([
-      'startLoading',
-      'endLoading',
-    ]),
+  beforeRouteUpdate(to, from, next) {
+    // eslint-disable-next-line no-console
+    console.log('bRU', to, from);
+    next();
   },
 };
 </script>

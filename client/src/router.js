@@ -9,6 +9,7 @@ import LoginPage from './views/LoginPage.vue';
 import LogoutPage from './views/LogoutPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import ManagePage from './views/ManagePage.vue';
+import { validateUserAndSetInitialValues } from './modules/users/validateEtc';
 
 Vue.use(Router);
 
@@ -81,12 +82,7 @@ const router = new Router({
       + '/:Lat([-+]?\\d+\\.?\\d*)?',
       name: 'maps',
       component: M4OPSView,
-      // eslint-disable-next-line no-unused-vars
-      beforeEnter: (to, from, next) => {
-      // eslint-disable-next-line no-console
-        console.log('beforeEnter', to, from);
-        next();
-      },
+      beforeEnter: validateUserAndSetInitialValues,
     },
     {
       path: '*',

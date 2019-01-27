@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { ApiHandlerComponent } from 'vuex-api';
+import { ApiHandlerComponent, actions } from 'vuex-api';
 import { sync } from 'vuex-router-sync';
 import Buefy from 'buefy';
 // import 'buefy/dist/buefy.css';
@@ -64,9 +64,29 @@ Vue.use(globalPlugin1, { anOption: true });
 
 Vue.config.productionTip = false;
 
-new Vue({
-  router,
-  store,
-  strict: process.env.NODE_ENV !== 'production',
-  render: h => h(App),
-}).$mount('#app');
+// dispatch the initial loads (asynchronous), committing to store
+Promise.all([
+  store.dispatch(actions.request, {
+    baseURL: process.env.VUE_APP_BACKEND_URL,
+    url: 'continents',
+    keyPath: ['continents'],
+  }),
+  store.dispatch(actions.request, {
+    baseURL: process.env.VUE_APP_BACKEND_URL,
+    url: 'm4opsdata',
+    keyPath: ['m4opsdata'],
+  }),
+  store.dispatch(actions.request, {
+    baseURL: process.env.VUE_APP_BACKEND_URL,
+    url: 'places',
+    keyPath: ['places'],
+  }),
+]).then(() => {
+  // create the main Vue instance and mount it
+  new Vue({
+    router,
+    store,
+    strict: process.env.NODE_ENV !== 'production',
+    render: h => h(App),
+  }).$mount('#app');
+});
