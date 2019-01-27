@@ -1,0 +1,20 @@
+All "Protected":false except HNB "Protected":true
+
+Cosmo_Wallace_1764 "Protected":"PD"
+
+export const userRightsEnum = {
+  opsViewer: 'OV',
+  opsTeamMember: 'OT',
+  opsAdmin: 'OA',
+  globalAdmin: 'GA', // No OPS needed
+};
+
+A has OA for HNB
+P has GA
+B has no rights
+C has OV for HNB
+D has OT for HNB
+E has OT for HcN
+
+Fetching/ using store in router
+https://stackoverflow.com/questions/42579601/how-to-access-async-store-data-in-vue-router-for-usage-in-beforeenter-hook

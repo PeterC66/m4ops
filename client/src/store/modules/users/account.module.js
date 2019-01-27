@@ -2,6 +2,8 @@
 import _ from 'lodash';
 import { userService } from '../../../modules/users/_services';
 import router from '../../../router';
+import { userRightsEnum } from '../../../global/constants';
+import { isNonemptyArray } from '../../../global/utils';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
@@ -83,13 +85,23 @@ const getters = { // All for current user
   // eslint-disable-next-line max-len
   fullName: moduleState => `${moduleState.user.firstName} ${moduleState.user.lastName}`,
   // Sort by the right (each starts with integer) then find the first for the given opsCode
-  bestRightForOPS: moduleState => opsCode => _.find(
-    _.sortBy(
-      moduleState.user.rightsArray,
-      [ur => ur.userRight],
-    ),
-    r => !r.opsCode || r.opsCode === opsCode,
-  ).userRight,
+  bestRightForOPS: moduleState => (opsCode) => {
+    let result = userRightsEnum.none;
+    if (moduleState.user && isNonemptyArray(moduleState.user.rightsArray)) {
+      const bestRight = _.find(
+        _.sortBy(
+          moduleState.user.rightsArray,
+          [ur => ur.userRight],
+        ),
+        r => !r.opsCode || r.opsCode === opsCode,
+      );
+      // console.log(result, bestRight);
+      if (bestRight) {
+        result = bestRight.userRight;
+      }
+    }
+    return result;
+  },
 };
 
 const account = {

@@ -81,6 +81,12 @@ const router = new Router({
       + '/:Lat([-+]?\\d+\\.?\\d*)?',
       name: 'maps',
       component: M4OPSView,
+      // eslint-disable-next-line no-unused-vars
+      beforeEnter: (to, from, next) => {
+      // eslint-disable-next-line no-console
+        console.log('beforeEnter', to, from);
+        next();
+      },
     },
     {
       path: '*',

@@ -47,6 +47,7 @@ export const protectionStatusEnum = {
 
 // user rights relates to users and OPS
 export const userRightsEnum = {
+  none: '9_NO',
   opsViewer: '6_OV',
   opsTeamMember: '4_OT',
   opsAdmin: '2_OA',

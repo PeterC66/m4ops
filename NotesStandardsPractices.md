@@ -553,6 +553,10 @@ graph LR;
   - Global guards (on the instance) - each time the URL changes
   - Route guards (on route definitions) - when the associated ROUTE is matched
   - Route Component guards - when a ROUTE COMPONENT is used/unused
+- [Data Fetching and Validating](https://router.vuejs.org/guide/advanced/data-fetching.html):
+  - Fetching After Navigation (in created and watch $route) - but problem with validation?
+  - Fetching Before Navigation (beforeRouteEnter and beforeRouteUpdate guards) - only call next when the fetch is complete
+  - see also [Fetching/ using store in router](https://stackoverflow.com/questions/42579601/how-to-access-async-store-data-in-vue-router-for-usage-in-beforeenter-hook)
 
 #### Our URL scheme
 

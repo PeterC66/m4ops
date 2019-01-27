@@ -2,12 +2,13 @@
 import { actions } from 'vuex-api';
 // import { protectionStatusEnum, userRightsEnum } from '../../global/constants';
 import { initialOpsCode } from '../../initialising/initialState';
+import { userRightsEnum } from '../../global/constants';
 
 export default function authoriseAndOpen(
   caller,
   store,
   placesLoadedPromise,
-  router,
+  // router,
 ) {
   // Called from both mounted() and beforeUpdate() to:
   //   check whether the current user can do everything in the URL (now in vuex route store)
@@ -16,11 +17,12 @@ export default function authoriseAndOpen(
 
   /* eslint-disable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len, padded-blocks */
 
-  if (caller === 'Created') console.log('state', store.state);
+  if (caller === 'Created') console.log('state when Created', store.state);
   store.dispatch('resetValidParams');
 
   // Find out about the current user and desired OPS
   const currentUser = store.state.users.account;
+  const currentUserName = currentUser.user ? currentUser.user.username : 'Guest';
   const currentUserLoggedIn = currentUser.status.loggedIn;
   const currentOPSCode = store.getters.place.OPSCode;
   let desiredOPSCode = store.state.route.params.ops || initialOpsCode;
@@ -37,16 +39,17 @@ export default function authoriseAndOpen(
       // Ignore all the other params - we will just have the defaults
       return result;
     }
+    const usersBestRight = store.getters.bestRightForOPS(desiredOPSCode);
+    console.log(`UBR for ${currentUserName} in ${desiredOPSCode} is ${usersBestRight}`);
     const placeIsProtected = place.Protected;
-    if (placeIsProtected && !currentUser.status.loggedIn) {
-      result.errorsToReport.push('If you are not logged in then you cannot see protected studies');
+    if (placeIsProtected && (!currentUser.status.loggedIn || usersBestRight > userRightsEnum.opsViewer)) {
+      result.errorsToReport.push(`${desiredOPSCode} is protected and you do not have the required rights`);
       result.isOKToCarryOn = false;
       return result;
     }
     // Here we know we want a valid study that we are allowed to see
     store.dispatch('setValidParam', { ops: desiredOPSCode });
-    const usersBestRight = store.getters.bestRightForOPS(desiredOPSCode);
-    console.log('UBR', usersBestRight);
+    store.dispatch('setForUser', { username: currentUserName, ubr: usersBestRight });
 
     // Validate the layers
 
@@ -59,7 +62,9 @@ export default function authoriseAndOpen(
 
     if (!result.isOKToCarryOn) {
       console.log('Not OKToCarryOn');
-      router.go(-1);
+      // eslint-disable-next-line no-alert
+      alert('Not OKToCarryOn');
+      // router.go(-1);
     } else {
       console.log('OK ToCarryOn');
       // We are OK to go on - move the data to the relevant bits of vuex so this component can mount

@@ -4,7 +4,8 @@
     style="background-color:white"
   >
     <h1>Hi {{ fullName }}!</h1>
-    <p>You're logged in with Vue + Vuex & JWT!!</p>
+    <p>You're logged in</p>
+    <hr>
     <h3>Users from secure api end point:</h3>
     <em v-if="users.loading">
       Loading users...
@@ -38,14 +39,17 @@
             Delete
           </button>
         </span>
-        <ul v-if="user.rightsArray">
+        <ul v-if="isNonemptyArray(user.rightsArray)">
           <li
             v-for="userRight in user.rightsArray"
             :key="userRight.id"
           >
-            {{ `├──${userRight.opsCode} - ${userRight.userRight}` }}
+            {{ `└──>${userRight.opsCode || ''} - ${userRight.userRight}` }}
           </li>
         </ul>
+        <p v-else>
+          └──>No specific rights
+        </p>
       </li>
     </ul>
     <p>
@@ -67,6 +71,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex';
+import { isNonemptyArray } from '../global/utils';
 
 export default {
   computed: {
@@ -86,6 +91,7 @@ export default {
       getAllUsers: 'getAll',
       deleteUser: 'delete',
     }),
+    isNonemptyArray: a => isNonemptyArray(a),
   },
 };
 </script>
