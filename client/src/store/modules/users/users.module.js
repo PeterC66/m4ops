@@ -6,26 +6,26 @@ const state = {
 };
 
 const mutations = {
-  getAllRequest(state) {
+  getAllUsersRequest(state) {
     state.all = { loading: true };
   },
-  getAllSuccess(state, users) {
+  getAllUsersSuccess(state, users) {
     state.all = { items: users };
   },
-  getAllFailure(state, error) {
+  getAllUsersFailure(state, error) {
     state.all = { error };
   },
-  deleteRequest(state, id) {
+  deleteUserRequest(state, id) {
     // add 'deleting:true' property to user being deleted
     state.all.items = state.all.items.map(user => (user.id === id
       ? { ...user, deleting: true }
       : user));
   },
-  deleteSuccess(state, id) {
+  deleteUserSuccess(state, id) {
     // remove deleted user from state
     state.all.items = state.all.items.filter(user => user.id !== id);
   },
-  deleteFailure(state, { id, error }) {
+  deleteUserFailure(state, { id, error }) {
     // remove 'deleting:true' property and add 'deleteError:[error]' property to user
     state.all.items = state.items.map((user) => {
       if (user.id === id) {
@@ -42,22 +42,22 @@ const mutations = {
 
 const actions = {
   getAllUsers({ commit }) {
-    commit('getAllRequest');
+    commit('getAllUsersRequest');
 
     userService.getAllUsers()
       .then(
-        users => commit('getAllSuccess', users),
-        error => commit('getAllFailure', error),
+        users => commit('getAllUsersSuccess', users),
+        error => commit('getAllUsersFailure', error),
       );
   },
 
   deleteUser({ commit }, id) {
-    commit('deleteRequest', id);
+    commit('deleteUserRequest', id);
 
     userService.deleteUser(id)
       .then(
-        user => commit('deleteSuccess', id),
-        error => commit('deleteSuccess', { id, error: error.toString() }),
+        user => commit('deleteUserSuccess', id),
+        error => commit('deleteUserFailure', { id, error: error.toString() }),
       );
   },
 };

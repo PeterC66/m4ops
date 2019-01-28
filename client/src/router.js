@@ -96,7 +96,7 @@ router.beforeEach((to, from, next) => {
   ];
   let authRequired = !publicPages.includes(to.path);
   if (to.path.startsWith('/maps')) authRequired = false; // Handled by M4OPSView
-  const loggedIn = localStorage.getItem('user');
+  const loggedIn = localStorage.getItem('user'); // TODO use store
 
   if (authRequired && !loggedIn) {
     return next('/login');

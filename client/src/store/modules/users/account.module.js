@@ -10,6 +10,34 @@ const state = user
   ? { status: { loggedIn: true }, user }
   : { status: {}, user: null };
 
+const mutations = {
+  loginRequest(state, user) {
+    state.status = { loggingIn: true };
+    state.user = user;
+  },
+  loginSuccess(state, user) {
+    state.status = { loggedIn: true };
+    state.user = user;
+  },
+  loginFailure(state) {
+    state.status = {};
+    state.user = null;
+  },
+  logout(state) {
+    state.status = {};
+    state.user = null;
+  },
+  registerRequest(state, user) {
+    state.status = { registering: true };
+  },
+  registerSuccess(state, user) {
+    state.status = {};
+  },
+  registerFailure(state, error) {
+    state.status = {};
+  },
+};
+
 const actions = {
   login({ dispatch, commit }, { username, password }) {
     commit('loginRequest', { username });
@@ -37,7 +65,7 @@ const actions = {
       .then(
         (user) => {
           commit('registerSuccess', user);
-          router.push('/');
+          router.push('/maps/');
           setTimeout(() => {
             // display success message after route change completes
             // eslint-disable-next-line max-len
@@ -49,34 +77,6 @@ const actions = {
           dispatch('alert/error', error, { root: true });
         },
       );
-  },
-};
-
-const mutations = {
-  loginRequest(state, user) {
-    state.status = { loggingIn: true };
-    state.user = user;
-  },
-  loginSuccess(state, user) {
-    state.status = { loggedIn: true };
-    state.user = user;
-  },
-  loginFailure(state) {
-    state.status = {};
-    state.user = null;
-  },
-  logout(state) {
-    state.status = {};
-    state.user = null;
-  },
-  registerRequest(state, user) {
-    state.status = { registering: true };
-  },
-  registerSuccess(state, user) {
-    state.status = {};
-  },
-  registerFailure(state, error) {
-    state.status = {};
   },
 };
 

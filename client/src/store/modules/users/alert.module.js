@@ -4,18 +4,6 @@ const state = {
   message: null,
 };
 
-const actions = {
-  success({ commit }, message) {
-    commit('success', message);
-  },
-  error({ commit }, message) {
-    commit('error', message);
-  },
-  clear({ commit }, message) {
-    commit('success', message);
-  },
-};
-
 const mutations = {
   success(state, message) {
     state.type = 'alert-success';
@@ -28,6 +16,18 @@ const mutations = {
   clear(state) {
     state.type = null;
     state.message = null;
+  },
+};
+
+const actions = {
+  success({ commit }, message) {
+    commit('success', message);
+  },
+  error({ commit }, message) {
+    commit('error', message);
+  },
+  clear({ commit }, message) {
+    commit('success', message);
   },
 };
 
