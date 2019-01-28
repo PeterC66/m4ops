@@ -64,7 +64,7 @@ function register(user) {
   ).then(handleResponse);
 }
 
-function getAll() {
+function getAllUsers() {
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
@@ -104,7 +104,7 @@ function update(user) {
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 // eslint-disable-next-line no-underscore-dangle
-function _delete(id) {
+function deleteUser(id) {
   const requestOptions = {
     method: 'DELETE',
     headers: authHeader(),
@@ -120,8 +120,8 @@ export const userService = {
   login,
   logout,
   register,
-  getAll,
+  getAllUsers,
   getById,
   update,
-  delete: _delete,
+  deleteUser,
 };

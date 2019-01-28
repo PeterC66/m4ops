@@ -553,6 +553,7 @@ graph LR;
   - Global guards (on the instance) - each time the URL changes
   - Route guards (on route definitions) - when the associated ROUTE is matched
   - Route Component guards - when a ROUTE COMPONENT is used/unused
+- the **to** and **from** in the guards are [route objects](https://router.vuejs.org/api/#the-route-object), which include params etc
 - [Data Fetching and Validating](https://router.vuejs.org/guide/advanced/data-fetching.html):
   - Fetching After Navigation (in created and watch $route) - but problem with validation?
   - Fetching Before Navigation (beforeRouteEnter and beforeRouteUpdate guards) - only call next when the fetch is complete
@@ -563,7 +564,7 @@ graph LR;
 
 #### Our URL scheme
 
-- /
+- see URLStructure.md
 
 ### Events
 

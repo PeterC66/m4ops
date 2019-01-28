@@ -5,11 +5,11 @@ const User = require('../../models/User');
 
 module.exports = {
     authenticate,
-    getAll,
+    getAllUsers,
     getById,
     create,
     update,
-    delete: _delete
+    deleteUser,
 };
 
 async function authenticate({ username, password }) {
@@ -24,7 +24,7 @@ async function authenticate({ username, password }) {
     }
 }
 
-async function getAll() {
+async function getAllUsers() {
     return await User.find().select('-hash');
 }
 
@@ -69,6 +69,6 @@ async function update(id, userParam) {
     await user.save();
 }
 
-async function _delete(id) {
+async function deleteUser(id) {
     await User.findByIdAndRemove(id);
 }

@@ -88,8 +88,8 @@ export default {
   },
   methods: {
     ...mapActions({ // was 'users', for namespace
-      getAllUsers: 'getAll',
-      deleteUser: 'delete',
+      getAllUsers: 'getAllUsers',
+      deleteUser: 'deleteUser',
     }),
     isNonemptyArray: a => isNonemptyArray(a),
   },

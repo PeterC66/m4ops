@@ -5,28 +5,6 @@ const state = {
   all: {},
 };
 
-const actions = {
-  getAll({ commit }) {
-    commit('getAllRequest');
-
-    userService.getAll()
-      .then(
-        users => commit('getAllSuccess', users),
-        error => commit('getAllFailure', error),
-      );
-  },
-
-  delete({ commit }, id) {
-    commit('deleteRequest', id);
-
-    userService.delete(id)
-      .then(
-        user => commit('deleteSuccess', id),
-        error => commit('deleteSuccess', { id, error: error.toString() }),
-      );
-  },
-};
-
 const mutations = {
   getAllRequest(state) {
     state.all = { loading: true };
@@ -59,6 +37,28 @@ const mutations = {
 
       return user;
     });
+  },
+};
+
+const actions = {
+  getAllUsers({ commit }) {
+    commit('getAllRequest');
+
+    userService.getAllUsers()
+      .then(
+        users => commit('getAllSuccess', users),
+        error => commit('getAllFailure', error),
+      );
+  },
+
+  deleteUser({ commit }, id) {
+    commit('deleteRequest', id);
+
+    userService.deleteUser(id)
+      .then(
+        user => commit('deleteSuccess', id),
+        error => commit('deleteSuccess', { id, error: error.toString() }),
+      );
   },
 };
 

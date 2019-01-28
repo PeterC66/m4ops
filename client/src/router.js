@@ -9,7 +9,7 @@ import LoginPage from './views/LoginPage.vue';
 import LogoutPage from './views/LogoutPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import ManagePage from './views/ManagePage.vue';
-import { validateUserAndSetInitialValues } from './modules/users/validateEtc';
+import validateUserAndSetInitialValues from './modules/users/validateEtc';
 
 Vue.use(Router);
 
@@ -65,14 +65,6 @@ const router = new Router({
       name: 'manage',
       component: ManagePage,
     },
-    // {
-    //   path: '/maps/:ops?'
-    //   + '/:layers([A-Za-z]\\w*)*'
-    //   + '/:opacities(\\d+)*'
-    //   + '(/)?([ZF])?:ZoomOrFitTo(\\d+)?',
-    //   name: 'maps',
-    //   component: M4OPSView,
-    // },
     {
       path: '/maps/:ops?'
       + '/:layers([A-Za-z]\\w*)*'

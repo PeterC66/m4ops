@@ -100,12 +100,6 @@ export default {
         })
         .then(() => {
           this.$store.dispatch('updateView', this.homeView);
-        })
-        .then(() => {
-          this.$store.dispatch(
-            'updateCurrentOptionArray',
-            this.getOptionsArrayByPlace(desiredOPSCode),
-          );
         });
     }
   },

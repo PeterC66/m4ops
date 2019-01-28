@@ -1,3 +1,4 @@
+/*
 import {
   RESET_VALID_PARAMS,
   SET_VALID_PARAM,
@@ -59,3 +60,4 @@ const validRouteModule = {
 };
 
 export default validRouteModule;
+*/

@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     ...mapActions({ // was 'users',
-      getAllUsers: 'getAll',
+      getAllUsers: 'getAllUsers',
       clearAlert: 'alert/clear',
     }),
   },

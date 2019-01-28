@@ -9,7 +9,7 @@ import vuexApiGetters from './modules/vuexApi/vuexApiGetters';
 import framework from './modules/framework';
 import demo from './modules/demo';
 import users from './modules/users';
-import validRoute from './modules/validRoute';
+// import validRoute from './modules/validRoute';
 
 Vue.use(Vuex);
 
@@ -24,6 +24,6 @@ export default new Vuex.Store({
     framework,
     demo,
     users,
-    validRoute,
+    // validRoute,
   },
 });
