@@ -53,10 +53,21 @@
 
 <script>
 // import auth from './modules/auth/AuthService';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
+  created() {
+    // this.getAllUsers();
+  },
+  methods: {
+    ...mapActions({
+      getAllUsers: 'getAllUsers',
+    }),
+  },
+
 };
+
 </script>
 
 <style lang="scss">

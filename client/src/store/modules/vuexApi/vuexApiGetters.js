@@ -122,6 +122,8 @@ vuexApiGetters.LayerDefsArrayBeforeExclusions = (moduleState, getters) => [].con
 vuexApiGetters.OPSAllLayerDefsArray = (moduleState, getters) => (getters.LayerDefsArrayBeforeExclusions || [])
   .filter(ld => (isNotExcluded(ld, (getters.place || {}).ExclusionsArray)));
 
+// Helper routines for access
+
 vuexApiGetters.getOPSAllLayerDefsArrayByLdid = (moduleState, getters) => ldid => _.find(getters.OPSAllLayerDefsArray, { ldid }) || {};
 
 vuexApiGetters.getOPSAllLayerDefsArrayByTitle = (moduleState, getters) => title => _.find(getters.OPSAllLayerDefsArray, { title }) || {};

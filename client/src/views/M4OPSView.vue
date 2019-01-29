@@ -39,16 +39,15 @@
 </template>
 
 <script>
-import _ from 'lodash';
 import { mapState, mapGetters } from 'vuex';
-import { actions } from 'vuex-api';
+// import { actions } from 'vuex-api';
 
 import Header from '../modules/framework/header/Header.vue';
 import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
 import initialiseProjections from '../modules/mapping/projections';
-import { initialOpsCode } from '../initialising/initialState';
+// import { initialOpsCode } from '../initialising/initialState';
 
 export default {
   name: 'M4OPSView',
@@ -62,46 +61,23 @@ export default {
       sidebarOpen: state => state.framework.sidebarOpen,
       loadingIds: state => state.framework.loadingIds,
       currentOptionArray: state => state.mapping.currentOptionArray,
+      placeStatus: state => state.vuexApi.place.status,
     }),
     ...mapGetters([
-      'm4opsdata',
-      'places',
       'place',
-      'continents',
-      'homeView',
       'getOptionsArrayByPlace',
     ]),
     isLoading() {
-      return !_.isEmpty(this.loadingIds);
+      // eslint-disable-next-line no-console
+      console.log(`isLoading placeStatus is ${this.placeStatus}`);
+      return !this.placeStatus || this.placeStatus === 'loading';
     },
-    // isloading() { // doesn't work
-    //   return false
-    //     || (_.isEmpty(this.places))
-    //     || (_.isEmpty(this.continents))
-    //     || (_.isEmpty(this.place))
-    //     || (_.isEmpty(this.m4opsdata));
-    // },
   },
   created() {
     initialiseProjections();
-    const currentOPSCode = this.place.OPSCode;
-    const desiredOPSCode = this.currentOptionArray[3] || initialOpsCode;
-    if (!currentOPSCode || (currentOPSCode !== desiredOPSCode)) {
-      // const loadingId = 'place';
-      this.$store.dispatch(actions.request, {
-        baseURL: process.env.VUE_APP_BACKEND_URL,
-        url: `places/${desiredOPSCode}`,
-        keyPath: ['place'],
-      })
-        .then(() => { // TODO
-          // The state has been updated and you can do whatever you want with it
-          // eslint-disable-next-line
-          this.$store.dispatch('initialiseChosenLayers', desiredOPSCode);
-        })
-        .then(() => {
-          this.$store.dispatch('updateView', this.homeView);
-        });
-    }
+    //     .then(() => {
+    //     });
+    // }
   },
   beforeRouteUpdate(to, from, next) {
     // eslint-disable-next-line no-console

@@ -45,12 +45,8 @@ export default {
       this.clearAlert();
     },
   },
-  created() {
-    this.getAllUsers();
-  },
   methods: {
     ...mapActions({ // was 'users',
-      getAllUsers: 'getAllUsers',
       clearAlert: 'alert/clear',
     }),
   },

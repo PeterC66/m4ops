@@ -267,3 +267,20 @@ export function enumToSelect(enumConstant) {
   });
   return result;
 }
+
+// // This is an example of a wait function. Use it thus:
+// // .then(() => waitForPlace(5000)).then(() =>
+// // From https://hackernoon.com/lets-make-a-javascript-wait-function-fa3a2eb88f11
+// const waitForPlace = timeoutMS => new Promise((r, j) => {
+//   const check = () => {
+//     console.warn(`checking ${timeoutMS}`);
+//     if (store.state.vuexApi.place && store.state.vuexApi.place.status === 'success') r();
+//     else if (timeoutMS < 0) j(new Error('timed out!'));
+//     else {
+//       // eslint-disable-next-line no-param-reassign
+//       timeoutMS -= 100;
+//       setTimeout(check, 100);
+//     }
+//   };
+//   setTimeout(check, 100);
+// });

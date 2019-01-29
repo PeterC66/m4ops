@@ -15,7 +15,7 @@
 
 ## Examples
 
-[Basic](http://localhost:8080/maps/HcN/Layer0/Layer1/Layer2/55/)
+[Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/)
 
 ## query parameters
 

@@ -67,7 +67,7 @@ const router = new Router({
     },
     {
       path: '/maps/:ops?'
-      + '/:layers([A-Za-z]\\w*)*'
+      + '/:layers([A-Za-z][\\w\\ \\-]*)*'
       + '/:opacities(\\d+)*'
       + '(/[ZF])?:ZoomOrFitTo(\\d+)?'
       + '/:Lon([-+]?\\d+\\.?\\d*)?'

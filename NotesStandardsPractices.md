@@ -433,7 +433,9 @@ See under [Standards and styles](#standards-and-styles)
   - for [iteratees](https://lodash.com/docs/#iteratee) see [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
 - for async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
 - for promises see [Javascript.Info](https://javascript.info/promise-basics)
+  - [wait/sleep function](https://hackernoon.com/lets-make-a-javascript-wait-function-fa3a2eb88f11)
 - to pass 'this' context to a function use [js bind](https://javascript.info/bind#solution-2-bind)
+- [IIFE (Immediately Invoked Function Expression)](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) is a JavaScript function that runs as soon as it is defined - an anonymous function with lexical scope enclosed within the Grouping Operator ()
 
 ### Regular Expressions
 

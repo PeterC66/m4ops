@@ -31,7 +31,12 @@ const mutations = {
     );
   },
   [LAYER_SET_REQUEST](moduleState, payload) {
-    const { ldid, layerNumber, displaytype } = payload;
+    const {
+      ldid,
+      layerNumber,
+      displaytype,
+      opacity: desiredOpacity,
+    } = payload;
     const arrayLength = moduleState.chosenLayers.length;
     if (isDefined(layerNumber)) {
       if (layerNumber < arrayLength) {
@@ -46,20 +51,19 @@ const mutations = {
           1,
           {
             ldid: ldid || newVoid(),
-            opacity,
+            opacity: desiredOpacity || opacity,
             displaytype,
           },
         );
       } else {
+        // eslint-disable-next-line max-len
+        const opacity = (layerNumber === 0 || displaytype === displayTypeEnum.mostlyVectors) ? 1 : 0.5;
         moduleState.chosenLayers.splice(
           arrayLength,
           0,
           {
             ldid: ldid || newVoid(),
-            opacity: (
-              layerNumber === 0
-              || displaytype === displayTypeEnum.mostlyVectors
-            ) ? 1 : 0.5,
+            opacity: desiredOpacity || opacity,
             displaytype,
           },
         );
@@ -126,8 +130,12 @@ const actions = {
     commit(INITIALISE_CHOSEN_LAYERS, { opsCode });
   },
   // payload is { ldid:string_index_into_LayerDefsArray, layerNumber: eg 0, displaytype: eg A }
-  setLayer({ commit }, { ldid, layerNumber, displaytype }) {
-    commit(LAYER_SET_REQUEST, { ldid, layerNumber, displaytype });
+  setLayer({ commit }, {
+    ldid, layerNumber, displaytype, opacity,
+  }) {
+    commit(LAYER_SET_REQUEST, {
+      ldid, layerNumber, displaytype, opacity,
+    });
   },
   // payload is {opacity: eg 0.5, layerNumber: eg 0}
   setOpacity({ commit }, { opacity, layerNumber }) {

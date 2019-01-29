@@ -81,6 +81,7 @@ Promise.all([
     url: 'places',
     keyPath: ['places'],
   }),
+  store.dispatch('getAllUsers'),
 ]).then(() => {
   // create the main Vue instance and mount it
   new Vue({
