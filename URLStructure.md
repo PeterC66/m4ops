@@ -2,11 +2,11 @@
 
 ## path parameters
 
-(specific order separated by /) - see client\src\router.js
-/maps/:ops?/:layers([A-Za-z]\\w*)*/:opacities(\\d+)*(/[ZF])?:ZoomOrFitTo(\\d+)?/:Lon([-+]?\\d+\\.?\\d*)?/:Lat([-+]?\\d+\\.?\\d*)?
+(specific order separated by /) - see client\src\router.js  "path: '/maps/"
 
 - :ops: code for the OPS (optional - default HcN)
 - :layers: zero or more layer titles (starting at layer 0) separated by / (if none then default is Bing%20Aerial/OSM)
+  - layer titles can be alphanumeric, including -_ and spaces
 - :opacities: zero or more opacity numbers (% starting at layer 1, as the base is always 100% opaque) separated by / (if none then default is 50 for rasters, 100 for feature layers)
 - :ZoomOrFitTo: zoom level preceded by Z eg 18, or FitTo preceded by F eg 1 (default is the HomeView)
   - (FitTo was Extent and is the number of the layer to initially fit to)
@@ -15,7 +15,9 @@
 
 ## Examples
 
-[Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/)
+(for now the final / is important)
+[Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/Z16/)
+[Protected](http://localhost:8080/maps/HcN/Bing%20Aerial/Cosmo%20Wallace%201764/90/Z17/)
 
 ## query parameters
 

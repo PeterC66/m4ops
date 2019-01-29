@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import { userService } from '../../../modules/users/_services';
 import router from '../../../router';
-import { userRightsEnum } from '../../../global/constants';
+import { userRightsEnum, guest } from '../../../global/constants';
 import { isNonemptyArray } from '../../../global/utils';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -82,10 +82,15 @@ const actions = {
 
 const getters = { // All for current user
   // Note that firstName and lastName are required, so guaranteed to be non-empty
-  // eslint-disable-next-line max-len
-  fullName: moduleState => `${moduleState.user.firstName} ${moduleState.user.lastName}`,
+  /* eslint-disable max-len */
+  currentUserFullName: moduleState => `${moduleState.user.firstName || ''} ${moduleState.user.lastName || guest}`,
+  currentUsername: moduleState => (moduleState.user ? moduleState.user.username || guest : guest),
+  // eslint-disable-next-line no-nested-ternary
+  currentUserLoggedIn: moduleState => (moduleState.status ? moduleState.status.loggedIn : false),
+  /* eslint-enable max-len */
+
   // Sort by the right (each starts with integer) then find the first for the given opsCode
-  bestRightForOPS: moduleState => (opsCode) => {
+  currentUserBestRightForOPS: moduleState => (opsCode) => {
     let result = userRightsEnum.none;
     if (moduleState.user && isNonemptyArray(moduleState.user.rightsArray)) {
       const bestRight = _.find(

@@ -1,12 +1,21 @@
-All "Protected":false except HNB "Protected":true
+All OPS "Protected":false except HNB "Protected":true
 
-Cosmo_Wallace_1764 "Protected":"PD"
+// protection status relates to layers
+export const protectionStatusEnum = {
+  Unprotected: 'UN', // default
+  Protected: 'PD',
+  Personal: 'PL', (PL_username means Personal to username)
+  Test: 'TT',
+};
+
+Cosmo Wallace 1764 "Protected":"PD"
 
 export const userRightsEnum = {
-  opsViewer: 'OV',
-  opsTeamMember: 'OT',
-  opsAdmin: 'OA',
-  globalAdmin: 'GA', // No OPS needed
+  none: '9_NO',
+  opsViewer: '6_OV',
+  opsTeamMember: '4_OT',
+  opsAdmin: '2_OA',
+  globalAdmin: '0_GA', // No OPS needed
 };
 
 A has OA for HNB
@@ -15,6 +24,3 @@ B has no rights
 C has OV for HNB
 D has OT for HNB
 E has OT for HcN
-
-Fetching/ using store in router
-https://stackoverflow.com/questions/42579601/how-to-access-async-store-data-in-vue-router-for-usage-in-beforeenter-hook

@@ -1,11 +1,45 @@
 /* eslint-disable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len, padded-blocks */
-// import _ from 'lodash';
-// import { protectionStatusEnum, userRightsEnum } from '../../global/constants';
+import _ from 'lodash';
 import { actions } from 'vuex-api';
+import { protectionStatusEnum, userRightsEnum } from '../../global/constants';
 import { initialOpsCode } from '../../initialising/initialState';
-import { userRightsEnum } from '../../global/constants';
 import store from '../../store';
 import { isEmptyArray } from '../../global/utils';
+
+function reasonForNotAllowingLayer(layerDef) {
+  // If Layer is allowed then return '' (which is false)
+  const { currentUsername, currentUserLoggedIn, place } = store.getters;
+  const layerProtection = layerDef.Protected;
+  const layerTitle = layerDef.title;
+  const placeIsProtected = place.Protected;
+  const usersBestRight = store.getters.currentUserBestRightForOPS(place.OPSCode);
+
+  console.log(`rFNAL ${layerTitle} - ${layerProtection} ${usersBestRight} for ${currentUsername} ${currentUserLoggedIn}`);
+  switch (layerProtection || protectionStatusEnum.Unprotected) {
+    case protectionStatusEnum.Unprotected:
+      return ''; // Everyone can see the layer
+
+    case protectionStatusEnum.Protected:
+      if (!placeIsProtected) {
+        return currentUserLoggedIn ? '' : `Only logged in users can see ${layerTitle}`;
+      }
+      // This case is where someone is logged in but has no rights to this OPS
+      return usersBestRight <= userRightsEnum.opsViewer ? '' : `You don't have permission to see ${layerTitle}`;
+
+    case protectionStatusEnum.Test:
+      return usersBestRight <= userRightsEnum.opsAdmin ? '' : `Only administrators have permission to see ${layerTitle} (test)`;
+
+    default:
+
+      if (layerProtection.substr(0, 3) === `${protectionStatusEnum.Personal}_`) {
+        if (layerProtection.substr(3) === currentUsername) { // Personal to this user
+          return '';
+        }
+        return `You are not the user who has permission to see ${layerTitle}`;
+      }
+      return `Invalid layerProtection value = ${layerProtection}`;
+  }
+}
 
 // Called in beforeEnter for the /maps/ route
 //   check whether the current user can do everything in the URL (parsed into *to*)
@@ -15,14 +49,9 @@ export default function validateUserAndSetInitialValues(to, from, next) {
   console.log('validate to/state', to.params, store.state);
 
   // Find out about the current user and desired OPS
-  const currentUser = store.state.users.account;
-  let currentUserName = 'Guest';
-  let currentUserLoggedIn = false;
-  if (currentUser.user) {
-    currentUserName = currentUser.user.username;
-    currentUserLoggedIn = currentUser.status.loggedIn;
-  }
-  const currentOPSCode = store.getters.place.OPSCode;
+  const { currentUsername, currentUserLoggedIn } = store.getters;
+
+  let currentOPSCode = store.getters.place.OPSCode;
   let desiredOPSCode = to.params.ops || initialOpsCode;
 
   // Validate the OPS
@@ -37,11 +66,11 @@ export default function validateUserAndSetInitialValues(to, from, next) {
   }
 
   // Validate the User's access to that OPS
-  const usersBestRight = store.getters.bestRightForOPS(desiredOPSCode);
-  console.log(`UBR for ${currentUserName} in ${desiredOPSCode} is ${usersBestRight}`);
+  const currentUserBestRightForCurrentOPS = store.getters.currentUserBestRightForOPS(desiredOPSCode);
+  console.log(`UBR for ${currentUsername} in ${desiredOPSCode} is ${currentUserBestRightForCurrentOPS}`);
   const placeIsProtected = place.Protected;
   // Note that the higher rights are the more limited they are
-  if (placeIsProtected && (!currentUserLoggedIn || usersBestRight > userRightsEnum.opsViewer)) {
+  if (placeIsProtected && (!currentUserLoggedIn || currentUserBestRightForCurrentOPS > userRightsEnum.opsViewer)) {
     result.errorsToReport.push(`${desiredOPSCode} is protected and you do not have the required rights`);
     next(false);
   }
@@ -55,40 +84,57 @@ export default function validateUserAndSetInitialValues(to, from, next) {
     keyPath: ['place'],
   })).then(() => {
     console.log('B');
+    currentOPSCode = store.getters.place.OPSCode; // After this point use currentOPSCode rather than desiredOPSCode
     // Validate the layers
     const desiredLayers = (to.params.layers || '').split('/');
-    if (isEmptyArray(desiredLayers)) {
-      store.dispatch('initialiseChosenLayers', desiredOPSCode)
+    console.log(desiredLayers);
+    if (isEmptyArray(desiredLayers) || !desiredLayers[0]) {
+      store.dispatch('initialiseChosenLayers', currentOPSCode)
         .then(() => 'Done0');
     } else {
       const desiredOpacities = (to.params.opacities || '').split('/');
       const layerPromises = [];
       desiredLayers.forEach((layerTitle, i) => {
         const layerDef = store.getters.getOPSAllLayerDefsArrayByTitle(layerTitle);
-        const opacity = (desiredOpacities[i - 1] / 100); // Undefined is OK
-        console.log(`${i}) ${layerTitle}`, layerDef.displaytype, layerDef.ldid, opacity);
-        layerPromises.push(
-          store.dispatch('setLayer', {
-            ldid: layerDef.ldid,
-            layerNumber: i,
-            displaytype: layerDef.displaytype,
-            opacity,
-          }),
-        );
+        if (_.isEmpty(layerDef)) {
+          result.errorsToReport.push(`${layerTitle} is an unknown layer in this context`);
+        } else {
+          const opacity = (desiredOpacities[i - 1] / 100); // Undefined is OK
+          console.log(`${i}) ${layerTitle} ${layerDef.ldid}`, layerDef);
+          const layerIssue = reasonForNotAllowingLayer(
+            layerDef,
+          );
+          if (layerIssue) {
+            result.errorsToReport.push(layerIssue);
+          } else {
+            layerPromises.push(
+              store.dispatch('setLayer', {
+                ldid: layerDef.ldid,
+                layerNumber: i,
+                displaytype: layerDef.displaytype,
+                opacity,
+              }),
+            );
+          }
+        }
       });
       Promise.all(layerPromises).then(() => 'DoneX');
     }
   })
     .then(() => {
       console.log('C');
+
       // Get the view
       const viewToUse = { ...store.getters.homeView };
       if (to.params.pathMatch === '/Z' && to.params.ZoomOrFitTo) { // is a Zoom spec
-        viewToUse.Zoom = to.params.ZoomOrFitTo;
-        const { Lon } = to.params;
-        if (Lon) viewToUse.Lon = Lon;
-        const { Lat } = to.params;
-        if (Lat) viewToUse.Lat = Lat;
+        const zoomToUse = parseInt(to.params.ZoomOrFitTo, 10);
+        if (zoomToUse >= 0 && zoomToUse <= 23) {
+          viewToUse.zoom = zoomToUse;
+          const { Lon, Lat } = to.params;
+          if (Lon && Lat) viewToUse.center = [parseFloat(Lon), parseFloat(Lat)];
+        } else {
+          result.errorsToReport.push(`${to.params.ZoomOrFitTo} is an invalid zoom level`);
+        }
       }
       store.dispatch('updateView', viewToUse);
 

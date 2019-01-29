@@ -53,3 +53,5 @@ export const userRightsEnum = {
   opsAdmin: '2_OA',
   globalAdmin: '0_GA', // No OPS needed
 };
+
+export const guest = 'Guest';

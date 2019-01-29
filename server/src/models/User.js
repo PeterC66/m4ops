@@ -5,8 +5,6 @@ const UserSchema = new mongoose.Schema({
   hash: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  // right0: { type: String, required: false },
-  // OPS0: { type: String, required: false },
   rightsArray: [{
     userRight: { type: String, required: true },
     opsCode: { type: String, required: false },

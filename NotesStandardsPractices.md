@@ -648,11 +648,11 @@ graph LR;
 
 - OPS are one of:
   - Unprotected - anyone can see it (default)
-  - Protected - users need a specific right to see it
+  - Protected - users need a specific right for that OPS to see it (and then can see all layers)
 
-- Layers (settled and modifiable/MFL) are one of [see protectionStatusEnum]:
-  - Unprotected - anyone can see it (default)
-  - Protected - users need to be logged-in to see it (eg with Census images)
+- Each Layer (settled and modifiable/MFL) is one of [see protectionStatusEnum]:
+  - Unprotected - anyone can see it (default), if they can see the OPS
+  - Protected - logged-in users can see it (eg with Census images), if they can see the OPS
   - Personal - only the one user (and admin) can see it
   - Test - only an admin (globalAdmin, or opsAdmin for that OPS) can see it, and then only if the Test switch is On
 
@@ -666,7 +666,7 @@ graph LR;
 
 - In addition, Users can have none, one or more of the following specific rights [see userRightsEnum]:
   - opsViewer - as well as everything a Logged-in User can do
-    - can see all Protected layers in the specific OPS (this right is only needed if the OPS is Protected)
+    - can see all Protected layers in the specific Protected OPS (not necessary if the OPS is Unprotected)
     - but not Upload, compile, create or change an MFL
   - opsTeamMember - can do everything the opsViewer can do
     - and Upload, compile, create or change an MFL in the specific OPS

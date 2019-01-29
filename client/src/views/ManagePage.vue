@@ -3,7 +3,7 @@
     class="panel-body"
     style="background-color:white"
   >
-    <h1>Hi {{ fullName }}!</h1>
+    <h1>Hi {{ currentUserFullName }}!</h1>
     <p>You're logged in</p>
     <hr>
     <h3>Users from secure api end point:</h3>
@@ -80,7 +80,7 @@ export default {
       users: state => state.users.users.all,
     }),
     ...mapGetters([
-      'fullName',
+      'currentUserFullName',
     ]),
   },
   created() {
