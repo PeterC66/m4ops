@@ -18,6 +18,7 @@
 (for now the final / is important)
 [Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/Z16/)
 [Protected](http://localhost:8080/maps/HcN/Bing%20Aerial/Cosmo%20Wallace%201764/90/Z17/)
+[2 Spinney Way](http://localhost:8080/maps/HcN/Bing%20Aerial/OpenStreetMap/HcN%20CP/90/Z18/-0.0234522/52.3333362/)
 
 ## query parameters
 

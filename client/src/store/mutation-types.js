@@ -24,9 +24,3 @@ export const INTERACTIONS_ON_TOGGLE = 'INTERACTIONS_ON_TOGGLE';
 export const SHOW_LEVEL_SET_REQUEST = 'SHOW_LEVEL_SET_REQUEST';
 
 // users mutation types - see the routines in \store\modules\users
-
-// // validRoute mutation types
-// export const RESET_VALID_PARAMS = 'RESET_VALID_PARAMS';
-// export const SET_VALID_PARAM = 'SET_VALID_PARAM';
-// export const SET_VALID_QUERY_PARAM = 'SET_VALID_QUERY_PARAM';
-// export const SET_FOR_USER = 'SET_FOR_USER';

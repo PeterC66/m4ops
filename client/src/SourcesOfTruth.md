@@ -23,6 +23,6 @@
 - each has .ldid, .opacity (0-1), .displaytype (A or B)
 - getter chosenLayersMainmap
 - set by setLayer and setOpacity
-- there is also the simpler store.state.mapping.chosenRhLayer which is just ldid
+- there is also the simpler store.state.mapping.chosenRhLayer which has just ldid
 - initialised to initialStateChosenLayersByOpsCode(opsCode) - none yet
 - default initialStateChosenLayers.default [Bing Aerial, OSM]
