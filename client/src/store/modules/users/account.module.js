@@ -90,7 +90,7 @@ const getters = { // All for current user
   /* eslint-enable max-len */
 
   // Sort by the right (each starts with integer) then find the first for the given opsCode
-  currentUserBestRightForOPS: moduleState => (opsCode) => {
+  getCurrentUserBestRightByOPS: moduleState => (opsCode) => {
     let result = userRightsEnum.none;
     if (moduleState.user && isNonemptyArray(moduleState.user.rightsArray)) {
       const bestRight = _.find(

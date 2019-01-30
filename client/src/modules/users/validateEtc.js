@@ -6,46 +6,53 @@ import { initialOpsCode } from '../../initialising/initialState';
 import store from '../../store';
 import { isEmptyArray } from '../../global/utils';
 
-function reasonForNotAllowingLayer(layerDef) {
+export function reasonForNotAllowingLayer(layerDef) {
   // If Layer is allowed then return '' (which is false)
   const { currentUsername, currentUserLoggedIn, place } = store.getters;
   const layerProtection = layerDef.Protected;
   const layerTitle = layerDef.title;
   const placeIsProtected = place.Protected;
-  const usersBestRight = store.getters.currentUserBestRightForOPS(place.OPSCode);
+  const usersBestRight = store.getters.getCurrentUserBestRightByOPS(place.OPSCode);
+  let result = '';
 
-  console.log(`rFNAL ${layerTitle} - ${layerProtection} ${usersBestRight} for ${currentUsername} ${currentUserLoggedIn}`);
   switch (layerProtection || protectionStatusEnum.Unprotected) {
     case protectionStatusEnum.Unprotected:
-      return ''; // Everyone can see the layer
+      break; // Everyone can see the layer
 
     case protectionStatusEnum.Protected:
       if (!placeIsProtected) {
-        return currentUserLoggedIn ? '' : `Only logged in users can see ${layerTitle}`;
+        result = currentUserLoggedIn ? '' : `Only logged in users can see ${layerTitle}`;
+        break;
       }
       // This case is where someone is logged in but has no rights to this OPS
-      return usersBestRight <= userRightsEnum.opsViewer ? '' : `You don't have permission to see ${layerTitle}`;
+      result = usersBestRight <= userRightsEnum.opsViewer ? '' : `You don't have permission to see ${layerTitle}`;
+      break;
 
     case protectionStatusEnum.Test:
-      return usersBestRight <= userRightsEnum.opsAdmin ? '' : `Only administrators have permission to see ${layerTitle} (test)`;
+      result = usersBestRight <= userRightsEnum.opsAdmin ? '' : `Only administrators have permission to see ${layerTitle} (test)`;
+      break;
 
     default:
 
       if (layerProtection.substr(0, 3) === `${protectionStatusEnum.Personal}_`) {
         if (layerProtection.substr(3) === currentUsername) { // Personal to this user
-          return '';
+          break;
         }
-        return `You are not the user who has permission to see ${layerTitle}`;
+        result = `You are not the user who has permission to see ${layerTitle}`;
+        break;
       }
-      return `Invalid layerProtection value = ${layerProtection}`;
+      result = `Invalid layerProtection value = ${layerProtection}`;
+      break;
   }
+  // console.log(`rFNAL ${layerTitle} - ${layerProtection} ${usersBestRight} for ${currentUsername} ${currentUserLoggedIn} > ${result || 'OK'}`);
+  return result;
 }
 
 // Called in beforeEnter for the /maps/ route
 //   check whether the current user can do everything in the URL (parsed into *to*)
 //   move any valid aspects of the URL from here into the relevant part of the vuex store (see SourcesOfTruth.md)
 //   and then report any issues and/or move the data to the relevant bits of vuex and let the maps component open
-export default function validateUserAndSetInitialValues(to, from, next) {
+export function validateUserAndSetInitialValues(to, from, next) {
   console.log('validate to/state', to.params, store.state);
 
   // Find out about the current user and desired OPS
@@ -66,7 +73,7 @@ export default function validateUserAndSetInitialValues(to, from, next) {
   }
 
   // Validate the User's access to that OPS
-  const currentUserBestRightForCurrentOPS = store.getters.currentUserBestRightForOPS(desiredOPSCode);
+  const currentUserBestRightForCurrentOPS = store.getters.getCurrentUserBestRightByOPS(desiredOPSCode);
   console.log(`UBR for ${currentUsername} in ${desiredOPSCode} is ${currentUserBestRightForCurrentOPS}`);
   const placeIsProtected = place.Protected;
   // Note that the higher rights are the more limited they are

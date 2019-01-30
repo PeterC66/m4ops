@@ -8,6 +8,7 @@ import {
 import optionsFromContinents from './optionsFromContinents';
 import categoriesAndLayers from './categoriesAndLayers';
 import optionsByPlaces from './optionsByPlaces';
+import { reasonForNotAllowingLayer } from '../../../modules/users/validateEtc';
 
 const vuexApiGetters = {};
 
@@ -117,7 +118,7 @@ vuexApiGetters.LayerDefsArrayBeforeExclusions = (moduleState, getters) => [].con
   getters.OPSLayerDefsArray,
 );
 
-// Finally we need to exclude certain LayerDefs
+// Then we need to exclude certain LayerDefs
 
 vuexApiGetters.OPSAllLayerDefsArray = (moduleState, getters) => (getters.LayerDefsArrayBeforeExclusions || [])
   .filter(ld => (isNotExcluded(ld, (getters.place || {}).ExclusionsArray)));
@@ -128,10 +129,15 @@ vuexApiGetters.getOPSAllLayerDefsArrayByLdid = (moduleState, getters) => ldid =>
 
 vuexApiGetters.getOPSAllLayerDefsArrayByTitle = (moduleState, getters) => title => _.find(getters.OPSAllLayerDefsArray, { title }) || {};
 
+// Then we need a version that excludes LayerDefs the current User cannot see
+
+vuexApiGetters.OPSAllLayerDefsCurrentUserCanSeeArray = (moduleState, getters) => (getters.OPSAllLayerDefsArray || [])
+  .filter(ld => (!reasonForNotAllowingLayer(ld)));
+
 // ----------------------------------------------------------------------
 
-// The 2-level options for the ChooseLayer cascaders
-vuexApiGetters.layerOptions = (moduleState, getters) => categoriesAndLayers(getters.OPSAllLayerDefsArray);
+// The 2-level options for the ChooseLayer cascaders - only what the current User can see
+vuexApiGetters.layerOptions = (moduleState, getters) => categoriesAndLayers(getters.OPSAllLayerDefsCurrentUserCanSeeArray);
 
 // Continents ========================================================
 
