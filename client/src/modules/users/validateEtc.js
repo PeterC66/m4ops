@@ -48,6 +48,10 @@ export function reasonForNotAllowingLayer(layerDef) {
   return result;
 }
 
+// TODO https://hanezu.github.io/posts/sync-async-and-compound-beforeEnter-guard-with-Vue-Router.html
+export function guardToValidateUserAndSetInitialValues(to, from, next) {
+}
+
 // Called in beforeEnter for the /maps/ route
 //   check whether the current user can do everything in the URL (parsed into *to*)
 //   move any valid aspects of the URL from here into the relevant part of the vuex store (see SourcesOfTruth.md)
@@ -78,8 +82,8 @@ export function validateUserAndSetInitialValues(to, from, next) {
   const placeIsProtected = place.Protected;
   // Note that the higher rights are the more limited they are
   if (placeIsProtected && (!currentUserLoggedIn || currentUserBestRightForCurrentOPS > userRightsEnum.opsViewer)) {
-    result.errorsToReport.push(`${desiredOPSCode} is protected and you do not have the required rights`);
-    next(false);
+    result.errorsToReport.push(`${desiredOPSCode} is protected and you do not have the required rights - showing default`);
+    desiredOPSCode = initialOpsCode;
   }
   // Here we know we want a valid study that we are allowed to see
   store.dispatch(
@@ -94,7 +98,6 @@ export function validateUserAndSetInitialValues(to, from, next) {
     currentOPSCode = store.getters.place.OPSCode; // After this point use currentOPSCode rather than desiredOPSCode
     // Validate the layers
     const desiredLayers = (to.params.layers || '').split('/');
-    console.log(desiredLayers);
     if (isEmptyArray(desiredLayers) || !desiredLayers[0]) {
       store.dispatch('initialiseChosenLayers', currentOPSCode)
         .then(() => 'Done0');
@@ -156,8 +159,6 @@ export function validateUserAndSetInitialValues(to, from, next) {
       next(); // the router can carry on and load M4OPSView.vue
     });
   console.log('Z');
-
-
 }
 
 /* eslint-enable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len */

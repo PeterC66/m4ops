@@ -2,6 +2,7 @@
 
 ## Top Priority
 
+- Switch OPS - validate
 - Production version - Backups
 - Popups – by feature, or in results sidebar (use click choice?)
   - details in separate panel
@@ -10,8 +11,6 @@
   - SelectionPopup towards centre
 - Views – spy, slider
 - Click actions
-- Users, Passwords - use Auth0
-  - Admin, Manager, User, Guest
 - Debounce mouse movements
 - -[v-viewer](http://mirari.cc/v-viewer/) gallery, or [Carousel](https://github.com/vuejs/awesome-vue#carousel)
 

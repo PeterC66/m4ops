@@ -46,7 +46,7 @@ const actions = {
       .then(
         (user) => {
           commit('loginSuccess', user);
-          router.push('/');
+          // router.push('/maps/');
         },
         (error) => {
           commit('loginFailure', error);
@@ -65,7 +65,7 @@ const actions = {
       .then(
         (user) => {
           commit('registerSuccess', user);
-          router.push('/maps/');
+          // router.push('/maps/');
           setTimeout(() => {
             // display success message after route change completes
             // eslint-disable-next-line max-len

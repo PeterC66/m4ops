@@ -563,6 +563,7 @@ graph LR;
   - [using Vue Router Navigation Guards](https://serversideup.net/vue-router-navigation-guards-vuex/)
     - from [Roast And Brew tutorials](https://github.com/serversideup/roastandbrew)
     - eg [routes.js](https://github.com/serversideup/roastandbrew/blob/master/resources/assets/js/routes.js)
+    - [Wait-Until and Compound beforeEnter Guard with Vue Router](https://hanezu.github.io/posts/sync-async-and-compound-beforeEnter-guard-with-Vue-Router.html)
 
 #### Our URL scheme
 
@@ -991,7 +992,7 @@ graph LR;
 
 ## OpenLayers
 
-Use version number eg v5.3.0 (which is the one we use) or latest
+Use version number eg v5.3.0 (which is the one we use) or latest (the original M4OPS used [v4.6.5](http://openlayers.org/en/v4.6.5/apidoc/))
 
 - [Documentation](http://openlayers.org/en/v5.3.0/doc/)
 - [Tutorials](http://openlayers.org/en/v5.3.0/doc/tutorials/)
