@@ -4,18 +4,18 @@
       class="button is-primary is-medium"
       @click="showPortal('Modal2WithPortal')"
     >
-      Launch Portal Form
-      <component :is="'Modal2WithPortal'"></component>
+      Portal Form
+      <component :is="'Modal2WithPortal'" />
     </button>
     <button
       class="button is-primary is-medium"
-      @click="isComponent2ModalActive = true"
+      @click="isModalActive = true"
     >
-      Launch standard modal
+      OLD B-modal
     </button>
 
     <b-modal
-      :active.sync="isComponent2ModalActive"
+      :active.sync="isModalActive"
     >
       <ModalForm />
     </b-modal>
@@ -25,17 +25,15 @@
 <script>
 import { mapActions } from 'vuex';
 import ModalForm from '../../forms/ModalForm.vue';
-import Modal2WithPortal from '../../forms/Modal2WithPortal.vue';
 
 export default {
   name: 'ActionsPane',
   components: {
     ModalForm,
-    Modal2WithPortal,
   },
   data() {
     return {
-      isComponent2ModalActive: false,
+      isModalActive: false,
     };
   },
   methods: {

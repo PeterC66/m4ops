@@ -15,6 +15,7 @@ import initialiseFontAwesome from './initialising/initialisefontawesome';
 import initialiseElementComponents from './initialising/initialiseElementComponents'; // eslint-disable-line max-len
 // import initialiseVueLayers from './initialising/initialiseVueLayers';
 import initialiseWarnings from './initialising/initialiseWarnings';
+import initialiseForms from './initialising/initialiseForms';
 
 // import App from './App.vue';
 import App from './App.vue';
@@ -43,8 +44,9 @@ const unsync = sync(store, router, { moduleName: 'route' }); // returns an unsyn
 
 initialiseFontAwesome(Vue);
 initialiseElementComponents(Vue);
-// initialiseVueLayers(Vue);
+// initialiseVueLayers(Vue); // NOt needed as we Vue.use(VueLayers); above
 initialiseWarnings();
+initialiseForms(Vue);
 
 Vue.use(Buefy, {
   defaultIconPack: 'fas',
