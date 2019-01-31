@@ -20,15 +20,18 @@
 - [Vue.js](#vuejs)
   - [Complex components](#complex-components)
   - [Vue Router](#vue-router)
+    - [Our URL scheme](#our-url-scheme)
   - [Events](#events)
   - [Vuex](#vuex)
     - [Vuex plugins](#vuex-plugins)
     - [Typescript in Vue](#typescript-in-vue)
   - [HTTP Requests](#http-requests)
   - [Authorisation](#authorisation)
-    - [JWT](#jwt)
+    - [Our structure](#our-structure)
     - [Client system](#client-system)
     - [Server system](#server-system)
+      - [JSON Web Tokens (JWT)](#json-web-tokens--jwt-)
+      - [General Server system](#general-server-system)
     - [Management](#management)
     - [Other Approaches](#other-approaches)
   - [Demo](#demo)
@@ -48,6 +51,15 @@
     - [Other Vue aspects](#other-vue-aspects)
   - [Standards and styles](#standards-and-styles)
   - [Vue CLI 3](#vue-cli-3)
+- [M4OPS2 URL structure](#m4ops2-url-structure)
+  - [path parameters](#path-parameters)
+  - [Examples](#examples)
+  - [query parameters](#query-parameters)
+  - [Other M4OPS parameters](#other-m4ops-parameters)
+- [Sources of truth](#sources-of-truth)
+  - [Current OPSCode](#current-opscode)
+  - [Current User](#current-user)
+  - [Current Chosen Layers](#current-chosen-layers)
 - [Babel](#babel)
 - [Bundler - Webpack](#bundler---webpack)
 - [Debugging](#debugging)
@@ -63,6 +75,7 @@
   - [Connecting to MongoDB](#connecting-to-mongodb)
   - [Notes](#notes)
 - [MongoDB](#mongodb)
+  - [Imports into MongoDB](#imports-into-mongodb)
   - [To create Places.json](#to-create-placesjson)
   - [Mongoose](#mongoose)
 - [Environment Variables](#environment-variables)
@@ -946,6 +959,99 @@ graph LR;
 - For [amazon S3](https://github.com/multiplegeorges/vue-cli-plugin-s3-deploy)
 
 - (Remember that npm install -E (or --save-exact) ensures that the current version is not updated)
+
+## M4OPS2 URL structure
+
+### path parameters
+
+(specific order separated by /) - see client\src\router.js  "path: '/maps/"
+
+- :ops: code for the OPS (optional - default HcN)
+- :layers: zero or more layer titles (starting at layer 0) separated by / (if none then default is Bing%20Aerial/OSM)
+  - layer titles can be alphanumeric, including -_ and spaces
+- :opacities: zero or more opacity numbers (% starting at layer 1, as the base is always 100% opaque) separated by / (if none then default is 50 for rasters, 100 for feature layers)
+- :ZoomOrFitTo: zoom level preceded by Z eg 18, or FitTo preceded by F eg 1 (default is the HomeView)
+  - (FitTo was Extent and is the number of the layer to initially fit to)
+- :Lon/Lat: Longitude/Latitude decimal degrees, eg -0.0318640/52.3304020 for central Needingworth
+  - (This is in 'EPSG: 4326' or Spherical Mercator, and is irrelevant if a FitTo is specified)
+
+### Examples
+
+(for now the final / is important)
+[Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/Z16/)
+[Protected Layer](http://localhost:8080/maps/HcN/Bing%20Aerial/Cosmo%20Wallace%201764/90/Z17/)
+[2 Spinney Way](http://localhost:8080/maps/HcN/Bing%20Aerial/OpenStreetMap/HcN%20CP/90/Z18/-0.0234522/52.3333362/)
+[HNB is Protected](http://localhost:8080/maps/HNB/)
+
+### query parameters
+
+- (key/value pairs, or just the key - meaning true)
+
+- NoCHNG means you cannot change the OPS
+- Showlevel= (default 9999) for demonstrations starts at 0 then goes up at cutoffpoints
+- Splash= html text for splash screen when M4OPS first opens, can include abbreviations (#..#)
+  - one word abbreviations will, if necessary, have the word Splash appended, and be surrounded by #..#
+  - (thus Splash=Spyglass becomes #SpyglassSplash#)
+  - (and Splash=25inch becomes #25inchSplash#)
+- Tab= the initial advanced option tab to show:
+  - Actions - PNG, Demo, icons (the default)
+  - MFL - Modifiable Feature Layers
+  - Upload - Upload, compile
+  - Time - Time sliders
+- Displaystyle= (initial view)
+  - onemapOpacity - One map with Opacity slider, or
+  - sidebyside - Side by Side maps, or
+  - onemapSpy - One Map with Spyglass
+- Colours= initial colour scheme for features
+- Click= the initial drop-down value - one of:
+  - no - No lat/lon click
+  - M4OPScsv - M4OPS lon;lat csv
+  - M4OPSparam - M4OPS parameters
+  - csv - lat,lon csv
+  - geojson - {lon,lat} GeoJSON
+  - EPSG3857 - EPSG:3857 (x/y)
+  - HDMS - DegMinSec N/E
+  - GeoHack - GeoHack links
+  - Featureid - Feature id
+- Green if you want the background in development to be the normal Green
+- NoShift if you want the layers NOT shifted east or north
+- LoadwA if you want tiles loaded during animations (may improve the user experience, but can also make things stutter on devices with slow memory)
+- LoadwI if you want tiles loaded while interacting with the map (ditto)
+- (Mouse if you want the next feature to be Georeferenced to appear by the mouse pointer)
+
+### Other M4OPS parameters
+
+- from [forum](https://www.mapping4ops.org/m4ops-technicalities/m4ops-parameters/)
+- File= filename of json to use, default M4OPS (.json) **NA**
+
+## Sources of truth
+
+### Current OPSCode
+
+- state.mapping.currentOptionArray[3]
+- default initialOpsCode
+- getter: use mapState
+- setter via updateCurrentOptionArray
+- Note that store.getters.place.OPSCode holds the OPSCode for the OPS currently loaded into place
+
+### Current User
+
+- store.state.users.account.user
+- has .username and .status.loggedIn
+- default none (username === 'Guest')
+- localStorage.getItem('user') is used to keep user logged in between page refreshes - includes jwt token
+  - so is kept updated by routines in user.service.js, and used in authHeader
+  - but should not be used for any other reasons
+
+### Current Chosen Layers
+
+- store.state.mapping.mainmap.chosenLayers (array)
+- each has .ldid, .opacity (0-1), .displaytype (A or B)
+- getter chosenLayersMainmap
+- set by setLayer and setOpacity
+- there is also the simpler store.state.mapping.chosenRhLayer which has just ldid
+- initialised to initialStateChosenLayersByOpsCode(opsCode) - none yet
+- default initialStateChosenLayers.default [Bing Aerial, OSM]
 
 ## Babel
 
