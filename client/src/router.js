@@ -9,7 +9,8 @@ import LoginPage from './views/LoginPage.vue';
 import LogoutPage from './views/LogoutPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import ManagePage from './views/ManagePage.vue';
-import { validateUserAndSetInitialValues } from './modules/users/validateEtc';
+import { guardToValidateUserAndSetInitialValues }
+  from './modules/users/validateEtc';
 
 Vue.use(Router);
 
@@ -74,7 +75,7 @@ const router = new Router({
       + '/:Lat([-+]?\\d+\\.?\\d*)?',
       name: 'maps',
       component: M4OPSView,
-      beforeEnter: validateUserAndSetInitialValues,
+      beforeEnter: guardToValidateUserAndSetInitialValues,
     },
     {
       path: '*',

@@ -20,6 +20,7 @@
 
 ## Medium Priority
 
+- urls - opentopomap
 - WMS and WMTS sources
 - new OPS for HcN
 - TODO in comments items
@@ -63,6 +64,8 @@
 
 ## Low Priority
 
+- [magnify](https://openlayers.org/en/latest/examples/magnify.html)
+- [swipe](https://openlayers.org/en/latest/examples/layer-swipe.html)
 - User favourite Layers
 - layerAndSourceTile: (tileserver) const OPSCode = 'HcN'; // Kludge TODO (or remove tileserver folder)
 - after OPS choice close box
@@ -72,6 +75,7 @@
 - simplify Continents production FLG etc?
 - reduce bundle size on build
 - use [vuelayers constants](https://github.com/ghettovoice/vuelayers/blob/master/src/ol-ext/consts.js)
+- [upload images](https://levelup.gitconnected.com/how-to-preview-images-before-uploading-them-in-vue-4964803adb64)
 
 ## Issues to be resolved
 
