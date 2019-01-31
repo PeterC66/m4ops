@@ -44,19 +44,23 @@
       </div>
     </nav>
     <!-- component matched by the route will render here -->
-    <!-- :auth="auth"
-      :authenticated="authenticated" -->
     <router-view />
-    <portal-target name="modals" />
+    <!-- component with  <portal to="xxx"> will render here -->
+    <portal-target :name="formInPortal" />
   </div>
 </template>
 
 <script>
 // import auth from './modules/auth/AuthService';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'App',
+  computed: {
+    ...mapState({
+      formInPortal: state => state.forms.formInPortal,
+    }),
+  },
   created() {
     // this.getAllUsers();
   },

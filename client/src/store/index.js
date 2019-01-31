@@ -9,6 +9,7 @@ import vuexApiGetters from './modules/vuexApi/vuexApiGetters';
 import framework from './modules/framework';
 import demo from './modules/demo';
 import users from './modules/users';
+import forms from './modules/forms';
 
 Vue.use(Vuex);
 
@@ -23,5 +24,6 @@ export default new Vuex.Store({
     framework,
     demo,
     users,
+    forms,
   },
 });

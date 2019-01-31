@@ -24,3 +24,7 @@ export const INTERACTIONS_ON_TOGGLE = 'INTERACTIONS_ON_TOGGLE';
 export const SHOW_LEVEL_SET_REQUEST = 'SHOW_LEVEL_SET_REQUEST';
 
 // users mutation types - see the routines in \store\modules\users
+
+//
+export const HIDE_PORTAL = 'HIDE_PORTAL';
+export const SHOW_PORTAL = 'SHOW_PORTAL';

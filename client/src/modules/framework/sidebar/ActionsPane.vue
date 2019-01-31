@@ -2,9 +2,10 @@
   <section>
     <button
       class="button is-primary is-medium"
-      @click="isComponent1ModalActive = true"
+      @click="showPortal('Modal2WithPortal')"
     >
-      Launch Sample Form
+      Launch Portal Form
+      <component :is="'Modal2WithPortal'"></component>
     </button>
     <button
       class="button is-primary is-medium"
@@ -14,12 +15,6 @@
     </button>
 
     <b-modal
-      :active.sync="isComponent1ModalActive"
-    >
-      <!-- Note that property has-modal-card causes problems -->
-      <SampleForm />
-    </b-modal>
-    <b-modal
       :active.sync="isComponent2ModalActive"
     >
       <ModalForm />
@@ -28,20 +23,25 @@
 </template>
 
 <script>
-import SampleForm from '../../forms/sample.vue';
+import { mapActions } from 'vuex';
 import ModalForm from '../../forms/ModalForm.vue';
+import Modal2WithPortal from '../../forms/Modal2WithPortal.vue';
 
 export default {
   name: 'ActionsPane',
   components: {
-    SampleForm,
     ModalForm,
+    Modal2WithPortal,
   },
   data() {
     return {
-      isComponent1ModalActive: false,
       isComponent2ModalActive: false,
     };
+  },
+  methods: {
+    ...mapActions({ // was 'users', for namespace
+      showPortal: 'showPortal',
+    }),
   },
 };
 </script>

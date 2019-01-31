@@ -44,7 +44,7 @@ import VueFormGenerator from 'vue-form-generator';
 // Note import  of vfg.css etc is in main.js
 
 export default {
-  name: 'RegisterPage',
+  name: 'LoginPage',
   components: {
     'vue-form-generator': VueFormGenerator.component,
   },

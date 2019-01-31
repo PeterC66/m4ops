@@ -44,7 +44,7 @@ export function reasonForNotAllowingLayer(layerDef) {
       result = `Invalid layerProtection value = ${layerProtection}`;
       break;
   }
-  // console.log(`rFNAL ${layerTitle} - ${layerProtection} ${usersBestRight} for ${currentUsername} ${currentUserLoggedIn} > ${result || 'OK'}`);
+  // console.log(`rFNAL ${layerTitle} (${layerProtection}). ${currentUsername} (logged in ${currentUserLoggedIn}) has UBR ${usersBestRight} result= ${result || 'OK'}`);
   return result;
 }
 
@@ -96,7 +96,7 @@ export function validateUserAndSetInitialValues(params) {
       currentOPSCode = store.getters.place.OPSCode; // After this point use currentOPSCode rather than desiredOPSCode
       // Validate the layers
       const desiredLayers = (params.layers || '').split('/');
-      if (isEmptyArray(desiredLayers) || !desiredLayers[0]) {
+      if (!desiredLayers || isEmptyArray(desiredLayers) || !desiredLayers[0]) {
         store.dispatch('initialiseChosenLayers', currentOPSCode)
           .then(() => 'Done0');
       } else {

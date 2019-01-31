@@ -83,10 +83,12 @@ const actions = {
 const getters = { // All for current user
   // Note that firstName and lastName are required, so guaranteed to be non-empty
   /* eslint-disable max-len */
-  currentUserFullName: moduleState => `${moduleState.user.firstName || ''} ${moduleState.user.lastName || guest}`,
-  currentUsername: moduleState => (moduleState.user ? moduleState.user.username || guest : guest),
-  // eslint-disable-next-line no-nested-ternary
-  currentUserLoggedIn: moduleState => (moduleState.status ? moduleState.status.loggedIn : false),
+  currentUser: moduleState => (moduleState.user || {
+    firstName: '', lastName: guest, username: guest, status: {},
+  }),
+  currentUserFullName: (moduleState, getters) => `${getters.currentUser.firstName} ${getters.currentUser.lastName}`,
+  currentUsername: (moduleState, getters) => getters.currentUser.username,
+  currentUserLoggedIn: moduleState => !!moduleState.status.loggedIn,
   /* eslint-enable max-len */
 
   // Sort by the right (each starts with integer) then find the first for the given opsCode

@@ -45,6 +45,7 @@
           "b-tabs",
           "b-tab-item",
           "b-tooltip",
+          "component",
           "el-cascader",
           "font-awesome-icon",
           "portal",

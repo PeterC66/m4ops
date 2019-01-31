@@ -11,8 +11,9 @@
 </template>
 
 <script>
-import { actions } from 'vuex-api';
+// import { actions } from 'vuex-api';
 import { mapGetters } from 'vuex';
+import { validateUserAndSetInitialValues } from '../../users/validateEtc';
 
 export default {
   name: 'ChooseOPS',
@@ -40,17 +41,7 @@ export default {
   },
   methods: {
     handleChange(value) {
-      this.$store.dispatch(actions.request, {
-        baseURL: process.env.VUE_APP_BACKEND_URL,
-        url: `places/${value[3]}`,
-        keyPath: ['place'],
-      }).then(() => {
-        this.$store.dispatch('updateCurrentOptionArray', value);
-      }).then(() => {
-        this.$store.dispatch('initialiseChosenLayers', value[3]);
-      }).then(() => {
-        this.$store.dispatch('updateView', this.homeView);
-      });
+      validateUserAndSetInitialValues({ ops: value[3] });
     },
   },
 };

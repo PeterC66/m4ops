@@ -368,7 +368,7 @@ See under [Standards and styles](#standards-and-styles)
   - /m4ops/.eslintrc.json has the basic configuration that applies to both client and server code
     - do not include any rules (even common ones) as the whole rules object is overwritten by that in either the client or server file
   - /m4ops/client/.eslintrc.json has any specific configuration needed for the client (Vue) system, including rules
-    - in particular it has the kebab-case names of imported components, the PascalCase rule is ignored
+    - in particular it has the kebab-case names of imported components, for which the PascalCase rule is ignored
   - /m4ops/server/.eslintrc.json is similar for the server (Express) system, including rules
 - We also use an /m4ops/.eslintignore file in any folder we run eslint in (note that [only one such file is used](https://eslint.org/docs/user-guide/configuring#eslintignore))
   - for patterns see [gitignore](https://git-scm.com/docs/gitignore#_pattern_format)
@@ -889,8 +889,10 @@ graph LR;
 
 #### Modals
 
-- [Modals](https://github.com/vuejs/awesome-vue#overlay) - use buefy
-- Use [portal-vue](https://linusborg.github.io/portal-vue/#/) (a set of two components that allow you to render a component's template (or a part of it) anywhere in the document - even outside the part controlled by your Vue App!) - see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design (not free)](https://adamwathan.me/advanced-vue-component-design/)
+- [Modals](https://github.com/vuejs/awesome-vue#overlay)
+- Use [portal-vue](https://linusborg.github.io/portal-vue/#/guide) (a set of two components that allow you to render a component's template (or a part of it) anywhere in the document - even outside the part controlled by your Vue App!)
+  - Did try to use [buefy (b-modal)](https://buefy.github.io/documentation/modal), but now only use buefy css classes (see Buefy styles for ref.css)
+  - can also see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design course (not free)](https://adamwathan.me/advanced-vue-component-design/)
 
 #### Other Vue aspects
 

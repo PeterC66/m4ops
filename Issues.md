@@ -2,7 +2,7 @@
 
 ## Top Priority
 
-- Switch OPS - validate
+- Modal
 - Production version - Backups
 - Popups – by feature, or in results sidebar (use click choice?)
   - details in separate panel
