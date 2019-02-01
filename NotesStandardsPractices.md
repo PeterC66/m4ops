@@ -517,11 +517,7 @@ graph LR;
 - any components starting with _base in /global/components/ are globally registered
 - [The correct way to force Vue to re-render a component](https://hackernoon.com/the-correct-way-to-force-vue-to-re-render-a-component-bde2caae34ad) - update the key
 - A template element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
-- [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) can be in any element
-  - see the excellent [Understanding scoped slots in Vue.js](https://medium.com/binarcode/understanding-scoped-slots-in-vue-js-db5315a42391)
-  - and (video) [The Trick to Understanding Scoped Slots in Vue.js](https://adamwathan.me/the-trick-to-understanding-scoped-slots-in-vuejs/), explaining that if slots are like props, then scoped slots are like function props
-  - slot-scope is the name of a temporary variable that holds the props object passed from the child - even simpler if it is destructured
-- [The Vue.js Cheast Sheet](https://flaviocopes.com/vue-cheat-sheet/)
+- [The Vue.js Cheat Sheet](https://flaviocopes.com/vue-cheat-sheet/)
 - [Methods, Computed, and Watchers in Vue.js](https://css-tricks.com/methods-computed-and-watchers-in-vue-js/)
 - [Vue Filters](https://vuejs.org/v2/guide/filters.html) can be used to apply common text formatting in two places (mustache interpolations and v-bind expressions)
 - [Vue Enter/Leave & List Transitions](https://vuejs.org/v2/guide/transitions.html) - automatically apply classes for CSS transitions and animations etc - \<transition\> goes around an element, \<transition-group\> round a v-for
@@ -529,6 +525,13 @@ graph LR;
 - special abstract component [keep-alive](https://vuejs.org/v2/api/#keep-alive) tells Vue not to destroy and recreate its child, instead keep it in memory
 - [Access And Change Parent Variables From A Child Component With Vue.js](https://www.thepolyglotdeveloper.com/2018/04/access-change-parent-variables-child-component-vuejs/)
 - [Simplify Your Vue Components with Computed Setters](https://medium.com/@Taha_Shashtari/simplify-your-components-with-computed-setters-2f687f193fb0) - get/set for a computed property
+
+### Scoped Slots
+
+- [Scoped Slots](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) can be in any element
+  - see the excellent [Understanding scoped slots in Vue.js](https://medium.com/binarcode/understanding-scoped-slots-in-vue-js-db5315a42391)
+  - and (video) [The Trick to Understanding Scoped Slots in Vue.js](https://adamwathan.me/the-trick-to-understanding-scoped-slots-in-vuejs/), explaining that if slots are like props, then scoped slots are like function props
+  - slot-scope is the name of a temporary variable that holds the props object passed from the child - even simpler if it is destructured
 
 ### Complex components
 
@@ -578,9 +581,69 @@ graph LR;
     - eg [routes.js](https://github.com/serversideup/roastandbrew/blob/master/resources/assets/js/routes.js)
     - [Wait-Until and Compound beforeEnter Guard with Vue Router](https://hanezu.github.io/posts/sync-async-and-compound-beforeEnter-guard-with-Vue-Router.html)
 
-#### Our URL scheme
+#### M4OPS2 URL structure
 
-- see URLStructure.md
+##### path parameters
+
+(specific order separated by /) - see client\src\router.js  "path: '/maps/"
+
+- :ops: code for the OPS (optional - default HcN)
+- :layers: zero or more layer titles (starting at layer 0) separated by / (if none then default is Bing%20Aerial/OSM)
+  - layer titles can be alphanumeric, including -_ and spaces
+- :opacities: zero or more opacity numbers (% starting at layer 1, as the base is always 100% opaque) separated by / (if none then default is 50 for rasters, 100 for feature layers)
+- :ZoomOrFitTo: zoom level preceded by Z eg 18, or FitTo preceded by F eg 1 (default is the HomeView)
+  - (FitTo was Extent and is the number of the layer to initially fit to)
+- :Lon/Lat: Longitude/Latitude decimal degrees, eg -0.0318640/52.3304020 for central Needingworth
+  - (This is in 'EPSG: 4326' or Spherical Mercator, and is irrelevant if a FitTo is specified)
+
+##### Examples
+
+(for now the final / is important)
+[Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/Z16/)
+[Protected Layer](http://localhost:8080/maps/HcN/Bing%20Aerial/Cosmo%20Wallace%201764/90/Z17/)
+[2 Spinney Way](http://localhost:8080/maps/HcN/Bing%20Aerial/OpenStreetMap/HcN%20CP/90/Z18/-0.0234522/52.3333362/)
+[HNB is Protected](http://localhost:8080/maps/HNB/)
+
+##### query parameters
+
+- (key/value pairs, or just the key - meaning true)
+
+- NoCHNG means you cannot change the OPS
+- Showlevel= (default 9999) for demonstrations starts at 0 then goes up at cutoffpoints
+- Splash= html text for splash screen when M4OPS first opens, can include abbreviations (#..#)
+  - one word abbreviations will, if necessary, have the word Splash appended, and be surrounded by #..#
+  - (thus Splash=Spyglass becomes #SpyglassSplash#)
+  - (and Splash=25inch becomes #25inchSplash#)
+- Tab= the initial advanced option tab to show:
+  - Actions - PNG, Demo, icons (the default)
+  - MFL - Modifiable Feature Layers
+  - Upload - Upload, compile
+  - Time - Time sliders
+- Displaystyle= (initial view)
+  - onemapOpacity - One map with Opacity slider, or
+  - sidebyside - Side by Side maps, or
+  - onemapSpy - One Map with Spyglass
+- Colours= initial colour scheme for features
+- Click= the initial drop-down value - one of:
+  - no - No lat/lon click
+  - M4OPScsv - M4OPS lon;lat csv
+  - M4OPSparam - M4OPS parameters
+  - csv - lat,lon csv
+  - geojson - {lon,lat} GeoJSON
+  - EPSG3857 - EPSG:3857 (x/y)
+  - HDMS - DegMinSec N/E
+  - GeoHack - GeoHack links
+  - Featureid - Feature id
+- Green if you want the background in development to be the normal Green
+- NoShift if you want the layers NOT shifted east or north
+- LoadwA if you want tiles loaded during animations (may improve the user experience, but can also make things stutter on devices with slow memory)
+- LoadwI if you want tiles loaded while interacting with the map (ditto)
+- (Mouse if you want the next feature to be Georeferenced to appear by the mouse pointer)
+
+##### Other M4OPS parameters
+
+- from [forum](https://www.mapping4ops.org/m4ops-technicalities/m4ops-parameters/)
+- File= filename of json to use, default M4OPS (.json) **NA**
 
 ### Events
 
@@ -890,9 +953,22 @@ graph LR;
 #### Modals
 
 - [Modals](https://github.com/vuejs/awesome-vue#overlay)
-- Use [portal-vue](https://linusborg.github.io/portal-vue/#/guide) (a set of two components that allow you to render a component's template (or a part of it) anywhere in the document - even outside the part controlled by your Vue App!)
-  - Did try to use [buefy (b-modal)](https://buefy.github.io/documentation/modal), but now only use buefy css classes (see Buefy styles for ref.css)
+- We use [portal-vue](https://linusborg.github.io/portal-vue/#/guide) (a set of two components that allow you to render a component's template (or a part of it) anywhere in the document - even outside the part controlled by your Vue App!)
   - can also see [lessons](https://gaming.youtube.com/watch?v=1yWAxrpL3zU&list=PL7CcGwsqRpSOZAiNYyVvgTKSyARERvvij) from [Advanced Vue Component Design course (not free)](https://adamwathan.me/advanced-vue-component-design/)
+  - Did try to use [buefy (b-modal)](https://buefy.github.io/documentation/modal), but now only use buefy css classes (see Buefy styles for ref.css)
+
+##### Our Modals structure
+
+- the Modal actually appears in portal-target in App.vue, a standard component from portal-vue
+- the main Modal component is ModalOuter, which handles the background and switching, and has:
+  - a slot for a ModalInner
+- ModalOuter is switched on/off by the actions showPortal('ModalOuter') and hidePortal()
+- The main detail is in eg ActionsPane, which contains:
+  - the button for opening the modal
+  - the ModalOuter component
+  - a ModalInner - one possible of these is ModalInnerForForms, which has a formData prop
+  - any needed props, including their:
+    - import and computed definition
 
 #### Other Vue aspects
 
@@ -961,70 +1037,6 @@ graph LR;
 - For [amazon S3](https://github.com/multiplegeorges/vue-cli-plugin-s3-deploy)
 
 - (Remember that npm install -E (or --save-exact) ensures that the current version is not updated)
-
-## M4OPS2 URL structure
-
-### path parameters
-
-(specific order separated by /) - see client\src\router.js  "path: '/maps/"
-
-- :ops: code for the OPS (optional - default HcN)
-- :layers: zero or more layer titles (starting at layer 0) separated by / (if none then default is Bing%20Aerial/OSM)
-  - layer titles can be alphanumeric, including -_ and spaces
-- :opacities: zero or more opacity numbers (% starting at layer 1, as the base is always 100% opaque) separated by / (if none then default is 50 for rasters, 100 for feature layers)
-- :ZoomOrFitTo: zoom level preceded by Z eg 18, or FitTo preceded by F eg 1 (default is the HomeView)
-  - (FitTo was Extent and is the number of the layer to initially fit to)
-- :Lon/Lat: Longitude/Latitude decimal degrees, eg -0.0318640/52.3304020 for central Needingworth
-  - (This is in 'EPSG: 4326' or Spherical Mercator, and is irrelevant if a FitTo is specified)
-
-### Examples
-
-(for now the final / is important)
-[Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/Z16/)
-[Protected Layer](http://localhost:8080/maps/HcN/Bing%20Aerial/Cosmo%20Wallace%201764/90/Z17/)
-[2 Spinney Way](http://localhost:8080/maps/HcN/Bing%20Aerial/OpenStreetMap/HcN%20CP/90/Z18/-0.0234522/52.3333362/)
-[HNB is Protected](http://localhost:8080/maps/HNB/)
-
-### query parameters
-
-- (key/value pairs, or just the key - meaning true)
-
-- NoCHNG means you cannot change the OPS
-- Showlevel= (default 9999) for demonstrations starts at 0 then goes up at cutoffpoints
-- Splash= html text for splash screen when M4OPS first opens, can include abbreviations (#..#)
-  - one word abbreviations will, if necessary, have the word Splash appended, and be surrounded by #..#
-  - (thus Splash=Spyglass becomes #SpyglassSplash#)
-  - (and Splash=25inch becomes #25inchSplash#)
-- Tab= the initial advanced option tab to show:
-  - Actions - PNG, Demo, icons (the default)
-  - MFL - Modifiable Feature Layers
-  - Upload - Upload, compile
-  - Time - Time sliders
-- Displaystyle= (initial view)
-  - onemapOpacity - One map with Opacity slider, or
-  - sidebyside - Side by Side maps, or
-  - onemapSpy - One Map with Spyglass
-- Colours= initial colour scheme for features
-- Click= the initial drop-down value - one of:
-  - no - No lat/lon click
-  - M4OPScsv - M4OPS lon;lat csv
-  - M4OPSparam - M4OPS parameters
-  - csv - lat,lon csv
-  - geojson - {lon,lat} GeoJSON
-  - EPSG3857 - EPSG:3857 (x/y)
-  - HDMS - DegMinSec N/E
-  - GeoHack - GeoHack links
-  - Featureid - Feature id
-- Green if you want the background in development to be the normal Green
-- NoShift if you want the layers NOT shifted east or north
-- LoadwA if you want tiles loaded during animations (may improve the user experience, but can also make things stutter on devices with slow memory)
-- LoadwI if you want tiles loaded while interacting with the map (ditto)
-- (Mouse if you want the next feature to be Georeferenced to appear by the mouse pointer)
-
-### Other M4OPS parameters
-
-- from [forum](https://www.mapping4ops.org/m4ops-technicalities/m4ops-parameters/)
-- File= filename of json to use, default M4OPS (.json) **NA**
 
 ## Sources of truth
 

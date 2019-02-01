@@ -88,3 +88,29 @@
 ## Tried but failed
 
 - subhead colours
+
+## For OLD M4OPS
+
+- Census compile XRefs1 takes too long
+- Compile OPS does not compile AllFeatures, but blank (All) does - why?
+  - AllFeatures does not include features from other csv files than Features.csv??
+- If AllFeatures MFL has no un-georeferenced then no need for dropdown
+- HNB pseudo-1 features added - why, exclude from downloads?
+- pre-1894 BDY  - why featureid = pseudo-1
+- need to be able to delete a csv
+- show key - show colourset if no key
+- Attribution for MFL not showing?
+- FLG use moveProperties etc in compileFL and remove most uses of "data"
+- List to have auto column width eg 1910 Valuation
+- Upgrade to OL5
+- All Properties to understand field types
+- Loading layers - [turn on/off loading (busy)](https://gis.stackexchange.com/questions/123149/using-layer-loadstart-loadend-events-in-openlayers-3)
+- General Modal to have copy all button?
+  - and scroll ?
+- Instead of Features->All Features
+  - use MFLs - can have features without geometries?
+- Read Features.csv and People_Specs only once - like People
+  - Regenerate People.csv from Access - with Pnnn not Innn!
+  - Add repeat header lines in generated csv files
+  - P_8974 not found in Fast search
+- "EDI>Local>Kirkwood:_1817" description
