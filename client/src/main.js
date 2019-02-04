@@ -83,6 +83,11 @@ Promise.all([
     url: 'places',
     keyPath: ['places'],
   }),
+  store.dispatch(actions.request, {
+    baseURL: process.env.VUE_APP_BACKEND_URL,
+    url: 'forms',
+    keyPath: ['forms'],
+  }),
   store.dispatch('getAllUsers'),
 ]).then(() => {
   // create the main Vue instance and mount it

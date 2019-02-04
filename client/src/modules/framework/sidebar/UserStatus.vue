@@ -10,27 +10,49 @@
       v-if="account.user"
     >
       User {{ account.user.firstName }}
-      <!-- User {{ account.user.firstName }} -->
-      <!-- login resets status on creation -->
-      <router-link to="/logout">
+      <button
+        class="button is-primary is-small"
+        @click="logout"
+      >
         Logout
-      </router-link>
+      </button>
     </p>
     <p
       v-else
     >
       Guest
-      <router-link to="/login">
-        Login
-      </router-link>
+      <button
+        class="button is-primary is-small"
+        @click="showPortal({title: 'Log in', formId: formIdForThis})"
+      >
+        Log In
+        <component :is="'ModalOuter'">
+          <ModalInnerForForms :form-id="formIdForThis" />
+          <span slot="footer">
+            <button class="button is-primary">
+              Login
+            </button>
+          </span>
+        </component>
+      </button>
     </p>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import ModalInnerForForms from '../../forms/ModalInnerForForms.vue';
 
 export default {
+  name: 'UserStatus',
+  components: {
+    ModalInnerForForms,
+  },
+  data() {
+    return {
+      formIdForThis: 'LogIn',
+    };
+  },
   computed: {
     ...mapState({
       account: state => state.users.account,
@@ -48,7 +70,19 @@ export default {
   methods: {
     ...mapActions({ // was 'users',
       clearAlert: 'alert/clear',
+      showPortal: 'showPortal',
+      login: 'login',
+      logout: 'logout',
     }),
+    // eslint-disable-next-line no-unused-vars
+    handleSubmit(e) {
+      // this.submitted = true;
+      const { username, password } = this.model;
+      if (username && password) {
+        this.login({ username, password });
+      }
+      this.goBack();
+    },
   },
 };
 </script>

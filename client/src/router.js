@@ -2,11 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import M4OPSView from './views/M4OPSView.vue';
-import Form from './views/Form.vue';
 import NotFound from './global/components/NotFound.vue';
 
-import LoginPage from './views/LoginPage.vue';
-import LogoutPage from './views/LogoutPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import ManagePage from './views/ManagePage.vue';
 import { guardToValidateUserAndSetInitialValues }
@@ -33,11 +30,6 @@ const router = new Router({
       component: Home,
     },
     {
-      path: '/form',
-      name: 'form',
-      component: Form,
-    },
-    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -45,16 +37,6 @@ const router = new Router({
       // which is lazy-loaded when the route is visited.
       // eslint-disable-next-line max-len
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: LoginPage,
-    },
-    {
-      path: '/logout',
-      name: 'logout',
-      component: LogoutPage,
     },
     {
       path: '/register',

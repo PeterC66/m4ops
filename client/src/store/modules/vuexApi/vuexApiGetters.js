@@ -155,4 +155,14 @@ vuexApiGetters.getOptionsArrayByPlace = (moduleState, getters) => opsCode => _.f
 
 vuexApiGetters.getPlaceFromPlaces = (moduleState, getters) => opsCode => _.find(getters.places, p => p.OPSCode === opsCode);
 
+// Forms ========================================================
+
+vuexApiGetters.forms = moduleState => (moduleState.forms
+  && moduleState.forms.resp
+  && moduleState.forms.resp.data
+  && moduleState.forms.resp.data.data)
+  || [];
+
+vuexApiGetters.getFormById = (moduleState, getters) => id => _.find(getters.forms, f => f._id === id) || {};
+
 export default vuexApiGetters;

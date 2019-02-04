@@ -1278,6 +1278,7 @@ graph LR;
   - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
   - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
   - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
+  - mongoimport --db m4opsdb --collection Forms --drop --file C:\projects\m4ops\client\src\modules\forms\vfgData\Forms.json
   - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
   - and then:
   - Buildings.geojson"

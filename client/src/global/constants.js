@@ -55,3 +55,4 @@ export const userRightsEnum = {
 };
 
 export const guest = 'Guest';
+export const NOPORTAL = 'NOPORTAL';

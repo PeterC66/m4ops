@@ -2,13 +2,16 @@
   <section>
     <button
       class="button is-primary is-medium"
-      @click="showPortal('ModalOuter')"
+      @click="showPortal({title: '3B data', formId: formIdForThis})"
     >
       Portal Form
-      <!-- This component might as well be here as anywhere else.
-        It displays in the portal -->
       <component :is="'ModalOuter'">
-        <ModalInnerForForms :form-data="formData" />
+        <ModalInnerForForms :form-id="formIdForThis" />
+        <span slot="footer">
+          <button class="button is-primary">
+            Login
+          </button>
+        </span>
       </component>
     </button>
     <button
@@ -21,33 +24,27 @@
     <b-modal
       :active.sync="isModalActive"
     >
-      <ModalForm />
+      <BModalForm />
     </b-modal>
   </section>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import ModalForm from '../../forms/ModalForm.vue';
+import BModalForm from '../../forms/BModalForm.vue';
 import ModalInnerForForms from '../../forms/ModalInnerForForms.vue';
-import formData from '../../forms/form3BSpec';
 
 export default {
   name: 'ActionsPane',
   components: {
-    ModalForm,
+    BModalForm,
     ModalInnerForForms,
   },
   data() {
     return {
       isModalActive: false,
+      formIdForThis: '3B',
     };
-  },
-  computed: {
-    formData() {
-      return formData;
-    },
-
   },
   methods: {
     ...mapActions({ // was 'users', for namespace

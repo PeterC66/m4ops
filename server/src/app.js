@@ -14,6 +14,7 @@ const continentRoute = require('./routes/continent');
 const m4opsDataRoute = require('./routes/m4opsdata');
 const featureLayerRoute = require('./routes/featurelayer');
 const usersRoute = require('./routes/user');
+const formsRoute = require('./routes/form');
 
 if (!process.env.MONGO_DB_URL) {
   require('dotenv-safe').config();
@@ -51,6 +52,7 @@ app.use('/continents', continentRoute);
 app.use('/m4opsdata', m4opsDataRoute);
 app.use('/featurelayers', featureLayerRoute);
 app.use('/users', usersRoute);
+app.use('/forms', formsRoute);
 
 module.exports = app;
 

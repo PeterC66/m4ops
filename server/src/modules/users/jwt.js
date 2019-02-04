@@ -15,6 +15,7 @@ function jwt() {
             /\/places.*/,
             '/continents',
             '/m4opsdata',
+            '/forms',
             /\/featurelayers.*/,
             '/users/current',
             /\/users\/.*/,

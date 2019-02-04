@@ -1,0 +1,87 @@
+{
+  "_id": "3B",
+  "vfg_model": {
+    "id": 1,
+    "name": "",
+    "address": "",
+    "comment": ""
+  },
+  "vfg_schema": {
+    "fields": [
+      {
+        "type": "input",
+        "inputType": "text",
+        "label": "ID",
+        "model": "id",
+        "readonly": true,
+        "disabled": true
+      },
+      {
+        "type": "input",
+        "inputType": "text",
+        "label": "Name",
+        "model": "name",
+        "placeholder": "NameXX",
+        "required": true,
+        "hint": "The name of the feature",
+        "help": "A short name",
+        "validator": "string",
+        "description": "PDC non-VFG property"
+      },
+      {
+        "type": "input",
+        "inputType": "text",
+        "label": "Address",
+        "model": "address",
+        "placeholder": "Address",
+        "required": true,
+        "help": "The address of the feature",
+        "validator": "string",
+        "description": "PDC non-VFG property"
+      },
+      {
+        "type": "input",
+        "inputType": "text",
+        "label": "Comment",
+        "model": "comment",
+        "placeholder": "Comment",
+        "required": false,
+        "help": "Enter any comment here",
+        "validator": "string",
+        "description": "Any comment about the feature"
+      }
+    ]
+  },
+  "vfg_formOptions": {
+    "validateAfterLoad": false,
+    "validateAfterChanged": true
+  }
+}
+{
+  "_id": "LogIn",
+  "vfg_model": {
+    "username": "",
+    "password": ""
+  },
+  "vfg_schema": {
+    "fields": [
+      {
+        "type": "input",
+        "inputType": "text",
+        "label": "User Name",
+        "model": "username",
+        "required": true
+      },
+      {
+        "type": "input",
+        "inputType": "password",
+        "label": "Password",
+        "model": "password"
+      }
+    ]
+  },
+  "vfg_formOptions": {
+    "validateAfterLoad": false,
+    "validateAfterChanged": true
+  }
+}

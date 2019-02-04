@@ -1,48 +1,21 @@
 <template>
-  <form
-    action=""
-    class="modal-content"
-  >
-    <div
-      class="modal-card"
-      style="width: auto"
+  <section class="modal-card-body">
+    <form
+      @submit.prevent="handleSubmit"
     >
-      <header class="modal-header-M4OPS">
-        <p class="modal-title-M4OPS">
-          Login
-        </p>
-      </header>
-      <section class="modal-card-body modal-body-M4OPS">
-        <form style="background-color:white">
-          <vue-form-generator
-            :schema="schema"
-            :model="model"
-            :options="formOptions"
-          />
-        </form>
-      </section>
-      <footer class="modal-card-foot modal-footer-M4OPS">
-        <button
-          class="button"
-          type="button"
-          @click="hidePortal"
-        >
-          Close
-        </button>
-        <button class="button is-primary">
-          Login
-        </button>
-      </footer>
-    </div>
-  </form>
+      <vue-form-generator
+        :schema="thisFormSpec.vfg_schema"
+        :model="thisFormSpec.vfg_model"
+        :options="thisFormSpec.vfg_formOptions"
+      />
+    </form>
+  </section>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import VueFormGenerator from 'vue-form-generator';
 // Note import  of vfg.css etc is in main.js
-
-// import { model, schema, formOptions } from './form3BSpec';
 
 export default {
   name: 'ModalInnerForForms',
@@ -50,30 +23,15 @@ export default {
     'vue-form-generator': VueFormGenerator.component,
   },
   props: {
-    formData: {
-      type: Object,
-      default: () => ({
-        model: {},
-        schema: {
-          fields: [],
-        },
-        formOptions: {
-          validateAfterLoad: true,
-          validateAfterChanged: true,
-        },
-      }),
+    formId: {
+      type: String,
+      required: false,
+      default: '3B',
     },
   },
-  data() {
-    return {
-      model: this.formData.model,
-      schema: this.formData.schema,
-      formOptions: this.formData.formOptions,
-    };
-  },
-  methods: {
-    ...mapActions([
-      'hidePortal',
+  computed: {
+    ...mapGetters([
+      'thisFormSpec',
     ]),
   },
 };

@@ -91,6 +91,10 @@
 
 ## For OLD M4OPS
 
+- Group Feature layers???
+- Clear cache automatically??
+- polygons not disappearing
+
 - Census compile XRefs1 takes too long
 - Compile OPS does not compile AllFeatures, but blank (All) does - why?
   - AllFeatures does not include features from other csv files than Features.csv??

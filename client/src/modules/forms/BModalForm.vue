@@ -39,7 +39,7 @@ import VueFormGenerator from 'vue-form-generator';
 // Note import  of vfg.css etc is in main.js
 
 export default {
-  name: 'ModalForm',
+  name: 'BModalForm',
   components: {
     'vue-form-generator': VueFormGenerator.component,
   },
