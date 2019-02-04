@@ -1,24 +1,31 @@
 <template>
   <section>
     <button
-      class="button is-primary is-medium"
-      @click="showPortal({title: '3B data', formId: formIdForThis})"
+      class="button is-primary is-small"
+      @click="showPortal({
+        portalName: 'ModalForForms',
+        title: '3B data',
+        formId: formIdForThis,
+        actionTextsArray: ['OK', 'OK2'],
+      })"
     >
       Portal Form
-      <component :is="'ModalOuter'">
-        <ModalInnerForForms :form-id="formIdForThis" />
-        <span slot="footer">
-          <button class="button is-primary">
-            Login
-          </button>
-        </span>
-      </component>
     </button>
     <button
-      class="button is-primary is-medium"
+      class="button is-primary is-small"
       @click="isModalActive = true"
     >
       OLD B-modal
+    </button>
+    <button
+      class="button is-primary is-small"
+      @click="showPortal({
+        portalName: 'ModalForMessages',
+        title: 'Error Messages',
+        messagesArray: ['Whatever', 'Hello World!', '23 The Avenue'],
+      })"
+    >
+      Messages Form
     </button>
 
     <b-modal
@@ -30,21 +37,24 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import BModalForm from '../../forms/BModalForm.vue';
-import ModalInnerForForms from '../../forms/ModalInnerForForms.vue';
 
 export default {
   name: 'ActionsPane',
   components: {
     BModalForm,
-    ModalInnerForForms,
   },
   data() {
     return {
       isModalActive: false,
       formIdForThis: '3B',
     };
+  },
+  computed: {
+    ...mapGetters([
+      'thisFormSpec',
+    ]),
   },
   methods: {
     ...mapActions({ // was 'users', for namespace

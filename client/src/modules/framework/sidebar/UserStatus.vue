@@ -23,31 +23,24 @@
       Guest
       <button
         class="button is-primary is-small"
-        @click="showPortal({title: 'Log in', formId: formIdForThis})"
+        @click="showPortal({
+          portalName: 'ModalForForms',
+          title: 'Log in',
+          formId: formIdForThis,
+          actionTextsArray: ['Log in'],
+        })"
       >
         Log In
-        <component :is="'ModalOuter'">
-          <ModalInnerForForms :form-id="formIdForThis" />
-          <span slot="footer">
-            <button class="button is-primary">
-              Login
-            </button>
-          </span>
-        </component>
       </button>
     </p>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import ModalInnerForForms from '../../forms/ModalInnerForForms.vue';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'UserStatus',
-  components: {
-    ModalInnerForForms,
-  },
   data() {
     return {
       formIdForThis: 'LogIn',
@@ -59,6 +52,9 @@ export default {
       users: state => state.users.users.all,
       alert: state => state.users.alert,
     }),
+    ...mapGetters([
+      'thisFormSpec',
+    ]),
   },
   watch: {
     // eslint-disable-next-line no-unused-vars
@@ -71,18 +67,12 @@ export default {
     ...mapActions({ // was 'users',
       clearAlert: 'alert/clear',
       showPortal: 'showPortal',
-      login: 'login',
       logout: 'logout',
     }),
-    // eslint-disable-next-line no-unused-vars
-    handleSubmit(e) {
-      // this.submitted = true;
-      const { username, password } = this.model;
-      if (username && password) {
-        this.login({ username, password });
-      }
-      this.goBack();
-    },
   },
 };
 </script>
+
+<style scoped>
+  .alert{color:white; background:red};
+</style>

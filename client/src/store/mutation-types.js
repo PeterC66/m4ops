@@ -28,3 +28,5 @@ export const SHOW_LEVEL_SET_REQUEST = 'SHOW_LEVEL_SET_REQUEST';
 //
 export const HIDE_PORTAL = 'HIDE_PORTAL';
 export const SHOW_PORTAL = 'SHOW_PORTAL';
+export const HIDE_PASSWORD = 'HIDE_PASSWORD';
+export const CLEAR_FORM_FIELD = 'CLEAR_FORM_FIELD';

@@ -960,15 +960,25 @@ graph LR;
 ##### Our Modals structure
 
 - the Modal actually appears in portal-target in App.vue, a standard component from portal-vue
-- the main Modal component is ModalOuter, which handles the background and switching, and has:
-  - a slot for a ModalInner
-- ModalOuter is switched on/off by the actions showPortal('ModalOuter') and hidePortal()
-- The main detail is in eg ActionsPane, which contains:
-  - the button for opening the modal
-  - the ModalOuter component
-  - a ModalInner - one possible of these is ModalInnerForForms, which has a formData prop
-  - any needed props, including their:
-    - import and computed definition
+  - this has a name bound to forms/portalName in Vuex
+- the main Modal form component is ModalForForms, which handles
+  - linking to the portal-target (with name "ModalForForms")
+  - whether it shows (only if forms/title !== NOPORTAL - and the portal-target has the right name)
+  - the background and closing (hidePortal sets forms/title = NOPORTAL)
+  - the modal-card classes for head, body, foot etc
+  - the VueFormGenerator form, whose spec is defined by the thisFormSpec getter, which
+    - assumes the value of forms/formId has been set (by showPortal)
+    - collects the relevant mode, schema, options from  the Forms database
+  - the text on button(s) (from forms/actionTextsArray)
+  - the Submit action(s) (handleSubmit is hard-coded for now, with a switch on formId)
+- This main Modal component is switched on from elsewhere by the actions showPortal({}), eg in
+  - ActionsPane and UserStatus
+  - it is switched off internally by hidePortal()
+- Note that ModalForForms uses the VuexApi data as spec, thus its '(vfg_)model' is changed by any form entries
+  - for passwords, and any other sensitive data, the action to clear it should be included
+  - eg dispatch('clearFormField', {formId: 'LogIn', fieldName: 'password'});
+- Another main Modal component is ModalForMessages, similar to ModalForForms, except
+  - oit displays the text in the messagesArray (set by showPortal)
 
 #### Other Vue aspects
 

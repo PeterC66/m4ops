@@ -46,16 +46,21 @@
     <!-- component matched by the route will render here -->
     <router-view />
     <!-- component with  <portal to="xxx"> will render here -->
-    <portal-target name="ModalOuter" />
+    <portal-target :name="portalName" />
   </div>
 </template>
 
 <script>
 // import auth from './modules/auth/AuthService';
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'App',
+  computed: {
+    ...mapState({
+      portalName: state => state.forms.portalName,
+    }),
+  },
   methods: {
     ...mapActions({
       getAllUsers: 'getAllUsers',

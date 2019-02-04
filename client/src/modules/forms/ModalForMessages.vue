@@ -1,7 +1,7 @@
 <template>
   <portal
     v-if="usePortal()"
-    to="ModalOuter"
+    to="ModalForMessages"
   >
     <div
       class="modal is-active"
@@ -17,11 +17,28 @@
           {{ title }}
         </header>
         <main>
-          <slot>
-            <p> Unknown content</p>
-          </slot>
+          <section class="modal-card-body">
+            <table style="width:100%">
+              <tr
+                v-for="(message, index) in messagesArray"
+                :key="index"
+              >
+                <td>
+                  {{ message }}
+                </td>
+              </tr>
+            </table>
+          </section>
         </main>
         <footer class="modal-card-foot">
+          <button
+            v-for="bText in actionTextsArray"
+            :key="bText"
+            class="button is-primary is-small"
+          >
+            {{ bText }}
+          </button>
+          <slot name="footer" />
           <button
             class="button"
             type="button"
@@ -29,7 +46,6 @@
           >
             Close
           </button>
-          <slot name="footer" />
         </footer>
         <button
           type="button"
@@ -46,16 +62,18 @@ import { mapState, mapActions } from 'vuex';
 import { NOPORTAL } from '../../global/constants';
 
 export default {
-  name: 'ModalOuter',
+  name: 'ModalForMessages',
   computed: {
     ...mapState({
       title: state => state.forms.title,
+      actionTextsArray: state => state.forms.actionTextsArray,
+      messagesArray: state => state.forms.messagesArray,
     }),
   },
   methods: {
-    ...mapActions([
-      'hidePortal',
-    ]),
+    ...mapActions({
+      hidePortal: 'hidePortal',
+    }),
     usePortal() {
       return this.title !== NOPORTAL;
     },

@@ -9,6 +9,45 @@ import optionsFromContinents from './optionsFromContinents';
 import categoriesAndLayers from './categoriesAndLayers';
 import optionsByPlaces from './optionsByPlaces';
 import { reasonForNotAllowingLayer } from '../../../modules/users/validateEtc';
+import { CLEAR_FORM_FIELD } from '../../mutation-types';
+
+const vuexApiMutations = {
+  [CLEAR_FORM_FIELD](moduleState, payload) {
+    const { formId, fieldName } = payload;
+    const formDataArray = moduleState.forms.resp.data.data || [];
+    if (formId && fieldName && !_.isEmpty(formDataArray)) {
+      const formI = _.findIndex(formDataArray, f => f._id === formId);
+      if (isDefined(formI)) {
+        if (isDefined(formDataArray[formI])) {
+          if (isDefined(formDataArray[formI].vfg_model[fieldName])) {
+            const bef = moduleState.forms.resp.data.data[formI].vfg_model[fieldName];
+            moduleState.forms.resp.data.data[formI].vfg_model[fieldName] = '';
+            // eslint-disable-next-line no-console
+            console.log(`cFF FDA[${formI}] from ${bef} to ${moduleState.forms.resp.data.data[formI].vfg_model[fieldName]}`);
+          } else {
+            // eslint-disable-next-line no-console
+            console.log(`cFF no FDA[${formI}].vf`, payload, formDataArray);
+          }
+        } else {
+        // eslint-disable-next-line no-console
+          console.log(`cFF no FDA[${formI}]`, payload, formDataArray);
+        }
+      } else {
+      // eslint-disable-next-line no-console
+        console.log('cFF no formI', payload, formDataArray);
+      }
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('cFF input issue', payload, formDataArray);
+    }
+  },
+};
+
+const vuexApiActions = {
+  clearFormField({ commit }, { formId, fieldName }) {
+    commit(CLEAR_FORM_FIELD, { formId, fieldName });
+  },
+};
 
 const vuexApiGetters = {};
 
@@ -165,4 +204,4 @@ vuexApiGetters.forms = moduleState => (moduleState.forms
 
 vuexApiGetters.getFormById = (moduleState, getters) => id => _.find(getters.forms, f => f._id === id) || {};
 
-export default vuexApiGetters;
+export default { getters: vuexApiGetters, mutations: vuexApiMutations, actions: vuexApiActions };

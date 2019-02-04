@@ -46,11 +46,15 @@ const actions = {
       .then(
         (user) => {
           commit('loginSuccess', user);
-          // router.push('/maps/');
+          dispatch('clearFormField', {
+            formId: 'LogIn',
+            fieldName: 'password',
+          });
+          dispatch('alert/clear');
         },
         (error) => {
           commit('loginFailure', error);
-          dispatch('alert/error', error, { root: true });
+          dispatch('alert/error', error, { root: true }); // allows dispatch of root actions in namespaced modules
         },
       );
   },

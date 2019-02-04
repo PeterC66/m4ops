@@ -1,14 +1,10 @@
 <template>
   <section class="modal-card-body">
-    <form
-      @submit.prevent="handleSubmit"
-    >
-      <vue-form-generator
-        :schema="thisFormSpec.vfg_schema"
-        :model="thisFormSpec.vfg_model"
-        :options="thisFormSpec.vfg_formOptions"
-      />
-    </form>
+    <vue-form-generator
+      :schema="thisFormSpec.vfg_schema"
+      :model="thisFormSpec.vfg_model"
+      :options="thisFormSpec.vfg_formOptions"
+    />
   </section>
 </template>
 
@@ -25,8 +21,8 @@ export default {
   props: {
     formId: {
       type: String,
-      required: false,
-      default: '3B',
+      required: true,
+      // default: '3B',
     },
   },
   computed: {

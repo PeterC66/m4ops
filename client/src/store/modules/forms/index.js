@@ -1,4 +1,4 @@
-// import _ from 'lodash';
+import _ from 'lodash';
 import { NOPORTAL } from '../../../global/constants';
 
 import {
@@ -7,17 +7,30 @@ import {
 } from '../../mutation-types';
 
 const state = {
+  portalName: '',
   title: NOPORTAL, // means do not show
   formId: '',
+  actionTextsArray: [],
+  messagesArray: [],
 };
 
 const mutations = {
   [HIDE_PORTAL](moduleState) {
     moduleState.title = NOPORTAL;
+    moduleState.portalName = '';
+    moduleState.actionTextsArray.length = 0;
+    moduleState.messagesArray.length = 0;
     moduleState.formId = '';
   },
   [SHOW_PORTAL](moduleState, payload) {
-    moduleState.formId = payload.formId;
+    moduleState.portalName = payload.portalName;
+    moduleState.formId = payload.formId || '';
+    moduleState.actionTextsArray = _.isEmpty(payload.actionTextsArray)
+      ? []
+      : payload.actionTextsArray.slice();
+    moduleState.messagesArray = _.isEmpty(payload.messagesArray)
+      ? []
+      : payload.messagesArray.slice();
     moduleState.title = payload.title;
   },
 };
@@ -26,8 +39,20 @@ const actions = {
   hidePortal({ commit }) {
     commit(HIDE_PORTAL);
   },
-  showPortal({ commit }, { title, formId }) {
-    commit(SHOW_PORTAL, { title, formId });
+  showPortal({ commit }, {
+    portalName,
+    title,
+    formId,
+    actionTextsArray,
+    messagesArray,
+  }) {
+    commit(SHOW_PORTAL, {
+      portalName,
+      title,
+      formId,
+      actionTextsArray,
+      messagesArray,
+    });
   },
 };
 

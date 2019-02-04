@@ -35,6 +35,8 @@
         </div>
       </div>
     </section>
+    <ModalForForms />
+    <ModalForMessages />
   </div>
 </template>
 
@@ -47,6 +49,7 @@ import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
 import initialiseProjections from '../modules/mapping/projections';
+import ModalForMessages from '../modules/forms/ModalForMessages.vue';
 // import { initialOpsCode } from '../initialising/initialState';
 
 export default {
@@ -55,6 +58,7 @@ export default {
     MapContainer,
     Header,
     Sidebar,
+    ModalForMessages,
   },
   computed: {
     ...mapState({
