@@ -36,6 +36,7 @@
       </div>
     </section>
     <ModalForForms />
+    <ModalForOPSForms />
     <ModalForMessages />
   </div>
 </template>
@@ -49,6 +50,8 @@ import Sidebar from '../modules/framework/sidebar/Sidebar.vue';
 import MapContainer from '../modules/mapping/components/MapContainer.vue';
 
 import initialiseProjections from '../modules/mapping/projections';
+import ModalForForms from '../modules/forms/ModalForForms.vue';
+import ModalForOPSForms from '../modules/forms/ModalForOPSForms.vue';
 import ModalForMessages from '../modules/forms/ModalForMessages.vue';
 // import { initialOpsCode } from '../initialising/initialState';
 
@@ -58,6 +61,8 @@ export default {
     MapContainer,
     Header,
     Sidebar,
+    ModalForForms,
+    ModalForOPSForms,
     ModalForMessages,
   },
   computed: {

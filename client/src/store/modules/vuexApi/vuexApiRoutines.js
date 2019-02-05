@@ -178,6 +178,17 @@ vuexApiGetters.OPSAllLayerDefsCurrentUserCanSeeArray = (moduleState, getters) =>
 // The 2-level options for the ChooseLayer cascaders - only what the current User can see
 vuexApiGetters.layerOptions = (moduleState, getters) => categoriesAndLayers(getters.OPSAllLayerDefsCurrentUserCanSeeArray);
 
+// Forms
+
+vuexApiGetters.OPSFormsArray = (moduleState, getters) => getters.place.FormsArray || [];
+vuexApiGetters.getOPSFormById = (moduleState, getters) => id => _.find(getters.OPSFormsArray, f => f._id === id) || {};
+
+vuexApiGetters.getOPSFormByLdid = (moduleState, getters) => (ldid) => {
+  const layerDef = getters.getOPSAllLayerDefsArrayByLdid(ldid);
+  if (!isDefined(layerDef) || !layerDef.formId) return {};
+  return getters.getOPSFormById(layerDef.formId);
+};
+
 // Continents ========================================================
 
 vuexApiGetters.continents = moduleState => (moduleState.continents

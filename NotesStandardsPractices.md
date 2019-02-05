@@ -961,7 +961,7 @@ graph LR;
 
 - the Modal actually appears in portal-target in App.vue, a standard component from portal-vue
   - this has a name bound to forms/portalName in Vuex
-- the main Modal form component is ModalForForms, which handles
+- the main Modal central form component is **ModalForForms**, which handles
   - linking to the portal-target (with name "ModalForForms")
   - whether it shows (only if forms/title !== NOPORTAL - and the portal-target has the right name)
   - the background and closing (hidePortal sets forms/title = NOPORTAL)
@@ -977,8 +977,11 @@ graph LR;
 - Note that ModalForForms uses the VuexApi data as spec, thus its '(vfg_)model' is changed by any form entries
   - for passwords, and any other sensitive data, the action to clear it should be included
   - eg dispatch('clearFormField', {formId: 'LogIn', fieldName: 'password'});
-- Another main Modal component is ModalForMessages, similar to ModalForForms, except
-  - oit displays the text in the messagesArray (set by showPortal)
+- Another main Modal component is **ModalForMessages**, similar to ModalForForms, except
+  - it displays the text in the messagesArray (set by showPortal)
+- Yet another main Modal component is **ModalForOPSForms**, similar to ModalForForms, except:
+  - it expects to be accessing a vector layer, with a specified OPSForm by formId (eg 1B)
+  - it has a local copy of the nmodel so nothing in the form data is overwritten
 
 #### Other Vue aspects
 
@@ -1271,6 +1274,7 @@ graph LR;
 - See [Introduction to mongodb](https://scotch.io/tutorials/an-introduction-to-mongodb) and [Getting Started](https://docs.mongodb.com/manual/tutorial/getting-started/)
 
 - [MongoDB Compass](https://www.mongodb.com/products/compass) provides a GUI, queries, CRUD – use localhost:27017 [documentation](https://docs.mongodb.com/compass/master/), [Getting started](https://www.mongodb.com/blog/post/getting-started-with-mongodb-compass)
+  - Example query on Places {OPSCode:"HcN"}
   - If problem, use Resource Monitor: cmd as Admin, resmon.exe -\> CPU tab -\> in handles type Compass, and Kill one (will kill all) associated processes - and wait for it to happen.
 - for the MongoDB interactive shell see [the manual](https://docs.mongodb.com/manual/mongo/), or [this tutorial](https://www.tutorialkart.com/mongodb/mongo-shell/) - example use:
   - mongo
@@ -1298,6 +1302,8 @@ graph LR;
   - (adding --drop ensures the target instance drops the collection before importing the data from the input)
   - (adding --mode upsert to replace documents whose _id matches the document(s) in the import file)
 - (Note that the Studies collection is not used now)
+- Note that layerAndSourceVector.js prepends the OPS_ (eg HcN_) to the layer id before using it in the URL to get it from the database via the server
+  - and the FromDev\ForMongo versions of the FeatureLayers have the extra _id field to correspond eg "_id":"HcN_Pubs"
 - maximum BSON (Mongodb) document size is 16 megabytes, or use GridFS API.
 
 ### To create Places.json

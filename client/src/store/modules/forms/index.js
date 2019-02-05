@@ -11,6 +11,7 @@ const state = {
   title: NOPORTAL, // means do not show
   formId: '',
   actionTextsArray: [],
+  ldid: '',
   messagesArray: [],
 };
 
@@ -21,10 +22,12 @@ const mutations = {
     moduleState.actionTextsArray.length = 0;
     moduleState.messagesArray.length = 0;
     moduleState.formId = '';
+    moduleState.ldid = '';
   },
   [SHOW_PORTAL](moduleState, payload) {
     moduleState.portalName = payload.portalName;
     moduleState.formId = payload.formId || '';
+    moduleState.ldid = payload.ldid || '';
     moduleState.actionTextsArray = _.isEmpty(payload.actionTextsArray)
       ? []
       : payload.actionTextsArray.slice();
@@ -44,6 +47,7 @@ const actions = {
     title,
     formId,
     actionTextsArray,
+    ldid,
     messagesArray,
   }) {
     commit(SHOW_PORTAL, {
@@ -51,6 +55,7 @@ const actions = {
       title,
       formId,
       actionTextsArray,
+      ldid,
       messagesArray,
     });
   },

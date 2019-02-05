@@ -27,6 +27,17 @@
     >
       Messages Form
     </button>
+    <button
+      class="button is-primary is-small"
+      @click="showPortal({
+        portalName: 'ModalForOPSForms',
+        title: 'Hopefully 1B data',
+        ldid: 'HcN>Local>Pubs',
+        actionTextsArray: ['Save'],
+      })"
+    >
+      Pubs Form
+    </button>
 
     <b-modal
       :active.sync="isModalActive"
@@ -63,3 +74,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .button {margin-right: 2px; margin-top: 2px};
+</style>
