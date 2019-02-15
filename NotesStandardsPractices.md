@@ -928,6 +928,10 @@ graph LR;
 - VFG generator: [Issues #503 and my #569](https://github.com/vue-generators/vue-form-generator/issues/503)
   - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
 - [Vue-multiselect](https://vue-multiselect.js.org/) - used in vue-form-generator
+- other field types:
+  - [vfg-field-array](https://www.npmjs.com/package/vfg-field-array?activeTab=readme) - a vfg field to handle arrays
+  - [vfg-field-sourcecode](https://github.com/gwenaelp/vfg-field-sourcecode) - a source code field for vfg
+  - [vfg-field-object](https://www.npmjs.com/package/vfg-field-object) - a vfg field to handle objects, with or without schemas
 
 ###### VFG documentation
 
@@ -981,7 +985,7 @@ graph LR;
   - it displays the text in the messagesArray (set by showPortal)
 - Yet another main Modal component is **ModalForOPSForms**, similar to ModalForForms, except:
   - it expects to be accessing a vector layer, with a specified OPSForm by formId (eg 1B)
-  - it has a local copy of the nmodel so nothing in the form data is overwritten
+  - it has a local copy of the model so nothing in the form data is overwritten
 
 #### Other Vue aspects
 

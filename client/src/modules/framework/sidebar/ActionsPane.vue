@@ -38,6 +38,17 @@
     >
       Pubs Form
     </button>
+    <button
+      class="button is-primary is-small"
+      @click="showPortal({
+        portalName: 'ModalForOPSForms',
+        title: 'Should be 1A data',
+        ldid: 'HcN>Local>Census_entries',
+        actionTextsArray: ['Save'],
+      })"
+    >
+      Census Form
+    </button>
 
     <b-modal
       :active.sync="isModalActive"
