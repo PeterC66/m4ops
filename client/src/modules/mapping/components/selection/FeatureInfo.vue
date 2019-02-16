@@ -15,7 +15,7 @@
     <EventsInfo
       :feature="feature"
     />
-    <SpecifiedFields
+    <FieldDisplayContainer
       :feature="feature"
     />
   </div>
@@ -28,7 +28,7 @@ import HeadAndDesc from './HeadAndDesc.vue';
 import Images from './Images.vue';
 import HtmlFile from './HtmlFile.vue';
 import EventsInfo from './EventsInfo.vue';
-import SpecifiedFields from './SpecifiedFields.vue';
+import FieldDisplayContainer from './FieldDisplayContainer.vue';
 
 export default {
   name: 'FeatureInfo',
@@ -38,7 +38,7 @@ export default {
     Images,
     HtmlFile,
     EventsInfo,
-    SpecifiedFields,
+    FieldDisplayContainer,
   },
   props: {
     feature: {

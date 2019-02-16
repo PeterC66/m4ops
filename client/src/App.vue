@@ -82,9 +82,13 @@ export default {
     width: 100%;
     height: 100%;
     font-family: Trebuchet MS, Trebuchet, Arial, sans-serif;
+    font-size: 14px;
     background: #f1e8f1 url(./assets/images/backdropDEV.png) repeat-x;
   }
       /* PROD: #EEF2E9 url(../../assets/images/backdrop.png) repeat-x;*/
+  .resultsName {color: DarkCyan; margin-bottom: 1px;}
+  .resultsValue {color: black;}
+
 </style>
 
 <style scoped>

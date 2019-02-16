@@ -1029,7 +1029,7 @@ graph LR;
 - **Prop definitions** should be as detailed as possible, including where possble a validator function
 - Always **use key** with v-for
 - Never use v-if on the same element as v-for
-- Styles in components should be **scoped** (except in the top-level App component and in view components styles may be global)
+- [Styles in components](https://vuejs.org/v2/style-guide/#Component-style-scoping-essential) should be **scoped** (except in the top-level App component and in ?? view components styles may be global)
   - and use class selectors (eg .btn-close) rather than element selectors (eg button)
 - Always use the $_ prefix for custom private properties in a plugin, mixin, etc
 - Base components (pure components) that apply app-specific styling and conventions should begin with the prefix Base
