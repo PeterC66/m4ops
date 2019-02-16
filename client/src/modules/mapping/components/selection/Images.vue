@@ -4,14 +4,15 @@
       target="_blank"
       title="Click for a zoomable version in a new tab"
     >
+      {{ filename }}
       <!-- href="JuiceBoxSozi/sozi.php
       ?T=${encodeURIComponent(getAValueFor('shorttext', feature))}
       &I=${encodeURIComponent(fullOpsURL(`Images/${imagefile}`))}"
-      -->
       <img
         :src="fullFilename"
         style="max-width: 100%;"
       >
+      -->
     </a>
   </div>
 </template>

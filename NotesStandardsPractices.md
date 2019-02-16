@@ -600,6 +600,7 @@ graph LR;
 
 (for now the final / is important)
 [Basic](http://localhost:8080/maps/HcN/OpenStreetMap/Bing%20Aerial/NLS%201920s-1940s%20maps/55/Z16/)
+[Pubs](http://localhost:8080/maps/HcN/OpenStreetMap/Pubs/)
 [Protected Layer](http://localhost:8080/maps/HcN/Bing%20Aerial/Cosmo%20Wallace%201764/90/Z17/)
 [2 Spinney Way](http://localhost:8080/maps/HcN/Bing%20Aerial/OpenStreetMap/HcN%20CP/90/Z18/-0.0234522/52.3333362/)
 [HNB is Protected](http://localhost:8080/maps/HNB/)
@@ -963,29 +964,38 @@ graph LR;
 
 ##### Our Modals structure
 
+- Essentially
+  - the modals are all defined at the top level (M4OPSView) but hidden until 'wanted'
+  - a modal is 'wanted' when showPortal sets title (in store/forms)
+  - showPortal also always sets portalName (eg ModalForForms), and (usually) actionTextsArray
 - the Modal actually appears in portal-target in App.vue, a standard component from portal-vue
-  - this has a name bound to forms/portalName in Vuex
-- the main Modal central form component is **ModalForForms**, which handles
+  - this has a name bound to store/forms/portalName in Vuex
+- one main Modal form component is **ModalForForms** (for general M4OPS forms such as LogIn), which handles
   - linking to the portal-target (with name "ModalForForms")
-  - whether it shows (only if forms/title !== NOPORTAL - and the portal-target has the right name)
+  - whether it shows (only if store/forms/title !== NOPORTAL - and the portal-target has the right name) or not
   - the background and closing (hidePortal sets forms/title = NOPORTAL)
   - the modal-card classes for head, body, foot etc
-  - the VueFormGenerator form, whose spec is defined by the thisFormSpec getter, which
+  - the VueFormGenerator form, whose spec is defined by the 'thisFormSpec' getter, which
     - assumes the value of forms/formId has been set (by showPortal)
     - collects the relevant mode, schema, options from  the Forms database
-  - the text on button(s) (from forms/actionTextsArray)
+  - the text on button(s) (from store/forms/actionTextsArray)
   - the Submit action(s) (handleSubmit is hard-coded for now, with a switch on formId)
 - This main Modal component is switched on from elsewhere by the actions showPortal({}), eg in
   - ActionsPane and UserStatus
   - it is switched off internally by hidePortal()
+  - it needs showPortal to have also set: formId
 - Note that ModalForForms uses the VuexApi data as spec, thus its '(vfg_)model' is changed by any form entries
   - for passwords, and any other sensitive data, the action to clear it should be included
   - eg dispatch('clearFormField', {formId: 'LogIn', fieldName: 'password'});
 - Another main Modal component is **ModalForMessages**, similar to ModalForForms, except
-  - it displays the text in the messagesArray (set by showPortal)
-- Yet another main Modal component is **ModalForOPSForms**, similar to ModalForForms, except:
-  - it expects to be accessing a vector layer, with a specified OPSForm by formId (eg 1B)
+  - it needs showPortal to have set: messagesArray
+  - it just displays the text from the messagesArray, without using vfg
+- Another main Modal component is **ModalForOPSForms** (for OPS-specific forms):
+  - it needs showPortal to have set: ldid (of a vector layer)
+  - it expects the specified layer to have a 'formId' property (eg 1B) corresponding to an OPSForm in the OPS' FormsArray
+  - it uses the getOPSFormByLdid getter to get the schema and formOptions
   - it has a local copy of the model so nothing in the form data is overwritten
+    - but the initial values and updated values therefore need to be handled separately
 
 #### Other Vue aspects
 

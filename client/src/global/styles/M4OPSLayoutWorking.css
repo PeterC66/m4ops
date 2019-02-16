@@ -4,8 +4,6 @@
 /* From VectorOverlayAreas-master/maincss.css with some (???duplicated?) elements from NLSExploreGeoreferencedMapsOL3-master/explorecss.css */
 /* For selectors see http://www.w3schools.com/cssref/css_selectors.asp, eg .=class, #=id, p=all p elements */
 
-html { overflow: hidden; }
-body { overflow: hidden; padding: 0; margin: 0; width: 100%; height: 100%; font-family: Trebuchet MS, Trebuchet, Arial, sans-serif;}
 h1 { padding:7px 10px; margin:0; font-size: 1.2em; line-height:0.2em; }
 h2 { padding:7px 10px; margin:0; font-size: 1.0em; }
 h3 {font-size: 0.9em; margin-top: 0.5em; margin-bottom: 0px;}
@@ -60,8 +58,6 @@ padding: 10px 10px 10px 10px; background: #fff; z-index: 10001;}*/
 .keyBody {display: inline-block; float: right;}
 .smallsquare { display: inline-block; width: 1em; height: 1em; margin: 0 0 0 5px; border: 1px solid rgba(0, 0, 0, .2); float: right;}
 
-.resultsProperty {color: DarkCyan; margin-bottom: 1px;}
-.resultsPropertyValue {color: black;}
 .resultsevHead {text-decoration: underline; margin: 0;}
 .resultsevBody {}
 

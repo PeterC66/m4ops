@@ -74,8 +74,17 @@ export default {
 <style lang="scss">
   @import './global/styles/Buefy.scss';
 
-  body { background: #f1e8f1 url(./assets/images/backdropDEV.png) repeat-x;}
-  /* PROD: #EEF2E9 url(../../assets/images/backdrop.png) repeat-x;*/
+  html { overflow: hidden; }
+  body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Trebuchet MS, Trebuchet, Arial, sans-serif;
+    background: #f1e8f1 url(./assets/images/backdropDEV.png) repeat-x;
+  }
+      /* PROD: #EEF2E9 url(../../assets/images/backdrop.png) repeat-x;*/
 </style>
 
 <style scoped>
