@@ -25,11 +25,32 @@ export default {
       type: Object,
       required: true,
     },
+    fieldDisplayOptions: {
+      type: Object,
+      required: false,
+      default: () => ({
+        nameStyleClass: 'resultsName',
+        valueStyleClass: 'resultsValue',
+        fieldsOptions: [],
+      }),
+    },
   },
   computed: {
     fields() {
-      // eslint-disable-next-line max-len
-      const fieldsAndValues = this.schema.fields.map(field => ({ ...field, value: this.obj[field.model] }));
+      const {
+        nameStyleClass,
+        valueStyleClass,
+        fieldsOptions,
+      } = this.fieldDisplayOptions;
+      const fieldsAndValues = this.schema.fields.map(field => ({
+        ...field,
+        value: this.obj[field.model],
+        fieldOptions: {
+          ...fieldsOptions[field.model],
+          nameStyleClass,
+          valueStyleClass,
+        },
+      }));
       // eslint-disable-next-line no-console
       console.log('F&V', fieldsAndValues, 'f', this.obj);
       return fieldsAndValues;

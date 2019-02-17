@@ -3,6 +3,7 @@
     <FieldDisplayContainer
       :schema="schema"
       :obj="obj"
+      :field-display-container-options="fieldDisplayContainerOptions"
     />
   </div>
 </template>
@@ -33,6 +34,13 @@ export default {
     },
     obj() {
       return this.feature.properties;
+    },
+    fieldDisplayContainerOptions() {
+      return {
+        nameStyleClass: 'resultsName',
+        valueStyleClass: 'resultsValue',
+        fieldsOptions: [],
+      };
     },
   },
 };
