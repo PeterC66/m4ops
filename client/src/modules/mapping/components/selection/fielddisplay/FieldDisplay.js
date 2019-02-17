@@ -1,6 +1,8 @@
 import Vue from 'vue';
-import _ from 'lodash';
 import fecha from 'fecha';
+import {
+  find, isFunction, isNumber, isObject, toString,
+} from 'lodash';
 
 // VFG functions from fieldInput.vue
 
@@ -17,7 +19,7 @@ function formatDatetimeValueToField(value, inputType) {
 
   const defaultFormat = DATETIME_FORMATS[inputType.toLowerCase()];
   let m = value;
-  if (!_.isNumber(value)) {
+  if (!isNumber(value)) {
     m = fecha.parse(value, defaultFormat);
   }
   if (m !== false) {
@@ -26,15 +28,35 @@ function formatDatetimeValueToField(value, inputType) {
   return value;
 }
 
+// Helpers
+
+const NOTFOUND = 'Not found';
+
+function valuesAsArray(values) {
+  if (isFunction(values)) return values.apply();
+  return values;
+}
+
 // Our functions
 
-function textValueDisplay(createElement, value, get, valueStyleClass) {
-  const valueToUse = get ? get(value) : value;
+function stringValueDisplay(createElement, value, get, valueStyleClass) {
+  const valueToUse = toString(get ? get(value) : value);
   return createElement(
     'span',
     { class: valueStyleClass },
     `${valueToUse}`,
   );
+}
+
+function stringValuesDisplay(createElement, values, get, valueStyleClass) {
+  return values.map((value) => {
+    const valueToUse = toString(get ? get(value) : value);
+    return createElement(
+      'p',
+      { class: valueStyleClass },
+      `${valueToUse}`,
+    );
+  });
 }
 
 function dateTimeValueDisplay(
@@ -44,7 +66,7 @@ function dateTimeValueDisplay(
   valueStyleClass,
 ) {
   const valueToUse = formatDatetimeValueToField(value, inputType);
-  return textValueDisplay(createElement, valueToUse, null, valueStyleClass);
+  return stringValueDisplay(createElement, valueToUse, null, valueStyleClass);
 }
 
 function checkValueDisplay(createElement, value, valueStyleClass) {
@@ -72,24 +94,24 @@ function radiosValueDisplay(
   }
 
   let valueToUse = 'N/A';
-  const rowToUse = _.find(values, [valueProperty, value]);
+  const rowToUse = find(values, [valueProperty, value]);
   if (rowToUse) valueToUse = rowToUse[nameProperty];
 
-  return textValueDisplay(createElement, valueToUse, null, valueStyleClass);
+  return stringValueDisplay(createElement, valueToUse, null, valueStyleClass);
 }
 
 function checklistValueDisplay(
   createElement,
-  value, // is an array - so return an array
+  value, // is an array - so we return an array
   values,
   checklistOptions,
   valueStyleClass,
 ) {
-  const v0 = _.isFunction(values) ? values(0) : values[0];
+  const valuesArray = valuesAsArray(values);
 
-  if (_.isString(v0)) {
+  if (!isObject(valuesArray[0])) {
     return value.map(
-      valueToUse => textValueDisplay(
+      valueToUse => stringValueDisplay( // TODO can also be boolean or number
         createElement,
         valueToUse,
         null,
@@ -97,7 +119,8 @@ function checklistValueDisplay(
       ),
     );
   }
-  // Past here values must be an array (function) 
+
+  // Past here values must be objects with value and name properties)
   let valueProperty = 'value';
   let nameProperty = 'name';
 
@@ -105,12 +128,17 @@ function checklistValueDisplay(
     if (checklistOptions.value) valueProperty = checklistOptions.value;
     if (checklistOptions.name) nameProperty = checklistOptions.name;
   }
-
-  let valueToUse = 'N/A';
-  const rowToUse = _.find(values, [valueProperty, value]);
-  if (rowToUse) valueToUse = rowToUse[nameProperty];
-
-  return textValueDisplay(createElement, valueToUse, null, valueStyleClass);
+  const valuesToUse = value.map(
+    (v) => {
+      let nameToUse = NOTFOUND;
+      const valuesObjectToUse = find(valuesArray, [valueProperty, v]);
+      if (valuesObjectToUse && (nameProperty in valuesObjectToUse)) {
+        nameToUse = valuesObjectToUse[nameProperty];
+      }
+      return nameToUse;
+    },
+  );
+  return stringValuesDisplay(createElement, valuesToUse, null, valueStyleClass);
 }
 
 function selectValueDisplay(
@@ -129,14 +157,14 @@ function selectValueDisplay(
   }
 
   let valueToUse = 'N/A';
-  const rowToUse = _.find(values, [idProperty, value]);
+  const rowToUse = find(values, [idProperty, value]);
   if (rowToUse) valueToUse = rowToUse[nameProperty];
 
-  return textValueDisplay(createElement, valueToUse, null, valueStyleClass);
+  return stringValueDisplay(createElement, valueToUse, null, valueStyleClass);
 }
 
 function errorDisplay(createElement, type) {
-  return textValueDisplay(createElement, `Unknown type ${type}`);
+  return stringValueDisplay(createElement, `Unknown type ${type}`);
 }
 
 export default Vue.component('FieldDisplay',
@@ -218,7 +246,7 @@ export default Vue.component('FieldDisplay',
             case 'telephone':
             case 'e-mail':
             case 'password':
-              fieldValueDisplay = textValueDisplay(
+              fieldValueDisplay = stringValueDisplay(
                 createElement,
                 value,
                 get,
@@ -237,16 +265,16 @@ export default Vue.component('FieldDisplay',
               break;
             case 'number':
             case 'range':
-              fieldValueDisplay = textValueDisplay(
+              fieldValueDisplay = stringValueDisplay(
                 createElement,
-                _.toString(value),
+                toString(value),
                 get,
                 this.valueStyleClass,
               );
               break;
             case 'color': // TODO
               // eslint-disable-next-line max-len
-              fieldValueDisplay = textValueDisplay(createElement, _.toString(value), get, this.valueStyleClass);
+              fieldValueDisplay = stringValueDisplay(createElement, toString(value), get, this.valueStyleClass);
               break;
             default:
               // eslint-disable-next-line no-console
@@ -254,7 +282,7 @@ export default Vue.component('FieldDisplay',
           }
           break;
         case 'label':
-          fieldValueDisplay = textValueDisplay(
+          fieldValueDisplay = stringValueDisplay(
             createElement,
             value,
             get,
@@ -280,7 +308,7 @@ export default Vue.component('FieldDisplay',
           );
           break;
         case 'textArea':
-          fieldValueDisplay = textValueDisplay(
+          fieldValueDisplay = stringValueDisplay(
             createElement,
             value,
             this.valueStyleClass,

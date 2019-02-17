@@ -1,9 +1,8 @@
 <template>
   <div>
-    <SpecifiedField
-      v-for="field in fields"
-      :key="field.id"
-      :field="field"
+    <FieldDisplayContainer
+      :schema="schema"
+      :obj="obj"
     />
   </div>
 </template>
@@ -11,12 +10,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import SpecifiedField from './SpecifiedField.vue';
+import FieldDisplayContainer from './fielddisplay/FieldDisplayContainer.vue';
 
 export default {
   name: 'SpecifiedFields',
   components: {
-    SpecifiedField,
+    FieldDisplayContainer,
   },
   props: {
     feature: {
@@ -28,14 +27,12 @@ export default {
     ...mapGetters([
       'getOPSFormByLdid',
     ]),
-    fields() {
+    schema() {
       // eslint-disable-next-line max-len
-      const opsForm = this.getOPSFormByLdid(this.feature.properties.ldid);
-      const f = this.feature;
-      // eslint-disable-next-line max-len
-      const fieldsAndValues = opsForm.vfg_schema.fields.map(field => ({ ...field, value: f.properties[field.model] }));
-      console.log('FF', opsForm.vfg_schema.fields, f);
-      return fieldsAndValues;
+      return this.getOPSFormByLdid(this.feature.properties.ldid).vfg_schema;
+    },
+    obj() {
+      return this.feature.properties;
     },
   },
 };

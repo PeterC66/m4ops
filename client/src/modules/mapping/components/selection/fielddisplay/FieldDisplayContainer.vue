@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 import FieldDisplay from './FieldDisplay';
 
 export default {
@@ -19,23 +17,21 @@ export default {
     FieldDisplay,
   },
   props: {
-    feature: {
+    schema: {
+      type: Object,
+      required: true,
+    },
+    obj: {
       type: Object,
       required: true,
     },
   },
   computed: {
-    ...mapGetters([
-      'getOPSFormByLdid',
-    ]),
     fields() {
       // eslint-disable-next-line max-len
-      const opsForm = this.getOPSFormByLdid(this.feature.properties.ldid);
-      const f = this.feature;
-      // eslint-disable-next-line max-len
-      const fieldsAndValues = opsForm.vfg_schema.fields.map(field => ({ ...field, value: f.properties[field.model] }));
+      const fieldsAndValues = this.schema.fields.map(field => ({ ...field, value: this.obj[field.model] }));
       // eslint-disable-next-line no-console
-      console.log('F&V', fieldsAndValues, 'f', f);
+      console.log('F&V', fieldsAndValues, 'f', this.obj);
       return fieldsAndValues;
     },
   },
