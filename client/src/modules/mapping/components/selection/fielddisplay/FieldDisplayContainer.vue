@@ -25,7 +25,7 @@ export default {
       type: Object,
       required: true,
     },
-    fieldDisplayOptions: {
+    fieldDisplayContainerOptions: {
       type: Object,
       required: false,
       default: () => ({
@@ -41,7 +41,7 @@ export default {
         nameStyleClass,
         valueStyleClass,
         fieldsOptions,
-      } = this.fieldDisplayOptions;
+      } = this.fieldDisplayContainerOptions;
       const fieldsAndValues = this.schema.fields.map(field => ({
         ...field,
         value: this.obj[field.model],

@@ -1,7 +1,5 @@
 import { formatDatetimeValueToField } from './vfgHelpers';
-import {
-  stringValueDisplay,
-} from './helpers';
+import stringValueDisplay from './stringValueDisplay';
 
 export default function dateTimeValueDisplay(
   createElement,

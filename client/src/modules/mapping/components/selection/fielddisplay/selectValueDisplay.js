@@ -1,9 +1,12 @@
 import {
   find,
+  isObject,
 } from 'lodash';
 
+import stringValueDisplay from './stringValueDisplay';
 import {
-  stringValueDisplay,
+  NOTFOUND,
+  valuesAsArray,
 } from './helpers';
 
 export default function selectValueDisplay(
@@ -13,6 +16,14 @@ export default function selectValueDisplay(
   selectOptions,
   valueStyleClass,
 ) {
+  const valuesArray = valuesAsArray(values);
+
+  // First deal with case where values is a simple array of strings, hence we can use the value array as is
+  if (!isObject(valuesArray[0])) {
+    return stringValueDisplay(createElement, value, null, valueStyleClass);
+  }
+
+  // Past here values must be objects with id (sic) and name properties (which may be called something else)
   let idProperty = 'id';
   let nameProperty = 'name';
 
@@ -20,10 +31,11 @@ export default function selectValueDisplay(
     if (selectOptions.value) idProperty = selectOptions.value;
     if (selectOptions.name) nameProperty = selectOptions.name;
   }
+  let nameToUse = NOTFOUND;
+  const valuesObjectToUse = find(valuesArray, [idProperty, value]);
+  if (valuesObjectToUse && (nameProperty in valuesObjectToUse)) {
+    nameToUse = valuesObjectToUse[nameProperty];
+  }
 
-  let valueToUse = 'N/A';
-  const rowToUse = find(values, [idProperty, value]);
-  if (rowToUse) valueToUse = rowToUse[nameProperty];
-
-  return stringValueDisplay(createElement, valueToUse, null, valueStyleClass);
+  return stringValueDisplay(createElement, nameToUse, null, valueStyleClass);
 }

@@ -3,17 +3,15 @@ import {
   toString,
 } from 'lodash';
 
-import {
-  stringValueDisplay,
-} from './helpers';
 import dateTimeValueDisplay from './dateTimeValueDisplay';
 import checkboxValueDisplay from './checkboxValueDisplay';
 import radiosValueDisplay from './radiosValueDisplay';
 import checklistValueDisplay from './checklistValueDisplay';
 import selectValueDisplay from './selectValueDisplay';
+import stringValueDisplay from './stringValueDisplay';
 
 function errorDisplay(createElement, type) {
-  return stringValueDisplay(createElement, `Unknown type ${type}`);
+  return stringValueDisplay(createElement, `Unknown field type "${type}"`);
 }
 
 export default Vue.component('FieldDisplay',
@@ -22,14 +20,6 @@ export default Vue.component('FieldDisplay',
       field: { // Includes the vfg_schema for the field and its current 'value'
         type: Object,
         required: true,
-      },
-      fieldDisplayOptions: {
-        type: Object,
-        required: false,
-        default: () => ({
-          nameStyleClass: 'resultsName',
-          valueStyleClass: 'resultsValue',
-        }),
       },
     },
     render(createElement) {
@@ -54,19 +44,42 @@ export default Vue.component('FieldDisplay',
 
       if (hidden) return null;
 
+      let fieldValueDisplay = errorDisplay(createElement, type);
+
+      // First deal with those that need multiple lines for display, hence their displays return an array
+      if (['checklist'].includes(type)) {
+        const fieldLabelAsHeader = createElement(
+          'p',
+          { class: nameStyleClass },
+          `${label}: `,
+        );
+
+        switch (type) {
+          case 'checklist':
+            fieldValueDisplay = checklistValueDisplay(
+              createElement,
+              value,
+              values,
+              checklistOptions,
+              valueStyleClass,
+            );
+            break;
+          default:
+          // eslint-disable-next-line no-console
+            console.log('Problem in fVDA', this.field);
+        }
+        return createElement('div', [
+          fieldLabelAsHeader,
+          ...fieldValueDisplay,
+        ]);
+      }
+
+      // Now we deal with those that need only one line for display
       const fieldLabel = createElement(
         'span',
         { class: nameStyleClass },
         `${label}: `,
       );
-
-      const fieldLabelAsHeader = createElement(
-        'p',
-        { class: nameStyleClass },
-        `${label}: `,
-      );
-
-      let fieldValueDisplay = errorDisplay(createElement, type);
 
       // For Core fields see https://vue-generators.gitbook.io/vue-generators/fields/core-fields
       // For optional fields https://vue-generators.gitbook.io/vue-generators/fields/optional_fields [done on demand]
@@ -78,30 +91,18 @@ export default Vue.component('FieldDisplay',
             valueStyleClass,
           );
           break;
-        case 'checklist':
-          fieldValueDisplay = checklistValueDisplay(
-            createElement,
-            value,
-            values,
-            checklistOptions,
-            valueStyleClass,
-          );
-          return createElement('div', [
-            fieldLabelAsHeader,
-            ...fieldValueDisplay,
-          ]);
-          // See https://vue-generators.gitbook.io/vue-generators/fields/core-fields/checklist
-          // No need for break;
         case 'input':
-        // See https://vue-generators.gitbook.io/vue-generators/fields/core-fields/input
-        // We do not allow here for inputTypes that are better handled by other field types
-          // See C:\projects\m4ops\client\node_modules\vue-form-generator\src\fields\core\fieldInput.vue
+          // See https://vue-generators.gitbook.io/vue-generators/fields/core-fields/input
+          // We do not allow here for inputTypes that are better handled by other field types
+          // See ...node_modules\vue-form-generator\src\fields\core\fieldInput.vue
           switch (inputType.toLowerCase()) {
             case 'text':
             case 'url':
             case 'telephone':
             case 'e-mail':
             case 'password':
+            case 'number': // stringValueDisplay handles formatting
+            case 'range':
               fieldValueDisplay = stringValueDisplay(
                 createElement,
                 value,
@@ -109,7 +110,7 @@ export default Vue.component('FieldDisplay',
                 valueStyleClass,
               );
               break;
-              // datetime deprecated in favour of "datetime-local", ignore Month, Week, Time
+              // ignore datetime (deprecated in favour of "datetime-local"), Month, Week, and Time
             case 'date':
             case 'datetime-local':
               fieldValueDisplay = dateTimeValueDisplay(
@@ -119,22 +120,13 @@ export default Vue.component('FieldDisplay',
                 valueStyleClass,
               );
               break;
-            case 'number':
-            case 'range':
-              fieldValueDisplay = stringValueDisplay(
-                createElement,
-                toString(value),
-                get,
-                valueStyleClass,
-              );
-              break;
             case 'color': // TODO
               // eslint-disable-next-line max-len
               fieldValueDisplay = stringValueDisplay(createElement, toString(value), get, valueStyleClass);
               break;
             default:
               // eslint-disable-next-line no-console
-              console.log('Problem in fVD', this.field);
+              console.log('Problem in fVDB', this.field);
           }
           break;
         case 'label':
@@ -172,7 +164,7 @@ export default Vue.component('FieldDisplay',
           break;
         default:
           // eslint-disable-next-line no-console
-          console.log('Problem in fVD', this.field);
+          console.log('Problem in fVDC', this.field);
       }
 
       return createElement('p', [

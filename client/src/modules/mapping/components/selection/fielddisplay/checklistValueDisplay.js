@@ -5,33 +5,26 @@ import {
 
 import {
   NOTFOUND,
-  stringValueDisplay,
-  stringValuesDisplay,
   valuesAsArray,
 } from './helpers';
+import stringValuesDisplay from './stringValuesDisplay';
 
 
 export default function checklistValueDisplay(
   createElement,
-  value, // is an array - so we return an array
+  value, // is an array - and we return an array
   values,
   checklistOptions,
   valueStyleClass,
 ) {
   const valuesArray = valuesAsArray(values);
 
+  // First deal with case where values is a simple array of strings, hence we can use the value array as is
   if (!isObject(valuesArray[0])) {
-    return value.map(
-      valueToUse => stringValueDisplay( // TODO can also be boolean or number
-        createElement,
-        valueToUse,
-        null,
-        valueStyleClass,
-      ),
-    );
+    return stringValuesDisplay(createElement, value, null, valueStyleClass);
   }
 
-  // Past here values must be objects with value and name properties)
+  // Past here values must be objects with value and name properties (which may be called something else)
   let valueProperty = 'value';
   let nameProperty = 'name';
 
@@ -39,7 +32,7 @@ export default function checklistValueDisplay(
     if (checklistOptions.value) valueProperty = checklistOptions.value;
     if (checklistOptions.name) nameProperty = checklistOptions.name;
   }
-  const valuesToUse = value.map(
+  const namesToUse = value.map(
     (v) => {
       let nameToUse = NOTFOUND;
       const valuesObjectToUse = find(valuesArray, [valueProperty, v]);
@@ -49,5 +42,5 @@ export default function checklistValueDisplay(
       return nameToUse;
     },
   );
-  return stringValuesDisplay(createElement, valuesToUse, null, valueStyleClass);
+  return stringValuesDisplay(createElement, namesToUse, null, valueStyleClass);
 }

@@ -39,7 +39,9 @@ export default {
       return {
         nameStyleClass: 'resultsName',
         valueStyleClass: 'resultsValue',
-        fieldsOptions: [],
+        fieldsOptions: {
+          shorttext: { hidden: true },
+        },
       };
     },
   },
