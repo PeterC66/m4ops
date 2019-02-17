@@ -78,6 +78,41 @@ function radiosValueDisplay(
   return textValueDisplay(createElement, valueToUse, null, valueStyleClass);
 }
 
+function checklistValueDisplay(
+  createElement,
+  value, // is an array - so return an array
+  values,
+  checklistOptions,
+  valueStyleClass,
+) {
+  const v0 = _.isFunction(values) ? values(0) : values[0];
+
+  if (_.isString(v0)) {
+    return value.map(
+      valueToUse => textValueDisplay(
+        createElement,
+        valueToUse,
+        null,
+        valueStyleClass,
+      ),
+    );
+  }
+  // Past here values must be an array (function) 
+  let valueProperty = 'value';
+  let nameProperty = 'name';
+
+  if (checklistOptions) {
+    if (checklistOptions.value) valueProperty = checklistOptions.value;
+    if (checklistOptions.name) nameProperty = checklistOptions.name;
+  }
+
+  let valueToUse = 'N/A';
+  const rowToUse = _.find(values, [valueProperty, value]);
+  if (rowToUse) valueToUse = rowToUse[nameProperty];
+
+  return textValueDisplay(createElement, valueToUse, null, valueStyleClass);
+}
+
 function selectValueDisplay(
   createElement,
   value,
@@ -132,6 +167,7 @@ export default Vue.component('FieldDisplay',
         values,
         radiosOptions,
         selectOptions,
+        checklistOptions,
       } = this.field;
 
       const fieldLabel = createElement(
@@ -140,7 +176,14 @@ export default Vue.component('FieldDisplay',
         `${label}: `,
       );
 
-      let fieldValueDisplay = createElement('span', 'Problem in fVD');
+      const fieldLabelAsHeader = createElement(
+        'p',
+        { class: this.nameStyleClass },
+        `${label}: `,
+      );
+
+      let fieldValueDisplay = errorDisplay(createElement, type);
+
       // For Core fields see https://vue-generators.gitbook.io/vue-generators/fields/core-fields
       // For optional fields https://vue-generators.gitbook.io/vue-generators/fields/optional_fields [done on demand]
       switch (type) {
@@ -152,9 +195,19 @@ export default Vue.component('FieldDisplay',
           );
           break;
         case 'checklist':
-        // See https://vue-generators.gitbook.io/vue-generators/fields/core-fields/checklist
-          fieldValueDisplay = errorDisplay(createElement, type);
-          break;
+          fieldValueDisplay = checklistValueDisplay(
+            createElement,
+            value,
+            values,
+            checklistOptions,
+            this.valueStyleClass,
+          );
+          return createElement('div', [
+            fieldLabelAsHeader,
+            ...fieldValueDisplay,
+          ]);
+          // See https://vue-generators.gitbook.io/vue-generators/fields/core-fields/checklist
+          // No need for break;
         case 'input':
         // See https://vue-generators.gitbook.io/vue-generators/fields/core-fields/input
         // We do not allow here for inputTypes that are better handled by other field types
