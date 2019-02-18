@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import {
   isDefined,
   join,
@@ -12,6 +14,7 @@ import {
   LAYER_SET_REQUEST,
   OPACITY_SET_REQUEST,
   MOVE_LAYER_UP,
+  LAYER_SET_MESSAGE,
 } from '../../../mutation-types';
 import { initialStateChosenLayersByOpsCode }
   from '../../../../initialising/initialState';
@@ -77,22 +80,6 @@ const mutations = {
       console.log('Warning: layerNumber is undefined'); // eslint-disable-line no-console
     }
   },
-  [OPACITY_SET_REQUEST](moduleState, payload) {
-    const { opacity, layerNumber } = payload;
-    if (isDefined(layerNumber)) {
-      if (moduleState.chosenLayers[layerNumber]) {
-        if (isDefined(opacity)) {
-          moduleState.chosenLayers[layerNumber].opacity = opacity;
-        } else {
-          // eslint-disable-next-line max-len, no-console
-          console.log(`Warning: opacity is undefined for layerNumber: ${layerNumber}`);
-        }
-      } else {
-        // eslint-disable-next-line max-len, no-console
-        console.log(`Warning: defining opacity before ldid for layerNumber: ${layerNumber}`);
-      }
-    }
-  },
   [MOVE_LAYER_UP](moduleState, payload) {
     const { layerNumber } = payload;
     if (layerNumber) {
@@ -122,6 +109,21 @@ const mutations = {
       moduleState.chosenLayers = tidyChosenLayers(moduleState.chosenLayers);
     }
   },
+  [LAYER_SET_MESSAGE](moduleState, payload) {
+    const { message, ldid } = payload;
+    if (isDefined(ldid) && isDefined(message)) {
+      const layerNumber = _.findIndex(
+        moduleState.chosenLayers,
+        l => l.ldid === ldid,
+      );
+      if (isDefined(layerNumber)) {
+        moduleState.chosenLayers[layerNumber].message = message;
+      } else {
+        // eslint-disable-next-line max-len, no-console
+        console.log(`Warning: Cannot find ldid: ${ldid}`);
+      }
+    }
+  },
 };
 
 const actions = {
@@ -144,6 +146,13 @@ const actions = {
   // payload is {layerNumber: eg 1}
   moveLayerUp({ commit }, { layerNumber }) {
     commit(MOVE_LAYER_UP, { layerNumber });
+  },
+  setLayerMessage({ commit }, {
+    ldid, message,
+  }) {
+    commit(LAYER_SET_MESSAGE, {
+      ldid, message,
+    });
   },
 };
 

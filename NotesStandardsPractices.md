@@ -1307,14 +1307,15 @@ graph LR;
   - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
   - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
   - mongoimport --db m4opsdb --collection Forms --drop --file C:\projects\m4ops\client\src\modules\forms\vfgData\Forms.json
+- For Feature Layers
+  - Remember the url of the source in Places (eg Testing VFG.geojson) when prefixed by OPS\_ (eg HcN\_) and all spaces replaced by underscores (\_) must equal the \_id in the geojson file of the Feature Layer
   - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
   - and then:
-  - Buildings.geojson"
-  - Censuses.geojson"
-  - HcN land ownership.geojson"
-  - OSM20180209.geojson"
-  - test03.geojson"
-  - **[Remember the \_id for each feature layer must have the prefix eg HcN\_]**
+    - Buildings.geojson"
+    - Censuses.geojson"
+    - HcN land ownership.geojson"
+    - OSM20180209.geojson"
+    - test03.geojson"
   - (adding --drop ensures the target instance drops the collection before importing the data from the input)
   - (adding --mode upsert to replace documents whose _id matches the document(s) in the import file)
 - (Note that the Studies collection is not used now)

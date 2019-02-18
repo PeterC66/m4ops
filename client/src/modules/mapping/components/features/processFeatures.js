@@ -1,3 +1,4 @@
+
 // import _ from 'lodash';
 // import { searchOptionEnum } from '../../../../global/constants';
 
@@ -64,7 +65,7 @@ export function processFeatureActions(feature, options) {
   return true;
 }
 
-function processFeaturesActions(src, options) {
+function processFeaturesActions(vmSource, src, options) {
   // console.log('In processFeaturesActions', src, options);
   const {
     propertyEquivToShorttext,
@@ -115,17 +116,13 @@ function processFeaturesActions(src, options) {
     || setOnMflTo
     || textForSearch
     || searchOption
-  )) return false;
+  )) return;
 
-  let featureCount = 0;
   // Do the things
   src.forEachFeature((feature) => {
     processFeatureActions(feature, options);
-    featureCount += 1;
   });
-
-  // console.log('pFA featureCount', featureCount);
-  return featureCount;
+  // vmSource.$store.dispatch('setLayerMessage', { ldid });
 }
 
 /*
@@ -149,14 +146,14 @@ export function processFeatures(vmSource, options) {
       vectorLayer.getSource().once('change', (event) => {
         source = event.target;
         if (source.getState() === 'ready') {
-          processFeaturesActions(source, options);
+          processFeaturesActions(vmSource, source, options);
         } else {
           // eslint-disable-next-line max-len, no-console
           console.log('In getSource change, source not ready', source, source.getState());
         }
       });
     } else if (source.getState() === 'ready') {
-      processFeaturesActions(source, options);
+      processFeaturesActions(vmSource, source, options);
     } else {
       // eslint-disable-next-line no-console
       console.log('In pF numFeatures>0, but not ready', options, source);

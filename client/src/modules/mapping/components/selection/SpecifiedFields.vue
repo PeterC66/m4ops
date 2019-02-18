@@ -41,6 +41,7 @@ export default {
         valueStyleClass: 'resultsValue',
         fieldsOptions: {
           shorttext: { hidden: true },
+          ldid: { hidden: true },
         },
       };
     },
