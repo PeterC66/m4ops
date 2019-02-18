@@ -10,6 +10,7 @@
 
 <script>
 import FieldDisplay from './FieldDisplay';
+import { isNonemptyArray } from '../../../../../global/utils';
 
 export default {
   name: 'FieldDisplayContainer',
@@ -19,7 +20,10 @@ export default {
   props: {
     schema: {
       type: Object,
-      required: true,
+      required: false,
+      default: () => ({
+        fields: [],
+      }),
     },
     obj: {
       type: Object,
@@ -42,17 +46,32 @@ export default {
         valueStyleClass,
         fieldsOptions,
       } = this.fieldDisplayContainerOptions;
-      const fieldsAndValues = this.schema.fields.map(field => ({
-        ...field,
-        value: this.obj[field.model],
+      if (isNonemptyArray(this.schema.fields)) {
+        const fieldsAndValues = this.schema.fields.map(field => ({
+          ...field,
+          value: this.obj[field.model],
+          fieldOptions: {
+            ...fieldsOptions[field.model],
+            nameStyleClass,
+            valueStyleClass,
+          },
+        }));
+        // eslint-disable-next-line no-console
+        console.log('F&V', fieldsAndValues, 'f', this.obj);
+        return fieldsAndValues;
+      }
+      const fieldsAndValues = Object.keys(this.obj).map(key => ({
+        type: 'unknown',
+        label: key,
+        value: this.obj[key],
         fieldOptions: {
-          ...fieldsOptions[field.model],
+          ...fieldsOptions[key],
           nameStyleClass,
           valueStyleClass,
         },
       }));
       // eslint-disable-next-line no-console
-      console.log('F&V', fieldsAndValues, 'f', this.obj);
+      console.log('F&VAll', fieldsAndValues, 'f', this.obj);
       return fieldsAndValues;
     },
   },

@@ -159,6 +159,15 @@ export default Vue.component('FieldDisplay',
           fieldValueDisplay = stringValueDisplay(
             createElement,
             value,
+            get,
+            valueStyleClass,
+          );
+          break;
+        case 'unknown':
+          fieldValueDisplay = stringValueDisplay(
+            createElement,
+            value,
+            get,
             valueStyleClass,
           );
           break;
