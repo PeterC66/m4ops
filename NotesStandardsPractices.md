@@ -1313,6 +1313,8 @@ graph LR;
   - Censuses.geojson"
   - HcN land ownership.geojson"
   - OSM20180209.geojson"
+  - test03.geojson"
+  - **[Remember the \_id for each feature layer must have the prefix eg HcN\_]**
   - (adding --drop ensures the target instance drops the collection before importing the data from the input)
   - (adding --mode upsert to replace documents whose _id matches the document(s) in the import file)
 - (Note that the Studies collection is not used now)
@@ -1336,6 +1338,7 @@ graph LR;
 - [CRUD operations in a Node.js, ExpressJS, MongoDB using mongoose](https://scotch.io/bar-talk/using-mongoosejs-in-node-js-and-mongodb-applications)
 
 - [creating a RESTful API using Node, Express 4 and Mongoose to interact with MongoDB](https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4)
+- [Introduction to Mongoose for MongoDB](https://medium.freecodecamp.org/introduction-to-mongoose-for-mongodb-d2a7aa593c57)
 
 ## Environment Variables
 

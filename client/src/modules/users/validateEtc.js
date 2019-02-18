@@ -1,4 +1,4 @@
-/* eslint-disable no-console, no-multiple-empty-lines, no-empty, no-unused-vars, max-len, padded-blocks */
+/* eslint-disable max-len */
 import _ from 'lodash';
 import { actions } from 'vuex-api';
 import { protectionStatusEnum, userRightsEnum, displayTypeEnum } from '../../global/constants';
@@ -54,10 +54,12 @@ export function reasonForNotAllowingLayer(layerDef) {
 //   and then report any issues and/or move the data to the relevant bits of vuex
 // Returns a promise so the router can use next() to let the maps component open
 export function validateUserAndSetInitialValues(params) {
+  // eslint-disable-next-line no-unused-vars
   return new Promise(((resolve, reject) => {
-    console.log('validate to/state', params, store.state);
+    // console.log('validate to/state', params, store.state);
 
     // Find out about the current user and desired OPS
+    // eslint-disable-next-line no-unused-vars
     const { currentUsername, currentUserLoggedIn } = store.getters;
 
     let currentOPSCode = store.getters.place.OPSCode;
@@ -76,7 +78,7 @@ export function validateUserAndSetInitialValues(params) {
 
     // Validate the User's access to that OPS
     const currentUserBestRightForCurrentOPS = store.getters.getCurrentUserBestRightByOPS(desiredOPSCode);
-    console.log(`UBR for ${currentUsername} in ${desiredOPSCode} is ${currentUserBestRightForCurrentOPS}`);
+    // console.log(`UBR for ${currentUsername} in ${desiredOPSCode} is ${currentUserBestRightForCurrentOPS}`);
     const placeIsProtected = place.Protected;
     // Note that the higher rights are the more limited they are
     if (placeIsProtected && (!currentUserLoggedIn || currentUserBestRightForCurrentOPS > userRightsEnum.opsViewer)) {
@@ -92,7 +94,7 @@ export function validateUserAndSetInitialValues(params) {
       url: `places/${desiredOPSCode}`,
       keyPath: ['place'],
     })).then(() => {
-      console.log('B');
+      // console.log('B');
       currentOPSCode = store.getters.place.OPSCode; // After this point use currentOPSCode rather than desiredOPSCode
       // Validate the layers
       const desiredLayers = (params.layers || '').split('/');
@@ -108,7 +110,7 @@ export function validateUserAndSetInitialValues(params) {
             result.errorsToReport.push(`${layerTitle} is an unknown layer in this context`);
           } else {
             const opacity = (desiredOpacities[i - 1] / 100); // Undefined is OK
-            console.log(`${i}) ${layerTitle} ${layerDef.ldid}`, layerDef);
+            // console.log(`${i}) ${layerTitle} ${layerDef.ldid}`, layerDef);
             const layerIssue = reasonForNotAllowingLayer(
               layerDef,
             );
@@ -130,7 +132,7 @@ export function validateUserAndSetInitialValues(params) {
       }
     })
       .then(() => {
-        console.log('C');
+        // console.log('C');
 
         // Get the view
         const viewToUse = { ...store.getters.homeView };
@@ -147,23 +149,22 @@ export function validateUserAndSetInitialValues(params) {
         store.dispatch('updateView', viewToUse);
 
         // We are done validating
-        console.log('D');
+        // console.log('D');
         if (result.errorsToReport.length) {
+          // eslint-disable-next-line no-console
           console.log('Errors', result.errorsToReport);
         }
 
-        console.log('OK ToCarryOn');
-
+        // console.log('OK ToCarryOn');
       })
       .then(() => resolve('Done'));
-    console.log('Z');
+    // console.log('Z');
   }));
 }
 // TODO https://hanezu.github.io/posts/sync-async-and-compound-beforeEnter-guard-with-Vue-Router.html
 export function guardToValidateUserAndSetInitialValues(to, from, next) {
   validateUserAndSetInitialValues(to.params).then(() => {
     next(); // the router can carry on and load M4OPSView.vue
-
   });
 }
 

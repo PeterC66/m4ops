@@ -5,7 +5,7 @@ const FeatureLayerSchema = new mongoose.Schema({
 	_id: String,
 	type: String,
 	features: [{
-    // These don't work - maybe because of duplicayed property name?
+    // These don't work - maybe because of duplicated property name?
     // type: String,
     // geometry: {
     //   type: String,
