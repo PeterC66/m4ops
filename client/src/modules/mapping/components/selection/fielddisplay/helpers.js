@@ -1,5 +1,7 @@
 import {
+  isUndefined,
   isFunction,
+  isNull,
   isNumber,
 } from 'lodash';
 import tinycolor from 'tinycolor2';
@@ -22,24 +24,24 @@ const DATETIME_FORMATS = {
   'datetime-local': 'YYYY-MM-DDTHH:mm:ss',
 };
 
-export function formatDateValueToField(value, inputType) {
-  if (value === null || undefined === value) {
+export function formatDateValueToField(value, inputType = 'date') {
+  console.log(value, inputType);
+  if (isUndefined(value) || isNull(value)) {
     return null;
   }
 
   const defaultFormat = DATETIME_FORMATS[inputType.toLowerCase()];
-  let m = value;
-  if (!isNumber(value)) {
-    m = fecha.parse(value, defaultFormat);
-  }
-  if (m !== false) {
+  // value is expected to be either milliseconds (number) or a general date string (including the defaultFormat)
+
+  const m = isNumber(value) ? value : new Date(value);
+  if (m.toString() !== 'Invalid Date') {
     return fecha.format(m, defaultFormat);
   }
   return value;
 }
 
 export function formatColorValueToField(value) {
-  if (value === null || undefined === value) {
+  if (isUndefined(value) || isNull(value)) {
     return null;
   }
   const color = tinycolor(value);

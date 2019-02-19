@@ -2,7 +2,7 @@ import {
   isUndefined,
 } from 'lodash';
 
-import { formatDatetimeValueToField } from './vfgHelpers';
+import { formatDateValueToField } from './helpers';
 import stringValueDisplay from './stringValueDisplay';
 
 export default function dateTimeValueDisplay(
@@ -13,6 +13,6 @@ export default function dateTimeValueDisplay(
 ) {
   if (isUndefined(value) || isUndefined(inputType)) return null;
 
-  const valueToUse = formatDatetimeValueToField(value, inputType);
+  const valueToUse = formatDateValueToField(value, inputType);
   return stringValueDisplay(createElement, valueToUse, null, valueStyleClass);
 }
