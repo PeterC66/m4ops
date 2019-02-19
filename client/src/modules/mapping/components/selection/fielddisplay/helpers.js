@@ -1,7 +1,6 @@
 import {
-  isUndefined,
+  isNil,
   isFunction,
-  isNull,
   isNumber,
 } from 'lodash';
 import tinycolor from 'tinycolor2';
@@ -25,23 +24,21 @@ const DATETIME_FORMATS = {
 };
 
 export function formatDateValueToField(value, inputType = 'date') {
-  console.log(value, inputType);
-  if (isUndefined(value) || isNull(value)) {
-    return null;
-  }
+  if (isNil(value)) return null;
 
-  const defaultFormat = DATETIME_FORMATS[inputType.toLowerCase()];
+  const defaultFormat = DATETIME_FORMATS[inputType.toLowerCase()]
+    || DATETIME_FORMATS.date;
+
   // value is expected to be either milliseconds (number) or a general date string (including the defaultFormat)
-
-  const m = isNumber(value) ? value : new Date(value);
-  if (m.toString() !== 'Invalid Date') {
-    return fecha.format(m, defaultFormat);
+  const ms = isNumber(value) ? value : new Date(value);
+  if (ms.toString() !== 'Invalid Date') {
+    return fecha.format(ms, defaultFormat);
   }
   return value;
 }
 
 export function formatColorValueToField(value) {
-  if (isUndefined(value) || isNull(value)) {
+  if (isNil(value)) {
     return null;
   }
   const color = tinycolor(value);

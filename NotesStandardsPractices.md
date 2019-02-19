@@ -310,6 +310,7 @@ See under [Standards and styles](#standards-and-styles)
 - [To clone a repository from GitHub to local](https://help.github.com/articles/cloning-a-repository/) (don't create folder first)
 
 - [GitHub Guides](https://guides.github.com/); [Learn Git and GitHub](https://medium.freecodecamp.org/how-you-can-learn-git-and-github-while-youre-learning-to-code-7a592ea287ba)
+- [draft pull requests](https://github.blog/2019-02-14-introducing-draft-pull-requests/)
 - [Useful guide to git protocol](https://medium.com/@francesco.agnoletto/how-to-not-f-up-your-local-files-with-git-part-1-e0756c88fd3c) and [Learn Version Control with Git](https://www.git-tower.com/learn/git/ebook/en/desktop-gui/basics/what-is-version-control#start)
 
 - Notes
@@ -525,6 +526,7 @@ graph LR;
 - special abstract component [keep-alive](https://vuejs.org/v2/api/#keep-alive) tells Vue not to destroy and recreate its child, instead keep it in memory
 - [Access And Change Parent Variables From A Child Component With Vue.js](https://www.thepolyglotdeveloper.com/2018/04/access-change-parent-variables-child-component-vuejs/)
 - [Simplify Your Vue Components with Computed Setters](https://medium.com/@Taha_Shashtari/simplify-your-components-with-computed-setters-2f687f193fb0) - get/set for a computed property
+- [26 Time Saving Tips for Vue](http://michaelnthiessen.com/26-time-saving-tips/) - useful to review
 
 ### Scoped Slots
 

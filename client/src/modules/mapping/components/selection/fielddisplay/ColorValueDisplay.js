@@ -1,5 +1,5 @@
 import {
-  isUndefined,
+  isNil,
 } from 'lodash';
 
 import { formatColorValueToField } from './helpers';
@@ -9,10 +9,10 @@ export default function ColorValueDisplay(
   value,
   valueStyleClass = '',
 ) {
-  if (isUndefined(value)) return null;
+  if (isNil(value)) return null;
 
   const valueToUse = formatColorValueToField(value);
-  if (!valueToUse) return null;
+  if (isNil(valueToUse)) return null;
 
   return createElement(
     'span',

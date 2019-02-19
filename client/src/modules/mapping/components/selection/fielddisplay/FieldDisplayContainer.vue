@@ -34,6 +34,7 @@ export default {
       required: false,
       default: () => ({
         stylePrefix: 'results',
+        showNulls: true,
         fieldsOptions: [],
       }),
     },
@@ -42,8 +43,10 @@ export default {
     fields() {
       const {
         stylePrefix,
+        showNulls,
         fieldsOptions,
       } = this.fieldDisplayContainerOptions;
+
       if (isNonemptyArray(this.schema.fields)) {
         const fieldsAndValues = this.schema.fields.map(field => ({
           ...field,
@@ -52,6 +55,7 @@ export default {
           fieldOptions: {
             ...fieldsOptions[field.model],
             stylePrefix,
+            showNulls,
           },
         }));
         // eslint-disable-next-line no-console

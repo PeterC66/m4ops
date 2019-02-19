@@ -1,5 +1,5 @@
 import {
-  isUndefined,
+  isNil,
 } from 'lodash';
 
 import { formatDateValueToField } from './helpers';
@@ -11,8 +11,10 @@ export default function dateTimeValueDisplay(
   inputType,
   valueStyleClass = '',
 ) {
-  if (isUndefined(value) || isUndefined(inputType)) return null;
+  if (isNil(value) || isNil(inputType)) return null;
 
   const valueToUse = formatDateValueToField(value, inputType);
+  if (isNil(valueToUse)) return null;
+
   return stringValueDisplay(createElement, valueToUse, null, valueStyleClass);
 }

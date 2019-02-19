@@ -1,6 +1,6 @@
 import {
   isObject,
-  isUndefined,
+  isNil,
   isEmpty,
   find,
 } from 'lodash';
@@ -18,7 +18,8 @@ export default function checklistValueDisplay(
   checklistOptions = {},
   valueStyleClass = '',
 ) {
-  if (isUndefined(value) || isUndefined(values) || isEmpty(values)) return null;
+  if (isNil(value) || isEmpty(value)) return null;
+  if (isNil(values) || isEmpty(values)) return null;
 
   const valuesArray = valuesAsArray(values);
 

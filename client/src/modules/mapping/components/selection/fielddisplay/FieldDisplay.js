@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import {
-  isUndefined,
+  isNull,
+  isNil,
 } from 'lodash';
 
 import dateTimeValueDisplay from './dateTimeValueDisplay';
@@ -40,10 +41,11 @@ export default Vue.component('FieldDisplay',
 
       const {
         stylePrefix = '',
+        showNulls = true,
         hidden = false,
       } = fieldOptions;
 
-      if (isUndefined(value) || isUndefined(type)) return null;
+      if (isNil(value) || isNil(type)) return null;
       if (hidden) return null;
 
       const labelToUse = label || key || 'Unknown';
@@ -183,9 +185,12 @@ export default Vue.component('FieldDisplay',
           console.log('Problem in fVDC', this.field);
       }
 
-      return createElement('p', [
-        fieldLabel,
-        fieldValueDisplay,
-      ]);
+      if (showNulls || !isNull(fieldValueDisplay)) {
+        return createElement('p', [
+          fieldLabel,
+          fieldValueDisplay,
+        ]);
+      }
+      return null;
     },
   });

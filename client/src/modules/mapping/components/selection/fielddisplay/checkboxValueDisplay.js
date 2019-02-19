@@ -1,5 +1,5 @@
 import {
-  isUndefined,
+  isNil,
 } from 'lodash';
 
 export default function checkboxValueDisplay(
@@ -7,7 +7,7 @@ export default function checkboxValueDisplay(
   value,
   valueStyleClass = '',
 ) {
-  if (isUndefined(value)) return null;
+  if (isNil(value)) return null;
 
   const boxTickedOrNot = value ? '&#9745;' : '&#9744;';
   return createElement(

@@ -1,7 +1,7 @@
 import {
   isEmpty,
   isFunction,
-  isUndefined,
+  isNil,
   toString,
 } from 'lodash';
 
@@ -13,7 +13,7 @@ export default function stringValueArrayDisplay(
   get,
   valueStyleClass = '',
 ) {
-  if (isUndefined(valueArray)) return null;
+  if (isNil(valueArray)) return null;
 
   const valueArrayToUse = isEmpty(valueArray) ? [NO_VALUE] : valueArray;
   return valueArrayToUse.map((value) => {

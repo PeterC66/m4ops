@@ -1,6 +1,6 @@
 import {
   isFunction,
-  isUndefined,
+  isNil,
   toString,
 } from 'lodash';
 
@@ -10,7 +10,7 @@ export default function stringValueDisplay(
   get,
   valueStyleClass = '',
 ) {
-  if (isUndefined(value)) return null;
+  if (isNil(value)) return null;
 
   const valueToUse = toString(isFunction(get) ? get(value) : value);
   return createElement(

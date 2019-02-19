@@ -38,6 +38,7 @@ export default {
     fieldDisplayContainerOptions() {
       return {
         stylePrefix: 'results',
+        showNulls: false,
         fieldsOptions: {
           shorttext: { hidden: true },
           ldid: { hidden: true },
