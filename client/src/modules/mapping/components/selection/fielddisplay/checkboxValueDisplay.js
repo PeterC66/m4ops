@@ -10,13 +10,11 @@ export default function checkboxValueDisplay(
   if (isUndefined(value)) return null;
 
   const boxTickedOrNot = value ? '&#9745;' : '&#9744;';
-  const e = createElement(
+  return createElement(
     'span',
     {
       class: valueStyleClass,
       domProps: { innerHTML: boxTickedOrNot },
     },
   );
-  console.log(e);
-  return e;
 }

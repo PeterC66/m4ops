@@ -33,8 +33,7 @@ export default {
       type: Object,
       required: false,
       default: () => ({
-        nameStyleClass: 'resultsName',
-        valueStyleClass: 'resultsValue',
+        stylePrefix: 'results',
         fieldsOptions: [],
       }),
     },
@@ -42,8 +41,7 @@ export default {
   computed: {
     fields() {
       const {
-        nameStyleClass,
-        valueStyleClass,
+        stylePrefix,
         fieldsOptions,
       } = this.fieldDisplayContainerOptions;
       if (isNonemptyArray(this.schema.fields)) {
@@ -53,12 +51,11 @@ export default {
           key: field.model,
           fieldOptions: {
             ...fieldsOptions[field.model],
-            nameStyleClass,
-            valueStyleClass,
+            stylePrefix,
           },
         }));
         // eslint-disable-next-line no-console
-        console.log('F&V', fieldsAndValues, 'f', this.obj);
+        // console.log('F&V', fieldsAndValues, 'f', this.obj);
         return fieldsAndValues;
       }
       const fieldsAndValues = Object.keys(this.obj).map(key => ({
@@ -67,8 +64,7 @@ export default {
         value: this.obj[key],
         fieldOptions: {
           ...fieldsOptions[key],
-          nameStyleClass,
-          valueStyleClass,
+          stylePrefix,
         },
       }));
       // eslint-disable-next-line no-console

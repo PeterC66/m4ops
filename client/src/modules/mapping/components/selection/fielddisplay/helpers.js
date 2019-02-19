@@ -6,7 +6,7 @@ import tinycolor from 'tinycolor2';
 import fecha from 'fecha';
 
 export const NOTFOUND = 'Not found';
-export const NO_VALUE = 'No value';
+export const NO_VALUE = '-none-';
 
 export function valuesAsArray(values) {
   if (isFunction(values)) return values.apply();
@@ -44,7 +44,7 @@ export function formatColorValueToField(value) {
   }
   const color = tinycolor(value);
   if (color.isValid()) {
-    return color.toHexString();
+    return { color: color.toHexString(), name: color.toString() };
   }
-  return '#000000'; // black
+  return { color: '#000000', name: 'unknown' };
 }

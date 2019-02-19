@@ -1,4 +1,5 @@
 import {
+  isEmpty,
   isFunction,
   isUndefined,
   toString,
@@ -14,8 +15,8 @@ export default function stringValueArrayDisplay(
 ) {
   if (isUndefined(valueArray)) return null;
 
-  let valueArrayToUse = [NO_VALUE];
-  valueArrayToUse = valueArray.map((value) => {
+  const valueArrayToUse = isEmpty(valueArray) ? [NO_VALUE] : valueArray;
+  return valueArrayToUse.map((value) => {
     const valueToUse = toString(isFunction(get) ? get(value) : value);
     return createElement(
       'p',
@@ -23,5 +24,4 @@ export default function stringValueArrayDisplay(
       `${valueToUse}`,
     );
   });
-  return valueArrayToUse;
 }

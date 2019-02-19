@@ -39,8 +39,7 @@ export default Vue.component('FieldDisplay',
       } = this.field;
 
       const {
-        nameStyleClass = '',
-        valueStyleClass = '',
+        stylePrefix = '',
         hidden = false,
       } = fieldOptions;
 
@@ -54,7 +53,7 @@ export default Vue.component('FieldDisplay',
       if (['checklist'].includes(type)) {
         const fieldLabelAsHeader = createElement(
           'p',
-          { class: nameStyleClass },
+          { class: `${stylePrefix}ListName` },
           `${labelToUse}: `,
         );
 
@@ -65,7 +64,7 @@ export default Vue.component('FieldDisplay',
               value,
               values,
               checklistOptions,
-              valueStyleClass,
+              `${stylePrefix}ListValue`,
             );
             break;
           default:
@@ -81,7 +80,7 @@ export default Vue.component('FieldDisplay',
       // Now we deal with those that need only one line for display
       const fieldLabel = createElement(
         'span',
-        { class: nameStyleClass },
+        { class: `${stylePrefix}Name` },
         `${labelToUse}: `,
       );
 
@@ -92,7 +91,7 @@ export default Vue.component('FieldDisplay',
           fieldValueDisplay = checkboxValueDisplay(
             createElement,
             value,
-            valueStyleClass,
+            `${stylePrefix}Value`,
           );
           break;
         case 'input':
@@ -111,7 +110,7 @@ export default Vue.component('FieldDisplay',
                 createElement,
                 value,
                 get,
-                valueStyleClass,
+                `${stylePrefix}Value`,
               );
               break;
               // ignore datetime (deprecated in favour of "datetime-local"), Month, Week, and Time
@@ -121,7 +120,7 @@ export default Vue.component('FieldDisplay',
                 createElement,
                 value,
                 inputType,
-                valueStyleClass,
+                `${stylePrefix}Value`,
               );
               break;
             case 'color':
@@ -129,7 +128,7 @@ export default Vue.component('FieldDisplay',
               fieldValueDisplay = ColorValueDisplay(
                 createElement,
                 value,
-                valueStyleClass,
+                `${stylePrefix}Value`,
               );
               break;
             default:
@@ -142,7 +141,7 @@ export default Vue.component('FieldDisplay',
             createElement,
             value,
             get,
-            valueStyleClass,
+            `${stylePrefix}Value`,
           );
           break;
         case 'radios':
@@ -151,7 +150,7 @@ export default Vue.component('FieldDisplay',
             value,
             values,
             radiosOptions,
-            valueStyleClass,
+            `${stylePrefix}Value`,
           );
           break;
         case 'select':
@@ -160,7 +159,7 @@ export default Vue.component('FieldDisplay',
             value,
             values,
             selectOptions,
-            valueStyleClass,
+            `${stylePrefix}Value`,
           );
           break;
         case 'textArea':
@@ -168,7 +167,7 @@ export default Vue.component('FieldDisplay',
             createElement,
             value,
             get,
-            valueStyleClass,
+            `${stylePrefix}Value`,
           );
           break;
         case 'unknown':
@@ -176,7 +175,7 @@ export default Vue.component('FieldDisplay',
             createElement,
             value,
             get,
-            valueStyleClass,
+            `${stylePrefix}Value`,
           );
           break;
         default:

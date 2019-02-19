@@ -37,8 +37,7 @@ export default {
     },
     fieldDisplayContainerOptions() {
       return {
-        nameStyleClass: 'resultsName',
-        valueStyleClass: 'resultsValue',
+        stylePrefix: 'results',
         fieldsOptions: {
           shorttext: { hidden: true },
           ldid: { hidden: true },
