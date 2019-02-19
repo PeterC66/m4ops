@@ -11,7 +11,7 @@ import {
 } from './helpers';
 import stringValueArrayDisplay from './stringValueArrayDisplay';
 
-export default function checklistValueDisplay(
+export default function checklistValueArrayDisplay(
   createElement,
   value, // is an array - and we return an array
   values,

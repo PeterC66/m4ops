@@ -5,6 +5,7 @@ import {
 } from 'lodash';
 import tinycolor from 'tinycolor2';
 import fecha from 'fecha';
+import { isNull } from 'util';
 
 export const NOTFOUND = 'Not found';
 export const NO_VALUE = '-none-';
@@ -29,8 +30,16 @@ export function formatDateValueToField(value, inputType = 'date') {
   const defaultFormat = DATETIME_FORMATS[inputType.toLowerCase()]
     || DATETIME_FORMATS.date;
 
-  // value is expected to be either milliseconds (number) or a general date string (including the defaultFormat)
-  const ms = isNumber(value) ? value : new Date(value);
+  let ms;
+  if (isNumber(value)) { // value is expected to be either the standard milliseconds after January 1st 1970 (a number)
+    ms = value;
+  } else {
+    ms = fecha.parse(value, defaultFormat); // ... or a date string in the defaultFormat (eg '1955-11-06')
+    console.log(value, 'ms', ms);
+    if (isNull(ms)) {
+      ms = new Date(value);// ... or a general date string (eg '1998' or '2nd January 1892')
+    }
+  }
   if (ms.toString() !== 'Invalid Date') {
     return fecha.format(ms, defaultFormat);
   }

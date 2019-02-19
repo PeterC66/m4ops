@@ -7,10 +7,14 @@ import {
 import dateTimeValueDisplay from './dateTimeValueDisplay';
 import checkboxValueDisplay from './checkboxValueDisplay';
 import radiosValueDisplay from './radiosValueDisplay';
-import checklistValueDisplay from './checklistValueDisplay';
+import checklistValueArrayDisplay from './checklistValueArrayDisplay';
 import selectValueDisplay from './selectValueDisplay';
 import stringValueDisplay from './stringValueDisplay';
+import stringValueArrayDisplay from './stringValueArrayDisplay';
 import ColorValueDisplay from './ColorValueDisplay';
+import {
+  NO_VALUE,
+} from './helpers';
 
 function errorDisplay(createElement, type) {
   return stringValueDisplay(createElement, `Unknown field type "${type}"`);
@@ -49,9 +53,9 @@ export default Vue.component('FieldDisplay',
       if (hidden) return null;
 
       const labelToUse = label || key || 'Unknown';
-      let fieldValueDisplay = errorDisplay(createElement, type);
 
       // First deal with those that need multiple lines for display, hence their displays return an array
+      let fieldValueArrayDisplay = [];
       if (['checklist'].includes(type)) {
         const fieldLabelAsHeader = createElement(
           'p',
@@ -61,7 +65,7 @@ export default Vue.component('FieldDisplay',
 
         switch (type) {
           case 'checklist':
-            fieldValueDisplay = checklistValueDisplay(
+            fieldValueArrayDisplay = checklistValueArrayDisplay(
               createElement,
               value,
               values,
@@ -73,13 +77,25 @@ export default Vue.component('FieldDisplay',
           // eslint-disable-next-line no-console
             console.log('Problem in fVDA', this.field);
         }
+        if (isNull(fieldValueArrayDisplay)) {
+          if (!showNulls) return null;
+          fieldValueArrayDisplay = stringValueArrayDisplay(
+            createElement,
+            [NO_VALUE],
+            null,
+            `${stylePrefix}ListValue`,
+          );
+        }
         return createElement('div', [
           fieldLabelAsHeader,
-          ...fieldValueDisplay,
+          ...fieldValueArrayDisplay,
         ]);
       }
 
       // Now we deal with those that need only one line for display
+      if (!showNulls && (isNil(value) || value === '')) return null;
+
+      let fieldValueDisplay = errorDisplay(createElement, type);
       const fieldLabel = createElement(
         'span',
         { class: `${stylePrefix}Name` },
@@ -90,6 +106,7 @@ export default Vue.component('FieldDisplay',
       // For optional fields https://vue-generators.gitbook.io/vue-generators/fields/optional_fields [done on demand]
       switch (type) {
         case 'checkbox':
+          if (!showNulls && !value) return null;
           fieldValueDisplay = checkboxValueDisplay(
             createElement,
             value,
