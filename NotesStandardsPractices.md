@@ -955,6 +955,11 @@ graph LR;
   - includes Rich Text Editing etc
 - Interesting: [How to Handle Multi-row Forms with Vue, Vuex and vuex-map-fields](https://markus.oberlehner.net/blog/how-to-handle-multi-row-forms-with-vue-vuex-and-vuex-map-fields/) (automates computed get/set)
 
+#### Colors/Colours
+
+- For the (optional) color type VFG uses [Spectrum Colorpicker](https://bgrins.github.io/spectrum/), but this needs JQuery and there is no recommended non-JQuery equivalent
+- We use [TinyColor](https://github.com/bgrins/TinyColor)
+
 #### Modals
 
 - [Modals](https://github.com/vuejs/awesome-vue#overlay)
@@ -1308,7 +1313,7 @@ graph LR;
   - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
   - mongoimport --db m4opsdb --collection Forms --drop --file C:\projects\m4ops\client\src\modules\forms\vfgData\Forms.json
 - For Feature Layers
-  - Remember the url of the source in Places (eg Testing VFG.geojson) when prefixed by OPS\_ (eg HcN\_) and all spaces replaced by underscores (\_) must equal the \_id in the geojson file of the Feature Layer
+  - **Remember** the url of the source in Places (eg Testing VFG.geojson) when prefixed by OPS\_ (eg HcN\_) and all spaces replaced by underscores (\_) must equal the \_id in the geojson file of the Feature Layer
   - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
   - and then:
     - Buildings.geojson"

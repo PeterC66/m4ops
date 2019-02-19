@@ -50,6 +50,7 @@ export default {
         const fieldsAndValues = this.schema.fields.map(field => ({
           ...field,
           value: this.obj[field.model],
+          key: field.model,
           fieldOptions: {
             ...fieldsOptions[field.model],
             nameStyleClass,
@@ -62,7 +63,7 @@ export default {
       }
       const fieldsAndValues = Object.keys(this.obj).map(key => ({
         type: 'unknown',
-        label: key,
+        key,
         value: this.obj[key],
         fieldOptions: {
           ...fieldsOptions[key],

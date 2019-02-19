@@ -1,5 +1,7 @@
 import {
   isObject,
+  isUndefined,
+  isEmpty,
   find,
 } from 'lodash';
 
@@ -7,21 +9,27 @@ import {
   NOTFOUND,
   valuesAsArray,
 } from './helpers';
-import stringValuesDisplay from './stringValuesDisplay';
-
+import stringValueArrayDisplay from './stringValueArrayDisplay';
 
 export default function checklistValueDisplay(
   createElement,
   value, // is an array - and we return an array
   values,
-  checklistOptions,
-  valueStyleClass,
+  checklistOptions = {},
+  valueStyleClass = '',
 ) {
+  if (isUndefined(value) || isUndefined(values) || isEmpty(values)) return null;
+
   const valuesArray = valuesAsArray(values);
 
   // First deal with case where values is a simple array of strings, hence we can use the value array as is
   if (!isObject(valuesArray[0])) {
-    return stringValuesDisplay(createElement, value, null, valueStyleClass);
+    return stringValueArrayDisplay(
+      createElement,
+      value,
+      null,
+      valueStyleClass,
+    );
   }
 
   // Past here values must be objects with value and name properties (which may be called something else)
@@ -42,5 +50,10 @@ export default function checklistValueDisplay(
       return nameToUse;
     },
   );
-  return stringValuesDisplay(createElement, namesToUse, null, valueStyleClass);
+  return stringValueArrayDisplay(
+    createElement,
+    namesToUse,
+    null,
+    valueStyleClass,
+  );
 }

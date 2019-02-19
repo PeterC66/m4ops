@@ -1,6 +1,8 @@
 import {
   find,
+  isEmpty,
   isObject,
+  isUndefined,
 } from 'lodash';
 
 import stringValueDisplay from './stringValueDisplay';
@@ -13,9 +15,10 @@ export default function selectValueDisplay(
   createElement,
   value,
   values,
-  selectOptions,
-  valueStyleClass,
+  selectOptions = {},
+  valueStyleClass = '',
 ) {
+  if (isUndefined(value) || isUndefined(values) || isEmpty(values)) return null;
   const valuesArray = valuesAsArray(values);
 
   // First deal with case where values is a simple array of strings, hence we can use the value array as is

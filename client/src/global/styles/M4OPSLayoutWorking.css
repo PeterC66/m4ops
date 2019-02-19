@@ -168,13 +168,3 @@ to make Bootstrap selects not 100% */
 		box-shadow: 0 0 0 0 rgba(255,0,0, 0);
 	}
 }
-/* from https://jsfiddle.net/VRyS2/1/ */
- .color-box {
-	width: 15px;
-	height: 10px;
-	display: inline-block;
-	background-color: #ccc;
-	position: relative;
-	left: 5px;
-	top: 1px;
-}

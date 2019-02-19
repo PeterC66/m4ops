@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {
-  toString,
+  isUndefined,
 } from 'lodash';
 
 import dateTimeValueDisplay from './dateTimeValueDisplay';
@@ -9,6 +9,7 @@ import radiosValueDisplay from './radiosValueDisplay';
 import checklistValueDisplay from './checklistValueDisplay';
 import selectValueDisplay from './selectValueDisplay';
 import stringValueDisplay from './stringValueDisplay';
+import ColorValueDisplay from './ColorValueDisplay';
 
 function errorDisplay(createElement, type) {
   return stringValueDisplay(createElement, `Unknown field type "${type}"`);
@@ -26,24 +27,27 @@ export default Vue.component('FieldDisplay',
       const {
         type,
         inputType,
+        key,
         label,
         value,
         get,
-        values,
-        radiosOptions,
-        selectOptions,
-        checklistOptions,
-        fieldOptions,
+        values = [],
+        radiosOptions = {},
+        selectOptions = {},
+        checklistOptions = {},
+        fieldOptions = {},
       } = this.field;
 
       const {
-        nameStyleClass,
-        valueStyleClass,
-        hidden,
+        nameStyleClass = '',
+        valueStyleClass = '',
+        hidden = false,
       } = fieldOptions;
 
+      if (isUndefined(value) || isUndefined(type)) return null;
       if (hidden) return null;
 
+      const labelToUse = label || key || 'Unknown';
       let fieldValueDisplay = errorDisplay(createElement, type);
 
       // First deal with those that need multiple lines for display, hence their displays return an array
@@ -51,7 +55,7 @@ export default Vue.component('FieldDisplay',
         const fieldLabelAsHeader = createElement(
           'p',
           { class: nameStyleClass },
-          `${label}: `,
+          `${labelToUse}: `,
         );
 
         switch (type) {
@@ -78,7 +82,7 @@ export default Vue.component('FieldDisplay',
       const fieldLabel = createElement(
         'span',
         { class: nameStyleClass },
-        `${label}: `,
+        `${labelToUse}: `,
       );
 
       // For Core fields see https://vue-generators.gitbook.io/vue-generators/fields/core-fields
@@ -94,7 +98,7 @@ export default Vue.component('FieldDisplay',
         case 'input':
           // See https://vue-generators.gitbook.io/vue-generators/fields/core-fields/input
           // We do not allow here for inputTypes that are better handled by other field types
-          // See ...node_modules\vue-form-generator\src\fields\core\fieldInput.vue
+          // See ...\vue-form-generator\src\fields\core\fieldInput.vue
           switch (inputType.toLowerCase()) {
             case 'text':
             case 'url':
@@ -120,9 +124,13 @@ export default Vue.component('FieldDisplay',
                 valueStyleClass,
               );
               break;
-            case 'color': // TODO
+            case 'color':
               // eslint-disable-next-line max-len
-              fieldValueDisplay = stringValueDisplay(createElement, toString(value), get, valueStyleClass);
+              fieldValueDisplay = ColorValueDisplay(
+                createElement,
+                value,
+                valueStyleClass,
+              );
               break;
             default:
               // eslint-disable-next-line no-console

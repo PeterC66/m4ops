@@ -88,7 +88,18 @@ export default {
       /* PROD: #EEF2E9 url(../../assets/images/backdrop.png) repeat-x;*/
   .resultsName {color: DarkCyan; margin-bottom: 1px;}
   .resultsValue {color: black;}
-
+/* from https://jsfiddle.net/VRyS2/1/ */
+  .color-box {
+    width: 15px;
+    height: 10px;
+    display: inline-block;
+    background-color: #ccc;
+    position: relative;
+    left: 5px;
+    top: 1px;
+    border-style: solid;
+    border-width: thin;
+  }
 </style>
 
 <style scoped>
