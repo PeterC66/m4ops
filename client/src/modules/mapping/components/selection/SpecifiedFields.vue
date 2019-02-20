@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FieldDisplayContainer
+    <field-display-container
       :schema="schema"
       :obj="obj"
       :field-display-container-options="fieldDisplayContainerOptions"
@@ -11,12 +11,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import FieldDisplayContainer from './fielddisplay/FieldDisplayContainer.vue';
+import VueFormGenerator from 'vue-form-generator';
 
 export default {
   name: 'SpecifiedFields',
   components: {
-    FieldDisplayContainer,
+    'field-display-container': VueFormGenerator.fieldDisplay,
   },
   props: {
     feature: {
