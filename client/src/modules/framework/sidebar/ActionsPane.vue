@@ -49,6 +49,17 @@
     >
       Census Form
     </button>
+    <button
+      class="button is-primary is-small"
+      @click="showPortal({
+        portalName: 'ModalForOPSForms',
+        title: 'Should be 2A data',
+        ldid: 'HcN>Local>Testing_VFG',
+        actionTextsArray: ['Save'],
+      })"
+    >
+      VFG Form
+    </button>
 
     <b-modal
       :active.sync="isModalActive"

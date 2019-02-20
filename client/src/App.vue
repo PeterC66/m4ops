@@ -46,7 +46,9 @@
     <!-- component matched by the route will render here -->
     <router-view />
     <!-- component with  <portal to="xxx"> will render here -->
-    <portal-target :name="portalName" />
+    <portal-target
+      :name="portalName"
+    />
   </div>
 </template>
 

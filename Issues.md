@@ -2,7 +2,6 @@
 
 ## Top Priority
 
-- Modal
 - Production version - Backups
 - Popups – by feature, or in results sidebar (use click choice?)
   - details in separate panel
@@ -12,7 +11,12 @@
 - Views – spy, slider
 - Click actions
 - Debounce mouse movements
-- -[v-viewer](http://mirari.cc/v-viewer/) gallery, or [Carousel](https://github.com/vuejs/awesome-vue#carousel)
+- ? [v-viewer](http://mirari.cc/v-viewer/) gallery, or [Carousel](https://github.com/vuejs/awesome-vue#carousel)
+
+## VFG enhancement
+
+- 'label' display? eg 2A
+- required validator vs attribute
 
 ## Await v0.12 Priority
 

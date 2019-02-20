@@ -12,6 +12,7 @@
       />
       <div
         class="modal-card"
+        style="overflow:auto;"
       >
         <form
           @submit.prevent="handleSubmit"

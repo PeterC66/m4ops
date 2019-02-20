@@ -38,7 +38,7 @@ export default {
     width: 20%;
     bottom: 20px;
     overflow: visible;
-    z-index: 20000;
+    z-index: 30;
     pointer-events: none;
     background-color: white;
     word-wrap: break-word;
