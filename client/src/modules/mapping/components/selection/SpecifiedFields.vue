@@ -3,7 +3,7 @@
     <field-display-container
       :schema="schema"
       :obj="obj"
-      :field-display-container-options="fieldDisplayContainerOptions"
+      :options="options"
     />
   </div>
 </template>
@@ -11,18 +11,31 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import VueFormGenerator from 'vue-form-generator';
+import FieldDisplayContainer
+  from '../../../../../../../field-display/src/fieldDisplayContainer.vue';
 
 export default {
   name: 'SpecifiedFields',
   components: {
-    'field-display-container': VueFormGenerator.fieldDisplay,
+    'field-display-container': FieldDisplayContainer,
   },
   props: {
     feature: {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      options: {
+        stylePrefix: 'results',
+        showNulls: false,
+        fieldsOptions: {
+          shorttext: { hidden: true },
+          ldid: { hidden: true },
+        },
+      },
+    };
   },
   computed: {
     ...mapGetters([
@@ -34,16 +47,6 @@ export default {
     },
     obj() {
       return this.feature.properties;
-    },
-    fieldDisplayContainerOptions() {
-      return {
-        stylePrefix: 'results',
-        showNulls: false,
-        fieldsOptions: {
-          shorttext: { hidden: true },
-          ldid: { hidden: true },
-        },
-      };
     },
   },
 };
