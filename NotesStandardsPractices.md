@@ -932,10 +932,14 @@ graph LR;
 - VFG generator: [Issues #503 and my #569](https://github.com/vue-generators/vue-form-generator/issues/503)
   - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
 - [Vue-multiselect](https://vue-multiselect.js.org/) - used in vue-form-generator
-- other field types:
+- other (custom) field types:
   - [vfg-field-array](https://www.npmjs.com/package/vfg-field-array?activeTab=readme) - a vfg field to handle arrays
   - [vfg-field-sourcecode](https://github.com/gwenaelp/vfg-field-sourcecode) - a source code field for vfg
   - [vfg-field-object](https://www.npmjs.com/package/vfg-field-object) - a vfg field to handle objects, with or without schemas
+  - [vue-tel-input](https://github.com/EducationLink/vue-tel-input) - for international telephone numbers
+  - [vfg-field-matrix](https://github.com/shwld/vfg-field-matrix#readme) - a vfg field to handle matrices
+  - [https://gitlab.com/m_pchelnikov/vue-form-generator-graphql#README](https://gitlab.com/m_pchelnikov/vue-form-generator-graphql#README) - realize query building for GraphQL based on schema
+  - NO - [vfg-field-checkboxlist](https://github.com/shwld/vfg-field-checkboxlist)
 
 ###### VFG documentation
 
@@ -1533,11 +1537,15 @@ See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/c
 
 - [The Power of Web Components](https://hacks.mozilla.org/2018/11/the-power-of-web-components/)
 - [anatomy-of-a-url](https://doepud.co.uk/blog/anatomy-of-a-url)
-- [Useful conversions](https://transform.now.sh/) (and prettifier) - eg
-  - JS Object to JSON
-  - JSON to Mongoose Schema
-  - Markdown to HTML
+- Convert/prettify
+  - In VSCode use [JSON to JS converter](https://marketplace.visualstudio.com/items?itemName=renatorodrigues.json-to-js) - Select a JSON string in the editor and in press Ctrl+Shift+J
+  - [Useful conversions](https://transform.now.sh/) (and prettifier) - eg
+    - JS Object to JSON
+    - JSON to Mongoose Schema
+    - Markdown to HTML
   - [CSS Formatter](https://www.cleancss.com/css-beautify/)
+  - [FreeFormatter](https://www.freeformatter.com/json-formatter.html)
+  - to generate code in VSCode could use [quicktype](https://quicktype.io/) - copy json into clipboard and "paste as code"
 - Any locally installed command (eg xx) will be available at ./node_modules/.bin/xx in your project
   - node_modules/.bin directory will be added to system $PATH when your're running npm scripts, so you can directly use the local xx command there
 - [Popular Systems in 2017](https://risingstars.js.org/2017/en/) - especially Vue.js

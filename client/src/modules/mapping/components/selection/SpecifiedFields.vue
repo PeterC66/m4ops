@@ -11,8 +11,8 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import FieldDisplayContainer
-  from '../../../../../../../field-display/src/fieldDisplayContainer.vue';
+// eslint-disable-next-line max-len
+import FieldDisplayContainer from '../../../../../../../field-display/src/components/fieldDisplayContainer.vue';
 
 export default {
   name: 'SpecifiedFields',
