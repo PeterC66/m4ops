@@ -1,6 +1,6 @@
 <template>
   <div>
-    <field-display-container
+    <vfg-display-fields
       :schema="schema"
       :obj="obj"
       :options="options"
@@ -11,13 +11,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
-// eslint-disable-next-line max-len
-import FieldDisplayContainer from '../../../../../../../field-display/src/components/fieldDisplayContainer.vue';
+import { DisplayFields } from 'vfg-display-fields';
 
 export default {
   name: 'SpecifiedFields',
   components: {
-    'field-display-container': FieldDisplayContainer,
+    'vfg-display-fields': DisplayFields,
   },
   props: {
     feature: {

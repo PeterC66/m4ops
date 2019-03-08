@@ -272,17 +272,22 @@ See under [Standards and styles](#standards-and-styles)
 - as the VSCode shell defaults to PowerShell on Windows 10 we set the terminal.integrated.shell.windows in user settings to "C:\\Windows\\System32\\cmd.exe"
 - Use Ctrl+Shift+P for the list of commands (Ctrl+S to save - but we have set it to save automatically), and use Ctrl+space for **context-sensitive snippets** (or start typing)
 - Ctrl+/ toggles lines as comments
-
 - For documentation and markdown see separate [Documenting](#Documenting) section below
-  
 - Useful about [Node.js and Express](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial) in VSCode
+- [VS Code can do that?!](https://vscodecandothat.com/)
 
+### VSCode extensions used
+
+- (See them in C:\Users\USER\.vscode\extensions)
 - Using [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
   - can Enable / Disable checking sections of code with // cSpell:disable
-
-- Includes [Emmet](https://docs.emmet.io/) - snippets etc
-
-- [Read Only extension](https://github.com/alefragnani/vscode-read-only-indicator)
+  - Includes [Emmet](https://docs.emmet.io/) - snippets etc (not used much)
+- [Read Only indicator](https://github.com/alefragnani/vscode-read-only-indicator)
+- [Vetur Vue tooling for VS Code](https://vuejs.github.io/vetur/)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [ESlint](#eslint-for-proofing-code)
+- [GitLens](https://github.com/eamodio/vscode-gitlens/#gitlens-explorer) for examining the git history of files
+- [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 
 ### GIT for source code version control
 
@@ -313,6 +318,7 @@ See under [Standards and styles](#standards-and-styles)
 - [GitHub Guides](https://guides.github.com/); [Learn Git and GitHub](https://medium.freecodecamp.org/how-you-can-learn-git-and-github-while-youre-learning-to-code-7a592ea287ba)
 - [draft pull requests](https://github.blog/2019-02-14-introducing-draft-pull-requests/)
 - [Useful guide to git protocol](https://medium.com/@francesco.agnoletto/how-to-not-f-up-your-local-files-with-git-part-1-e0756c88fd3c) and [Learn Version Control with Git](https://www.git-tower.com/learn/git/ebook/en/desktop-gui/basics/what-is-version-control#start)
+- A [Git blob (binary large object)](https://developer.github.com/v3/git/blobs/#git-blobs) is the object type used to store the contents of each file in a git repository.
 
 - Notes
   - Initialise repository for this project, or "clone" (=download / copy) one to your local computer
@@ -326,7 +332,6 @@ See under [Standards and styles](#standards-and-styles)
   - You can merge (one branch into another - HEAD) as often as you like
   - One Long-Running Branch Only - your production code- all new topic branches are based off (and merged into) this "master" branch
   - A "[Submodule](https://www.git-tower.com/learn/git/ebook/en/desktop-gui/advanced-topics/submodules#start)" is just a standard repository (pointing to a specific commit) nested inside a parent repository. To include a code library, you can simply add it as a Submodule in your main project.
-  - using [gitlens in VSCode](https://github.com/eamodio/vscode-gitlens/#gitlens-explorer) for examining the git history of files
 - Our simple workflow is (using Ctrl-Shift-P each time)
   - Checkout to...
   - +Create new branch - give it a name (XXX)
@@ -351,7 +356,6 @@ See under [Standards and styles](#standards-and-styles)
 - Vue and EsLint
 
 - See [eslint-prettier-vue-workflow](https://medium.com/@doppelmutzi/eslint-prettier-vue-workflow-46a3cf54332f) - seems good but not actually tried
-  - [Vetur Vue tooling for VS Code](https://vuejs.github.io/vetur/)
   - [Eslint plugin for Vue](https://github.com/vuejs/eslint-plugin-vue)
   - See especially [How to integrate ESLint with Vue.js and Vetur in Visual Studio Code](https://alligator.io/vuejs/eslint-vue-vetur/)
 - Also installed Vue 2 Snippets, Vue Peek
@@ -415,7 +419,7 @@ See under [Standards and styles](#standards-and-styles)
 - (NOT YET) could use object literals instead of switch statements as per [this suggestion](https://medium.com/chrisburgin/rewriting-javascript-replacing-the-switch-statement-cfff707cf045)
 - Add comments only to explain complex thoughts
 - Boolean variables, or functions that return a boolean value, should start with 'is', 'has' or 'should'
-- use [has()](https://www.npmjs.com/package/has) instaed of hasOwnProperty as it is better
+- use [has()](https://www.npmjs.com/package/has) instead of hasOwnProperty as it is better
 - (someone says we don't need to call `super(props)`, unless you need to use `this.props` inside the constructor)
 - Could use [Flow](http://flowtype.org/) for typing
     ([Documentation](https://flow.org/en/docs/)) for static typing see eg [here](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
@@ -446,6 +450,7 @@ See under [Standards and styles](#standards-and-styles)
 - [lodash](https://lodash.com/docs/) has many useful functions
   - just import _ from 'lodash' (see [benchmark](https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark))- eventually use [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash)
   - for [iteratees](https://lodash.com/docs/#iteratee) see [this explanation](https://stackoverflow.com/questions/43384596/can-you-please-explain-lodash-iteratee-function-in-english)
+- consider [vanilla ES6 js](https://30secondsofcode.org/) or [ramda](https://ramdajs.com/)
 - for async/await see [Javascript.Info: The Modern Javascript Tutorial](https://javascript.info/async)
 - for promises see [Javascript.Info](https://javascript.info/promise-basics)
   - [wait/sleep function](https://hackernoon.com/lets-make-a-javascript-wait-function-fa3a2eb88f11)
@@ -464,6 +469,40 @@ See under [Standards and styles](#standards-and-styles)
 
 with a global regular expression, .exec is meant to be used in a loop, as it will retrieve all matched subexpressions.  String.match does this for you and discards the captured groups.
 Without the /g both exec and match return the first match ([0]) and any captured groups ([1] etc)
+
+## Node
+
+- [Node.js®](https://nodejs.org/en/) is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [npm](https://www.npmjs.com/) - the [package](https://docs.npmjs.com/packages-and-modules/) manager for javascript ([documentation](https://docs.npmjs.com/cli-documentation/))
+- npm globals are in C:\Users\Peter2\AppData\Roaming\npm
+  - claudia, jest, nodemon, sass, vue
+
+### Making an npm package
+
+- [How to create and publish your npm package Node module in just 10 minutes](https://www.signet.hr/how-to-create-and-publish-your-npm-package-node-module-in-just-10-minutes/) - simple
+- [Installing and Building an NPM Package from Github](https://blog.jim-nielsen.com/2018/installing-and-building-an-npm-package-from-github/) - some insights
+- [How to make a beautiful, tiny npm package and publish it](https://medium.freecodecamp.org/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78) - jokey
+- [Official documentation - Contributing packages to the registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry), and [About packages and modules](https://docs.npmjs.com/about-packages-and-modules)
+- [building your first node module](https://gist.github.com/tmpvar/8746055)
+
+#### Looking after vfg-display-fields
+
+##### Set up
+
+- (using "building your first node module" from above)
+- choose the name (vfg-display-fields)
+- npm view vfg-display-fields => confirms it does not exist yet
+- create repository in github, and clone to c:\projects
+- npm init => initialises package
+- edit, commit, merge into master, synchronise with repo
+- see [guide](https://docs.npmjs.com/misc/developers) to test package
+- npm login (p6 lower case, )
+- npm publish
+
+#### Maintenance
+
+- github repo is the 'source of truth', so commit and publish
+- [Updating your published package version number](https://docs.npmjs.com/updating-your-published-package-version-number) - only when significant changes have been made
 
 ## Client Overview
 
@@ -528,6 +567,8 @@ graph LR;
 - [Access And Change Parent Variables From A Child Component With Vue.js](https://www.thepolyglotdeveloper.com/2018/04/access-change-parent-variables-child-component-vuejs/)
 - [Simplify Your Vue Components with Computed Setters](https://medium.com/@Taha_Shashtari/simplify-your-components-with-computed-setters-2f687f193fb0) - get/set for a computed property
 - [26 Time Saving Tips for Vue](http://michaelnthiessen.com/26-time-saving-tips/) - useful to review
+- [permission-control as an example of an abstract component](https://medium.com/js-dojo/one-more-example-of-abstract-component-in-vue-js-6e80293f7a38)
+- [Constructor Pattern](https://inventi.studio/en/blog/vuejs-with-constructor-pattern)
 
 ### Scoped Slots
 
@@ -535,6 +576,7 @@ graph LR;
   - see the excellent [Understanding scoped slots in Vue.js](https://medium.com/binarcode/understanding-scoped-slots-in-vue-js-db5315a42391)
   - and (video) [The Trick to Understanding Scoped Slots in Vue.js](https://adamwathan.me/the-trick-to-understanding-scoped-slots-in-vuejs/), explaining that if slots are like props, then scoped slots are like function props
   - slot-scope is the name of a temporary variable that holds the props object passed from the child - even simpler if it is destructured
+  - [How I finally got my head around Scoped Slots in Vue](https://medium.com/@ross_65916/how-i-finally-got-my-head-around-scoped-slots-in-vue-c37238d4d4cc)
 
 ### Complex components
 
@@ -842,6 +884,7 @@ graph LR;
     - but be aware that in some cases self-closing tags are not allowed
   - [advanced svg icons](https://vuejs.org/v2/cookbook/editable-svg-icons.html)
 - Did use [Element Icons](http://element.eleme.io/#/en-US/component/icon)
+- [ICONSVG](https://iconsvg.xyz) is a tool to simplify the process of finding and generating common icons
 
 ### CSS
 
@@ -932,7 +975,7 @@ graph LR;
 - VFG generator: [Issues #503 and my #569](https://github.com/vue-generators/vue-form-generator/issues/503)
   - linked to [VDDL - Vue components for modifying lists with the HTML5 drag & drop API](http://hejx.space/vddl-demo/)
 - [Vue-multiselect](https://vue-multiselect.js.org/) - used in vue-form-generator
-- other (custom) field types:
+- other (custom) field types - including [Public Custom Fields](https://github.com/vue-generators/vue-form-generator#public-custom-fields):
   - [vfg-field-array](https://www.npmjs.com/package/vfg-field-array?activeTab=readme) - a vfg field to handle arrays
   - [vfg-field-sourcecode](https://github.com/gwenaelp/vfg-field-sourcecode) - a source code field for vfg
   - [vfg-field-object](https://www.npmjs.com/package/vfg-field-object) - a vfg field to handle objects, with or without schemas
@@ -1021,6 +1064,7 @@ graph LR;
 - [Markdown](https://github.com/vuejs/awesome-vue#markdown)
 - [Trees](https://github.com/vuejs/awesome-vue#tree)
 - [search](https://github.com/vuejs/awesome-vue#search)
+- [GraphicsJS](http://www.graphicsjs.org/) - a lightweight free graphics library, based on SVG/VML technology
 
 ### Standards and styles
 
@@ -1148,6 +1192,9 @@ graph LR;
 - [**Vue Test Utils**](https://vue-test-utils.vuejs.org/) is the official unit testing utility library for Vue.js.
   - Can use [vue-jest preprocessor](https://vue-test-utils.vuejs.org/guides/testing-single-file-components-with-jest.html)
 - [Possibles](https://github.com/vuejs/awesome-vue#test)
+- [Mastering testing with Vue.js by testing a real application and setting up CI/CD](https://medium.com/clockwork-nl/mastering-testing-with-vue-js-by-testing-a-real-application-and-setting-up-ci-cd-e4e989c12912)
+- [JavaScript Testing Fundamentals](https://vueschool.io/courses/javascript-testing-fundamentals) - then continues into a full paid-for course
+- Could use ebook [Testing Vue.js components with Jest](https://leanpub.com/testingvuejscomponentswithjest) - $14 +VAT
 
 ## OpenLayers
 
