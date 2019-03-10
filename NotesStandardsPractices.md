@@ -267,7 +267,7 @@ See under [Standards and styles](#standards-and-styles)
 - Our main development environment is VSCode - intelligent code editing
 - [Documentation](https://code.visualstudio.com/docs?start=true) and [Chrome debugging in VSCode](https://github.com/Microsoft/vscode-chrome-debug/blob/master/README.md#troubleshooting)
 - a workspace (defined by an editable workspace file) is defined to be one or more folders and VSCode settings - we will not use them, unless it becomes necessary
-- Note that almost all VSCode settings (including cSpell words) are done at the **folder** level (eg in C:\projects\m4ops\.vscode\settings.json), rather than at the User (C:\Users\Peter_2\AppData\Roaming\Code\User) or workspace level
+- Note that almost all VSCode settings (including cSpell words) are done at the **folder** level (eg in C:\projects\m4ops\.vscode\settings.json), rather than at the User (C:\Users\Peter2\AppData\Roaming\Code\User) or workspace level
 - Similarly for ESLint
 - as the VSCode shell defaults to PowerShell on Windows 10 we set the terminal.integrated.shell.windows in user settings to "C:\\Windows\\System32\\cmd.exe"
 - Use Ctrl+Shift+P for the list of commands (Ctrl+S to save - but we have set it to save automatically), and use Ctrl+space for **context-sensitive snippets** (or start typing)
@@ -346,7 +346,7 @@ See under [Standards and styles](#standards-and-styles)
 ### Eslint for proofing code
 
 - [Set up guide](https://travishorn.com/setting-up-eslint-on-vs-code-with-airbnb-javascript-style-guide-6eb78a535ba6) includes style –uses [eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) (-base for non-react)
-  - npm i -D eslint eslint-config-airbnb-base eslint-plugin-import
+  - npm i -D eslint eslint-plugin-import (not eslint-config-airbnb-base ?)
 - Tried using Prettier rather than a style guide, but complications
 
 - Note that we don't use [setting up global eslint in VSCode](https://medium.com/@davidchristophersally/how-to-set-up-eslint-in-vscode-globally-253f25fbaff9) (because create-react requires it local)
@@ -1362,13 +1362,14 @@ graph LR;
 - Remember that it is **one (JSON) document per line**, although a single JSON document can span more than one line
 - can use [jsonformatter](https://jsonformatter.curiousconcept.com/) for checking one of the json, not using –jsonArray option
 - from terminal, for a whole collection or a single document, use
-  - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
-  - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Places.json
-  - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\Continents.json
+  - mongoimport --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter2\Documents\Mapping\Software\M4OPS2\M4OPS.json
+  - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter2\Documents\Mapping\Software\M4OPS2\Places.json
+  - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter2\Documents\Mapping\Software\M4OPS2\Continents.json
   - mongoimport --db m4opsdb --collection Forms --drop --file C:\projects\m4ops\client\src\modules\forms\vfgData\Forms.json
 - For Feature Layers
+  - can use: ...m4ops\utils\importAllFeatureLayers.bat
   - **Remember** the url of the source in Places (eg Testing VFG.geojson) when prefixed by OPS\_ (eg HcN\_) and all spaces replaced by underscores (\_) must equal the \_id in the geojson file of the Feature Layer
-  - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter_2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
+  - mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
   - and then:
     - Buildings.geojson"
     - Censuses.geojson"
@@ -1567,7 +1568,7 @@ See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/c
   - users m4ops_admin, m4ops_r, m4ops_rw - passwords in db
   - AWS REGION N. Virginia (us-east-1)
   - [how to connect (command line)](https://cloud.mongodb.com/v2/5be012b7c56c9822a3b4ca0e#clusters/commandLineTools/Cluster0)
-- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017 --ssl --username m4ops_admin --password opl0oUiDw3w9FAH7 --authenticationDatabase admin --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter_2\Documents\Mapping\Software\M4OPS2\M4OPS.json
+- mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017 --ssl --username m4ops_admin --password opl0oUiDw3w9FAH7 --authenticationDatabase admin --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter2\Documents\Mapping\Software\M4OPS2\M4OPS.json
   - also need --type csv if not json
   - --authenticationDatabase admin just means the user's details are in the admin db
 - Compass URI Connection String: mongodb+srv://m4ops_admin:opl0oUiDw3w9FAH7@cluster0-bfjgs.mongodb.net/admin

@@ -1,4 +1,7 @@
 {
+  "extends": [
+    "eslint-config-airbnb-base"
+  ],
   "rules": {
     "linebreak-style": "off",
     "no-underscore-dangle": [

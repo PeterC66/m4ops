@@ -11,7 +11,8 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import { DisplayFields } from 'vfg-display-fields';
+// eslint-disable-next-line max-len
+import { DisplayFields } from '../../../../../../../vfg-display-fields/src';
 
 export default {
   name: 'SpecifiedFields',

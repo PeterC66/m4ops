@@ -1,22 +1,10 @@
 All OPS "Protected":false except HNB "Protected":true
 
-// protection status relates to layers
-export const protectionStatusEnum = {
-  Unprotected: 'UN', // default
-  Protected: 'PD',
-  Personal: 'PL', (PL_username means Personal to username)
-  Test: 'TT',
-};
+see protectionStatusEnum
 
 Cosmo Wallace 1764 "Protected":"PD"
 
-export const userRightsEnum = {
-  none: '9_NO',
-  opsViewer: '6_OV',
-  opsTeamMember: '4_OT',
-  opsAdmin: '2_OA',
-  globalAdmin: '0_GA', // No OPS needed
-};
+see userRightsEnum
 
 A has OA for HNB
 P has GA

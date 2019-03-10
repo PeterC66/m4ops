@@ -1,0 +1,6 @@
+mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Pubs.geojson"
+mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Buildings.geojson"
+mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\Censuses.geojson"
+mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\HcN land ownership.geojson"
+mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\OSM20180209.geojson"
+mongoimport --db m4opsdb --collection FeatureLayers --mode upsert --file "C:\Users\Peter2\Documents\Mapping\Software\M4OPS\OPS\ENG England\HcN Holywell-cum-Needingworth\FromDev\ForMongo\test03.geojson"

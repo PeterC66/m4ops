@@ -26,6 +26,8 @@
     "rootpath": "^0.1.2"
   },
   "devDependencies": {
-    "claudia": "^5.1.2"
+    "claudia": "^5.1.2",
+    "eslint": "^5.15.1",
+    "eslint-plugin-import": "^2.16.0"
   }
 }
