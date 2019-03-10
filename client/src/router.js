@@ -71,16 +71,14 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page (eg Manage)
   const publicPages = [
-    '/',
-    '/login',
-    '/logout',
-    '/register',
-    '/about',
+    'home',
+    'about',
+    'register',
   ];
-  let authRequired = !publicPages.includes(to.path);
+  // eslint-disable-next-line max-len
+  let authRequired = !['/login', '/login/', '/logout', '/logout/'].includes(to.path) && !publicPages.includes(to.name);
   if (to.path.startsWith('/maps')) authRequired = false; // Handled by M4OPSView
   const loggedIn = localStorage.getItem('user'); // TODO use store
-
   if (authRequired && !loggedIn) {
     return next('/login');
   }

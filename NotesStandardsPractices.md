@@ -7,6 +7,7 @@
 - [Folder and File set-up](#folder-and-file-set-up)
 - [Naming conventions](#naming-conventions)
 - [Visual Studio Code](#visual-studio-code)
+  - [VSCode extensions used](#vscode-extensions-used)
   - [GIT for source code version control](#git-for-source-code-version-control)
   - [Eslint for proofing code](#eslint-for-proofing-code)
   - [Configuring eslint](#configuring-eslint)
@@ -15,12 +16,22 @@
 - [JS and ES6 standards](#js-and-es6-standards)
   - [Special functions and routines](#special-functions-and-routines)
   - [Regular Expressions](#regular-expressions)
+- [Node](#node)
+  - [Making an npm package](#making-an-npm-package)
+    - [Looking after vfg-display-fields](#looking-after-vfg-display-fields)
+      - [Set up](#set-up)
+    - [Maintenance](#maintenance)
 - [Client Overview](#client-overview)
   - [The Starting point](#the-starting-point)
 - [Vue.js](#vuejs)
+  - [Scoped Slots](#scoped-slots)
   - [Complex components](#complex-components)
   - [Vue Router](#vue-router)
-    - [Our URL scheme](#our-url-scheme)
+    - [M4OPS2 URL structure](#m4ops2-url-structure)
+      - [path parameters](#path-parameters)
+      - [Examples](#examples)
+      - [query parameters](#query-parameters)
+      - [Other M4OPS parameters](#other-m4ops-parameters)
   - [Events](#events)
   - [Vuex](#vuex)
     - [Vuex plugins](#vuex-plugins)
@@ -47,15 +58,12 @@
       - [VueFormGenerator](#vueformgenerator)
         - [VFG documentation](#vfg-documentation)
       - [Other on forms](#other-on-forms)
+    - [Colors/Colours](#colors-colours)
     - [Modals](#modals)
+      - [Our Modals structure](#our-modals-structure)
     - [Other Vue aspects](#other-vue-aspects)
   - [Standards and styles](#standards-and-styles)
   - [Vue CLI 3](#vue-cli-3)
-- [M4OPS2 URL structure](#m4ops2-url-structure)
-  - [path parameters](#path-parameters)
-  - [Examples](#examples)
-  - [query parameters](#query-parameters)
-  - [Other M4OPS parameters](#other-m4ops-parameters)
 - [Sources of truth](#sources-of-truth)
   - [Current OPSCode](#current-opscode)
   - [Current User](#current-user)
@@ -285,9 +293,17 @@ See under [Standards and styles](#standards-and-styles)
 - [Read Only indicator](https://github.com/alefragnani/vscode-read-only-indicator)
 - [Vetur Vue tooling for VS Code](https://vuejs.github.io/vetur/)
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-- [ESlint](#eslint-for-proofing-code)
+- [ESlint](#eslint-for-proofing-code) - see below
 - [GitLens](https://github.com/eamodio/vscode-gitlens/#gitlens-explorer) for examining the git history of files
 - [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
+- [Markdown Preview Github Styling]
+- [Markdown Preview Mermaid Support]
+- [vscode-babel-coloring]
+- [dotenv]
+- [debugger-for-chrome]
+- [JSON to JS converter]
+- [vue-snippets]
+- [vue-peek]
 
 ### GIT for source code version control
 
@@ -758,7 +774,7 @@ graph LR;
 ### Authorisation
 
 - We use Jason Watmore's approach, and have absorbed his routines into ours (users modules), adapted to our standards
-- The source of truth is in the server database
+- The source of truth is in the server's (MongoDB) database
 
 #### Our structure
 
@@ -798,6 +814,8 @@ graph LR;
     - and see all Personal layers in that OPS (from everyone)
     - and Register/edit Users as opsTeamMembers and opsViewers
   - globalAdmin - can do anything
+
+See client\src\global\constants.js for protectionStatusEnum {UN,PD,PL,TT}, userRightsEnum = {9_NO,6_OV,4_OT,2_OA,0_GA}
 
 #### Client system
 
@@ -1042,6 +1060,7 @@ graph LR;
 - Note that ModalForForms uses the VuexApi data as spec, thus its '(vfg_)model' is changed by any form entries
   - for passwords, and any other sensitive data, the action to clear it should be included
   - eg dispatch('clearFormField', {formId: 'LogIn', fieldName: 'password'});
+  - this data is imported from client\src\modules\forms\vfgData\forms.json
 - Another main Modal component is **ModalForMessages**, similar to ModalForForms, except
   - it needs showPortal to have set: messagesArray
   - it just displays the text from the messagesArray, without using vfg
@@ -1336,6 +1355,7 @@ graph LR;
 ## MongoDB
 
 - provides users with a NoSQL document database system (Open Source) [Documentation](https://docs.mongodb.com/manual/introduction/)
+- we are on v4.0
 
 - [Install MongoDB Community Edition on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
   - Start windows service: Command line as Administrator “net start MongoDB” (not Powershell)
@@ -1366,6 +1386,7 @@ graph LR;
   - mongoimport --db m4opsdb --collection Places --drop --file C:\Users\Peter2\Documents\Mapping\Software\M4OPS2\Places.json
   - mongoimport --db m4opsdb --collection Continents --drop --file C:\Users\Peter2\Documents\Mapping\Software\M4OPS2\Continents.json
   - mongoimport --db m4opsdb --collection Forms --drop --file C:\projects\m4ops\client\src\modules\forms\vfgData\Forms.json
+  - (Note that for now we do not import Users - we set them up manually via /regiter)
 - For Feature Layers
   - can use: ...m4ops\utils\importAllFeatureLayers.bat
   - **Remember** the url of the source in Places (eg Testing VFG.geojson) when prefixed by OPS\_ (eg HcN\_) and all spaces replaced by underscores (\_) must equal the \_id in the geojson file of the Feature Layer
@@ -1400,6 +1421,14 @@ graph LR;
 
 - [creating a RESTful API using Node, Express 4 and Mongoose to interact with MongoDB](https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4)
 - [Introduction to Mongoose for MongoDB](https://medium.freecodecamp.org/introduction-to-mongoose-for-mongodb-d2a7aa593c57)
+
+### MongoDB Backups
+
+- see [documentation](https://docs.mongodb.com/manual/core/backups/)
+- for now we use [mongodump](https://docs.mongodb.com/manual/reference/program/mongodump/)
+- data is stored at dbPath: "C:\Program Files\MongoDB\Server\4.0\data" in [WiredTiger files](https://docs.mongodb.com/manual/core/wiredtiger)
+- mongodump --db m4opsdb --out "C:\My Backups\MongoDB\Dump00"
+- see [bsondump](https://docs.mongodb.com/manual/reference/program/bsondump/) for reading bson files
 
 ## Environment Variables
 
@@ -1567,7 +1596,7 @@ See [our lambda](https://q91jlbi9al.execute-api.us-east-1.amazonaws.com/latest/c
 - login (manual) via RoboForm
   - users m4ops_admin, m4ops_r, m4ops_rw - passwords in db
   - AWS REGION N. Virginia (us-east-1)
-  - [how to connect (command line)](https://cloud.mongodb.com/v2/5be012b7c56c9822a3b4ca0e#clusters/commandLineTools/Cluster0)
+  - [how to connect (command line - v2?!)](https://cloud.mongodb.com/v2/5be012b7c56c9822a3b4ca0e#clusters/commandLineTools/Cluster0)
 - mongoimport --host Cluster0-shard-0/cluster0-shard-00-00-bfjgs.mongodb.net:27017,cluster0-shard-00-01-bfjgs.mongodb.net:27017,cluster0-shard-00-02-bfjgs.mongodb.net:27017 --ssl --username m4ops_admin --password opl0oUiDw3w9FAH7 --authenticationDatabase admin --db m4opsdb --collection M4OPSData --drop --file C:\Users\Peter2\Documents\Mapping\Software\M4OPS2\M4OPS.json
   - also need --type csv if not json
   - --authenticationDatabase admin just means the user's details are in the admin db

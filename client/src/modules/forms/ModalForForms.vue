@@ -89,7 +89,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     handleSubmit(e) {
       // console.log('HS', this.formId, this.thisFormSpec);
-      // We are not expert enough to pass functions as props or etc
+      // We are not yet expert enough to pass functions as props or etc
       switch (this.formId) {
         case 'LogIn':
         { const { username, password } = this.thisFormSpec.vfg_model;

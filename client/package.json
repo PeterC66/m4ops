@@ -30,6 +30,7 @@
     "tinycolor2": "^1.4.1",
     "uuid": "^3.3.2",
     "vfg-display-fields": "file:../../vfg-display-fields",
+    "vue": "^2.6.8",
     "vue-auth0-handler": "^1.1.1",
     "vue-cookie": "^1.1.4",
     "vue-form-generator": "^2.3.4",
