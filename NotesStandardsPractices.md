@@ -1214,6 +1214,7 @@ See client\src\global\constants.js for protectionStatusEnum {UN,PD,PL,TT}, userR
 - [Mastering testing with Vue.js by testing a real application and setting up CI/CD](https://medium.com/clockwork-nl/mastering-testing-with-vue-js-by-testing-a-real-application-and-setting-up-ci-cd-e4e989c12912)
 - [JavaScript Testing Fundamentals](https://vueschool.io/courses/javascript-testing-fundamentals) - then continues into a full paid-for course
 - Could use ebook [Testing Vue.js components with Jest](https://leanpub.com/testingvuejscomponentswithjest) - $14 +VAT
+  - eg [The power of Snapshot Testing](https://vuedose.tips/tips/9/)
 
 ## OpenLayers
 

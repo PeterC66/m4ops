@@ -12,6 +12,7 @@
 - Click actions
 - Debounce mouse movements
 - ? [v-viewer](http://mirari.cc/v-viewer/) gallery, or [Carousel](https://github.com/vuejs/awesome-vue#carousel)
+- Register Page to modalforms
 
 ## VFG enhancement
 
@@ -98,6 +99,7 @@
 - Group Feature layers???
 - Clear cache automatically??
 - polygons not disappearing
+- NLS? OS 1:25000 1937-61
 
 - Census compile XRefs1 takes too long
 - Compile OPS does not compile AllFeatures, but blank (All) does - why?

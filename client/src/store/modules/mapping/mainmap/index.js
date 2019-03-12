@@ -80,6 +80,22 @@ const mutations = {
       console.log('Warning: layerNumber is undefined'); // eslint-disable-line no-console
     }
   },
+  [OPACITY_SET_REQUEST](moduleState, payload) {
+    const { opacity, layerNumber } = payload;
+    if (isDefined(layerNumber)) {
+      if (moduleState.chosenLayers[layerNumber]) {
+        if (isDefined(opacity)) {
+          moduleState.chosenLayers[layerNumber].opacity = opacity;
+        } else {
+          // eslint-disable-next-line max-len, no-console
+          console.log(`Warning: opacity is undefined for layerNumber: ${layerNumber}`);
+        }
+      } else {
+        // eslint-disable-next-line max-len, no-console
+        console.log(`Warning: defining opacity before ldid for layerNumber: ${layerNumber}`);
+      }
+    }
+  },
   [MOVE_LAYER_UP](moduleState, payload) {
     const { layerNumber } = payload;
     if (layerNumber) {
